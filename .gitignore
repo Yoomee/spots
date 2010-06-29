@@ -1,0 +1,14 @@
+/app
+/config
+/db
+/lib
+/log
+/public
+/script
+/test
+/vendor
+/vendor/plugins/tramlines_blog
+/vendor/plugins/tramlines_facebook_connect
+/vendor/plugins/tramlines_walls
+/vendor/plugins/tramlines_events
+/vendor/plugins/event_calendar

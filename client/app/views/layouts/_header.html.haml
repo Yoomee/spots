@@ -1,0 +1,21 @@
+%h1#site_logo
+  = link_to 'The Green Machine', :home
+#user_links
+  - if logged_in?
+
+    -if facebook_session
+      %span.fb
+        =facebook_connect_logout_link
+    -else
+      %span.fb
+        = link_to 'Logout', session_path, :method => :delete
+    =facebook_connect_button unless @logged_in_member.fb_connected?
+    - #=link_if_allowed 'Sitemap', {:controller => 'section', :action => 'sitemap'}
+    =link_if_allowed 'Admin', admin_proc            
+    %strong
+      = link_to @logged_in_member.full_name, member_path(@logged_in_member)            
+  - else
+    %p
+      = link_to 'login', '#', :id => 'member_login_bttn' unless current_page?(new_session_path)
+    %span.fb  
+      =facebook_connect_button

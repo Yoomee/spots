@@ -1,0 +1,56 @@
+!!! Strict
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml", "xmlns:fb" => "http://www.facebook.com/2008/fbml" }
+  %head
+    %title
+      = site_name
+      \:
+      = site_slogan
+      \//
+      = page_title
+      = page_subtitle
+    %meta{ :name => "Generator", :content => "Yoomee (Ruby on Rails)" }
+    %meta{ :name => "robots", :content => "index, follow" }
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %meta{ :name => "info", :content => "#{page_title}#{page_subtitle}" }
+    %link{ :href => "/images/favicon.ico", :rel => "shortcut icon" }
+    = google_javascripts :jquery, :jqueryui
+    = javascript_include_tag 'jrails'
+    = javascript_include_tag 'jquery.cycle'
+    
+    = stylesheet_link_tag 'client/styles'
+    = stylesheet_link_tag 'jquery-ui'
+    = formtastic_stylesheet_link_tag
+    =yield :head
+    -unless current_page?(new_session_path)
+      :javascript
+        $(document).ready(function(){    
+          $("#member_login_bttn").click(function () {
+            $("#login_slide_bar").slideToggle("slow");
+            $("#member_login_bttn").toggleClass("open");
+          });
+        });
+  - body_tag do
+    -#<body id='= is_home? ? 'home' : 'inside''>
+    #top
+      =render :partial => 'layouts/nav'
+    -unless current_page?(new_session_path)
+      #login_slide_bar
+        #login_slide_bar_inside
+          =render :partial=>'sessions/form'
+    #wrapper
+      #header
+        =render :partial => 'layouts/header'
+      #main.content
+        -if flash[:notice]
+          %p#flash_notice
+            =flash[:notice]
+        -if flash[:error]
+          %p#flash_error
+            =flash[:error]
+        %h1
+          = page_title
+        = @content_for_layout
+        %br.clear
+      #footer
+        =render :partial => 'layouts/footer'
+    =tramlines_facebook_connect_receiver

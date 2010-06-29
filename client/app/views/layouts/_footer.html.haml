@@ -1,0 +1,27 @@
+#footer_links
+  %p#copyright
+    %strong
+      \&copy; 2010 The Green Machine
+    %br
+    Electric Works
+    %br
+    Sheffield Digital Campus
+    %br
+    Sheffield
+    %br
+    S1 2BJ
+    
+  %a#siteby{ :href => "http://www.yoomee.com" }
+    site by
+  %ul
+    - if @is_sys_admin
+      %li
+        %a{ :href => "/admin" }
+          %strong
+            admin
+    %li
+      %a{ :href => "legal" }
+        legal
+    %li
+      %a{ :href => "link2" }
+        another link

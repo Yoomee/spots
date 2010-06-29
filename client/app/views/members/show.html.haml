@@ -1,0 +1,24 @@
+- hide_page_title
+#left_column
+  #profile.bx
+    .profile_photo
+      - if @member == @logged_in_member
+        =link_to image_for(@member, '140x'), :controller => 'member', :action => 'setphoto', :id => @logged_in_member
+      - else
+        =image_for(@member, '140x')
+    .profile_info
+      %h1
+        = @member.full_name
+    %br.clear
+    = render_wall(@member.wall)
+#right_column
+  #options.group_section.bx
+    .bx_in
+      %ul.action_links
+      = render_photos_box(@member)
+%br.clear
+- options_panel do
+  = link_if_allowed "Edit", edit_member_proc(@member)
+  = link_if_allowed "Photos", attachable_photo_albums_proc(@member)
+  = link_if_allowed "Videos", member_videos_proc(@member)
+  = link_if_allowed "Links", member_links_proc(@member)

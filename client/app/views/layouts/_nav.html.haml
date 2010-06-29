@@ -1,0 +1,19 @@
+#nav
+  %ul
+    %li.active
+      =link_to 'Home', {:controller => '/home'}
+    %li
+      =link_to 'Pages', page_path(1)
+    %li
+      =link_to 'Blog', {:controller => 'blog'}
+    %li
+      =link_to 'Events', calendar_path
+    %li
+      =link_to 'Forum', {:controller => 'Forum'}
+    %li
+      =link_to 'Group', {:controller => 'group', :action => 'show', :id=> 5}
+  
+  #search_box
+    %form{ :action => "/search/results", :method => "post" }
+      %input#search_field{ :name => "term", :type => "text", :value => "Search", :onfocus => "var element = document.getElementById('search_field');element.value='';" }
+      %input#search_icon{ :name => "commit", :title => "search", :value => "search" }

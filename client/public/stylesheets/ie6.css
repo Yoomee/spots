@@ -1,0 +1,15 @@
+#search_box, ul#logged_out_nav li a {
+	display:inline;
+}
+#logged_in_as ul li a {
+	float:right;
+}
+#logged_in_as ul li {
+	float:none;
+}
+#logged_in_as ul {
+	float:none;
+}
+span.end {
+	display:none;
+}
