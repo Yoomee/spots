@@ -301,6 +301,25 @@ p.inline-errors {
 	float: left;
 	margin: 8px;
 }
+#wrapper .photo_browser_button {
+	background: #c5c7c8 url(/images/sprite.png) repeat-x 0 -160px;
+	border:none;
+	color:#000;
+	font:bold 15px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;
+	margin:10px 0 0;
+	padding:5px 13px;
+	float:left;
+	
+	-moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    
+    -webkit-box-shadow:1px 1px 2px #333;
+    -moz-box-shadow:1px 1px 2px #333;
+    box-shadow:1px 1px 2px #333;    
+
+   text-shadow:0 1px 0 #cdcdcd;  
+}
 span#page_photo_clear.photo_browser_clear {
 	background: url(/images/sprite.png) no-repeat 0px -2015px;
 	float: left;
