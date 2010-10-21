@@ -65,3 +65,8 @@ scm = git
 path = vendor/plugins/event_calendar
 repository = git://github.com/elevation/event_calendar.git
 scm = git
+
+[vendor/plugins/facebooker]
+repository = git://github.com/mmangino/facebooker.git
+path = vendor/plugins/facebooker
+scm = git
