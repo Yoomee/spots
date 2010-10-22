@@ -41,14 +41,9 @@
       #header
         =render :partial => 'layouts/header'
       #main.content
-        -if flash[:notice]
-          %p#flash_notice
-            =flash[:notice]
-        -if flash[:error]
-          %p#flash_error
-            =flash[:error]
-        %h1
-          = page_title
+        =render_flash
+        -unless hide_page_title?
+          %h1#page_title=page_title
         = @content_for_layout
         %br.clear
       #footer
