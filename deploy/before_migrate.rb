@@ -1,4 +1,4 @@
-run "cd #{release_path} && sudo ext update"
+run "cd #{release_path} && sudo ext up"
 run "sudo touch #{shared_path}/log/production.log"
 run "sudo chown deploy:deploy #{shared_path}/log/production.log"
 run "cd #{release_path} && sudo rake gems:install RAILS_ENV=production -t"
