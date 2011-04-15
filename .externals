@@ -41,32 +41,7 @@ path = vendor
 repository = git://git.yoomee.com:4321/tramlines/vendor.git
 scm = git
 
-[vendor/plugins/tramlines_blog]
-path = vendor/plugins/tramlines_blog
-repository = git://git.yoomee.com:4321/plugins/tramlines_blog
-scm = git
-
-[vendor/plugins/tramlines_facebook_connect]
-path = vendor/plugins/tramlines_facebook_connect
-repository = git://git.yoomee.com:4321/plugins/tramlines_facebook_connect
-scm = git
-
 [vendor/plugins/tramlines_walls]
 path = vendor/plugins/tramlines_walls
 repository = git://git.yoomee.com:4321/plugins/tramlines_walls
-scm = git
-
-[vendor/plugins/tramlines_events]
-path = vendor/plugins/tramlines_events
-repository = git://git.yoomee.com:4321/plugins/tramlines_events
-scm = git
-
-[vendor/plugins/event_calendar]
-path = vendor/plugins/event_calendar
-repository = git://github.com/elevation/event_calendar.git
-scm = git
-
-[vendor/plugins/facebooker]
-repository = git://github.com/mmangino/facebooker.git
-path = vendor/plugins/facebooker
 scm = git

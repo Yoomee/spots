@@ -11,17 +11,14 @@
     %br
     S1 2BJ
     
-  %a#siteby{ :href => "http://www.yoomee.com" }
-    site by
+  =link_to("site by", "http://www.yoomee.com", :id => "siteby")
   %ul
-    - if @is_sys_admin
+    - if admin_logged_in?
       %li
-        %a{ :href => "/admin" }
+        -link_to(admin_path) do
           %strong
             admin
     %li
-      %a{ :href => "legal" }
-        legal
+      =link_to("legal", "#")
     %li
-      %a{ :href => "link2" }
-        another link
+      =link_to("another link", "#")

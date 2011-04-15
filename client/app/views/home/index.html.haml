@@ -27,13 +27,3 @@
         =image_tag 'photo_2.jpg'
     .cycle_nav
       =link_to 'Next', '#', :class => 'cycle_next'
-        
-        
-#events.home_bx.bx
-  .bx_h
-    %h2
-      Events
-    =link_to 'View all', calendar_path, :class => "more"
-  .bx_in
-    %ul.bx_lst
-      =event_list(@events)
