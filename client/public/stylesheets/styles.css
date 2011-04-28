@@ -246,7 +246,10 @@ input, textarea {
 	float: left;
 	margin: 0 7px 5px 0;
 	font-weight: bold;	
-	
+}
+.formtastic label span{
+  font-weight: normal;
+  font-size: 12px;
 }
 .formtastic span.cke_skin_kama {
 	float: left;
@@ -485,7 +488,7 @@ br#pages_tab_links_break, br#sections_tab_links_break {
 	width: 600px;
 }
 
-.pages_tab p, #admin_tab_content p, .sections_tab p {
+.pages_tab p, #admin_tab_content p, .sections_tab p, .pages_tab label span, .sections_tab label span {
 	color: #bdd3db;
 }
 .pages_tab label, #admin_tab_content label {
