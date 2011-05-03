@@ -2,17 +2,41 @@
 # Tunnel configuration is only needed if you are going to use the facebooker:tunnel Rake tasks
 # Your callback url in Facebook should be set to http://public_host:public_port
 
+# si
 development:
-  api_key: 56e460da053a913c43817c3b126be55c
-  secret_key: 85c4852e799ccd5e4062024ec83ae552
-  pretty_errors: false
+  app_id: 129657333730843
+  api_key: 837c8cdbefac6f5646968c06ef99c07f
+  secret: 54f4c83ad90973e26f73f3d39c916c09
+  pretty_errors: true
+
+#ian
+# development: &development
+#   app_id: 273996288856
+#   secret: 85c4852e799ccd5e4062024ec83ae552
+#   api_key: 56e460da053a913c43817c3b126be55c
+ 
+#rich
+# development:
+#   api_key: bfc4bc8139e516d97d227b883629a6bc
+#   secret_key: eae4bcb94faebc89bf40158099df43d3
+#   pretty_errors: false 
+
+# si home
+# development:
+#  api_key: 1fb799b69683d81cfaac0a90830c9694 
+#  secret_key: 64360c7592ab02f9bc08b91346426725 
+#  pretty_errors: false
 
 test:
-  api_key: 56e460da053a913c43817c3b126be55c
-  secret_key: 85c4852e799ccd5e4062024ec83ae552
-  pretty_errors: false
-
-production:
+  app_id: 273996288856
   api_key: f71b1d98c870c8b6c3f911eadc598026
   secret_key: ace89ed0b0cdd0b2f42458e1f066590e
   pretty_errors: false
+
+# production: &production
+#   app_id: 116356498434303
+#   secret: 874f0b1d55119700f83589d199f407c1  
+#   api_key: ca75c23c44f972080bc624af3bde6b49
+#   
+# staging:
+#   <<: *production
