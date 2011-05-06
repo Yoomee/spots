@@ -143,6 +143,41 @@ p.flash_error {
 .ui-datepicker {
 	z-index: 20;
 }
+ul.lst {
+  list-style:none;
+}
+ul.lst li{
+  margin-left:0;
+  float: left;
+  clear: both;
+}
+.labelified {
+	color:gray;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.flcb {
+  float: left;
+  clear: both;
+}
+.frcb {
+  float: right;
+  clear: both;
+}
+.subrow {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin-bottom: 20px;
+}
+.formtastic .hidden {
+  display: none;
+}
+
 /* =============================  button styles ============================= */
 /* general large button*/
 input[type="submit"], a.bttn_l, .formtastic input[type="submit"], .formtastic  a.bttn_l {
