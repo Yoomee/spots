@@ -11,19 +11,21 @@
         prev: '.cycle_prev'
       });
     });
-.big_message
-  .big_message_left
-    %h1
+#big_message    
+  #big_message_left.fourcol
+    %h2
       We are an online community that inspires people to lead a greener life.
     %p
       With the help of brilliant videos and inspiring stories from creative people and community members around the world. Join people from 205 countries doing their green things and making a difference. 
       = link_to 'More about us here', {:controller => 'page', :action => 'show', :id => '2'}, :class => 'read_more'
-  
-  #big_message_right.cycle_frame
-    .cycle
-      %div
-        =image_tag 'photo.jpg'
-      %div
-        =image_tag 'photo_2.jpg'
-    .cycle_nav
-      =link_to 'Next', '#', :class => 'cycle_next'
+  #big_message_image.eightcol.last
+    =image_tag 'photo.jpg'
+#home_info_1.fourcol
+  %h3 A title goes here
+  %p Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus.  
+#home_info_2.fourcol
+  %h3 Another title
+  %p Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus.
+.fourcol.last
+  =link_to 'Call to action here', '#', :id=>'homepage_call_to_action', :class=>'homepage_link'
+  =link_to 'Less important link', '#', :id=>'homepage_second_link', :class=>'homepage_link'

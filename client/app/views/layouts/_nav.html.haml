@@ -1,17 +1,8 @@
 #nav
   %ul
     %li.active
-      =link_to 'Home', {:controller => '/home'}
-    %li
-      =link_to 'Pages', page_path(1)
-    %li
-      =link_to 'Blog', "#"
-    %li
-      =link_to 'Events', "#"
-    %li
-      =link_to 'Forum', "#"
-  
-  #search_box
-    %form{ :action => "/search/results", :method => "post" }
-      %input#search_field{ :name => "term", :type => "text", :value => "Search", :onfocus => "var element = document.getElementById('search_field');element.value='';" }
-      %input#search_icon{ :name => "commit", :title => "search", :value => "search" }
+      =link_to "Home", "/"
+    %li=link_to_slug('About us', :about_us_2)
+    %li=link_to_slug('Our work', :our_work)
+    %li=link_to "Blog", "/"
+    %li=link_to "Contact us", "/"

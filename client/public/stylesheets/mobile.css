@@ -1,0 +1,258 @@
+/* @override http://localhost:3000/stylesheets/client/mobile.css */
+
+/* ============================= */
+/* ! Layout for mobile version   */
+/* ============================= */
+
+@media handheld, only screen and (max-width: 767px) {
+
+    
+	#page_subnav {
+  	width: 100%;
+  	font-size: 19px;
+	}
+	body #user_links .panel {
+  	position: absolute;
+  	top: 0;
+  	right: 0;
+  	margin: 0;
+  }
+
+  #user_links .button {
+  	width: 120px;
+  	padding: 4px ;
+  	font-size: 15px;
+  	margin: 0 10px 0 0;
+  }
+  .splash .tag_line {
+  font-size: 20px;
+
+
+
+ } 
+ .splash_inner .heading .fr {
+	float: left;
+	clear: both;
+}
+#nav_line_row {
+	position: relative;
+}
+#search_box {
+	margin: -40px 0 0 ;
+	float: right;
+}
+
+#user_links {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#header_right {
+	margin-top: 20px;
+
+}
+.logged_in_box {
+	right: 20px;
+}
+
+
+	
+	#fancybox-inner {
+    overflow:auto !important;
+  }
+  .newsbox {
+	background: none;
+	}
+
+h1#site_logo a {
+	margin: 20px 0;
+	
+}
+.newsbox {
+  background: none;
+
+}
+.newsbox p {
+	float: left;
+}
+.newsbox img {
+	margin-bottom: 10px;
+}
+
+#main_container {
+	margin-top: 20px;
+}
+#page_content {
+	min-height: 0;
+}
+.splash_inner .advert {
+	float: left;
+	position: relative;
+}
+
+#page_subnav {
+	background: none;
+}
+#page_content {
+	border-top: 1px solid #000;
+
+}
+#page_content, #page_left_col, #page_right_col, #keep_in_touch, #article_image {
+	clear: both;
+	float: left;
+	width: 100%;
+}  
+#sponsors .sponsor a {
+	width: 200px;
+}
+.shout_right {
+	width: 80%;
+}
+.item_border {
+	border: none;
+	height: auto;
+}
+.item_inner {
+	margin: 0px;
+}
+.item {
+	padding-bottom: 30px;
+	border-bottom: 1px solid #ccc;
+}
+
+#leaderboard_left .pagination, #leaderboard_left .leaderboard_loader {
+  margin-right: 0%;
+}
+.row #leaderboard_left.sevencol {
+  width:100%;
+}
+#club_intro_page h2 {
+	margin-top: 20px;
+}
+li.bring_item .bring_quote {
+	font-size: 14px;
+
+}
+li.bring_item a.member_name {
+	font-size: 10px;
+	line-height: 10px;
+	float: left;
+}
+li.bring_item{
+	min-height: 180px;
+}
+
+#bring_wrapper {
+	height: 230px;
+}
+#fancybox-wrap {
+	padding: 0;
+}
+
+
+}
+
+@media handheld, only screen and (max-width: 500px) {
+
+
+
+#search_box {
+ display: none;
+	
+}
+div.logged_in_as {
+	background: #f5f5f5;
+	float: left;
+	width: 100%;
+	margin: 20px 0;
+	
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	-o-border-radius:3px;
+	
+}
+div.logged_in_as a {
+	padding: 7px 7px;
+	
+}
+  
+.splash .tag_line {
+	color: #000;
+	float: left;
+	position: relative;
+
+	
+}
+
+
+.splash img, .splash .tag_line {
+	display: none;
+} 
+#main_container {
+	min-height: 0;
+}
+a.item_img {
+	width: 100px;
+	margin-right: 10px ;
+}
+.logged_in_box {
+	top: 86px;
+}
+#login_wrapper {
+	width: 300px;
+}
+#login_services {
+	padding: 0 0 20px;
+	margin: 0 0 20px;
+	float: left;
+	border-bottom: 1px solid #000;
+	
+}
+#or_old_way {
+	bottom: -15px;
+	top: auto;
+	left: 0px;
+}
+#login_old_way {
+	border: none;
+}
+
+li.bring_item{
+	width: 46%;
+	height: 40px;
+}
+
+#fancybox-wrap {
+	padding: 0;	
+	width: 400px;
+}
+div#new_shout_themes, #new_shout_form {
+	width: 380px;
+}
+#shout_text {
+	margin: 0;
+	width: 365px;
+}
+ul#facelist-selections-themes.facelist-selections {
+	width: 360px;
+}
+
+
+
+
+}
+
+
+/* ========================================== */
+/* ! Provide higher res assets for iPhone 4   */
+/* ========================================== */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) { 
+	
+/*	.logo {
+		background: url(logo2x.jpg) no-repeat;
+		background-size: 212px 303px;
+	}*/
+
+}
