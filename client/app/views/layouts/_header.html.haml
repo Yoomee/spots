@@ -4,9 +4,9 @@
   .threecol
     -if is_home?
       %h1#site_logo
-        =link_to "Vanilla", root_path, :id=>"site_logo_link"
+        =link_to "#{site_name}", root_path, :id=>"site_logo_link"
     -else
-      =link_to "Vanilla", root_path, :id=>"site_logo_link"
+      =link_to "#{site_name}", root_path, :id=>"site_logo_link"
   #header_right.ninecol.last 
     -if logged_in?
       .panel
