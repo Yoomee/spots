@@ -55,8 +55,12 @@
               -form_for Search.new do |form|
                 =form.submit "Search", :id => "search_icon"  
                 =form.text_field :term, :title => "Search..."      , :class => "labelify", :id => "search_field" 
-                
-        =#render("layouts/subnav")
+        .row        
+          .twelvecol
+            =render_subnav(1)
+          .twelvecol
+            =render_subnav(2)
+            
       #main.content
         #main_container.container 
           -unless hide_page_title?

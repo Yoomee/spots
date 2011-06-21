@@ -1,8 +1,12 @@
 #nav
   %ul
-    %li.active
+    %li#nav_link_1
       =link_to "Home", "/"
-    %li=link_to_slug('About us', :about_us_2)
-    %li=link_to_slug('Our work', :our_work)
-    %li=link_to "Blog", "/"
-    %li=link_to "Contact us", "/"
+    %li#nav_link_2
+      =link_to_slug('About us', :about)
+    %li#nav_link_3
+      =link_to_slug('Our work', :our_work)
+    %li#nav_link_4
+      =link_to "Blog", "/"
+    %li#nav_link_5
+      =link_to "Contact us", "/"
