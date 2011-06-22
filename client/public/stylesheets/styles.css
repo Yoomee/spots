@@ -37,16 +37,18 @@ body span.cal_sheet span.month {
 
 h1, h2, h3, h4, h5, h6, #nav, #subnav, #user_links .button, .bring_quote, .cycle_nav a, .call_to_action, #beta_bar {
 
-  font-family: 'Merriweather', arial, serif;
+    font-family: 'Merriweather', arial, serif;
 	color:black;
 	font-weight: lighter;
-	font-weight: lighter;
-
 
 }
 span.click_here_beta, p.club_welcome_intro_text {
 	font-family:'VAG Rounded W02 Thin', arial, sans-serif;
 }
+#page_left_col, #page_right_col, p.index_text, p.blog_like_news_text {
+	color: #666;
+}
+
 #page_content, #article_image, #keep_in_touch, #newsletter_signup, #pull_quote, #call_to_action {
 	background: #fff;
 }
@@ -69,8 +71,6 @@ ul.sitemap li {
 body {
 	margin:0;
 
-
-		
 
 
 }
@@ -103,7 +103,7 @@ a:hover {
 }
 
 #header_right {
-	margin-top: 40px;
+	margin-top: 20px;
 
 	position: relative;
 	
@@ -154,9 +154,11 @@ td, th {
 
   margin-top:20px;
   padding-top:10px;
-  padding-bottom: 20px;
+  margin-bottom: 10px;
 
   background: none;
+  float: left;
+  width: 100%;
 }
 .options_panel * {
 	float: left;
@@ -1103,7 +1105,7 @@ div#top {
 #login_slide_bar_inside {
 }
 h1#page_title {
-	font-size: 34px;
+	font-size: 28px;
 	line-height: 120%;
 }
 #site_logo {
@@ -1121,7 +1123,8 @@ h1#page_title {
 	font-size: 45px;
 	color: black;
 	text-indent: -9000em;
-	width: 100%;
+	width: 140px;
+	float: left;
 	height: 50px;
 	background: url(/images/sprite.png) no-repeat -120px -55px;
 	text-decoration: none;
@@ -1431,8 +1434,8 @@ input#search_icon {
 ul.subnav li.active a {
 	font-weight: bold;
 }
-#subnav_1 {
-	padding: 10px 0;
+#subnav_0 {
+	padding: 10px 0 0;
 	float: left;
 	width: 100%;
 }
@@ -1445,16 +1448,19 @@ ul.subnav li a {
  	color: #000;
 
 }
-#subnav_2 ul.subnav li a {
+#subnav_1 ul.subnav li a {
 	
 }
-#subnav_2 {
+#subnav_1, #subnav_2 {
 	float: left;
 	width: 100%;
 	padding: 10px 0;
+	margin: 10px 0 0;
 	border-top: 1px solid #ccc;
 }
-
+#subnav_2 {
+	margin: 0;
+}
 #main_container {
 	margin-top: 30px;
 	min-height: 500px;
@@ -2293,86 +2299,6 @@ div.stories_filter li {
 
 
 
-/* ====== Stuff I like tabs (under profile picture)- optional ====== */
-#stuff ul.tabbernav {
-	border:medium none;
-	margin:0 0 0 10px;
-	padding:0;
-}
-#stuff h2 {
-	margin-bottom:0px;
-}
-#stuff h4 {
-	display:none;
-}
-#stuff .tabbernav li a {
-	background:transparent url(/images/stuff_a.png) no-repeat scroll left bottom;
-	border:medium none;
-	display:block;
-	float:left;
-	height:15px;
-	line-height:15px;
-	margin:0 10px 0 0;
-	padding:5px;
-	text-align:center;
-	width:80px;
-}
-#stuff .tabbernav li.tabberactive a {
-	background-position:left top;
-	color:#FFFFFF;
-}
-#stuff .tabberlive {
-	margin-left:35px;
-	margin-top:0;
-}
-#stuff .tabbertab {
-	border:medium none;
-	clear:both;
-	padding:10px;
-} 
-#music_tag_list, #tv_and_film_tag_list, #heroes_tag_list {
-	font-size:16px;
-	margin:0 0 10px;
-}
-#stuff .tabberactive #nav1 {
-	background:url(/images/stuff_tab_1.png) 0 0px no-repeat;
-}
-#stuff .tabberactive #nav2 {
-	background:url(/images/stuff_tab_2.png) 0 0px no-repeat;
-}	
-#stuff .tabberactive #nav3 {
-	background:url(/images/stuff_tab_3.png) 0 0px no-repeat;
-}
-#wall .bx_h {}
-#wall .bx_h h2 {}
-#postbox.bx_in {
-	padding-bottom:20px;
-	padding-top:0;
-}
-#wall .bx_in textarea {
-	border:1px solid #CCCCCC;
-	padding:10px;
-	width:490px;
-	
-	-moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border-radius:4px;
-    
-}
-#post_loader {
-	float:right;
-	margin:10px 20px 0;
-}
-#wall_body.bx_in {
-	background:#fff;
-}
-ul.action_links {
-	margin:0;
-}
-ul.action_links li {
-	margin:0;
-	list-style:none;
-}
 
 
 /* ====================  footer  ===================== */
@@ -2387,15 +2313,9 @@ ul.action_links li {
 	border-top: 1px solid #e8e8e8;
 	border-top: 1px solid rgba(0,0,0,0.1);
 	padding-top: 20px;
+	position: relative;
 }
-#footer_copyright {
-	border-top: 3px solid #ccc;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	padding-top: 10px;
-	height: 60px;
 
-}
 #footer_sitemap {
 
 
@@ -2407,8 +2327,9 @@ ul.action_links li {
 div#footer_links {
 	float:left;
 	margin:0px 0px 0;
-	padding:10px 0px;
-	width: 830px;
+	padding0px 0px;
+	width: 400px;
+	clear: left;
 }
 #footer_links ul {
 	margin:0px;
@@ -2447,11 +2368,14 @@ div#footer_links {
 	display:block;
 	height:40px;
 	line-height:9px;
-	margin-top:10px;
+
 	padding:0 38px 0 0;
 	text-indent:-9000px;
 	width:60px;
 	float: right;
+	position: absolute;
+	top: 20px;
+	right: 0;
 }
 #siteby:hover {
 	text-indent: 0;
@@ -2463,134 +2387,12 @@ div#footer_links {
 	display: none;
 }
 
-#iamsterdam { 
-	background: #4d4d4d;
-	padding: 0;
-	width: 100%;
-}
-#iamsterdam:hover {
-	background: #ff0000 ;
-}
-#iamsterdam .twelvecol {
-
-}
-#iamsterdam a {
-	float: right;
-	display: block;
-	width: 210px;
-	margin: 10px 0 5px;
-	height: 30px;
-	text-indent: -9000em;
-	background: url(/images/sponsors.jpg) -2px -804px;
-}
-#iamsterdam:hover a {
-	background-position: -282px -804px;
-}
-
-#sponsors {
-	background: #f5f5f5;
-	
-}
-.sponsor a {
-	background: url(/images/sponsors.jpg) -3px -3px;
-	display: block;
-	width: 100%;
-	height: 70px;
-	text-indent: -9000em;
-}
-
-#lottery_sponsor a:hover {
-	background-position: -283px -3px;
-	
-}
-
-#sponsors_title, #premium_sponsors_title {
-	font-weight: bold;
-	padding-top: 20px;
-	
-}
-
-#vodaphone_sponsor a {
-	background-position: -1px -80px;	
-}
-#vodaphone_sponsor a:hover {
-	background-position: -280px -80px;	
-}
-#upc_sponsor a {
-	background-position: -1px -162px;	
-}
-#upc_sponsor a:hover {
-	background-position: -281px -162px;	
-}
-#ey_sponsor a {
-	background-position: -1px -240px;	
-}
-#ey_sponsor a:hover {
-	background-position: -281px -240px;	
-}
-#inholland_sponsor a {
-	background-position: -1px -300px;	
-}
-#inholland_sponsor a:hover {
-	background-position: -281px -300px;	
-}
-#chamber_sponsor a {
-	background-position: -1px -387px;	
-}
-#chamber_sponsor a:hover {
-	background-position: -281px -387px;	
-}
-#rtl_sponsor a {
-	background-position: -1px -504px;	
-}
-#rtl_sponsor a:hover {
-	background-position: -281px -504px;	
-}
-#sii_sponsor a {
-	background-position: -1px -584px;	
-}
-#sii_sponsor a:hover {
-	background-position: -281px -584px;	
-}
-#logica_sponsor a {
-	background-position: -1px -689px;	
-}
-#logica_sponsor a:hover {
-	background-position: -281px -689px;	
-}
-
 #footer_copyright p {
 	float: left;
+	margin: 0;
 }
 
-a#yoomee_link {
-	float: right;
-	width: 155px;
-	color: #555;
-}
-a#yoomee_link span.yoomee_logo {
-	display: block;
-	background: url(/images/sprite_picnic.png) 0 -60px;
-	width: 80px;
-	margin: 2px 0;
-	height: 30px;
-	text-indent: -9000em;
-	float: right;
-	
-}
 
-a#yoomee_link span.yoomee_text {
-	display: block;
-	text-indent:0;
-	float: left;
-	width: 60px ;
-	line-height: 120%;
-	margin: 4px 0 0;
-}
-a#yoomee_link:hover {
-	color: #000;
-	text-decoration: none;
-}
 
 /* ====================  calendar/event styles  ===================== */
 #calendar_menubar {
@@ -2778,6 +2580,7 @@ p.nextLink {
 #index_view {
 
 }
+
 #index_view h3 {
 	display:block;
 	font-size:17px;
@@ -2788,42 +2591,45 @@ p.nextLink {
 #index_view h3 a {
 	color: #000;
 }
-#index_view .item {
+.index_item {
 	float:left;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	position: relative;
+	height: 290px;
 }
-.item .newsbox_arrow {
+.index_item .newsbox_arrow {
 	right: 10px;
 }
-#index_view .item_left {
+#index_view .index_left {
   margin-left: 0px;
 }
-.item_border {
-	border: 1px solid #e8e8e8;
-	float: left;
-	height: 380px;
-	
-	border-radius:3px;
-	-webkit-border-radius:3px;    
-	-moz-border-radius:3px;
-  width: 100%;
-}
-.item p.blog_like_news_date {
+.index_item p.blog_like_news_date {
 	position: absolute;
 	bottom: 0;
 	font-size: 12px;
 }
-.item_inner {
-	margin: 5%;
-	width: 90%;
-	float: left;
-
-}
-#index_view .item_right {
+#index_view .index_right {
   margin-right: 0px;
 
 }
+h2.index_title {
+	float: left;
+	width: 100%;
+	line-height: 120%;
+	margin: 0 0 7px;
+}
+h2.index_title a {
+	color: #000;
+	font-size: 16px;
+	line-height: 100%;
+	
+}
+
+div.index_img {
+	float: left;
+
+}
+
 a.moreLink {
 	background:transparent url(/images/more_bttn.png) no-repeat scroll 0 0;
 	display:block;
@@ -2836,7 +2642,7 @@ a.moreLink {
 a.moreLink:hover {
 	text-decoration:underline;
 }
-a.item_img {
+a.index_img {
 	display:block;
 	float:left;
 	margin:0 0 10px 0;
@@ -2845,9 +2651,16 @@ a.item_img {
 	text-indent:-9000em;
 	width:100%;
 }
-a.item_img img {
+a.index_img img {
 	float:left;
 }
+
+p.index_text {
+	margin: 0;
+	float: left;
+}
+
+
 
 .pagination a, .pagination a {
 	
@@ -2859,10 +2672,7 @@ span.disabled.prev_page {
 	
 }
 
-
-
-
-/* ====================  Section- blog_like_news view   ===================== */
+/* ====================  Section- latest stories view   ===================== */
 
 div.blog_like_news_content {
 	color: #555;
@@ -2974,7 +2784,6 @@ div.blog_news_img {
 	float: left;
 	
 }
-
 
 
 /* ============================= Message inbox ========================== */
@@ -4059,30 +3868,6 @@ div.page_share {
   padding: 0;
 }
 
-/*========== Club ==========*/
-
-#club_intro {
-
-
-
-}
-#club_intro img {
-  float: left;
-  margin-bottom: 20px;
-}
-#club_intro .club_sign_up_link {
-  font-size: 17px;
-}
-#club_intro .club_intro_right {
-  float: left;
-  width: 300px;
-}
-/*
-#connections_holding {
-	height: 600px;
-	
-}
-
 */
 /*========== Register ==========*/
 
@@ -4363,199 +4148,6 @@ body.controller_badges .badge_members {
 .stories_filter ul li.active a {
   	font-family:'VAG Rounded W02 Bold', arial, sans-serif;
 }
-
-
-
-
-
-
-
-/*========== Programme ==========*/
-
-#prog_days {
-  width:880px;
-  margin-left: 120px;
-  position:relative;
-}
-#prog_days .prog_day{
-  width:293px;
-  float:left;
-  padding:5px 0px 3px;
-  text-align:center;
-  font-size:14px;
-  color:black;
-}
-#prog_days #active_border{
-  border:2px solid #000;
-  border-bottom:none;
-  width:294px;
-  position:absolute;
-  height:42px;
-  top:0px;
-  left:0px;
-  
-	-moz-border-radius-topleft:3px;
-  -moz-border-radius-topright:3px;
-  -webkit-border-top-right-radius:3px;
-  -webkit-border-top-left-radius:3px;
-  border-top-right-radius:3px;
-  border-top-left-radius:3px;
-}
-
-
-#prog_wrapper {
-  clear:both;
-  float:left;
-  margin-bottom:40px;
-}
-
-#prog_wrapper .arrow {
-  width:66px;
-  float:left;
-  text-align:center;
-  height:600px;
-  
-}
-
-#prog_wrapper .arrow a {
-  font-size:46px;
-  width:100%;
-  color:#ccc;
-  padding-top:200px;
-  height:400px;
-  float:left;
-}
-#prog_wrapper .arrow a:hover {
-  text-decoration:none;
-  color:#333;
-}
-
-
-.prog_row {
-  width: 880px;
-  clear:both;
-  float:left;
-  border-bottom:1px solid #CCC;
-  position:relative;
-  height:90px;
-  
-}
-
-#venues_col  {
-  width:120px;
-  float:left;
-  margin-top:22px;
-  border-top:1px solid #CCC;
-  height:581px;
-}
-
-#venues_col .venue_row {
-  border-bottom:1px solid #CCC;
-  font-size:16px;
-  float:left;
-  clear:both;
-  height:80px;
-  width:115px;
-  padding:5px 5px 5px 0px;
-  overflow: hidden;
-}
-
-#venues_col a {
-  color:#000000;
-}
-
-#timetable_outer {
-  border:2px solid #000;
-  float:left;
-  width:880px;
-  height:600px;
-  top:0px;
-  left:0px;
-  overflow-y:auto;
-  overflow-x:hidden;
-  
-  position:relative;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-
-}
-#timetable_inner {
-  position:absolute;
-  width:3000px;
-  float:left;  
-}
-
-.timetable {
-  float:left;
-  width:880px;
-  background:url(/images/timetable.png) repeat-y -120px 0;
-  height:600px;
-}
-
-.timetable a{
-  color: #000;
-}
-
-
-.timetable .hours {
-  border-bottom:1px solid #CCC;
-  float:left;
-}
-.timetable .hours .hour {
-  border-color:#000;
-  float:left;
-  height:20px;
-  font-size: 14px;
-  color:#fff;
-  background: #000;
-  padding-left:2px;
-  width:78px;
-}
-
-
-.timetable .session {
-  width:69px;
-  height:80px;
-  float:left;
-  border-left:1px solid #CCC;
-  border-right:1px solid #CCC;
-  position:absolute;
-  padding:5px;
-  top:0;
-  left:0;
-  background-color:#FCFCFC;
-}
-
-.timetable .session .details {
-  display:none;
-  width:189px;
-}
-
-.timetable a:hover{
-  text-decoration:none;
-}
-
-.timetable .hover .details {
-  display:block;
-}
-
-.timetable .hover {
-  z-index:100;
-  overflow:hidden;
-  -moz-box-shadow:5px 5px 5px #666666;
-	-webkit-box-shadow:5px 5px 5px #666666;
-	box-shadow:5px 5px 5px #666666;
-  border:1px solid #CCC;
-  top:-1px;
-}
-
-.timetable .closing {
-  z-index:50;
-}
-
-
-
 
 
 /*========== Session show ==========*/
@@ -6386,45 +5978,6 @@ table#delegates th{
 
 #conference_delegates_row{
   max-width:none;
-}
-
-/*========== beta bar ==========*/
-#beta_bar {
-  background: black;
-  color: white;
-  width: 100%;
-  padding-top:10px;
-  padding-bottom: 10px;
-  font-size: 14px;
-
-  cursor: pointer;
-  line-height: 150%;
-}
-#beta_bar .twelvecol {
-	position: relative;
-	
-}
-#beta_bar p {
-	float: left;
-	padding-right: 60px;
-	margin: 0px 0 0;
-
-}
-#hide_beta_bar_link {
-	position: absolute;
-	top: 0px;
-	right: 0px;
- 	color: #999;
-    width: 20px;
-    height: 20px;
-    text-indent:-9000em;
-    display: block;
-  	background: url(/images/sprite.png) no-repeat -28px -177px;
-}
-
-span.click_here_beta {
-
-
 }
 
 

@@ -28,8 +28,8 @@
   font-size: 20px;
 
 
-
  } 
+ 
  .splash_inner .heading .fr {
 	float: left;
 	clear: both;
@@ -38,8 +38,10 @@
 	position: relative;
 }
 #search_box {
-	margin: -40px 0 0 ;
+	margin: -34px 20px 0 0 ;
 	float: right;
+	padding: 3px 0;
+	width: 150px;
 }
 
 #user_links {
@@ -64,7 +66,7 @@
 	background: none;
 	}
 
-h1#site_logo a {
+#site_logo_link {
 	margin: 20px 0;
 	
 }
@@ -84,6 +86,7 @@ h1#site_logo a {
 }
 #page_content {
 	min-height: 0;
+	padding-top: 20px;
 }
 .splash_inner .advert {
 	float: left;
@@ -100,7 +103,6 @@ h1#site_logo a {
 #page_content, #page_left_col, #page_right_col, #keep_in_touch, #article_image {
 	clear: both;
 	float: left;
-	width: 100%;
 }  
 #sponsors .sponsor a {
 	width: 200px;
@@ -119,15 +121,36 @@ h1#site_logo a {
 	padding-bottom: 30px;
 	border-bottom: 1px solid #ccc;
 }
+.row div.index_item {
+	width: 200px;
+	float: left;
+}
+.row .blog_like_news_img {
+	width: 30%;
+	float: left;
+	
+}
 
+.row div.blog_like_news_content {
+	float: left;
+	width: 50%;
+	padding-left: 0;
+	
+}
+
+h2.index_title {
+	width: 100%;
+	margin-top: -7px;
+}
+.blog_like_news_line {
+	float: left;
+	clear: both;
+}
 #leaderboard_left .pagination, #leaderboard_left .leaderboard_loader {
   margin-right: 0%;
 }
 .row #leaderboard_left.sevencol {
   width:100%;
-}
-#club_intro_page h2 {
-	margin-top: 20px;
 }
 li.bring_item .bring_quote {
 	font-size: 14px;
@@ -148,7 +171,12 @@ li.bring_item{
 #fancybox-wrap {
 	padding: 0;
 }
-
+#siteby {
+	right: 20px;
+}
+#footer .row {
+	padding-bottom: 20px;
+}
 
 }
 
@@ -238,6 +266,25 @@ ul#facelist-selections-themes.facelist-selections {
 	width: 360px;
 }
 
+.row div.index_item {
+	width: 100%;
+	height: auto;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+
+div.index_img {
+	width: 30%;
+	margin: 0 4% 0 0;
+	
+}
+
+
+div.index_content {
+	width: 60%;
+	float: left;
+	
+}
 
 
 

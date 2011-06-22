@@ -2,24 +2,26 @@
 -no_content_row
 -unless @section.description.nil?
   .row
-    %p.section_description
-      =@section.description
+    #section_description.twelvecol 
+      %p.section_description
+        =@section.description
 #index_view.row      
-#blog_like_news_view.row
   -@pages_sections.each_with_col_name do |page_section, col_name|
-    .item.threecol{:class => "item_#{col_name}"}
-      .blog_like_news_img
+    .index_item.threecol{:class => "index_#{col_name}"}
+      .index_img
         -if page_section.has_photo?
-          =link_to(photo_for(page_section, '300x240!'), page_section)
-      .blog_like_news_content  
-        %h2.blog_like_news_title
+          =link_to(photo_for(page_section, '210x135#'), page_section)
+      .index_content  
+        %h2.index_title
           =link_to_self(page_section,:class=>'newsbox_title_link')
-        %p.blog_like_news_date
-          =(page_section.is_a?(Page) ? page_section.publish_on : page_section.created_at).strftime("%e %B %Y")  
-        %p.blog_like_news_text
-          =page_section.is_a?(Page) ? (page_section.intro.blank? ? truncate(page_section.text.strip_tags, :length => 300) : page_section.intro) : page_section.description
-        %p.blog_like_read_more
-          =link_to "Read more", page_section, :class=>'blog_read_more'  
+        -if false  
+          %p.index_date
+            =(page_section.is_a?(Page) ? page_section.publish_on : page_section.created_at).strftime("%e %B %Y")  
+        %p.index_text
+          =page_section.is_a?(Page) ? (page_section.intro.blank? ? truncate(page_section.text.strip_tags, :length => 193) : page_section.intro) : page_section.description
+          =link_to "Read more", page_section, :class=>'blog_read_more'
+        %p.index_read_more
+          
 .row
   .twelvecol      
     =will_paginate @pages_sections

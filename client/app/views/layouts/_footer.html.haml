@@ -1,19 +1,11 @@
 #footer.container
   .row
-    .fourcol
+    #footer_copyright.fourcol
       %p#copyright
         %strong
           \&copy; 2011 
           ="#{site_name}"
-        %br
-        Electric Works
-        %br
-        Sheffield Digital Campus
-        %br
-        Sheffield
-        %br
-        S1 2BJ
-    .fourcol
+    #footer_links.fourcol
       %ul
         - if admin_logged_in?
           %li
@@ -25,9 +17,9 @@
         %li
           =link_to("another link", "#")
         %li
-          =link_to("Site map", "/sections")          
-    .fourcol.last      
-      =link_to("site by <span>Yoomee</span>", "http://www.yoomee.com", :id => "siteby")
+          =link_to("Site map", "/sections") 
+               
+    =link_to("site by <span>Yoomee</span>", "http://www.yoomee.com", :id => "siteby")
       
 
 %div{:style=>"display:none"}

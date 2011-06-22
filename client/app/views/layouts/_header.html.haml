@@ -14,7 +14,7 @@
           =link_to(@logged_in_member, "#", :class=>'logged_in_member_link')
           =#link_to "Notifications#{current_page?(notifications_path) || @logged_in_member.notifications.unread.empty? ? "" : " <span>#{@logged_in_member.notifications.unread.count}</span>"}", notifications_path, :class => "notifications", :title => "#{pluralize(@logged_in_member.notifications.unread.count, 'new notification')}"
           =#link_to "Inbox#{current_page?(messages_path) || !@logged_in_member.has_unread_messages? ? "" : " <span>#{@logged_in_member.unread_message_count}</span>"}", messages_path, :class => "messages", :title => "#{pluralize(@logged_in_member.unread_message_count, 'new messages')}"
-          =link_to('My profile', @logged_in_member, :class=>'profile_link')
+          =#link_to('My profile', @logged_in_member, :class=>'profile_link')
           =link_if_allowed('Admin', admin_proc)
           
     -else
