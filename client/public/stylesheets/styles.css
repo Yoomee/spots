@@ -20,7 +20,7 @@ body, textarea, input {font:12px/1.6 'Helvetica', Arial,'Liberation Sans',FreeSa
 
 /* ======================  CSS3 regularly used stuff ================== */
 
-#main, input, #footer_links, .bx_h, #news_feed_older_btn, .bx_h a, button, .bttn, .pull_quote, div#page_related_col, a.backto, #nav ul li a, .logged_in_box, .homepage_link{
+#main, input, #footer_links, .bx_h, #news_feed_older_btn, .bx_h a, button, .bttn, .pull_quote, div#page_related_col, a.backto, #nav ul li a, .logged_in_box, .homepage_link, .pagination a, .pagination span {
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -265,7 +265,7 @@ input[type="submit"], a.bttn_l, .formtastic input[type="submit"], .formtastic  a
 	
 	color:#fff;
 	margin:10px 0 4px 3px;
-	padding:5px 15px 6px;
+	padding:8px 15px 8px;
 	float:left;
 	
 	-moz-border-radius:5px;
@@ -276,7 +276,10 @@ input[type="submit"], a.bttn_l, .formtastic input[type="submit"], .formtastic  a
     -moz-box-shadow:1px 1px 1px #e8e8e8, 0px 1px 2px #ccc;
     box-shadow:1px 1px 1px #e8e8e8, 0px 1px 2px #ccc;    
 
-   text-shadow:0 -1px 0 #000;   
+   text-shadow:0 -1px 0 #000;
+   
+     width: auto;   
+    overflow: visible;    
 }
 
 .update:active, a.bttn_l:active, #news_feed_older_btn:active, .bx_h a:active, button:active, .bttn:active {
@@ -306,6 +309,9 @@ a.bttn_l:hover, .join_activity_link:hover {
     box-shadow:1px 1px 2px #333;    
 
    text-shadow:0 1px 0 #cdcdcd;  
+   
+    width: auto;   
+    overflow: visible; 
 }
 
 /* general small button */
@@ -347,7 +353,7 @@ input, textarea {
 	border:1px solid #ccc;
 	font-size:14px;
 	color: #000;
-	padding:5px;
+	padding:8px 5px;
 	margin-bottom:15px;
 	
 	-moz-border-radius:4px;
@@ -395,6 +401,7 @@ input:focus, textarea:focus {
 	float: left;
 	clear: both;
 	border-color: #ccc;
+	line-height: 100%;
 	background: #fff url(/images/sprite.png) repeat-x 0 -320px;
 	
 		-webkit-box-shadow:inset 1px 1px 5px #f5f5f5;
@@ -500,6 +507,7 @@ ul.tabs_container li {
 	float:left;
 	list-style:none outside none;
 	margin: 0;
+	height:46px;
 	background: #000;
 	margin:0 4px 0 0;
 	position: relative;
@@ -1301,6 +1309,7 @@ fb.fb_login_not_logged_in.FB_login_button {
 #search_box {
 	margin-top: 0px;
 	margin-bottom: 10px;
+	margin-left: -2px;
 	padding: 5px 0;
 	color: #666;
 	font-size: 12px;
@@ -1800,6 +1809,9 @@ span.cal_sheet span.day {
 	width: 250px;
 	float: left;
 	clear: left;
+
+	padding-top: 7px;
+	padding-bottom: 7px;
 }
 #login_form label {
 	float: left;
@@ -2313,6 +2325,7 @@ div.stories_filter li {
 	border-top: 1px solid #e8e8e8;
 	border-top: 1px solid rgba(0,0,0,0.1);
 	padding-top: 20px;
+	padding-bottom: 20px;
 	position: relative;
 }
 
@@ -2659,13 +2672,19 @@ p.index_text {
 	margin: 0;
 	float: left;
 }
-
-
-
-.pagination a, .pagination a {
+.pagination a, .pagination span {
+	display: block;
+	float: left;
+	padding: 3px 6px;
+	background: #f5f5f5;
+	margin: 10px 5px 0 0;
 	
 }
-
+.pagination a:hover {
+	background: #000;
+	color: #fff;
+	text-decoration: none;
+}
 span.disabled.prev_page {
 	display: block;
 	float: left;
@@ -3535,6 +3554,7 @@ a.backto {
 	
 	margin-bottom: 0px;
 	position: relative;
+	width: 100%;
 }
 #article_image img {
 	float: left;

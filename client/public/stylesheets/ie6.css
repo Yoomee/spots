@@ -1,5 +1,16 @@
-#search_box, ul#logged_out_nav li a {
+.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol , .sevencol, .eightcol, #search_box, ul#logged_out_nav li a, #header_right, #site_logo_link, #nav ul, #subnav ul, #search_box, input#search_field, div.index_item, div.index_img, h2.index_title, p.index_text, #page_snippets {
 	display:inline;
+}
+#page_snippets {
+	width:300px;
+	overflow-x:hidden;
+
+}
+#site_logo_link, input#search_field, #siteby, .pull_quote   {
+	background-image:url(/images/sprite.gif);
+}
+ul.subnav li.active {
+	background:none;
 }
 #logged_in_as ul li a {
 	float:right;
@@ -12,4 +23,38 @@
 }
 span.end {
 	display:none;
+}
+#search_box {
+	width:90px;
+	float:right;
+}
+
+
+
+/* =======  ie_message  ====== */
+
+div#ie_message {
+	width: 100%;
+	color: #fff;
+	background: #333;
+	width:100%;
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 2px solid #000;
+	
+}
+div#ie_message p {
+	margin: 0;
+
+}
+div#ie_message a {
+	color: #fff;
+	display: block;
+
+	text-decoration: underline;
+}
+div#ie_message a#hide_ie_message {
+	color: #999;
+	font-style: italic;
+	text-decoration: none;
 }

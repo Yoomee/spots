@@ -43,6 +43,13 @@
 
     =google_analytics_js
   - body_tag do
+    /[if lte IE 6]
+      -unless session[:hide_ie_msg]
+        #ie_message
+          %p 
+            You are using Internet Explorer 6.0 or older. This is a very old browser which does not display modern web sites properly.
+            =link_to 'Please upgrade to a newer browser to fully enjoy this website and others.', '/ie6/upgrade.html'
+          =link_to_remote "Hide this message", :url => {:controller => 'ie_message', :action => 'hide'}, :id=>'hide_ie_message', :before => "$('#ie_message').blindUp()"
     #wrapper
       #header.container
         =render :partial => 'layouts/header'

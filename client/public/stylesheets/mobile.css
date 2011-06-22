@@ -56,6 +56,9 @@
 .logged_in_box {
 	right: 20px;
 }
+#big_message {
+	float: none;
+}
 
 
 	
@@ -170,6 +173,9 @@ li.bring_item{
 }
 #fancybox-wrap {
 	padding: 0;
+}
+.options_panel {
+	padding-left: 20px;
 }
 #siteby {
 	right: 20px;
