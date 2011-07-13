@@ -1,19 +1,19 @@
 development:
   username: root
   adapter: mysql
-  database: vanilla_development
+  database: spots_development
   host: localhost
   password: ''
 test:
   username: root
   adapter: mysql
-  database: vanilla_test
+  database: spots_test
   host: localhost
   password: ''
 production: 
   username: root
   adapter: mysql
-  database: vanilla_production
+  database: spots_production
   host: localhost
   password: ''
 

@@ -1,0 +1,7 @@
+-title "Activities"
+%ul.lst
+  -@activities.each do |activity|
+    %li
+      =link_to_self(activity)
+
+=options_panel([Activity.new])

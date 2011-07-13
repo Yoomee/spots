@@ -1,0 +1,22 @@
+-title "Activities at #{@organisation}"
+-no_content_row
+-@organisation.ordered_activities.each do |activity|
+  .row
+    .twelvecol
+      %h4=activity
+  .row
+    .twocol
+      =image_for(activity, "200x")
+    .tencol.last
+      =read_more_truncate(activity.description) 
+  .row
+    .twelvecol
+      %ul{:id => "activity_#{activity.id}_time_slots"}
+        -activity.time_slots.organisation_id_is(@organisation.id).each do |time_slot|
+          =render("time_slots/time_slot", :time_slot => time_slot)
+      =render("time_slots/form", :time_slot => activity.time_slots.build(:organisation => @organisation))
+
+
+.row
+  .twelvecol
+    =options_panel

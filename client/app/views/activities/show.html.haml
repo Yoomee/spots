@@ -1,0 +1,11 @@
+-no_content_row
+-hidden_title @activity
+
+.row
+  .eightcol
+    %h1=@activity
+    =simple_format(@activity.description)  
+  .fourcol.last
+    =image_for(@activity, "300x")
+.row
+  =options_panel(@activity)

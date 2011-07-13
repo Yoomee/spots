@@ -1,0 +1,10 @@
+-semantic_remote_form_for time_slot, :html => {:id => "activity_#{time_slot.activity_id}_time_slot_form#{time_slot.new_record? ? '' : "_#{time_slot.id}"}"} do |form|
+  -form.inputs do
+    =form.input :organisation_id, :as => :hidden
+    =form.input :activity_id, :as => :hidden
+    =form.input :note, :as => :string
+    -TimeSlot::DAYS.each do |day|
+      =form.input day
+    =form.input :starts_at
+    =form.input :ends_at
+  =form.buttons

@@ -1131,10 +1131,10 @@ h1#page_title {
 	font-size: 45px;
 	color: black;
 	text-indent: -9000em;
-	width: 140px;
+	width: 445px;
 	float: left;
-	height: 50px;
-	background: url(/images/sprite.png) no-repeat -120px -55px;
+	height: 183px;
+	background: url(/images/logo.png) no-repeat;
 	text-decoration: none;
 	margin:25px 0 25px 0;
 

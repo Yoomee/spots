@@ -63,7 +63,7 @@
                 =form.submit "Search", :id => "search_icon"  
                 =form.text_field :term, :title => "Search..."      , :class => "labelify", :id => "search_field" 
         .row
-          -if controller_name == 'sections'
+          -if controller_name == 'sections' && current_section
             =render_subnav(current_section.parent)
           -else
             =render_subnav
