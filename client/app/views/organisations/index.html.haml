@@ -1,0 +1,7 @@
+-title "Organisations"
+%ul.lst
+  -@organisations.each do |organisation|
+    %li
+      =link_to_self(organisation)
+
+=options_panel([Organisation.new])

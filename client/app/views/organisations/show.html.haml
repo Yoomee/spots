@@ -1,0 +1,11 @@
+-no_content_row
+-hidden_title @organisation
+
+.row
+  .eightcol
+    %h1=@organisation
+    =simple_format(@organisation.description)  
+  .fourcol.last
+    =image_for(@organisation, "300x")
+.row
+  =options_panel(@organisation)
