@@ -1,10 +1,13 @@
+-unique_id = "activity_#{time_slot.activity_id}_time_slot_#{time_slot.id}"
 -semantic_remote_form_for time_slot, :html => {:id => "activity_#{time_slot.activity_id}_time_slot_form#{time_slot.new_record? ? '' : "_#{time_slot.id}"}"} do |form|
   -form.inputs do
-    =form.input :organisation_id, :as => :hidden
-    =form.input :activity_id, :as => :hidden
-    =form.input :note, :as => :string
+    =form.input :organisation_id, :as => :hidden, :wrapper_html => {:id => "#{unique_id}_organisation_id_input"}, :input_html => {:id => "time_slot_#{time_slot.id}_organisation_id"}
+    =form.input :activity_id, :as => :hidden, :wrapper_html => {:id => "#{unique_id}_activity_id_input"}, :input_html => {:id => "#{unique_id}_activity_id"}
     -TimeSlot::DAYS.each do |day|
-      =form.input day
-    =form.input :starts_at
-    =form.input :ends_at
-  =form.buttons
+      =form.input day, :wrapper_html => {:class => "time_slot_day_input", :id => "#{unique_id}_#{day}_input"}, :input_html => {:id => "#{unique_id}_#{day}"}
+    =form.input :starts_at_string, :as => :select, :label => "From", :collection => (0..23).map{|h| "%02d:00" % h}, :include_blank => false, :wrapper_html => {:id => "#{unique_id}_starts_at_string_input"}, :input_html => {:id => "#{unique_id}}_starts_at_string"}
+    =form.input :ends_at_string, :as => :select, :label => "To", :collection => (0..23).map{|h| "%02d:00" % h}, :include_blank => false, :wrapper_html => {:id => "#{unique_id}_ends_at_string_input"}, :input_html => {:id => "#{unique_id}_ends_at_string"}
+    =form.commit_button "Save", :button_html => {:id => "#{unique_id}_submit"}
+    -if !time_slot.errors.on_base.blank?
+      %li.time_slot_errors=time_slot.errors.on_base
+    =form.input :note, :label => false, :wrapper_html => {:id => "#{unique_id}_note_input"}, :input_html => {:id => "#{unique_id}_note", :class => "labelify", :title => "Add a note here...", :rows => 1, :cols => 68}

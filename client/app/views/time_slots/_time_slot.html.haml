@@ -1,8 +1,3 @@
-%li{:id => "activity_#{time_slot.activity_id}_time_slot_#{time_slot.id}"}
-  .time_slot_display
-    =time_slot.note
-    =time_slot.starts_at
-    =time_slot.ends_at
-  .time_slot_form
-    =render("time_slots/form", :time_slot => time_slot)
+%li.time_slot_form{:id => "activity_#{time_slot.activity_id}_time_slot_#{time_slot.id}"}
+  =render("time_slots/form", :time_slot => time_slot)
   

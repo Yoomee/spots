@@ -7,7 +7,7 @@ class CreateTimeSlots < ActiveRecord::Migration
       t.datetime :starts_at
       t.datetime :ends_at
       %w{mon tue wed thu fri sat sun}.each do |day|
-        t.boolean day.to_sym
+        t.boolean day.to_sym, :default => false
       end
     end
   end

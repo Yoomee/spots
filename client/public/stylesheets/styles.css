@@ -60,6 +60,21 @@ input#search_field {
 	box-shadow:none;
 }
 
+.formtastic ol li.inline-fields label, .formtastic ol li.inline-fields input, .formtastic ol li.inline-fields select {
+  float: left;
+  clear: none;
+  margin-right: 10px;
+}
+.formtastic ol li.inline-fields label, .formtastic ol li.inline-fields .inline-errors {
+  margin-top: 10px;
+}
+.formtastic .inputs li.image img {
+  float: left;
+}
+.formtastic .inputs li.image input {
+  width: 180px;
+}
+
 
 /* =============================  general styles ============================= */
 ul.sitemap {
@@ -6086,5 +6101,70 @@ table#delegates th{
   margin: 10px 0 20px 0;
 }
 
+/*========== TimeSlots ==========*/
+li.time_slot_form {
+  border-bottom:1px solid #EEE;
+  margin-bottom:10px;
+}
 
+.activity_row .twocol img {
+  margin-left:10px;
+}
 
+form.time_slot ol li {
+  margin-bottom: 0;
+}
+form.time_slot ol li select {
+  clear:none;
+}
+form.time_slot li.select label {
+  line-height:26px;
+  margin-left:10px;
+}
+form.time_slot ol li textarea {
+  margin-bottom:0;
+  width:100%;
+}
+form.time_slot ol li.commit {
+  clear: none;
+  margin-left:50px;
+}
+form.time_slot ol li.commit input{
+  margin:0;
+}
+.formtastic ol li.time_slot_day_input, .formtastic ol li.select {
+  float: left;
+  clear: none;
+}
+.formtastic ol li.time_slot_day_input input {
+  display:none;
+}
+.formtastic ol li.time_slot_day_input label {
+  border:1px solid black;
+  font-weight:normal;
+  font-size:14px;
+  text-align:center;
+  width:36px;
+  padding:4px 3px;
+ 	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px; 
+	cursor:pointer;
+}
+.time_slot_day_input label.selected {
+  color:#fff;
+  background-color:#000;
+}
+.activity_row {
+  margin:10px auto;
+  padding:10px 0;
+  border:2px solid #ccc;
+}
+.new_time_slot_link {
+  float:left;
+  clear:both;
+  font-size:14px;
+}
+.time_slot_errors {
+  color:red;
+}

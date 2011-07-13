@@ -1,20 +1,38 @@
+-content_for :head do
+  :javascript
+    var TimeSlot = {
+      setSelected: function(day){
+        if(day.is(':checked')){
+          day.parent().addClass('selected');
+        } else {
+          day.parent().removeClass('selected');
+        }
+      },
+      setAllSelected: function(){
+        $('.time_slot_day_input input[type="checkbox"]:checked').parent().addClass('selected');
+      }
+    };
+    $(document).ready(function() {
+      $('.time_slot_day_input input[type="checkbox"]').live('click',function() {
+        TimeSlot.setSelected($(this));
+      });
+      TimeSlot.setAllSelected();
+    });
 -title "Activities at #{@organisation}"
 -no_content_row
 -@organisation.ordered_activities.each do |activity|
-  .row
-    .twelvecol
-      %h4=activity
-  .row
+  .row.activity_row
     .twocol
       =image_for(activity, "200x")
     .tencol.last
+      %h4=activity
       =read_more_truncate(activity.description) 
-  .row
-    .twelvecol
-      %ul{:id => "activity_#{activity.id}_time_slots"}
+      %ul.lst{:id => "activity_#{activity.id}_time_slots"}
         -activity.time_slots.organisation_id_is(@organisation.id).each do |time_slot|
           =render("time_slots/time_slot", :time_slot => time_slot)
-      =render("time_slots/form", :time_slot => activity.time_slots.build(:organisation => @organisation))
+      =link_to_function("Add a new time slot", "$(this).next().show();$(this).hide()",:class => "new_time_slot_link")
+      .new_time_slot_form{:style => "display:none"}
+        =render("time_slots/form", :time_slot => activity.time_slots.build(:organisation => @organisation))
 
 
 .row
