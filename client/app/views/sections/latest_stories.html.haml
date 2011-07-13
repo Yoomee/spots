@@ -4,7 +4,7 @@
   .row
     #section_description.twelvecol 
       %p.section_description
-        =@section.description
+        =@section.description.strip_tags
 #blog_like_news_view.row
   -@pages_sections.each_with_col_name do |page_section, col_name|
     .blog_like_news{:class => "item_#{col_name}"}
@@ -17,7 +17,7 @@
         %p.blog_like_news_date
           =(page_section.is_a?(Page) ? page_section.publish_on : page_section.created_at).strftime("%e %B %Y")  
         %p.blog_like_news_text
-          =page_section.is_a?(Page) ? (page_section.intro.blank? ? truncate(page_section.text.strip_tags, :length => 300) : page_section.intro) : page_section.description
+          =page_section.is_a?(Page) ? (snippet(page_section, :summary).nil? ? truncate(page_section.text.strip_tags, :length => 193) : snippet(page_section, :summary, false).strip_tags) : page_section.description.to_s.strip_tags
         %p.blog_like_read_more
           =link_to "Read more", page_section, :class=>'blog_read_more'
     .blog_like_news_line.ninecol      

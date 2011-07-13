@@ -4,9 +4,9 @@
   .row
     #section_description.twelvecol 
       %p.section_description
-        =@section.description
+        =@section.description.strip_tags
 #index_view.row      
-  -@pages_sections.each_with_col_name do |page_section, col_name|
+  -@pages_sections.each_with_col_name(4) do |page_section, col_name|
     .index_item.threecol{:class => "index_#{col_name}"}
       .index_img
         -if page_section.has_photo?
@@ -18,13 +18,10 @@
           %p.index_date
             =(page_section.is_a?(Page) ? page_section.publish_on : page_section.created_at).strftime("%e %B %Y")  
         %p.index_text
-          =page_section.is_a?(Page) ? (page_section.intro.blank? ? truncate(page_section.text.strip_tags, :length => 193) : page_section.intro) : page_section.description
+          =page_section.is_a?(Page) ? (snippet(page_section, :summary).nil? ? truncate(page_section.text.strip_tags, :length => 193) : snippet(page_section, :summary, false).strip_tags) : page_section.description.to_s.strip_tags
           =link_to "Read more", page_section, :class=>'blog_read_more'
         %p.index_read_more
           
-.row
-  .twelvecol      
-    =will_paginate @pages_sections
 .row
   .twelvecol      
   -options_panel do
