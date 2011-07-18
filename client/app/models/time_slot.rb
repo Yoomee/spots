@@ -5,6 +5,11 @@ class TimeSlot < ActiveRecord::Base
   
   validates_presence_of :activity, :organisation, :starts_at, :ends_at
   validate :presence_of_days
+
+  delegate :description, :to => :organisation, :prefix => true
+  delegate :has_lat_lng?, :lat_lng, :to => :organisation
+
+  named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   
   def ends_at_string
     @ends_at_string || "%02d:00" % (ends_at.try(:hour) || 5)

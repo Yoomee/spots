@@ -3,5 +3,10 @@
     =form.input :member, :as => :select if organisation.new_record? && admin_logged_in?
     =form.input :name
     =form.input :description
+    -form.semantic_fields_for(:location) do |location_form|
+      =location_form.input :address1
+      =location_form.input :address2
+      =location_form.input :city
+      =location_form.input :postcode
     =form.input :image, :as => :image
   =form.buttons

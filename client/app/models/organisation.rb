@@ -8,6 +8,8 @@ class Organisation < ActiveRecord::Base
 
   validates_presence_of :name, :member
   
+  has_location
+  
   def ordered_activities
     (activities.ascend_by_name + Activity.ascend_by_name).uniq
   end

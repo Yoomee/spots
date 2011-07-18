@@ -6234,7 +6234,7 @@ form.time_slot ol li.commit input{
 
 /*========== Activity show ==========*/
 
-#activity_search_row {
+#activity_search_row, #activity_search_results {
   margin-top: 20px;
 }
 #preferred_times a {

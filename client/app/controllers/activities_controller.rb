@@ -9,6 +9,7 @@ class ActivitiesController < ApplicationController
   end
   
   def show
+    @search = Search.new
   end
   
   def new
