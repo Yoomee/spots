@@ -9,6 +9,7 @@ class ActivitiesController < ApplicationController
   end
   
   def show
+    @organisation = Organisation.find_by_id(params[:organisation_id])
     @search = Search.new
   end
   

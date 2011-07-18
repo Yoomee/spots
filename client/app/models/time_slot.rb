@@ -29,7 +29,11 @@ class TimeSlot < ActiveRecord::Base
   def starts_at_string=(value)
     @starts_at_string = value
     self.starts_at = Time.parse("2000-01-01 #{value}")
-  end  
+  end
+  
+  def timespan
+    "#{starts_at_string} - #{ends_at_string}"
+  end
   
   def to_s
     "#{activity_name} with #{organisation_name}"

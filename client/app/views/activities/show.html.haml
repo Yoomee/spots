@@ -6,22 +6,43 @@
     =image_for(@activity, "300x")
   .eightcol.last
     %h1=@activity
+    -if @organisation
+      %span 
+        with
+        =link_to_self(@organisation)
+      %br.clear
+      %br.clear
     =read_more_truncate(@activity.description, :length => 1200)
-#activity_search_row.row
-  .fourcol
-    %h4 1. Type your postcode
-    -form_for @search do |form|
-      =text_field_tag :postcode, params[:postcode], :class => "labelify", :title => "e.g. SW1 2BJ"
-  .fourcol.last
-    %h4 2. Click on your preferred time
-    #preferred_times
-      -%w{morning	lunch	afternoon evening weekend anytime}.each do |time_name|
-        =link_to_function(time_name)
-#activity_search_results.row
-  .twelvecol
-    %p
-      =full_pluralize("Results: There are", @activity.time_slots.count(:select => "DISTINCT organisation_id"), "organisation")
-      you can help
-    =google_map(@activity.time_slots.group_by_organisation, :width => "100%", :height => 500, :version => "3.5", :infoboxes => true)
+-if @organisation
+  .row
+    .twelvecol
+      %h4 When can you help out?
+      %hr
+  -TimeSlot::DAYS.each do |day|
+    -time_slots = @activity.time_slots.organisation_id_is(@organisation.id).ascend_by_starts_at.select{|ts| ts.send("#{day.to_s}?")}
+    .row
+      .twocol
+        %h6=day_name(day)
+      .tencol.last
+        -time_slots.each do |time_slot|
+          =time_slot.note
+          =time_slot.timespan
+-else
+  #activity_search_row.row
+    .fourcol
+      %h4 1. Type your postcode
+      -form_for @search do |form|
+        =text_field_tag :postcode, params[:postcode], :class => "labelify", :title => "e.g. SW1 2BJ"
+    .fourcol.last
+      %h4 2. Click on your preferred time
+      #preferred_times
+        -%w{morning	lunch	afternoon evening weekend anytime}.each do |time_name|
+          =link_to_function(time_name)
+  #activity_search_results.row
+    .twelvecol
+      %p
+        =full_pluralize("Results: There are", @activity.time_slots.count(:select => "DISTINCT organisation_id"), "organisation")
+        you can help
+      =google_map(@activity.time_slots.group_by_organisation, :width => "100%", :height => 500, :version => "3.5", :infoboxes => true)
 .row
   =options_panel(@activity)
