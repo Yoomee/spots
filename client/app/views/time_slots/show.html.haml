@@ -1,0 +1,20 @@
+-hidden_title @time_slot
+
+.row
+  .twelvecol
+    %h1=@time_slot.activity
+    %span
+      with
+      =link_to_self(@time_slot.organisation)
+    -if !@time_slot.note.blank?
+      %p
+        =@time_slot.note
+.row
+  .eightcol.last
+    %h4 Date: Please select
+    
+
+-options_panel do
+  =back_link
+  =link_if_allowed("Edit activity", edit_activity_proc(@time_slot.activity))
+  =link_if_allowed("Edit organisation", edit_organisation_proc(@time_slot.organisation))

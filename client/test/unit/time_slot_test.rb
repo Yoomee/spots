@@ -17,6 +17,7 @@ class TimeSlotTest < ActiveSupport::TestCase
   
   should belong_to(:activity)
   should belong_to(:organisation)
+  should have_many(:bookings)
   
   should validate_presence_of(:activity)
   should validate_presence_of(:organisation)

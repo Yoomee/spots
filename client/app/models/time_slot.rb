@@ -2,11 +2,13 @@ class TimeSlot < ActiveRecord::Base
   
   belongs_to :activity
   belongs_to :organisation
+  has_many :bookings, :class_name => "TimeSlotBooking"
   
   validates_presence_of :activity, :organisation, :starts_at, :ends_at
   validate :presence_of_days
 
-  delegate :description, :to => :organisation, :prefix => true
+  delegate :name, :to => :activity, :prefix => true
+  delegate :description, :name, :to => :organisation, :prefix => true
   delegate :has_lat_lng?, :lat_lng, :to => :organisation
 
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
@@ -28,6 +30,10 @@ class TimeSlot < ActiveRecord::Base
     @starts_at_string = value
     self.starts_at = Time.parse("2000-01-01 #{value}")
   end  
+  
+  def to_s
+    "#{activity_name} with #{organisation_name}"
+  end
   
   private
   def presence_of_days

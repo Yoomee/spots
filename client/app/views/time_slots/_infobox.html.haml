@@ -1,6 +1,6 @@
 .infobox_left
-  =link_to(image_for(time_slot.organisation, "40x40#"), time_slot.organisation)
+  =link_to(image_for(time_slot.organisation, "40x40#"), time_slot)
 .infobox_right
-  =link_to_self(time_slot.organisation)
+  =link_to(time_slot.organisation, time_slot)
   %p
     =truncate(time_slot.organisation_description, :length => 200)

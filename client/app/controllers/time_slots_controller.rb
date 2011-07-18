@@ -1,5 +1,7 @@
 class TimeSlotsController < ApplicationController
   
+  member_only :show
+  
   custom_permission :index do |url_options, member|
     organisation = Organisation.find(url_options[:organisation_id])
     organisation.owned_by?(member) || (member && member.is_admin?)
@@ -20,6 +22,10 @@ class TimeSlotsController < ApplicationController
       page["activity_#{activity.id}_time_slot_form"].replace(render("time_slots/form", :time_slot => @time_slot))
       page << "#{labelify_javascript(:script_tag => false)};TimeSlot.setAllSelected();"
     end
+  end
+  
+  def show
+    @time_slot = TimeSlot.find(params[:id])
   end
   
   def update
