@@ -13,3 +13,4 @@
 /vendor/plugins/event_calendar
 /vendor/plugins/facebooker
 .DS_Store
+/vendor/plugins/tramlines_blog
