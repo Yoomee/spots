@@ -31,6 +31,11 @@ class TimeSlot < ActiveRecord::Base
     self.starts_at = Time.parse("2000-01-01 #{value}")
   end  
   
+  # TODO: make this content managed
+  def num_weeks_notice
+    2
+  end
+  
   def to_s
     "#{activity_name} with #{organisation_name}"
   end

@@ -33,7 +33,7 @@ class TimeSlotBookingTest < ActiveSupport::TestCase
     end
     
     should "be invalid if new_record and starts_at is in the past" do
-      @time_slot_booking.starts_at 1.day.ago
+      @time_slot_booking.starts_at = 1.day.ago
       assert !@time_slot_booking.valid?
     end
     
@@ -45,13 +45,13 @@ class TimeSlotBookingTest < ActiveSupport::TestCase
     
     should "be invalid if starts_at is after time_slot's ends_at" do
       @time_slot.ends_at_string = "12:00"
-      @time_slot_booking.starts_at = "13:00"
+      @time_slot_booking.starts_at = Time.parse("13:00", 1.day.from_now)
       assert !@time_slot_booking.valid?
     end
     
     should "be invalid if starts_at is not on any of time_slot's allowed days" do
       @time_slot.mon = false
-      date = 1.day.from_now
+      date = Time.parse("12:00", 1.day.from_now)
       until date.wday == 1
         date = date + 1.day
       end
@@ -67,14 +67,14 @@ class TimeSlotBookingTest < ActiveSupport::TestCase
     end
     
     should "be invalid if starts_at is earlier than the notice period" do
-      @time_slot.expects(:num_weeks_notice).returns 2
-      @time_slot_booking.starts_at(Time.parse("12:00", 3.weeks.ago))
+      @time_slot.expects(:num_weeks_notice).at_least_once.returns 2
+      @time_slot_booking.starts_at = Time.parse("12:00", 3.weeks.ago)
       assert !@time_slot_booking.valid?
     end
     
     should "be invalid if starts_at is later than the notice period" do
-      @time_slot.expects(:num_weeks_notice).returns 2
-      @time_slot_booking.starts_at(Time.parse("12:00", 3.weeks.from_now))
+      @time_slot.expects(:num_weeks_notice).at_least_once.returns 2
+      @time_slot_booking.starts_at = Time.parse("12:00", 3.weeks.from_now)
       assert !@time_slot_booking.valid?
     end
     
