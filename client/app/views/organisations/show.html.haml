@@ -6,6 +6,11 @@
     %h1=@organisation
     =simple_format(@organisation.description)  
   .fourcol.last
-    =image_for(@organisation, "300x")
+    =image_for(@organisation, "300x") if @organisation.has_image?
 .row
-  =options_panel(@organisation)
+  -options_panel do
+    =back_link
+    =link_if_allowed("List activities", organisation_time_slots_proc(:organisation_id => @organisation))
+    =link_if_allowed("Edit organisation", edit_organisation_proc(@organisation))
+    =link_if_allowed("Delete organisation", @organisation, :method => :delete)
+    =link_if_allowed("New organisation", new_organisation_proc)
