@@ -13,21 +13,19 @@
     });
 -no_content_row 
 .row
-  #big_message    
-    #big_message_left.fourcol
-      %h2
-        Small moments can make a big difference – they can lift us up and make us feel good about the world.
-      %p
-        Seeing a beautiful picture, hearing someone sing a song, reading a favourite poem or just eating a delicious handmade cupcake. Here at ‘spots of time’ we want to multiply these great little moments. 
-        =# link_to 'More about us here', {:controller => 'page', :action => 'show', :id => '2'}, :class => 'read_more'
-    #big_message_image.eightcol.last
-      =image_tag 'photo.jpg'
-  #home_info_1.fourcol
-    %h3 A title goes here
-    %p Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus.  
-  #home_info_2.fourcol
-    %h3 Another title
-    %p Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus.
-  .fourcol.last
-    =link_to 'Call to action here', '#', :id=>'homepage_call_to_action', :class=>'homepage_link'
-    =link_to 'Less important link', '#', :id=>'homepage_second_link', :class=>'homepage_link'
+  .twelvecol
+    #activity_grid
+      -Activity.all.each do |activity|
+        -link_to(activity, :class => "activity") do
+          =image_for(activity, "150x150#")
+          .label=activity
+.row
+  .ninecol
+    %h2 Blog
+    -post = Blog.first.posts.latest.first
+    %p
+      %strong
+        =post.title 
+    %p=post.created_at.strftime("%d %B %Y")
+    =simple_format(strip_tags(post.text))
+  .threecol.last
