@@ -1677,6 +1677,8 @@ p.latest_text {
   color:#000;
   text-align:center; 
   width:180px;
+  height: 34px;
+  overflow: hidden;
 }
 
 /* ====================  Inside pages  ===================== */

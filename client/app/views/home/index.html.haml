@@ -15,10 +15,10 @@
 .row
   .twelvecol
     #activity_grid
-      -(Activity.all*5).each do |activity|
+      -Activity.all.each do |activity|
         -link_to(activity, :class => "activity") do
           =image_for(activity, "180x180#")
-          .label Lon long description goes here doesn't it #=activity
+          .label=activity
 .row
   .ninecol
     %h2 Blog
