@@ -47,7 +47,9 @@ span.click_here_beta, p.club_welcome_intro_text {
 #page_left_col, #page_right_col, p.index_text, p.blog_like_news_text {
 	color: #666;
 }
-
+p {
+  line-height:140%;
+}
 #page_content, #article_image, #keep_in_touch, #newsletter_signup, #pull_quote, #call_to_action {
 	background: #fff;
 }
