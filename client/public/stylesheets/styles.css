@@ -1649,11 +1649,11 @@ p.latest_text {
 	
 }
 
-#activity_grid {
+.activity_grid {
   float:left;
   margin-bottom:20px;
 }
-#activity_grid .activity {
+.activity_grid .activity {
   padding:15px;
   margin:0 15px 15px 0;
   background:#ddd;
@@ -1669,11 +1669,11 @@ p.latest_text {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-#activity_grid .activity img {
+.activity_grid .activity img {
   float:left;
   margin-bottom:10px;
 }
-#activity_grid .activity .label{
+.activity_grid .activity .label{
   float:left;
   clear:both;
   color:#000;
@@ -1681,6 +1681,10 @@ p.latest_text {
   width:180px;
   height: 34px;
   overflow: hidden;
+}
+
+.small_activity_grid .activity .label, .small_activity_grid .activity img  {
+  width:114px;
 }
 
 /* ====================  Inside pages  ===================== */
@@ -4217,7 +4221,9 @@ body.controller_badges .badge_members {
   margin-top: 20px;
 }
 /*====================== Newsnetwork home ====================*/
-
+.map_canvas {
+  margin-bottom:10px;
+}
 .map_canvas a, .map_canvas span {
   color:#ffffff !important;
   text-shadow:0 1px 0 #A0A0A0;   
