@@ -15,7 +15,7 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 /* ===============================  text styles ================================ */
-body, textarea, input {font:12px/1.6 font-family: Georgia, 'Times New Roman', Times, serif}a:focus{outline:1px dotted invert}hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}h1{font-size:25px}h2{font-size:23px}h3{font-size:21px}h4{font-size:19px}h5{font-size:17px}h6{font-size:15px}ol{list-style:decimal}ul{list-style:disc}li{margin-left:30px}p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:13px}
+body, textarea, input {font:12px/1.6 font-family: 'droid sans', Arial,'Liberation Sans',FreeSans,sans-serif}a:focus{outline:1px dotted invert}hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}h1{font-size:25px}h2{font-size:23px}h3{font-size:21px}h4{font-size:19px}h5{font-size:17px}h6{font-size:15px}ol{list-style:decimal}ul{list-style:disc}li{margin-left:30px}p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:13px}
 
 /* ======================  CSS3 regularly used stuff ================== */
 
@@ -36,8 +36,8 @@ body span.cal_sheet span.month {
 
 h1, h2, h3, h4, h5, h6, #nav, #subnav, #user_links .button, .bring_quote, .cycle_nav a, .call_to_action, #beta_bar {
 
-    font-family: 'Droid Sans', 'Lucida Grande', Helvetica, sans-serif;
-	color:black;
+  font-family: 'Merriweather', arial, serif;
+  color:black;
 	font-weight: lighter;
 
 }
@@ -1672,7 +1672,7 @@ p.latest_text {
   clear:both;
   color:#000;
   text-align:center; 
-  width:100%;
+  width:180px;
 }
 
 /* ====================  Inside pages  ===================== */

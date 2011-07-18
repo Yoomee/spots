@@ -15,17 +15,18 @@
 .row
   .twelvecol
     #activity_grid
-      -Activity.all.each do |activity|
+      -(Activity.all*5).each do |activity|
         -link_to(activity, :class => "activity") do
-          =image_for(activity, "150x150#")
-          .label=activity
+          =image_for(activity, "180x180#")
+          .label Lon long description goes here doesn't it #=activity
 .row
   .ninecol
     %h2 Blog
     -post = Blog.first.posts.latest.first
     %p
       %strong
-        =post.title 
+        =link_to(post.title, post)
     %p=post.created_at.strftime("%d %B %Y")
-    =simple_format(strip_tags(post.text))
+    =simple_format(strip_tags(post.text.word_truncate(250)))
+    =link_to('More', post)
   .threecol.last
