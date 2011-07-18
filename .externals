@@ -46,6 +46,11 @@ path = vendor/plugins/tramlines_walls
 repository = git://git.yoomee.com:4321/plugins/tramlines_walls
 scm = git
 
+[vendor/plugins/tramlines_locations]
+path = vendor/plugins/tramlines_locations
+scm = git
+repository = git://git.yoomee.com:4321/plugins/tramlines_locations.git
+
 [vendor/plugins/tramlines_blog]
 path = vendor/plugins/tramlines_blog
 repository = git://git.yoomee.com:4321/plugins/tramlines_blog.git

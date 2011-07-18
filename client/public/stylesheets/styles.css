@@ -267,6 +267,10 @@ ul.lst li{
 .formtastic .hidden, input[type='hidden'] {
   display: none;
 }
+.read_less_link, .read_more_link {
+  margin-left: 5px;
+}
+
 /* =============================  button styles ============================= */
 /* general large button*/
 input[type="submit"], a.bttn_l, .formtastic input[type="submit"], .formtastic  a.bttn_l {
@@ -6226,4 +6230,15 @@ form.time_slot ol li.commit input{
 }
 .time_slot_errors {
   color:red;
+}
+
+/*========== Activity show ==========*/
+
+#activity_search_row {
+  margin-top: 20px;
+}
+#preferred_times a {
+  float: left;
+  font-size: 18px;
+  margin: 0 10px;
 }
