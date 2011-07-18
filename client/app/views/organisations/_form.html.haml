@@ -1,5 +1,6 @@
 -semantic_form_for(organisation, :html => {:multipart => true}) do |form|
   -form.inputs do
+    =form.input :member, :as => :select if organisation.new_record? && admin_logged_in?
     =form.input :name
     =form.input :description
     =form.input :image, :as => :image
