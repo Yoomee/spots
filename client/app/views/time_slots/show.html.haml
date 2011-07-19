@@ -8,7 +8,6 @@
           $('#time_slot_booking_starts_at').val(dateText);
         },
         beforeShowDay: function(date) {
-          console.log(date.getDay());
           return [$.inArray(date.getDay(), #{@time_slot.day_integers.to_json})==-1 ? false : true, "", ""];
         }        
       });
