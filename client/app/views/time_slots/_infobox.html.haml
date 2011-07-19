@@ -1,6 +1,10 @@
+-if time_slot.organisation.time_slots.activity_id_is(time_slot.activity_id).not_including(time_slot).empty?
+  -url = url_for(time_slot)
+-else
+  -url = organisation_activity_path(time_slot.organisation, time_slot.activity)
 .infobox_left
-  =link_to(image_for(time_slot.organisation, "40x40#"), time_slot)
+  =link_to(image_for(time_slot.organisation, "40x40#"), url)
 .infobox_right
-  =link_to(time_slot.organisation, time_slot)
+  %h4=link_to(time_slot.organisation, url)
   %p
-    =truncate(time_slot.organisation_description, :length => 200)
+    =truncate(time_slot.organisation_description*10, :length => 100)

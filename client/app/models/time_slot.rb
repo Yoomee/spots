@@ -20,7 +20,7 @@ class TimeSlot < ActiveRecord::Base
   
   def ends_at_string=(value)
     @ends_at_string = value
-    self.ends_at = Time.parse("2000-01-01 #{value}")
+    self.ends_at = Time.zone.parse("2000-01-01 #{value}")
   end
   
   def starts_at_string
@@ -29,7 +29,7 @@ class TimeSlot < ActiveRecord::Base
   
   def starts_at_string=(value)
     @starts_at_string = value
-    self.starts_at = Time.parse("2000-01-01 #{value}")
+    self.starts_at = Time.zone.parse("2000-01-01 #{value}")
   end
   
   def timespan(am_pm = true)
