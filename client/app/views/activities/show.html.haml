@@ -48,8 +48,11 @@
   #activity_search_row.row
     .fourcol
       %h4 1. Type your postcode
-      -form_for @search do |form|
-        =text_field_tag :postcode, params[:postcode], :class => "labelify", :title => "e.g. SW1 2BJ"
+      =text_field_tag :postcode, params[:postcode], :class => "labelify fl", :title => "e.g. SW1 2BJ"
+      =link_to_function("Go", "ActivityMap.findPostCode()", :class => "bttn_l")
+      %br.clear
+      or
+      =link_to_function("Find me automatically", "ActivityMap.findMe()")
     .fourcol.last
       %h4 2. Click on your preferred time
       #preferred_times
