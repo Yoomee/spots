@@ -22,11 +22,11 @@
 .row
   .ninecol
     %h2 Blog
-    -post = Blog.first.posts.latest.first
-    %p
-      %strong
-        =link_to(post.title, post)
-    %p=post.created_at.strftime("%d %B %Y")
-    =simple_format(strip_tags(post.text.word_truncate(250)))
-    =link_to('More', post)
+    -if Blog.first && post = Blog.first.posts.latest.first
+      %p
+        %strong
+          =link_to(post.title, post)
+      %p=post.created_at.strftime("%d %B %Y")
+      =simple_format(strip_tags(post.text.word_truncate(250)))
+      =link_to('More', post)
   .threecol.last

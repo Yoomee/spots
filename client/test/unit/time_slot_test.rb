@@ -14,7 +14,6 @@ class TimeSlotTest < ActiveSupport::TestCase
   should have_db_column(:sat).of_type(:boolean)  
   should have_db_column(:sun).of_type(:boolean)
   
-  
   should belong_to(:activity)
   should belong_to(:organisation)
   should have_many(:bookings)
@@ -23,5 +22,29 @@ class TimeSlotTest < ActiveSupport::TestCase
   should validate_presence_of(:organisation)
   should validate_presence_of(:starts_at)
   should validate_presence_of(:ends_at)
+  
+  context "a valid instance" do
+    
+    setup do
+      @time_slot = Factory.build(:time_slot)
+    end
+    
+    should "be valid" do
+      @time_slot.valid?
+    end
+    
+  end
+  
+  context "on call to possible_time_strings" do
+    
+    setup do
+      @time_slot = Factory.build(:time_slot, :starts_at_string => "12:00", :ends_at_string => "16:00")
+    end
+    
+    should "return correct array of time strings" do
+      assert @time_slot.possible_time_strings, ["12:00", "13:00", "14:00", "15:00", "16:00"]
+    end
+    
+  end
   
 end

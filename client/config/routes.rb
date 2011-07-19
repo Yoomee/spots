@@ -6,5 +6,6 @@ ActionController::Routing::Routes.draw do |map|
     organisation.resources :activities, :only => [:show]
   end
   map.resources :time_slots, :except => [:index]
+  map.resources :time_slot_bookings
   
 end
