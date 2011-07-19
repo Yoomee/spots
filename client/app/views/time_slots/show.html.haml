@@ -23,8 +23,9 @@
       %p
         =@time_slot.note
 #time_slot_booking_form.row
+  .twelvecol
+    %h4 Thanks for offering to help out. When's good for you?
   .fourcol
-    %h4 Please select a date and time
     #starts_at_datepicker
   .fourcol.last
     -semantic_form_for(@time_slot_booking) do |form|

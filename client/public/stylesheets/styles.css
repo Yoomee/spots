@@ -6301,9 +6301,6 @@ form.time_slot li.commit, form.time_slot .edit_link {
 #time_slot_booking_form {
   margin: 20px 0;
 }
-#time_slot_booking_form fieldset {
-  margin-top: 25px;
-}
 h1.time_slot_booking_title span {
   font-size: 15px;
 }
