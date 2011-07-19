@@ -1,4 +1,4 @@
-/* @override 
+activity_search_row/* @override 
 	http://localhost:3000/stylesheets/client/styles.css
 	http://picnic.yoomee.com/stylesheets/client/styles.css?1304692474
 	http://picnic.yoomee.com/stylesheets/client/styles.css?1304694546
@@ -6291,6 +6291,9 @@ form.time_slot li.commit, form.time_slot .edit_link {
   float: left;
   font-size: 18px;
   margin: 0 10px;
+}
+#activity_search_row .bttn_l {
+  margin-top:5px;
 }
 
 /*========== TimeSlot Show ==========*/
