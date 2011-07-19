@@ -1,0 +1,20 @@
+-no_content_row
+-title "Volunteers for #{@organisation}"
+
+.row
+  .twelvecol
+    %table
+      %tr
+        %th Who
+        %th What
+        %th When
+      -@time_slot_bookings.each do |booking|
+        %tr
+          %td=link_to_self(booking.member)
+          %td=link_to(booking.activity, organisation_activity_path(@organisation, booking.activity))
+          %td=booking.starts_at.strftime("%A %d %B %H:00")
+
+.row
+  .twelvecol
+    =options_panel
+    

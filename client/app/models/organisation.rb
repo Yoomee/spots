@@ -4,6 +4,7 @@ class Organisation < ActiveRecord::Base
   
   belongs_to :member
   has_many :time_slots
+  has_many :time_slot_bookings, :through => :time_slots, :source => :bookings
   has_many :activities, :through => :time_slots, :uniq => true
 
   validates_presence_of :name, :member

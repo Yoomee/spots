@@ -19,7 +19,7 @@ body, textarea, input {font:12px/1.6 font-family: 'droid sans', Arial,'Liberatio
 
 /* ======================  CSS3 regularly used stuff ================== */
 
-#main, input, #footer_links, .bx_h, #news_feed_older_btn, .bx_h a, button, .bttn, .pull_quote, div#page_related_col, a.backto, .logged_in_box, .homepage_link, .pagination a, .pagination span {
+#main, input, #footer_links, .bx_h, #news_feed_older_btn, .bx_h a, button, .bttn, .pull_quote, div#page_related_col, a.backto, .logged_in_box, .homepage_link, .pagination a, .pagination span, .my_organisations_box {
 	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -1208,13 +1208,11 @@ div.logged_in_panel {
 
 .logged_in_as {
   float: right;
-
   margin: 0px;
-
-
+  position: relative;
 }
 
-.logged_in_as a {
+.logged_in_as a.logged_in_as_link {
 	margin: 0 0 0 10px;
 	display: block;
 
@@ -1233,32 +1231,31 @@ div.logged_in_panel {
 	-moz-border-radius:3px;
 }
 
-.logged_in_as a.logged_in_member_link {
+.logged_in_as a.logged_in_member_link, .logged_in_as a.my_organisations_link {
 	font-weight: bold;
 	background: #f5f5f5 url(/images/sprite.png) right -611px no-repeat;
 	padding-right: 25px;
 }
-.logged_in_as a.logged_in_member_link:hover {
+.logged_in_as a.logged_in_member_link:hover, .logged_in_as a.my_organisations_link:hover {
 		 -webkit-transition: .0s ease-in;
      -moz-transition: .0s ease-in;
      transition: .0s ease-in;
 }
-.logged_in_as a.logged_in_member_link_highlight {
+.logged_in_as a.logged_in_member_link_highlight, .logged_in_as a.my_organisations_link_highlight {
 	background: #000 url(/images/sprite.png) right -652px no-repeat;
 	color: #fff;
-	border-bottom: 6px solid #000;
+/*  border-bottom: 6px solid #000;*/
 }
-.logged_in_as a.logged_in_member_link_highlight:hover {
+.logged_in_as a.logged_in_member_link_highlight:hover, .logged_in_as a.my_organisations_link_highlight:hover {
 	background-color: #000;
 
 }
-.logged_in_as a:hover {
+.logged_in_as a.logged_in_as_link:hover {
 	text-decoration: none;
-	background-color: #ccc;
-	
-	 -webkit-transition: .1s ease-in;
-     -moz-transition: .1s ease-in;
-     transition: .1s ease-in;
+	background-color: #ccc;	
+  -webkit-transition: .1s ease-in;
+  -moz-transition: .1s ease-in;
+  transition: .1s ease-in;
 }
 #member_login_bttn {
 	float: right;
@@ -1270,7 +1267,7 @@ div.logged_in_panel {
 	
 }
 
-.logged_in_as a:hover span {
+.logged_in_as a.logged_in_as_link:hover span {
 	color: #000;
 	
 	-webkit-transition: .2s ease-in;
@@ -1299,7 +1296,7 @@ a#member_login_bttn.open, a#member_login_bttn.open:hover {
 	background: #333;	
 }
 
-.logged_in_box {
+.logged_in_box, .my_organisations_box {
 	position: absolute;
 	background: #000;
 	color: #fff;
@@ -1311,12 +1308,14 @@ a#member_login_bttn.open, a#member_login_bttn.open:hover {
 	display: none;
 	z-index: 100;
 	overflow:hidden;
-	
+}
+.my_organisations_box {
+  left: -37px;
 }
 body .logged_in_box_highlight {
 	display: block;
 }
-.logged_in_box a {
+.logged_in_box a, .my_organisations_box a {
 	float: left;
 	clear: both;
 	color: #fff;
@@ -1333,6 +1332,15 @@ a.my_profile_link {
 a.my_profile_link img {
 	float: left;
 	margin: 0 10px 0 0;
+}
+a.my_organisation_link {
+  padding: 0;
+  border:none;
+}
+a.list_volunteers_link {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+	border-bottom: 1px solid #999;
 }
 span.fb {
 	float: right;

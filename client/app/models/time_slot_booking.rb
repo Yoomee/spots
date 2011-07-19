@@ -13,7 +13,7 @@ class TimeSlotBooking < ActiveRecord::Base
   
   formatted_date_accessor :starts_at
   
-  delegate :activity_name, :organisation, :organisation_name, :to => :time_slot, :allow_nil => true
+  delegate :activity, :activity_name, :organisation, :organisation_name, :to => :time_slot, :allow_nil => true
   
   def starts_at_time_string
     return nil if starts_at.nil? && time_slot.nil?
