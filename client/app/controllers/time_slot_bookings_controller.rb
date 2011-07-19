@@ -2,6 +2,10 @@ class TimeSlotBookingsController < ApplicationController
   
   member_only :create
   owner_only :thank_you
+  custom_permission :index do |url_options, member|
+    organisation = Organisation.find(url_options[:organisation_id])
+    organisation.owned_by?(member) || (member && member.is_admin?)
+  end
   
   def create
     @time_slot_booking = logged_in_member.time_slot_bookings.build(params[:time_slot_booking])
