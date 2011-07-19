@@ -5,6 +5,7 @@ class TimeSlot < ActiveRecord::Base
   has_many :bookings, :class_name => "TimeSlotBooking"
   
   validates_presence_of :activity, :organisation, :starts_at, :ends_at
+  validates_order_of :starts_at, :ends_at
   validate :presence_of_days
 
   delegate :name, :to => :activity, :prefix => true
@@ -14,7 +15,7 @@ class TimeSlot < ActiveRecord::Base
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   
   def ends_at_string
-    @ends_at_string || "%02d:00" % (ends_at.try(:hour) || 5)
+    @ends_at_string || "%02d:00" % (ends_at.try(:hour) || 17)
   end
   
   def ends_at_string=(value)
@@ -42,6 +43,10 @@ class TimeSlot < ActiveRecord::Base
   # TODO: make this content managed
   def num_weeks_notice
     2
+  end
+  
+  def possible_time_strings
+    (starts_at.hour..ends_at.hour).collect {|h| "%02d:00" % h}
   end
   
   def to_s

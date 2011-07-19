@@ -2,12 +2,34 @@ class TimeSlotBooking < ActiveRecord::Base
   
   belongs_to :member
   belongs_to :time_slot
+
+  before_validation :set_starts_at
   
   validates_presence_of :member, :time_slot, :starts_at
   
   validate :starts_at_is_in_the_future, :not_already_booked_for_this_day, :starts_at_is_within_time_limits, :starts_at_is_within_notice_period, :starts_at_is_on_an_allowed_day
   
+  attr_writer :starts_at_time_string
+  
+  formatted_date_accessor :starts_at
+  
+  delegate :activity_name, :organisation, :organisation_name, :to => :time_slot, :allow_nil => true
+  
+  def starts_at_time_string
+    return nil if starts_at.nil? && time_slot.nil?
+    @starts_at_time_string || "%02d:00" % (starts_at.try(:hour) || time_slot.starts_at.hour)
+  end
+  
+  def starts_at_neat_string
+    starts_at.strftime('on %d %b at %H:00')
+  end
+  
   private
+  def set_starts_at
+    return true if starts_at.nil? || starts_at_time_string.blank?
+    self.starts_at = Time.parse(starts_at_time_string, starts_at)
+  end
+  
   def starts_at_is_in_the_future
     return true if !new_record? || starts_at.nil?
     errors.add(:starts_at, "must be in the future") unless starts_at > Time.now

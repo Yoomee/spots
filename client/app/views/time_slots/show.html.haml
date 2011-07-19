@@ -1,20 +1,47 @@
+-content_for(:head) do
+  :javascript
+    $(document).ready(function() {
+      $('#starts_at_datepicker').datepicker({
+        dateFormat: 'dd-mm-yy',
+        minDate: (0),
+        maxDate: (+#{@time_slot.num_weeks_notice*7}),
+        onSelect: function(dateText, inst) {
+          $('#time_slot_booking_starts_at').val(dateText);
+        }
+      });
+    });
 -hidden_title @time_slot
 
 .row
   .twelvecol
-    %h1=@time_slot.activity
-    %span
-      with
-      =link_to_self(@time_slot.organisation)
+    %h1.time_slot_booking_title
+      =@time_slot.activity
+      %span
+        with
+        =link_to_self(@time_slot.organisation)
     -if !@time_slot.note.blank?
       %p
         =@time_slot.note
+#time_slot_booking_form.row
+  .fourcol
+    %h4 Please select a date and time
+    #starts_at_datepicker
+  .fourcol.last
+    -semantic_form_for(@time_slot_booking) do |form|
+      -form.inputs do
+        =form.input :time_slot_id, :as => :hidden
+        =form.input :starts_at, :as => :hidden
+        =form.input :starts_at_time_string, :as => :select, :collection => @time_slot.possible_time_strings, :include_blank => false, :label => "Time:", :wrapper_html => {:class => "inline-fields"}
+        %li
+          %p Choose the date and time you’d like to do this and click on the button below.
+        =form.commit_button "COUNT ME IN"
 .row
-  .eightcol.last
-    %h4 Date: Please select
-    
+  .twelvecol
+    =google_map(@time_slot, :width => "100%", :height => 500, :version => "3.5", :infoboxes => true)
 
--options_panel do
-  =back_link
-  =link_if_allowed("Edit activity", edit_activity_proc(@time_slot.activity))
-  =link_if_allowed("Edit organisation", edit_organisation_proc(@time_slot.organisation))
+.row
+  .twelvecol
+    -options_panel do
+      =back_link
+      =link_if_allowed("Edit activity", edit_activity_proc(@time_slot.activity))
+      =link_if_allowed("Edit organisation", edit_organisation_proc(@time_slot.organisation))

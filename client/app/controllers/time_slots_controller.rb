@@ -1,7 +1,5 @@
 class TimeSlotsController < ApplicationController
   
-  member_only :show
-  
   custom_permission :index do |url_options, member|
     organisation = Organisation.find(url_options[:organisation_id])
     organisation.owned_by?(member) || (member && member.is_admin?)
@@ -35,6 +33,7 @@ class TimeSlotsController < ApplicationController
   
   def show
     @time_slot = TimeSlot.find(params[:id])
+    @time_slot_booking = @time_slot.bookings.build
   end
   
   def update
