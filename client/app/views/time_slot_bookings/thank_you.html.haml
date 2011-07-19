@@ -1,0 +1,15 @@
+-no_content_row
+-hidden_title "Thanks for volunteering for #{@time_slot_booking.organisation_name}"
+
+.row
+  .twelvecol
+    %h1 Thank you!
+    %p
+      ="Thanks for volunteering for #{@time_slot_booking.organisation_name}."
+    %p
+      %strong=@time_slot_booking.activity_name
+      =@time_slot_booking.starts_at_neat_string
+
+.row
+  .twelvecol
+    =options_panel
