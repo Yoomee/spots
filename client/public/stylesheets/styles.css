@@ -6264,3 +6264,17 @@ form.time_slot ol li.commit input{
 h1.time_slot_booking_title span {
   font-size: 15px;
 }
+
+/*========== Time slots ==========*/
+table.time_slots {
+  border-collapse:collapse;
+  width:100%;
+}
+table.time_slots td {
+  border-color:#ddd;
+  border-left:none ;
+  border-right:none;
+  width:20%;
+}
+table.time_slots td.note {width:40%;}
+

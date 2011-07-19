@@ -10,6 +10,7 @@ class ActivitiesController < ApplicationController
   
   def show
     @organisation = Organisation.find_by_id(params[:organisation_id])
+    @other_activities = @organisation.activities.id_is_not(@activity.id) unless @organisation.nil?
     @search = Search.new
   end
   

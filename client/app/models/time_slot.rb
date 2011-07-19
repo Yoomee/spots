@@ -32,8 +32,12 @@ class TimeSlot < ActiveRecord::Base
     self.starts_at = Time.parse("2000-01-01 #{value}")
   end
   
-  def timespan
-    "#{starts_at_string} - #{ends_at_string}"
+  def timespan(am_pm = true)
+    if am_pm
+      "#{starts_at.strftime("%H:00%p")} - #{ends_at.strftime("%H:00%p")}".downcase
+    else
+      "#{starts_at_string} - #{ends_at_string}"
+    end
   end
   
   # TODO: make this content managed

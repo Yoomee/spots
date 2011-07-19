@@ -2,21 +2,21 @@
 -hidden_title @organisation
 
 .row
-  .twocol
-    =image_for(@organisation, "180x") if @organisation.has_image?
-  .tencol.last
+  .threecol
+    =image_for(@organisation, "200x") if @organisation.has_image?
+  .ninecol.last
     %h1=@organisation
     =simple_format(@organisation.description) 
 .row
-  .twocol
-  .tencol.last
+  .threecol
+  .ninecol.last
     %hr
     %h4 Where?
     =render_address(@organisation.location) unless @organisation.location.unknown?
     =google_map(@organisation, :width => "100%", :height => 350, :zoom => 7, :infoboxes => true) if @organisation.has_lat_lng?
 .row
-  .twocol
-  .tencol.last
+  .threecol
+  .ninecol.last
     %hr
     %h4 What can you do to help out?
     .activity_grid.small_activity_grid
