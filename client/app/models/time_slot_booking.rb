@@ -27,12 +27,12 @@ class TimeSlotBooking < ActiveRecord::Base
   private
   def set_starts_at
     return true if starts_at.nil? || starts_at_time_string.blank?
-    self.starts_at = Time.parse(starts_at_time_string, starts_at)
+    self.starts_at = Time.zone.parse(starts_at_time_string, starts_at)
   end
   
   def starts_at_is_in_the_future
     return true if !new_record? || starts_at.nil?
-    errors.add(:starts_at, "must be in the future") unless starts_at > Time.now
+    errors.add(:starts_at, "must be in the future") unless starts_at > Time.zone.now
   end
   
   def not_already_booked_for_this_day
@@ -44,7 +44,7 @@ class TimeSlotBooking < ActiveRecord::Base
   
   def starts_at_is_within_time_limits
     return true if !new_record? || starts_at.nil? || time_slot.nil?
-    unless (starts_at <= Time.parse(time_slot.ends_at_string, starts_at) && starts_at >= Time.parse(time_slot.starts_at_string, starts_at))
+    unless (starts_at <= Time.zone.parse(time_slot.ends_at_string, starts_at) && starts_at >= Time.zone.parse(time_slot.starts_at_string, starts_at))
       errors.add(:starts_at, "is outide the time limits")
     end
   end

@@ -3,16 +3,19 @@
 
 .row
   .twelvecol
-    %table
-      %tr
-        %th Who
-        %th What
-        %th When
-      -@time_slot_bookings.each do |booking|
+    -if @time_slot_bookings.empty?
+      %p Sorry, you have no volunteers at the moment.
+    -else
+      %table
         %tr
-          %td=link_to_self(booking.member)
-          %td=link_to(booking.activity, organisation_activity_path(@organisation, booking.activity))
-          %td=booking.starts_at.strftime("%A %d %B %H:00")
+          %th Who
+          %th What
+          %th When
+        -@time_slot_bookings.each do |booking|
+          %tr
+            %td=link_to_self(booking.member)
+            %td=link_to(booking.activity, organisation_activity_path(@organisation, booking.activity))
+            %td=booking.starts_at.strftime("%A %d %B %H:00")
 
 .row
   .twelvecol
