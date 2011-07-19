@@ -3,11 +3,14 @@
     $(document).ready(function() {
       $('#starts_at_datepicker').datepicker({
         dateFormat: 'dd-mm-yy',
-        minDate: (0),
-        maxDate: (+#{@time_slot.num_weeks_notice*7}),
+        minDate: (+#{@time_slot.num_weeks_notice*7}),
         onSelect: function(dateText, inst) {
           $('#time_slot_booking_starts_at').val(dateText);
-        }
+        },
+        beforeShowDay: function(date) {
+          console.log(date.getDay());
+          return [$.inArray(date.getDay(), #{@time_slot.day_integers.to_json})==-1 ? false : true, "", ""];
+        }        
       });
     });
 -hidden_title @time_slot

@@ -51,8 +51,8 @@ class TimeSlotBooking < ActiveRecord::Base
   
   def starts_at_is_within_notice_period
     return true if !new_record? || starts_at.nil? || time_slot.nil?
-    unless (starts_at >= time_slot.num_weeks_notice.weeks.ago && starts_at <= time_slot.num_weeks_notice.weeks.from_now)
-      errors.add(:starts_at, "is outide the notice period")
+    unless (starts_at >= time_slot.num_weeks_notice.weeks.from_now)
+      errors.add(:starts_at, "you need to give at least #{time_slot.num_weeks_notice} weeks notice")
     end 
   end
   

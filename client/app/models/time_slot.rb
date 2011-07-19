@@ -14,6 +14,14 @@ class TimeSlot < ActiveRecord::Base
 
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   
+  def day_integers
+    out = []
+    TimeSlot::DAYS.each_with_index do |day, index|
+      out << index+1 if send(day)
+    end
+    out
+  end
+  
   def ends_at_string
     @ends_at_string || "%02d:00" % (ends_at.try(:hour) || 17)
   end
