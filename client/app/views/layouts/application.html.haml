@@ -29,12 +29,10 @@
     :javascript
       $(document).ready(function() {
         $("a.logged_in_member_link").click(function () {
-          if($(this).hasClass('logged_in_member_link_highlight')){
-            $('.logged_in_box').hide(0, function(){$('a.logged_in_member_link').removeClass("logged_in_member_link_highlight");});
-          } else {          
-            $('.logged_in_box').show();
-            $(this).addClass("logged_in_member_link_highlight");
-          }
+           LoggedInNav.toggle_logged_in_member();
+        });
+        $("a.my_organisations_link").click(function () {
+          LoggedInNav.toggle_my_organisations();
         });
         $("a#login_link").fancybox({
         		'hideOnContentClick': false

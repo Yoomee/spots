@@ -28,6 +28,7 @@
   -options_panel do
     =back_link
     =link_if_allowed("List activities", organisation_time_slots_proc(:organisation_id => @organisation))
+    =link_if_allowed("List volunteers", organisation_time_slot_bookings_proc(@organisation))
     =link_if_allowed("Edit organisation", edit_organisation_proc(@organisation))
     =link_if_allowed("Delete organisation", @organisation, :method => :delete)
     =link_if_allowed("New organisation", new_organisation_proc)

@@ -14,6 +14,11 @@ class TimeSlotBookingsController < ApplicationController
     end
   end
   
+  def index
+    @organisation = Organisation.find(params[:organisation_id])
+    @time_slot_bookings = @organisation.time_slot_bookings.ascend_by_starts_at
+  end
+  
   def thank_you
     @time_slot_booking = TimeSlotBooking.find(params[:id])
   end
