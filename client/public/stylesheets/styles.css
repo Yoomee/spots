@@ -6178,6 +6178,7 @@ table#delegates th{
 li.time_slot_form {
   border-bottom:1px solid #EEE;
   margin-bottom:10px;
+  width:100%;
 }
 
 .activity_row .twocol img {
@@ -6197,10 +6198,6 @@ form.time_slot li.select label {
 form.time_slot ol li textarea {
   margin-bottom:0;
   width:100%;
-}
-form.time_slot ol li.commit {
-  clear: none;
-  margin-left:50px;
 }
 form.time_slot ol li.commit input{
   margin:0;
@@ -6228,6 +6225,20 @@ form.time_slot ol li.commit input{
   color:#fff;
   background-color:#000;
 }
+.time_slot_form .disabled ol li.time_slot_day_input label {
+	cursor:default;
+	border-color:#ccc;
+	color:#ccc;
+}
+.time_slot_form .disabled ol li.time_slot_day_input label.selected {
+  color:#fff;
+  background-color:#666;
+  border-color:#666;
+}
+.time_slot_form .disabled input[name="commit"] {
+  display:none;
+}
+
 .activity_row {
   margin:10px auto;
   padding:10px 0;
@@ -6241,6 +6252,27 @@ form.time_slot ol li.commit input{
 .time_slot_errors {
   color:red;
 }
+
+.time_slot_form li.note, .time_slot_form .disabled li.note_input {
+  display:none;
+}
+.time_slot_form .disabled li.note, .time_slot_form li.note_input{
+  display:block;
+}
+form.time_slot fieldset.inputs {
+  width:80%;
+  float:left;
+}
+form.time_slot fieldset.buttons {
+  width:20%;
+  float:left;
+  clear:none;
+}
+form.time_slot li.commit, form.time_slot .edit_link {
+  margin-right:10px;
+}
+.time_slot_form .delete_link{display:none;}
+.time_slot_form .disabled .delete_link{display:inline;}
 
 /*========== Activity show ==========*/
 
