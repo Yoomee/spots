@@ -6252,3 +6252,19 @@ form.time_slot ol li.commit input{
   font-size: 18px;
   margin: 0 10px;
 }
+
+
+/*========== Time slots ==========*/
+table.time_slots {
+  border-collapse:collapse;
+  width:100%;
+}
+table.time_slots td {
+  border-color:#ddd;
+  border-left:none ;
+  border-right:none;
+  width:20%;
+}
+
+table.time_slots td.note {width:40%;}
+
