@@ -35,6 +35,10 @@ class TimeSlot < ActiveRecord::Base
     self.ends_at = Time.zone.parse("2000-01-01 #{value}")
   end
   
+  def existing_bookings_json
+    bookings.starts_at_greater_than(num_weeks_notice.weeks.from_now).collect {|b| b.starts_at.strftime("%a %b %d %Y")}.to_json
+  end
+  
   def starts_at_string
     @starts_at_string || "%02d:00" % (starts_at.try(:hour) || 9)
   end

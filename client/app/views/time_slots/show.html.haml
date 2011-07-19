@@ -1,5 +1,6 @@
 -content_for(:head) do
   :javascript
+    var BookedDates = #{@time_slot.existing_bookings_json};
     $(document).ready(function() {
       $('#starts_at_datepicker').datepicker({
         dateFormat: 'dd-mm-yy',
@@ -8,7 +9,9 @@
           $('#time_slot_booking_starts_at').val(dateText);
         },
         beforeShowDay: function(date) {
-          return [$.inArray(date.getDay(), #{@time_slot.day_integers.to_json})==-1 ? false : true, "", ""];
+          var allowed_on_day = $.inArray(date.getDay(), #{@time_slot.day_integers.to_json}) == -1 ? false : true;
+          var already_booked =  $.inArray(date.toDateString(), BookedDates) == -1 ? false : true;
+          return [!already_booked && allowed_on_day, already_booked ? "already_booked" : "", ""];
         }        
       });
     });

@@ -6304,6 +6304,10 @@ form.time_slot li.commit, form.time_slot .edit_link {
 h1.time_slot_booking_title span {
   font-size: 15px;
 }
+table.ui-datepicker-calendar td.already_booked span {
+  background-color: #FFBCB9;
+  border-color: #FF8397;
+}
 
 /*========== Time slots ==========*/
 table.time_slots {
