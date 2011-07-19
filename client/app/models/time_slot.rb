@@ -17,7 +17,11 @@ class TimeSlot < ActiveRecord::Base
   def day_integers
     out = []
     TimeSlot::DAYS.each_with_index do |day, index|
-      out << index+1 if send(day)
+      if day == :sun
+        out << 0 if sun?
+      else
+        out << index+1 if send(day)
+      end
     end
     out
   end
