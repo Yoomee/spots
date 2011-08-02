@@ -10,7 +10,7 @@ class TimeSlot < ActiveRecord::Base
 
   delegate :name, :to => :activity, :prefix => true
   delegate :description, :name, :to => :organisation, :prefix => true
-  delegate :has_lat_lng?, :lat_lng, :lat, :lng, :to => :organisation
+  delegate :has_lat_lng?, :lat_lng, :num_weeks_notice, :to => :organisation
 
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   
@@ -54,11 +54,6 @@ class TimeSlot < ActiveRecord::Base
     else
       "#{starts_at_string} - #{ends_at_string}"
     end
-  end
-  
-  # TODO: make this content managed
-  def num_weeks_notice
-    2
   end
   
   def possible_time_strings
