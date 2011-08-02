@@ -6,5 +6,9 @@ module ClientHelper
     "<strong>#{organisation}</strong><br/>#{render_address(organisation.location,:multi_line=> true)}"
   end
   
+  def organisation_marker_click(organisation)
+    "ActivityMap.fetchOrganisation(#{@activity.id},#{organisation.id});"
+  end
+  
   
 end

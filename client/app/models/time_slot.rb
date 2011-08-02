@@ -27,7 +27,7 @@ class TimeSlot < ActiveRecord::Base
   end
   
   def ends_at_string
-    @ends_at_string || "%02d:00" % (ends_at.try(:hour) || 17)
+    @ends_at_string || ends_at.try(:strftime, "%H:%M") || "17:00"
   end
   
   def ends_at_string=(value)
