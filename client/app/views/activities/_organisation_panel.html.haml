@@ -1,0 +1,12 @@
+%h2=organisation.name
+=read_more_truncate(organisation.description) 
+%hr
+%h4 When can you help out?          
+=render("time_slots/table", :time_slots => activity.time_slots.organisation_id_is(organisation.id).ascend_by_starts_at)
+-if !(other_activities = organisation.activities.id_is_not(@activity.id)).blank?
+  %h4 Other things you can do here
+  .activity_grid.small_activity_grid
+    -other_activities.each do |activity|
+      -link_to(organisation_activity_path(organisation,activity), :class => "activity") do
+        =image_for(activity, "147x147#")
+        .label=activity

@@ -88,5 +88,13 @@ var ActivityMap = {
         }
       });
     }
+  },
+  fetchOrganisation: function(act_id, org_id){
+    var url = '/organisations/' + org_id + '/activities/'+act_id;
+    $.get(url, function(data){
+      $('#organisation_panel').html(data);
+    });
   }
 };
+
+

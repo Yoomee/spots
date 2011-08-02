@@ -1662,8 +1662,8 @@ p.latest_text {
   margin-bottom:20px;
 }
 .activity_grid .activity {
-  padding:15px;
-  margin:0 15px 15px 0;
+  padding:10px;
+  margin:0 10px 10px 0;
   background:#ddd;
   float:left;
   clear:none;
@@ -1680,13 +1680,15 @@ p.latest_text {
 .activity_grid .activity img {
   float:left;
   margin-bottom:10px;
+  width:124px;
+  height:124px;
 }
 .activity_grid .activity .label{
   float:left;
   clear:both;
   color:#000;
   text-align:center; 
-  width:180px;
+  width:124px;
   height: 34px;
   overflow: hidden;
 }
@@ -6318,7 +6320,8 @@ table.time_slots td {
   border-color:#ddd;
   border-left:none ;
   border-right:none;
-  width:20%;
+  width:15%;
 }
-table.time_slots td.note {width:40%;}
+table.time_slots td.time {width:25%;}
+table.time_slots td.note {width:45%;}
 

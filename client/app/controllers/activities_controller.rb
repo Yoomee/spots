@@ -11,7 +11,11 @@ class ActivitiesController < ApplicationController
   def show
     @organisation = Organisation.find_by_id(params[:organisation_id])
     @other_activities = @organisation.activities.id_is_not(@activity.id) unless @organisation.nil?
-    @search = Search.new
+    if request.xhr?
+      render :partial => "activities/organisation_panel", :locals => {:activity => @activity, :organisation => @organisation}
+    else
+      @search = Search.new
+    end
   end
   
   def new

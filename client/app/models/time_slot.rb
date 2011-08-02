@@ -10,7 +10,7 @@ class TimeSlot < ActiveRecord::Base
 
   delegate :name, :to => :activity, :prefix => true
   delegate :description, :name, :to => :organisation, :prefix => true
-  delegate :has_lat_lng?, :lat_lng, :to => :organisation
+  delegate :has_lat_lng?, :lat_lng, :lat, :lng, :to => :organisation
 
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   
@@ -27,7 +27,7 @@ class TimeSlot < ActiveRecord::Base
   end
   
   def ends_at_string
-    @ends_at_string || "%02d:00" % (ends_at.try(:hour) || 17)
+    @ends_at_string || ends_at.try(:strftime, "%H:%M") || "17:00"
   end
   
   def ends_at_string=(value)
