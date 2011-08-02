@@ -1,0 +1,6 @@
+-title "You are now signed up"
+
+%p
+  ="You are now signed up with the organisation #{link_to_self(@member.organisations.first.name)}."
+%p="Your organisation will appear to the public once it has been approved. In the mean time, you can #{link_to('manage your activities', organisation_time_slots_path(@member.organisations.first))}."
+  

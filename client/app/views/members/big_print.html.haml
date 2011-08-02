@@ -1,0 +1,12 @@
+-title "Here’s the Really Big Print"
+
+%p 
+  Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed.
+  
+  Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus.
+  
+-semantic_form_for(@member, :url => agree_to_big_print_member_path(@member)) do |form|
+  -form.inputs do
+    =form.input :agreed_to_terms, :label => "I agree to the terms and conditions"
+  -form.buttons do
+    =form.commit_button "Finish"
