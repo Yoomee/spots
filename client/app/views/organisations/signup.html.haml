@@ -1,0 +1,35 @@
+-no_content_row
+-title "Organisation sign up: Basic info"
+
+#organisation_signup.row
+  .twelvecol
+    %p If you are an organisation that would like to benefit from spots of time them please fill out this form.
+    -semantic_form_for(@organisation) do |form|
+      -form.inputs do
+        =form.input :name, :label => "Name of organisation"
+        =form.input :description, :label => "Description of organisation", :input_html => {:rows => 5}
+      -form.semantic_fields_for(:location) do |location_form|
+        -location_form.inputs do
+          =location_form.input :address1
+          =location_form.input :address2
+          =location_form.input :city
+          =location_form.input :postcode
+      -form.inputs do
+        =form.input :group, :label => "Which groups?", :as => :select, :collection => ["Group 1", "Group 2", "Group 3"], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
+        =form.input :group_specific_needs, :label => "Groups with specific needs:"
+        =form.input :num_weeks_notice, :label => "How much notice do you need?", :as => :select, :collection => [["1 week", 1], ["2 weeks", 2]], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
+        =form.input :volunteers_insured, :label => "Are volunteers covered under your insurance?"
+        =form.input :require_crb, :label => "Do you require CRB checks?"
+        =form.input :terms, :label => "What are your terms and conditions?", :input_html => {:rows => 5}
+      -form.semantic_fields_for(:member) do |member_form|
+        -member_form.inputs do
+          =member_form.input :forename, :label => "First name", :help => "Lead contact"
+          =member_form.input :surname, :label => "Last name"
+          =member_form.input :email
+          =member_form.input :phone
+          =member_form.input :password
+          =member_form.input :dont_generate_password, :as => :hidden, :value => true
+      -form.buttons do
+        =form.commit_button "Sign up"
+              
+

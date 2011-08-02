@@ -7,9 +7,13 @@ class Organisation < ActiveRecord::Base
   has_many :time_slot_bookings, :through => :time_slots, :source => :bookings
   has_many :activities, :through => :time_slots, :uniq => true
 
-  validates_presence_of :name, :member
-  
+  attr_accessor :group, :group_specific_needs
+
   has_location
+
+  validates_presence_of :name, :member, :location
+  
+  accepts_nested_attributes_for :member
   
   def ordered_activities
     (activities.ascend_by_name + Activity.ascend_by_name).uniq

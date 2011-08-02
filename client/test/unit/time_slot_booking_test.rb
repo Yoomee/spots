@@ -61,20 +61,14 @@ class TimeSlotBookingTest < ActiveSupport::TestCase
     
     should "be invalid if booking already exists for the time_slot on the same day" do
       @time_slot = Factory.create(:time_slot, :id => 1)
-      Factory.create(:time_slot_booking, :time_slot => @time_slot, :starts_at => Time.parse("09:00", 1.day.from_now))
-      @time_slot_booking.attributes = {:time_slot => @time_slot, :starts_at => Time.parse("10:00", 1.day.from_now)}
+      Factory.create(:time_slot_booking, :time_slot => @time_slot, :starts_at => Time.parse("09:00", 3.weeks.from_now))
+      @time_slot_booking.attributes = {:time_slot => @time_slot, :starts_at => Time.parse("10:00", 3.weeks.from_now)}
       assert !@time_slot_booking.valid?
     end
     
     should "be invalid if starts_at is earlier than the notice period" do
       @time_slot.expects(:num_weeks_notice).at_least_once.returns 2
       @time_slot_booking.starts_at = Time.parse("12:00", 3.weeks.ago)
-      assert !@time_slot_booking.valid?
-    end
-    
-    should "be invalid if starts_at is later than the notice period" do
-      @time_slot.expects(:num_weeks_notice).at_least_once.returns 2
-      @time_slot_booking.starts_at = Time.parse("12:00", 3.weeks.from_now)
       assert !@time_slot_booking.valid?
     end
     

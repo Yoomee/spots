@@ -6,8 +6,16 @@
       });
       TimeSlot.setAllSelected();
     });
--title "Activities at #{@organisation}"
+-hidden_title "Activities at #{@organisation}"
 -no_content_row
+.row
+  .eightcol
+    %h1="Activities at #{@organisation}"
+    -if params[:signup] #just signed up
+      %p Choose an activity from below and click "Add a time slot".
+  .fourcol.last
+    -if params[:signup]
+      =link_to("Skip this for now &rarr;", @organisation, :id => "skip_time_slots_link")
 -@organisation.ordered_activities.each do |activity|
   .row.activity_row
     .twocol

@@ -16,12 +16,15 @@
           =link_to_self(page_section,:class=>'newsbox_title_link')
         -if false  
           %p.index_date
-            =(page_section.is_a?(Page) ? page_section.publish_on : page_section.created_at).strftime("%e %B %Y")  
+            =(page_section.is_a?(Page) ? page_section.publish_on : page_section.created_at).strftime("%e %B %Y")
         %p.index_text
           =page_section.is_a?(Page) ? (snippet(page_section, :summary).nil? ? truncate(page_section.text.strip_tags, :length => 193) : snippet(page_section, :summary, false).strip_tags) : page_section.description.to_s.strip_tags
           =link_to "Read more", page_section, :class=>'blog_read_more'
         %p.index_read_more
-          
+-if @section.slug_is?(:organisations)
+  #organisation_signup_button.row
+    .ninecol.last
+      =link_to("Sign up to Spots of Time &rarr;", signup_organisation_path)
 .row
   .twelvecol      
   -options_panel do

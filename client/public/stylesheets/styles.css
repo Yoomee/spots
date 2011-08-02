@@ -6210,7 +6210,7 @@ form.time_slot ol li textarea {
 form.time_slot ol li.commit input{
   margin:0;
 }
-.formtastic ol li.time_slot_day_input, .formtastic ol li.select {
+form.time_slot ol li.time_slot_day_input, form.time_slot ol li.select {
   float: left;
   clear: none;
 }
@@ -6322,3 +6322,37 @@ table.time_slots td {
 }
 table.time_slots td.note {width:40%;}
 
+/*========== Organisations section ==========*/
+
+#organisation_signup_button {
+  margin-top: 40px;
+}
+#organisation_signup_button a {
+  background-color: #32DBA1;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  float: right;
+ 	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-o-border-radius:3px; 
+}
+#organisation_signup_button a:hover {
+  background-color: #8BFBD5;
+  text-decoration: none;
+}
+
+/*========== Organisation Signup ==========*/
+
+#organisation_signup .formtastic ol, #organisation_signup .formtastic li {
+  width: 100%;
+}
+#organisation_signup .formtastic textarea {
+  width: 60%; 
+}
+#skip_time_slots_link {
+  float: right;
+  margin-top: 10px;
+}
