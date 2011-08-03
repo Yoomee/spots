@@ -6351,9 +6351,29 @@ a.organisation_signup_link:hover {
   width: 100%;
 }
 #organisation_signup .formtastic textarea {
-  width: 60%; 
+  width: 60%;
+  margin-bottom: 0;
 }
 #skip_time_slots_link {
   float: right;
   margin-top: 10px;
+}
+.formtastic fieldset.organisation_address_fields li {
+  margin: 0;
+}
+.formtastic fieldset.organisation_address_fields li {
+  margin: 0;
+}
+#organisation_signup .formtastic li.organisation_member_name_label {
+  margin: 0;
+}
+#organisation_signup .formtastic li.organisation_member_forename, #organisation_signup .formtastic li.organisation_member_surname {
+  clear: none;
+  width: auto;
+}
+.formtastic li.organisation_member_forename input, .formtastic li.organisation_member_surname input {
+  clear: none;
+}
+.formtastic fieldset.organisation_member_fields li {
+  margin: 0;
 }

@@ -1,5 +1,5 @@
 -no_content_row
--title "Organisation signup: Basic info"
+-title "Organisation signup"
 
 #organisation_signup.row
   .twelvecol
@@ -7,13 +7,15 @@
     -semantic_form_for(@organisation) do |form|
       -form.inputs do
         =form.input :name, :label => "Name of organisation"
-        =form.input :description, :label => "Description of organisation", :input_html => {:rows => 5}
+        =form.input :description, :label => "Description of organisation", :input_html => {:rows => 3}
       -form.semantic_fields_for(:location) do |location_form|
-        -location_form.inputs do
-          =location_form.input :address1
-          =location_form.input :address2
-          =location_form.input :city
-          =location_form.input :postcode
+        -location_form.inputs :class => "organisation_address_fields" do
+          %li
+            %label Address of organisation
+          =location_form.input :address1, :label => false, :input_html => {:class => "labelify", :title => "Address 1"}
+          =location_form.input :address2, :label => false, :input_html => {:class => "labelify", :title => "Address 2"}
+          =location_form.input :city, :label => false, :input_html => {:class => "labelify", :title => "City"}
+          =location_form.input :postcode, :label => false, :input_html => {:class => "labelify", :title => "Postcode"}
       -form.inputs do
         =form.input :group, :label => "Which groups?", :as => :select, :collection => ["Group 1", "Group 2", "Group 3"], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
         =form.input :group_specific_needs, :label => "Groups with specific needs:"
@@ -22,9 +24,13 @@
         =form.input :require_crb, :label => "Do you require CRB checks?"
         =form.input :terms, :label => "What are your terms and conditions?", :input_html => {:rows => 5}
       -form.semantic_fields_for(:member) do |member_form|
-        -member_form.inputs do
-          =member_form.input :forename, :label => "First name", :help => "Lead contact"
-          =member_form.input :surname, :label => "Last name"
+        -member_form.inputs :class => "organisation_member_fields" do
+          %li
+            %h3 Lead contact
+          %li.organisation_member_name_label
+            =form.label :forename, "Name"
+          =member_form.input :forename, :label => false, :input_html => {:class => "labelify", :title => "First name"}, :wrapper_html => {:class => "organisation_member_forename"}
+          =member_form.input :surname, :label => false, :input_html => {:class => "labelify", :title => "Last name"}, :wrapper_html => {:class => "organisation_member_surname"}
           =member_form.input :email
           =member_form.input :phone
           =member_form.input :password, :label => "Choose a password"
