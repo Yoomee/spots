@@ -3,7 +3,7 @@ class Organisation < ActiveRecord::Base
   include TramlinesImages
   
   belongs_to :member
-  has_many :time_slots
+  has_many :time_slots, :dependent => :destroy
   has_many :time_slot_bookings, :through => :time_slots, :source => :bookings
   has_many :activities, :through => :time_slots, :uniq => true
 
@@ -16,7 +16,7 @@ class Organisation < ActiveRecord::Base
   accepts_nested_attributes_for :member
   
   def ordered_activities
-    (activities.ascend_by_name + Activity.ascend_by_name).uniq
+    (activities.volunteering.ascend_by_name + Activity.volunteering.ascend_by_name).uniq
   end
   
 end

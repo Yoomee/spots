@@ -71,6 +71,7 @@ input#search_field {
 }
 .formtastic .inputs li.image img {
   float: left;
+  clear: both;
 }
 .formtastic .inputs li.image input {
   width: 180px;
@@ -1656,7 +1657,29 @@ p.latest_text {
 	color: #888;
 	
 }
-
+#activity_filter {
+  float: right;
+  margin-bottom: 20px;
+}
+#activity_filter a, #activity_filter span {
+  float: left;
+	margin: 0 10px 0 0;
+	display: block;
+	padding: 4px;
+	color: gray;
+	font-size: 14px;
+}
+#activity_filter a.active {
+	background: #000;
+	color: #fff;
+	padding: 4px 10px;
+	border-radius:12px;
+	-moz-border-radius: 12px;
+	-webkit-border-radius: 12px;
+}
+#activity_filter span {
+  color: black;
+}
 .activity_grid {
   float:left;
   margin-bottom:20px;

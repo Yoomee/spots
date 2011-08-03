@@ -2,7 +2,7 @@ class TimeSlot < ActiveRecord::Base
   
   belongs_to :activity
   belongs_to :organisation
-  has_many :bookings, :class_name => "TimeSlotBooking"
+  has_many :bookings, :class_name => "TimeSlotBooking", :dependent => :destroy
   
   validates_presence_of :activity, :organisation, :starts_at, :ends_at
   validates_order_of :starts_at, :ends_at
@@ -10,7 +10,7 @@ class TimeSlot < ActiveRecord::Base
 
   delegate :name, :to => :activity, :prefix => true
   delegate :description, :name, :to => :organisation, :prefix => true
-  delegate :has_lat_lng?, :lat_lng, :num_weeks_notice, :to => :organisation
+  delegate :has_lat_lng?, :lat_lng, :lat, :lng, :num_weeks_notice, :to => :organisation
 
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   

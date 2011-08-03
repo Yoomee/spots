@@ -1,5 +1,6 @@
 -semantic_form_for(activity, :html => {:multipart => true}) do |form|
   -form.inputs do
+    =form.input :activity_type, :label => "Type", :as => :select, :collection => Activity::TYPES, :label_method => "humanize", :value_method => "to_s", :include_blank => false, :wrapper_html => {:class => "inline-fields"}  
     =form.input :name
     =form.input :description
     =form.input :image, :as => :image
