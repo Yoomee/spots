@@ -1,5 +1,6 @@
 class OrganisationsController < ApplicationController
   
+  admin_only :new
   owner_only :edit, :destroy, :update
   
   before_filter :get_organisation, :only => %w{edit destroy show update}
