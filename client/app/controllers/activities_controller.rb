@@ -9,11 +9,12 @@ class ActivitiesController < ApplicationController
   end
   
   def show
-    @organisation = Organisation.find_by_id(params[:organisation_id])
-    if @organisation
+    if @organisation = Organisation.find_by_id(params[:organisation_id])
       @other_activities = @organisation.activities.id_is_not(@activity.id)
     elsif @activity.activity_type == 'anytime'
       @other_activities = Activity.anytime.not_including(@activity)
+    else
+      @panel_organisation = @activity.organisations.random.first
     end
     if request.xhr?
       render :partial => "activities/organisation_panel", :locals => {:activity => @activity, :organisation => @organisation}
