@@ -34,7 +34,7 @@ body span.cal_sheet span.month {
 	background:#87cd29;
 }
 
-h1, h2, h3, h4, h5, h6, #nav, #subnav, #user_links .button, .bring_quote, .cycle_nav a, .call_to_action, #beta_bar {
+h1, h2, h3, h4, h5, h6, #nav, #subnav, #user_links .button, .bring_quote, .cycle_nav a, .call_to_action, #beta_bar, .organisation_signup_link {
 
   font-family: 'Merriweather', arial, serif;
   color:black;
@@ -6330,11 +6330,10 @@ table.time_slots td.note {width:45%;}
 #organisation_signup_button {
   margin-top: 40px;
 }
-#organisation_signup_button a {
-  background-color: #32DBA1;
+a.organisation_signup_link {
+  background-color: #8BFBD5;
   color: black;
   font-size: 18px;
-  font-weight: bold;
   padding: 10px 20px;
   float: right;
  	-moz-border-radius:3px;
@@ -6342,8 +6341,7 @@ table.time_slots td.note {width:45%;}
 	border-radius:3px;
 	-o-border-radius:3px; 
 }
-#organisation_signup_button a:hover {
-  background-color: #8BFBD5;
+a.organisation_signup_link:hover {
   text-decoration: none;
 }
 

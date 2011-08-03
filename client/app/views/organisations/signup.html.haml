@@ -1,5 +1,5 @@
 -no_content_row
--title "Organisation sign up: Basic info"
+-title "Organisation signup: Basic info"
 
 #organisation_signup.row
   .twelvecol
@@ -27,7 +27,7 @@
           =member_form.input :surname, :label => "Last name"
           =member_form.input :email
           =member_form.input :phone
-          =member_form.input :password
+          =member_form.input :password, :label => "Choose a password"
           =member_form.input :dont_generate_password, :as => :hidden, :value => true
       -form.buttons do
         =form.commit_button "Sign up"

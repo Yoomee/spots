@@ -21,10 +21,10 @@
           =page_section.is_a?(Page) ? (snippet(page_section, :summary).nil? ? truncate(page_section.text.strip_tags, :length => 193) : snippet(page_section, :summary, false).strip_tags) : page_section.description.to_s.strip_tags
           =link_to "Read more", page_section, :class=>'blog_read_more'
         %p.index_read_more
--if @section.slug_is?(:organisations)
+-if @section.slug_is?(:organisations) && logged_out?
   #organisation_signup_button.row
     .ninecol.last
-      =link_to("Sign up to Spots of Time &rarr;", signup_organisation_path)
+      =link_to("Signup as an organisation &rarr;", signup_organisation_path, :class => "organisation_signup_link")
 .row
   .twelvecol      
   -options_panel do

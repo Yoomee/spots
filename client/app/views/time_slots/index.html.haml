@@ -11,10 +11,9 @@
 .row
   .eightcol
     %h1="Activities at #{@organisation}"
-    -if params[:signup] #just signed up
-      %p Choose an activity from below and click "Add a time slot".
+    %p Choose an activity from below and click "Add a new time slot".
   .fourcol.last
-    -if params[:signup]
+    -if params[:signup] #just signed up
       =link_to("Skip this for now &rarr;", @organisation, :id => "skip_time_slots_link")
 -@organisation.ordered_activities.each do |activity|
   .row.activity_row
