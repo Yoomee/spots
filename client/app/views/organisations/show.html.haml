@@ -3,32 +3,29 @@
 
 .row
   .threecol
-    =image_for(@organisation, "200x") if @organisation.has_image?
+    =image_for(@organisation, "200x")
   .ninecol.last
     %h1=@organisation
-    =simple_format(@organisation.description) 
+    =simple_format(@organisation.description)
+    .subrow
+      %hr
+      %h4 Where?
+      =render_address(@organisation.location) unless @organisation.location.unknown?
+      =google_map(@organisation, :width => "100%", :height => 350, :zoom => 7, :infoboxes => true) if @organisation.has_lat_lng?
+    .subrow
+      %hr
+      %h4 What can you do to help out?
+      .activity_grid.small_activity_grid
+        -@organisation.activities.each do |activity|
+          -link_to(organisation_activity_path(@organisation,activity), :class => "activity") do
+            =image_for(activity, "147x147#")
+            .label=activity
 .row
-  .threecol
-  .ninecol.last
-    %hr
-    %h4 Where?
-    =render_address(@organisation.location) unless @organisation.location.unknown?
-    =google_map(@organisation, :width => "100%", :height => 350, :zoom => 7, :infoboxes => true) if @organisation.has_lat_lng?
-.row
-  .threecol
-  .ninecol.last
-    %hr
-    %h4 What can you do to help out?
-    .activity_grid.small_activity_grid
-      -@organisation.activities.each do |activity|
-        -link_to(organisation_activity_path(@organisation,activity), :class => "activity") do
-          =image_for(activity, "147x147#")
-          .label=activity
-.row
-  -options_panel do
-    =back_link
-    =link_if_allowed("List activities", organisation_time_slots_proc(:organisation_id => @organisation))
-    =link_if_allowed("List volunteers", organisation_time_slot_bookings_proc(:organisation_id => @organisation))
-    =link_if_allowed("Edit organisation", edit_organisation_proc(@organisation))
-    =link_if_allowed("Delete organisation", @organisation, :method => :delete)
-    =link_if_allowed("New organisation", new_organisation_proc)
+  .twelvecol
+    -options_panel do
+      =back_link
+      =link_if_allowed("List activities", organisation_time_slots_proc(:organisation_id => @organisation))
+      =link_if_allowed("List volunteers", organisation_time_slot_bookings_proc(:organisation_id => @organisation))
+      =link_if_allowed("Edit organisation", edit_organisation_proc(@organisation))
+      =link_if_allowed("Delete organisation", @organisation, :method => :delete)
+      =link_if_allowed("New organisation", new_organisation_proc)
