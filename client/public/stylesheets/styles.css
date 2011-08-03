@@ -1471,7 +1471,7 @@ input#search_icon {
      transition: .3s ease-in;
 
 }
-#nav li.active a, #subnav li.active a, .controller_home #nav_link_1 a, .section_1 #nav_link_2 a   {
+#nav li.active a, #subnav li.active a, .controller_home #home_nav a, .section_1 #about_us_nav a   {
   text-decoration:none;
   font-weight: bold;
   background: #f1f1f1;

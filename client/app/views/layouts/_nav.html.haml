@@ -1,13 +1,7 @@
 #nav
   %ul
-    %li#nav_link_1
-      =link_to "Home", "/"
-    %li#nav_link_2
-      =link_to_slug('About us', :about)
-    %li#nav_link_3
-      =link_to_slug('Our work', :our_work)
-    %li#nav_link_4
-      =link_to "Blog", "/"
-    %li#nav_link_5
-      =link_to "Contact us", "/"
+    =li_with_active(current_page?(home_path), link_to("Home", home_path), :id => "home_nav")
+    =li_with_active_slug(:about_us, link_to_slug('About us', :about_us), :id => "about_us_nav")
+    =li_with_active_slug(:our_work, link_to_slug('Our work', :our_work), :id => "our_work_nav")
+    =li_with_active_slug(:contact_us, link_to_slug('Contact us', :contact_us), :id => "contact_us_nav")
     =li_with_active_slug(:organisations, link_to_slug("Organisation signup", :organisations), :id => "nav_organisations")

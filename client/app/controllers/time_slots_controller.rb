@@ -1,4 +1,6 @@
 class TimeSlotsController < ApplicationController
+
+  skip_before_filter :redirect_to_organisation_terms, :only => %w{index create update destroy}
   
   custom_permission :index do |url_options, member|
     organisation = Organisation.find(url_options[:organisation_id])
