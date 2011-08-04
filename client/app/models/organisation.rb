@@ -15,6 +15,8 @@ class Organisation < ActiveRecord::Base
   
   accepts_nested_attributes_for :member
   
+  named_scope :with_activity, lambda {|activity| {:joins => :activities, :conditions => {:activities => {:id => activity.id}}}}
+  
   def ordered_activities
     (activities.volunteering.ascend_by_name + Activity.volunteering.ascend_by_name).uniq
   end

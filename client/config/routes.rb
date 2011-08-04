@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :activities
   map.signup_organisation "/organisations/signup", :controller => "organisations", :action => "signup"  
+  map.connect '/organisations/search_address', :controller => 'organisations', :action => 'search_address'
   map.resources :organisations do |organisation|
     organisation.resources :time_slots, :only => [:index]
     organisation.resources :time_slot_bookings, :only => [:index]

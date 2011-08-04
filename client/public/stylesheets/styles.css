@@ -6320,7 +6320,30 @@ form.time_slot li.commit, form.time_slot .edit_link {
 #activity_search_row .bttn_l {
   margin-top:5px;
 }
-
+#activity_map_loader {
+  float: left;
+  margin: 15px 0 0 5px;
+}
+#activity_search_row #address_not_found {
+  display:none;
+  float:left;
+  clear:both;
+  padding:0px 5px;
+  background:#d91c5c;
+  color:#fff;
+}
+#organisation_panel .organisation_title {
+  float: left;
+  clear: both;
+}
+#organisation_panel .organisation_title h2 {
+  float: left;
+}
+#organisation_panel .miles_away {
+  float: left;
+  margin: 8px 0 0 10px;
+  color: gray;
+}
 /*========== TimeSlot Show ==========*/
 
 #time_slot_booking_form {

@@ -50,6 +50,22 @@ class OrganisationsController < ApplicationController
     redirect_to_waypoint_after_destroy
   end
 
+  def search_address
+    if params[:lat] && params[:lng]
+      lat, lng = params[:lat], params[:lng]
+    else
+      lat, lng = GoogleGeocode::get_lat_lng(params[:address])
+    end
+    if lat && lng
+      @activity = Activity.find(params[:activity_id])
+      if @organisation = Organisation.with_activity(@activity).nearest_to(Location.new(:lat => lat, :lng => lng)).first
+        html = @template.render("activities/organisation_panel", :activity => @activity, :organisation => @organisation, :lat => lat, :lng => lng)
+        return render(:json => {:lat => @organisation.lat, :lng => @organisation.lng, :organisation_html => html})
+      end
+    end
+    render :text => "not found"
+  end
+
   def signup
     if logged_in?
       render_404

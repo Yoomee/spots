@@ -64,9 +64,17 @@ var TimeSlot = {
 };
 
 var ActivityMap = {
-  findMe: function(){
+  activityId: null,
+  loading: function() {
+    $('#activity_map_loader').show();
+  },
+  completed: function() {
+    $('#activity_map_loader').hide();
+  },
+  findMe: function(act_id){
+    ActivityMap.activityId = act_id;
     if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(ActivityMap.centerMap);
+      navigator.geolocation.getCurrentPosition(ActivityMap.findNearestOrganisationFromGeoposition);
     } else {
       alert("Sorry, your browser doesn't support this");
     }
@@ -76,23 +84,66 @@ var ActivityMap = {
     map.setZoom(10);
     map.panTo(point);
   },
-  findPostCode: function(){
+  // findPostCode: function(){
+  //   var postcode = $('#postcode').val();
+  //   if ((postcode != $('#postcode').attr('title')) && postcode.length){
+  //     var url = '/geocode?address='+postcode+',UK';
+  //     $.get(url, function(data){
+  //       if (typeof data == 'object'){
+  //         return {'lat':data.lat, 'lng':data.lng};
+  //       } else {
+  //         $('#postcode').addClass('not_found');
+  //         $('#address_not_found').blindDown();
+  //         return false;
+  //       }
+  //     });
+  //   }
+  // },
+  findPostCode: function(act_id) {
+    ActivityMap.activityId = act_id;
     var postcode = $('#postcode').val();
-    if ((postcode != $('#postcode').attr('title')) && postcode.length){
-      var url = '/geocode?address='+postcode+',UK';
-      $.get(url, function(data){
-        if (typeof data == 'object'){
-          var point = new google.maps.LatLng(data.lat, data.lng);
-          map.setZoom(10);
-          map.panTo(point);
-        }
-      });
+    if ((postcode != $('#postcode').attr('title')) && postcode.length) {
+      ActivityMap.findNearestOrganisation(postcode, null);
     }
   },
-  fetchOrganisation: function(act_id, org_id){
+  findNearestOrganisationFromGeoposition: function(geoposition) {
+    ActivityMap.findNearestOrganisation(null, geoposition);
+  },
+  findNearestOrganisation: function(postcode, geoposition) {
+    if (postcode == null) {
+      var urlData = {'activity_id':ActivityMap.activityId, 'lat':geoposition.coords.latitude, 'lng': geoposition.coords.longitude};
+    } else {
+      var urlData = {'activity_id':ActivityMap.activityId, 'address':postcode+',UK'};
+    }
+    $.ajax({
+      url: '/organisations/search_address/',
+      data: urlData,
+      dataType: 'json',
+      beforeSend: ActivityMap.loading(),
+      complete: ActivityMap.completed(),
+      success: function(data) {
+        if (typeof data == 'object'){
+          $('#organisation_panel').html(data.organisation_html);
+          map.setZoom(10);
+          var point = new google.maps.LatLng(data.lat, data.lng);
+          map.panTo(point);
+        } else {
+          $('#postcode').addClass('not_found');
+          $('#address_not_found').blindDown();
+          return false;
+        }
+      }
+    });
+  },
+  fetchOrganisation: function(act_id, org_id) {
     var url = '/organisations/' + org_id + '/activities/'+act_id;
-    $.get(url, function(data){
-      $('#organisation_panel').html(data);
+    $.ajax({
+      url: url,
+      beforeSend: ActivityMap.loading(),
+      complete: ActivityMap.completed(),
+      success: function(data) {
+        $('#organisation_panel').html(data);
+      }
     });
   }
 };
