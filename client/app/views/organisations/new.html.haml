@@ -1,5 +1,8 @@
 -title "New organisation"
 
+-if !admin_logged_in?
+  %p Please fill out the details of your organisation below.
+
 =render("organisations/form", :organisation => @organisation)
 
 =options_panel

@@ -2,7 +2,7 @@
   -form.inputs do
     =form.input :member, :as => :select if organisation.new_record? && admin_logged_in?
     =form.input :name
-    =form.input :description
+    =form.input :description, :input_html => {:rows => 3}
     =form.input :image, :as => :image
   -form.semantic_fields_for(:location) do |location_form|
     -location_form.inputs :class => "organisation_address_fields" do
@@ -17,6 +17,7 @@
     =form.input :group_specific_needs, :label => "Groups with specific needs:"
     =form.input :num_weeks_notice, :label => "How much notice do you need?", :as => :select, :collection => [["1 week", 1], ["2 weeks", 2]], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
     =form.input :volunteers_insured, :label => "Are volunteers covered under your insurance?"
-    =form.input :require_crb, :label => "Do you require CRB checks?"
+    =#form.input :require_crb, :label => "Do you require CRB checks?"
     =form.input :terms, :label => "What are your terms and conditions?", :input_html => {:rows => 5}
-  =form.buttons
+  -form.buttons do
+    =form.commit_button "Submit"

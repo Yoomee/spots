@@ -76,7 +76,9 @@ input#search_field {
 .formtastic .inputs li.image input {
   width: 180px;
 }
-
+.map_canvas img {
+  max-width: none;
+}
 
 /* =============================  general styles ============================= */
 ul.sitemap {
@@ -6332,11 +6334,15 @@ form.time_slot li.commit, form.time_slot .edit_link {
   background:#d91c5c;
   color:#fff;
 }
-#organisation_panel .organisation_title {
+#organisation_panel .organisation_panel_image {
   float: left;
-  clear: both;
 }
-#organisation_panel .organisation_title h2 {
+#organisation_panel .organisation_details {
+  float: left;
+  margin-left: 2%;
+  width: 75%;
+}
+#organisation_panel .organisation_details h2 {
   float: left;
 }
 #organisation_panel .miles_away {

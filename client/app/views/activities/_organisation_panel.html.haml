@@ -1,12 +1,13 @@
 -lat ||= nil
 -lng ||= nil
-.organisation_title
+=image_for(organisation, "80x80#", :class => "organisation_panel_image")
+.organisation_details
   %h2=organisation.name
   -if !lat.blank? && !lat.blank?
     %span.miles_away
       ="#{pluralize(organisation.location.distance_to(Location.new(:lat => lat, :lng => lng)).to_i, "mile")} away"
-.flcb
-  =read_more_truncate(organisation.description) 
+  .fl
+    =read_more_truncate(organisation.description) 
 %hr
 %h4 When can you help out?          
 =render("time_slots/table", :time_slots => activity.time_slots.organisation_id_is(organisation.id).ascend_by_starts_at)

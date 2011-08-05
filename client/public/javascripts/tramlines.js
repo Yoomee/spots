@@ -127,6 +127,8 @@ var ActivityMap = {
           map.setZoom(10);
           var point = new google.maps.LatLng(data.lat, data.lng);
           map.panTo(point);
+          eval('markerOrganisation' + data.organisation_id).setAnimation(google.maps.Animation.BOUNCE);
+          setTimeout("eval('markerOrganisation" + data.organisation_id + "').setAnimation(null)", 800);
         } else {
           $('#postcode').addClass('not_found');
           $('#address_not_found').blindDown();

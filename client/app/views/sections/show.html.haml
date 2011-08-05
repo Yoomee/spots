@@ -13,18 +13,19 @@
           =link_to(photo_for(page_section, '210x135#'), page_section)
       .index_content  
         %h2.index_title
-          =link_to_self(page_section,:class=>'newsbox_title_link')
-        -if false  
-          %p.index_date
-            =(page_section.is_a?(Page) ? page_section.publish_on : page_section.created_at).strftime("%e %B %Y")
+          =link_to_self(page_section,:class => 'newsbox_title_link')
         %p.index_text
           =page_section.is_a?(Page) ? (snippet(page_section, :summary).nil? ? truncate(page_section.text.strip_tags, :length => 193) : snippet(page_section, :summary, false).strip_tags) : page_section.description.to_s.strip_tags
           =link_to "Read more", page_section, :class=>'blog_read_more'
         %p.index_read_more
--if @section.slug_is?(:organisations) && logged_out?
+-if @section.slug_is?(:organisations)
   #organisation_signup_button.row
     .ninecol.last
-      =link_to("Signup as an organisation &rarr;", signup_organisation_path, :class => "organisation_signup_link")
+      -if logged_in?
+        -text = logged_in_member.organisations.empty? ? "Signup as an organisation" : "Add another organisation"
+        =link_to("#{text} &rarr;", new_organisation_path, :class => "organisation_signup_link")
+      -else
+        =link_to("Signup as an organisation &rarr;", signup_organisation_path, :class => "organisation_signup_link")
 .row
   .twelvecol      
   -options_panel do

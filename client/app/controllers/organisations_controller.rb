@@ -1,6 +1,6 @@
 class OrganisationsController < ApplicationController
   
-  admin_only :new
+  member_only :new
   owner_only :edit, :destroy, :update
   
   before_filter :get_organisation, :only => %w{edit destroy show update}
@@ -17,9 +17,13 @@ class OrganisationsController < ApplicationController
   end
   
   def create
-    @organisation = Organisation.new(params[:organisation])
+    if admin_logged_in? || logged_out?
+      @organisation = Organisation.new(params[:organisation])
+    else
+      @organisation = logged_in_member.organisations.build(params[:organisation])
+    end
     if @organisation.save
-      if logged_in?
+      if admin_logged_in?
         flash[:notice] = "Successfully created organisation."
         redirect_to @organisation
       else
@@ -60,7 +64,7 @@ class OrganisationsController < ApplicationController
       @activity = Activity.find(params[:activity_id])
       if @organisation = Organisation.with_activity(@activity).nearest_to(Location.new(:lat => lat, :lng => lng)).first
         html = @template.render("activities/organisation_panel", :activity => @activity, :organisation => @organisation, :lat => lat, :lng => lng)
-        return render(:json => {:lat => @organisation.lat, :lng => @organisation.lng, :organisation_html => html})
+        return render(:json => {:lat => @organisation.lat, :lng => @organisation.lng, :organisation_id => @organisation.id, :organisation_html => html})
       end
     end
     render :text => "not found"
