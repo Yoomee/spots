@@ -6336,19 +6336,18 @@ form.time_slot li.commit, form.time_slot .edit_link {
 }
 #organisation_panel .organisation_panel_image {
   float: left;
+  width: 15%;
 }
 #organisation_panel .organisation_details {
-  float: left;
-  margin-left: 2%;
-  width: 75%;
+  float: right;
+  width: 83%;
 }
 #organisation_panel .organisation_details h2 {
   float: left;
 }
 #organisation_panel .miles_away {
-  float: left;
-  margin: 8px 0 0 10px;
   color: gray;
+  font-size: 15px;
 }
 /*========== TimeSlot Show ==========*/
 

@@ -2,10 +2,12 @@
 -lng ||= nil
 =image_for(organisation, "80x80#", :class => "organisation_panel_image")
 .organisation_details
-  %h2=organisation.name
-  -if !lat.blank? && !lat.blank?
-    %span.miles_away
-      ="#{pluralize(organisation.location.distance_to(Location.new(:lat => lat, :lng => lng)).to_i, "mile")} away"
+  %h2
+    =organisation.name
+    -if !lat.blank? && !lat.blank?
+      %span.miles_away
+        -num_miles = organisation.location.distance_to(Location.new(:lat => lat, :lng => lng)).to_i
+        =num_miles.zero? ? "less than a mile away" : "#{pluralize(num_miles, "mile")} away"
   .fl
     =read_more_truncate(organisation.description) 
 %hr
