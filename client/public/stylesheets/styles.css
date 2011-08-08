@@ -1719,7 +1719,10 @@ p.latest_text {
 }
 
 .small_activity_grid .activity .label, .small_activity_grid .activity img  {
-  width:114px;
+  width: 100px;
+}
+.small_activity_grid .activity img  {
+  height: 100px;
 }
 
 /* ====================  Inside pages  ===================== */
