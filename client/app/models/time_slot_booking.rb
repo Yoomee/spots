@@ -6,14 +6,17 @@ class TimeSlotBooking < ActiveRecord::Base
   before_validation :set_starts_at
   
   validates_presence_of :member, :time_slot, :starts_at
-  
   validate :starts_at_is_in_the_future, :not_already_booked_for_this_day, :starts_at_is_within_time_limits, :starts_at_is_within_notice_period, :starts_at_is_on_an_allowed_day
+  
+  after_create :send_emails
   
   attr_writer :starts_at_time_string
   
   formatted_date_accessor :starts_at
   
-  delegate :activity, :activity_name, :organisation, :organisation_name, :to => :time_slot, :allow_nil => true
+  delegate :activity, :activity_name, :organisation, :note, :to => :time_slot, :allow_nil => true
+  delegate :email, :location, :member, :name, :to => :organisation, :prefix => true
+  delegate :email, :to => :member, :prefix => true
   
   def starts_at_time_string
     return nil if starts_at.nil? && time_slot.nil?
@@ -21,7 +24,7 @@ class TimeSlotBooking < ActiveRecord::Base
   end
   
   def starts_at_neat_string
-    starts_at.strftime('on %d %b at %H:00')
+    starts_at.strftime('%d %b at %H:00')
   end
   
   private
@@ -59,6 +62,12 @@ class TimeSlotBooking < ActiveRecord::Base
   def starts_at_is_on_an_allowed_day
     return true if starts_at.nil? || time_slot.nil?
     errors.add(:starts_at, "is on the wrong day") unless time_slot.send(starts_at.strftime("%a").downcase)
+  end
+  
+  private
+  def send_emails
+    Notifier.deliver_time_slot_booking_for_volunteer(self)
+    Notifier.deliver_time_slot_booking_for_organisation(self)
   end
   
 end

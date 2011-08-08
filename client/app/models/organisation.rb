@@ -9,6 +9,8 @@ class Organisation < ActiveRecord::Base
 
   attr_accessor :group, :group_specific_needs
 
+  delegate :email, :to => :member
+
   has_location
 
   validates_presence_of :name, :member, :location

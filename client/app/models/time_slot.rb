@@ -9,7 +9,7 @@ class TimeSlot < ActiveRecord::Base
   validate :presence_of_days
 
   delegate :name, :to => :activity, :prefix => true
-  delegate :description, :name, :to => :organisation, :prefix => true
+  delegate :description, :name, :email, :to => :organisation, :prefix => true
   delegate :has_lat_lng?, :lat_lng, :lat, :lng, :num_weeks_notice, :to => :organisation
 
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"

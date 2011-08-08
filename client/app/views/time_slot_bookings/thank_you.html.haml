@@ -8,7 +8,7 @@
       ="Thanks for volunteering for #{@time_slot_booking.organisation_name}."
     %p
       %strong=@time_slot_booking.activity_name
-      =@time_slot_booking.starts_at_neat_string
+      ="on #{@time_slot_booking.starts_at_neat_string}."
     -if !@time_slot_booking.time_slot.note.blank?
       %p.time_slot_note=@time_slot_booking.time_slot.note
     %p

@@ -1,0 +1,16 @@
+%p
+  ="Hi #{@recipient.forename},"
+
+%p
+  ="<strong>#{@time_slot_booking.member}</strong> has volunteered to <strong>#{@time_slot_booking.activity}</strong> on #{@time_slot_booking.starts_at_neat_string}."
+
+%p
+  =link_to("Click here", site_url + organisation_time_slots_path(@time_slot_booking.organisation))
+  ="to view all your volunteers."
+
+%p
+  Thanks,
+%p
+  ="The #{site_name} team"
+  %br
+  =site_email

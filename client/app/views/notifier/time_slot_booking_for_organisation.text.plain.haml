@@ -1,0 +1,12 @@
+="Hi #{@recipient.forename},"
+
+="#{@time_slot_booking.member} has volunteered to #{@time_slot_booking.activity} on #{@time_slot_booking.starts_at_neat_string}."
+
+To view all your volunteers, use the link below:
+
+="#{site_url + organisation_time_slots_path(@time_slot_booking.organisation)}"
+
+Thanks,
+
+="The #{site_name} team"
+=site_email

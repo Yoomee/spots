@@ -6439,6 +6439,9 @@ a.organisation_signup_link:hover {
   float: right;
   margin-top: 10px;
 }
+#signup_next_link_row a.bttn_l {
+  float: right;
+}
 .formtastic fieldset.organisation_address_fields li {
   margin: 0;
 }

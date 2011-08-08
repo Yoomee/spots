@@ -1,4 +1,5 @@
 module ClientHelper
+  
   def day_name(short)
     {:mon => "Monday",:tue => "Tuesday",:wed => "Wednesday", :thu => "Thursday", :fri => "Friday", :sat => "Saturday", :sun => "Sunday"}[short]
   end

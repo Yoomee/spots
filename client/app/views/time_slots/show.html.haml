@@ -42,7 +42,7 @@
         =form.input :starts_at, :as => :hidden
         =form.input :starts_at_time_string, :as => :select, :collection => @time_slot.possible_time_strings, :include_blank => false, :label => "Time:", :wrapper_html => {:class => "inline-fields"}
         %li
-          %p Choose the date and time you’d like to do this and click on the button below.
+          %p Click a date on the calendar, choose a time you'd like to arrive and hit the button below.
         =form.commit_button "COUNT ME IN", :button_html => {:id => "time_slot_booking_submit", :style => "display:#{logged_in? ? 'block' : 'none'}"}
         -if logged_out?
           %li.commit=link_to_function("COUNT ME IN", "FBLogin.process()", :class => "bttn_l")
