@@ -14,6 +14,8 @@ class OrganisationsController < ApplicationController
   
   def new
     @organisation = Organisation.new
+    @organisation.location.lat ||= Location::DEFAULT_CENTER[0]
+    @organisation.location.lng ||= Location::DEFAULT_CENTER[1]
   end
   
   def create
