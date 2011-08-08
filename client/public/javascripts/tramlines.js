@@ -79,26 +79,15 @@ var ActivityMap = {
       alert("Sorry, your browser doesn't support this");
     }
   },
+  bounceMarker: function(org_id) {
+    eval('markerOrganisation' + org_id).setAnimation(google.maps.Animation.BOUNCE);
+    setTimeout("eval('markerOrganisation" + org_id + "').setAnimation(null)", 800);
+  },
   centerMap: function(geoposition){
     var point = new google.maps.LatLng(geoposition.coords.latitude, geoposition.coords.longitude);
     map.setZoom(10);
     map.panTo(point);
   },
-  // findPostCode: function(){
-  //   var postcode = $('#postcode').val();
-  //   if ((postcode != $('#postcode').attr('title')) && postcode.length){
-  //     var url = '/geocode?address='+postcode+',UK';
-  //     $.get(url, function(data){
-  //       if (typeof data == 'object'){
-  //         return {'lat':data.lat, 'lng':data.lng};
-  //       } else {
-  //         $('#postcode').addClass('not_found');
-  //         $('#address_not_found').blindDown();
-  //         return false;
-  //       }
-  //     });
-  //   }
-  // },
   findPostCode: function(act_id) {
     ActivityMap.activityId = act_id;
     var postcode = $('#postcode').val();
@@ -119,25 +108,35 @@ var ActivityMap = {
       url: '/organisations/search_address/',
       data: urlData,
       dataType: 'json',
-      beforeSend: ActivityMap.loading(),
-      complete: ActivityMap.completed(),
+      beforeSend: function() {
+        ActivityMap.loading();
+      },
+      complete: function() {
+        ActivityMap.completed();
+      },
       success: function(data) {
-        if (typeof data == 'object'){
+        if (data.unknown_location) {
+          $('#postcode').addClass('not_found');
+          $('#address_not_found').show();
+          return false;
+        } else if(data.no_results) {
+          $('#postcode').removeClass('not_found');
+          $('#address_not_found').hide();
+          $('.no_results').show().highlight(1000);
+        } else {
+          $('#postcode').removeClass('not_found');
+          $('#address_not_found').hide();
           $('#organisation_panel').html(data.organisation_html);
           map.setZoom(10);
           var point = new google.maps.LatLng(data.lat, data.lng);
           map.panTo(point);
-          eval('markerOrganisation' + data.organisation_id).setAnimation(google.maps.Animation.BOUNCE);
-          setTimeout("eval('markerOrganisation" + data.organisation_id + "').setAnimation(null)", 800);
-        } else {
-          $('#postcode').addClass('not_found');
-          $('#address_not_found').blindDown();
-          return false;
+          ActivityMap.bounceMarker(data.organisation_id);
         }
       }
     });
   },
   fetchOrganisation: function(act_id, org_id) {
+    ActivityMap.bounceMarker(org_id);
     var url = '/organisations/' + org_id + '/activities/'+act_id;
     $.ajax({
       url: url,
@@ -163,5 +162,33 @@ var ActivityFilter = {
       }
       $('.activity_grid').animate({opacity:1}, 300);      
     });
+  }
+};
+
+var FBLogin = {
+  login_and_submit_form: function() {
+    $.ajax({
+      url:"/sessions/create_fb",
+      success: function(data) {
+        if (data=="success") {
+          $("#time_slot_booking_submit").click();
+        } else {
+          alert("There was a problem logging in.");
+        }
+      }
+    });
+  },
+  process: function() {
+    FB.login(
+      function(response) {
+        if (response.session) {
+          FBLogin.login_and_submit_form();
+        } else {
+          return true;
+        }
+      },
+      {perms:'email'}
+    );
+    return false;
   }
 };

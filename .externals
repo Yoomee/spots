@@ -55,3 +55,8 @@ repository = git://git.yoomee.com:4321/plugins/tramlines_locations.git
 path = vendor/plugins/tramlines_blog
 repository = git://git.yoomee.com:4321/plugins/tramlines_blog.git
 scm = git
+
+[vendor/plugins/tramlines_auth]
+path = vendor/plugins/tramlines_auth
+scm = git
+repository = git://git.yoomee.com:4321/plugins/tramlines_auth.git

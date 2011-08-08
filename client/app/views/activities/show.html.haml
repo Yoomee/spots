@@ -29,20 +29,18 @@
               .label=activity
 -if @organisation.nil? && @activity.activity_type=="volunteering"
   #activity_search_row.row
-    .fivecol.last
+    .fivecol
       %h4 Find somewhere to do this activity
-      =text_field_tag :postcode, params[:postcode], :class => "labelify fl", :title => "e.g. SW1 2BJ", :onkeypress => "if (event.keyCode==13) {ActivityMap.findPostCode('#{@activity.id}');} else {return true;}"
-      =link_to_function("Go", "ActivityMap.findPostCode('#{@activity.id}')", :class => "bttn_l")
-      =image_tag("ajax_loader_squares.gif", :id => "activity_map_loader", :style => "display:none")
-      %br.clear
-      or
-      =link_to_function("Find me automatically", "ActivityMap.findMe('#{@activity.id}')")
-      #address_not_found
-        Unknown location
-  #activity_search_results.row
-    .fourcol
+      #postcode_search
+        =text_field_tag :postcode, params[:postcode], :class => "labelify fl", :title => "e.g. SW1 2BJ", :onkeypress => "if (event.keyCode==13) {ActivityMap.findPostCode('#{@activity.id}');} else {return true;}"
+        =link_to_function("Go", "ActivityMap.findPostCode('#{@activity.id}')", :class => "bttn_l")
+        =image_tag("ajax_loader_squares.gif", :id => "activity_map_loader", :style => "display:none")
+        #address_not_found Unknown location        
+      #find_me_automatically
+        or
+        =link_to_function("Find me automatically", "ActivityMap.findMe('#{@activity.id}')")
       =google_map(@activity.time_slots.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
-    .eightcol.last
+    .sevencol.last
       #organisation_panel
         -if @panel_organisation
           =render("activities/organisation_panel", :activity => @activity, :organisation => @panel_organisation)

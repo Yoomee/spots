@@ -33,6 +33,9 @@
   .fourcol
     #starts_at_datepicker
   .fourcol.last
+    -if !@time_slot_booking.errors.empty?
+      #time_slot_booking_error
+        Make sure you pick an available date using the calendar on the left.
     -semantic_form_for(@time_slot_booking) do |form|
       -form.inputs do
         =form.input :time_slot_id, :as => :hidden
@@ -40,11 +43,17 @@
         =form.input :starts_at_time_string, :as => :select, :collection => @time_slot.possible_time_strings, :include_blank => false, :label => "Time:", :wrapper_html => {:class => "inline-fields"}
         %li
           %p Choose the date and time you’d like to do this and click on the button below.
-        =form.commit_button "COUNT ME IN"
+        =form.commit_button "COUNT ME IN", :button_html => {:id => "time_slot_booking_submit", :style => "display:#{logged_in? ? 'block' : 'none'}"}
+        -if logged_out?
+          %li.commit=link_to_function("COUNT ME IN", "FBLogin.process()", :class => "bttn_l")
 .row
   .twelvecol
     =google_map(@time_slot, :width => "100%", :height => 500, :version => "3.5", :infoboxes => true)
-
+    -content_for(:head) do
+      :javascript
+        $(document).ready(function() {
+          google.maps.event.trigger(markerTimeSlot#{@time_slot.id}, "click");
+        });
 .row
   .twelvecol
     -options_panel do

@@ -65,9 +65,12 @@ class OrganisationsController < ApplicationController
       if @organisation = Organisation.with_activity(@activity).nearest_to(Location.new(:lat => lat, :lng => lng)).first
         html = @template.render("activities/organisation_panel", :activity => @activity, :organisation => @organisation, :lat => lat, :lng => lng)
         return render(:json => {:lat => @organisation.lat, :lng => @organisation.lng, :organisation_id => @organisation.id, :organisation_html => html})
+      else
+        render :json => {:no_results => true}        
       end
+    else
+      render :json => {:unknown_location => true}
     end
-    render :text => "not found"
   end
 
   def signup

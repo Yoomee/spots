@@ -7,7 +7,7 @@ module ClientHelper
   end
   
   def organisation_marker_click(organisation)
-    "ActivityMap.fetchOrganisation(#{@activity.id},#{organisation.id});"
+    "ActivityMap.fetchOrganisation('#{@activity.id}','#{organisation.id}');"
   end
   
   

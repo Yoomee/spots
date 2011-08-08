@@ -4257,7 +4257,7 @@ body.controller_badges .badge_members {
 }
 /*====================== Newsnetwork home ====================*/
 .map_canvas {
-  margin-bottom:10px;
+  margin:10px 0;
 }
 .map_canvas a, .map_canvas span {
   color:#ffffff !important;
@@ -6320,23 +6320,37 @@ form.time_slot li.commit, form.time_slot .edit_link {
   margin: 0 10px;
 }
 #activity_search_row .bttn_l {
-  margin-top:5px;
+  margin-top:3px;
 }
 #activity_map_loader {
   float: left;
   margin: 15px 0 0 5px;
 }
+#activity_search_row #postcode {
+  margin:0;
+}
+#activity_search_row #postcode.not_found {
+  border: 1px solid #d91c5c;
+}
 #activity_search_row #address_not_found {
   display:none;
   float:left;
   clear:both;
-  padding:0px 5px;
-  background:#d91c5c;
-  color:#fff;
+  color:#d91c5c;
+}
+#activity_search_row #postcode_search {
+  float: left;
+  clear: both;  
+}
+#activity_search_row #find_me_automatically {
+  float: left;
+  clear: both;
+  margin: 10px 0;
 }
 #organisation_panel .organisation_panel_image {
   float: left;
   width: 15%;
+  margin-bottom: 10px;
 }
 #organisation_panel .organisation_details {
   float: right;
@@ -6361,8 +6375,19 @@ table.ui-datepicker-calendar td.already_booked span {
   background-color: #FFBCB9;
   border-color: #FF8397;
 }
+#time_slot_booking_error {
+  color: #d91c5c;
+  float: left;
+  clear: both;
+  margin-top: 5px;
+}
 
 /*========== Time slots ==========*/
+#time_slot_table {
+  margin-top: 10px;
+  float: left;
+  clear: both;
+}
 table.time_slots {
   border-collapse:collapse;
   width:100%;
@@ -6373,8 +6398,13 @@ table.time_slots td {
   border-right:none;
   width:15%;
 }
-table.time_slots td.time {width:25%;}
-table.time_slots td.note {width:45%;}
+table.time_slots td.time {width:30%;}
+table.time_slots td.note {width:35%;}
+table.time_slots td.link {width:20%;}
+
+.time_slot_note {
+  font-style: italic;
+}
 
 /*========== Organisations section ==========*/
 

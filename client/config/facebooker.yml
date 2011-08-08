@@ -2,12 +2,19 @@
 # Tunnel configuration is only needed if you are going to use the facebooker:tunnel Rake tasks
 # Your callback url in Facebook should be set to http://public_host:public_port
 
-# si
+#yoomee
 development:
-  app_id: 129657333730843
-  api_key: 837c8cdbefac6f5646968c06ef99c07f
-  secret: 54f4c83ad90973e26f73f3d39c916c09
+  app_id: 137557166307145
+  api_key: 137557166307145
+  secret: 4f39d3e37e194f4113f49a68e2f6af91
   pretty_errors: true
+
+# si
+# development:
+#   app_id: 129657333730843
+#   api_key: 837c8cdbefac6f5646968c06ef99c07f
+#   secret: 54f4c83ad90973e26f73f3d39c916c09
+#   pretty_errors: true
 
 #ian
 # development: &development
@@ -33,10 +40,9 @@ test:
   secret_key: ace89ed0b0cdd0b2f42458e1f066590e
   pretty_errors: false
 
-# production: &production
-#   app_id: 116356498434303
-#   secret: 874f0b1d55119700f83589d199f407c1  
-#   api_key: ca75c23c44f972080bc624af3bde6b49
-#   
-# staging:
-#   <<: *production
+production: &production
+  app_id: 243008255733198
+  secret: 0954a0264524565f1d05399a304cbaaf
+  
+staging:
+  <<: *production

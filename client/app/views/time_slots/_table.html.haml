@@ -3,10 +3,10 @@
     -TimeSlot::DAYS.each do |day|
       -time_slots.select{|ts| ts.send("#{day.to_s}?")}.each_with_index do |time_slot, idx|
         %tr
-          -if idx.zero?
-            %td{:rowspan => time_slots.size}
+          %td
+            -if idx.zero?
               %strong=day_name(day) 
-              %td.time=time_slot.timespan
+          %td.time=time_slot.timespan
           %td.note
             %em=time_slot.note
           %td.link

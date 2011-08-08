@@ -9,7 +9,10 @@
     %p
       %strong=@time_slot_booking.activity_name
       =@time_slot_booking.starts_at_neat_string
-
+    -if !@time_slot_booking.time_slot.note.blank?
+      %p.time_slot_note=@time_slot_booking.time_slot.note
+    %p
+      =link_to("Find some more activities", home_path)
 .row
   .twelvecol
     =options_panel

@@ -1,4 +1,6 @@
 ApplicationController.class_eval do
+
+  include Facebooker2::Rails::Controller
   
   before_filter :redirect_to_organisation_terms
   
