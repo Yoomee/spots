@@ -17,7 +17,8 @@
   #organisation_map
     %label
       You can drag the marker below to specify the location of your organisation.
-    =google_map(organisation, :marker_options => {:draggable => true, :dragend => "function() {OrganisationForm.saveLatLng('#{organisation.id}');}"})
+      -location = organisation.has_lat_lng? ? organisation : Location.new(:lat => Location::DEFAULT_CENTER[0], :lng => Location::DEFAULT_CENTER[1])
+    =google_map(location, :marker_options => {:draggable => true, :dragend => "function() {OrganisationForm.saveLatLng('#{organisation.id}');}"})
   -form.inputs do
     =form.input :group, :label => "Which groups?", :as => :select, :collection => ["Group 1", "Group 2", "Group 3"], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
     =form.input :group_specific_needs, :label => "Groups with specific needs:"
