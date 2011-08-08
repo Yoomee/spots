@@ -14,8 +14,7 @@ class OrganisationsController < ApplicationController
   
   def new
     @organisation = Organisation.new
-    @organisation.location.lat ||= Location::DEFAULT_CENTER[0]
-    @organisation.location.lng ||= Location::DEFAULT_CENTER[1]
+    set_default_lat_lng
   end
   
   def create
@@ -39,6 +38,7 @@ class OrganisationsController < ApplicationController
   end
   
   def edit
+    set_default_lat_lng
   end
   
   def update
@@ -87,6 +87,11 @@ class OrganisationsController < ApplicationController
   private
   def get_organisation
     @organisation = Organisation.find(params[:id])
+  end
+  
+  def set_default_lat_lng
+    @organisation.location.lat ||= Location::DEFAULT_CENTER[0]
+    @organisation.location.lng ||= Location::DEFAULT_CENTER[1]
   end
   
 end
