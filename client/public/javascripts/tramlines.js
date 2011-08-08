@@ -192,3 +192,10 @@ var FBLogin = {
     return false;
   }
 };
+
+var OrganisationForm = {
+  saveLatLng: function(org_id) {
+    $('#organisation_lat').val(eval("markerOrganisation"+org_id).getPosition().lat());
+    $('#organisation_lng').val(eval("markerOrganisation"+org_id).getPosition().lng());
+  }
+};

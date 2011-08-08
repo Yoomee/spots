@@ -6464,3 +6464,12 @@ a.organisation_signup_link:hover {
 .formtastic fieldset.organisation_member_fields li {
   margin: 0;
 }
+.formtastic #organisation_map label, .formtastic #organisation_map .map_canvas {
+  float: left;
+  clear: both;
+}
+.formtastic #organisation_map {
+  float: left;
+  clear: both;
+  width: 100%;
+}

@@ -12,6 +12,12 @@
       =location_form.input :address2, :label => false, :input_html => {:class => "labelify", :title => "Address 2"}
       =location_form.input :city, :label => false, :input_html => {:class => "labelify", :title => "City"}
       =location_form.input :postcode, :label => false, :input_html => {:class => "labelify", :title => "Postcode"}
+      =location_form.input :lat, :as => :hidden, :input_html => {:id => "organisation_lat"}
+      =location_form.input :lng, :as => :hidden, :input_html => {:id => "organisation_lng"}
+  #organisation_map
+    %label
+      You can drag the marker below to specify the location of your organisation.
+    =google_map(organisation, :marker_options => {:draggable => true, :dragend => "function() {OrganisationForm.saveLatLng('#{organisation.id}');}"})
   -form.inputs do
     =form.input :group, :label => "Which groups?", :as => :select, :collection => ["Group 1", "Group 2", "Group 3"], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
     =form.input :group_specific_needs, :label => "Groups with specific needs:"
