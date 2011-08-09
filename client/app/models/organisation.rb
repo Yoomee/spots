@@ -7,8 +7,6 @@ class Organisation < ActiveRecord::Base
   has_many :time_slot_bookings, :through => :time_slots, :source => :bookings
   has_many :activities, :through => :time_slots, :uniq => true
 
-  attr_accessor :group, :group_specific_needs
-
   delegate :email, :to => :member
 
   has_location
@@ -24,3 +22,5 @@ class Organisation < ActiveRecord::Base
   end
   
 end
+Organisation::GROUP_TYPES = ["Children up to 12", "Young people 12-19", "Older people 65+", "Carers people with learning disabilities", "People with health conditions", "Other...please describe"]
+Organisation::SIZE_OPTIONS = ["0-30", "30-50", "50-100", "100+"]

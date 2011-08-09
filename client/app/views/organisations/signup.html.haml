@@ -3,39 +3,45 @@
 
 #organisation_signup.row
   .twelvecol
-    %p If you are an organisation that would like to benefit from spots of time them please fill out this form.
+    %p If you are an organisation that would like to benefit from Spots of Time then please fill out the form below.
     -semantic_form_for(@organisation) do |form|
       -form.inputs do
-        =form.input :name, :label => "Name of organisation"
-        =form.input :description, :label => "Description of organisation", :input_html => {:rows => 3}
+        =form.input :name, :label => "Name of your organisation or project"
+        -form.semantic_fields_for(:member) do |member_form|
+          %li.organisation_member_name_label
+            =form.label :forename, "Lead contact <span>(this is the person who will receive notification of volunteers)</span>"
+          =member_form.input :forename, :label => false, :input_html => {:class => "labelify", :title => "First name"}, :wrapper_html => {:class => "organisation_member_forename"}
+          =member_form.input :surname, :label => false, :input_html => {:class => "labelify", :title => "Last name"}, :wrapper_html => {:class => "organisation_member_surname"}
+          =member_form.input :email, :label => "Email address <span>(where notifications of volunteers will be sent)</span>"
+          =member_form.input :phone, :label => "Phone number <span>(we’ll only contact you by phone if we have to)</span>"
+          =member_form.input :password, :label => "Choose a password <span>(so you can login)</span>"
+          =member_form.input :dont_generate_password, :as => :hidden, :value => true
       -form.semantic_fields_for(:location) do |location_form|
         -location_form.inputs :class => "organisation_address_fields" do
           %li
-            %label Address of organisation
+            %label="Address <span>(so you can appear on our map)</span>"
           =location_form.input :address1, :label => false, :input_html => {:class => "labelify", :title => "Address 1"}
           =location_form.input :address2, :label => false, :input_html => {:class => "labelify", :title => "Address 2"}
           =location_form.input :city, :label => false, :input_html => {:class => "labelify", :title => "City"}
           =location_form.input :postcode, :label => false, :input_html => {:class => "labelify", :title => "Postcode"}
       -form.inputs do
-        =form.input :group, :label => "Which groups?", :as => :select, :collection => ["Group 1", "Group 2", "Group 3"], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
-        =form.input :group_specific_needs, :label => "Groups with specific needs:"
-        =form.input :num_weeks_notice, :label => "How much notice do you need?", :as => :select, :collection => [["1 week", 1], ["2 weeks", 2]], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
-        =form.input :volunteers_insured, :label => "Are volunteers covered under your insurance?"
+        %li.organisation_label_wrapper
+          =form.label :description, "Description for your profile page"
+          %p Who you are, what you do and anything else you want volunteers to know about you? If you're hard to find include directions! Do include information on the people you work with, especially if they have specific needs that require special care and consideration from volunteers.
+        =form.input :description, :label => false, :input_html => {:rows => 8}
+        =form.input :group_type, :label => "Who does your organisation support?", :as => :select, :collection => Organisation::GROUP_TYPES, :include_blank => false, :wrapper_html => {:class => "inline-fields"}
+        =form.input :size_of_organisation, :as => :select, :collection => Organisation::SIZE_OPTIONS, :include_blank => false, :wrapper_html => {:class => "inline-fields"}
+        %li.organisation_label_wrapper.organisation_image_label_wrapper
+          =form.label :image, "Profile picture"
+          %p Please add a picture for your profile page – this could be a logo or a photo of the people you work with, whatever you prefer.
+        =form.input :image, :as => :image, :label => false
+        =#form.input :num_weeks_notice, :label => "How much notice do you need?", :as => :select, :collection => [["1 week", 1], ["2 weeks", 2]], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
+        =#form.input :volunteers_insured, :label => "Are volunteers covered under your insurance?"
         =#form.input :require_crb, :label => "Do you require CRB checks?"
-        =form.input :terms, :label => "What are your terms and conditions?", :input_html => {:rows => 5}
-      -form.semantic_fields_for(:member) do |member_form|
-        -member_form.inputs :class => "organisation_member_fields" do
-          %li
-            %h3 Lead contact
-          %li.organisation_member_name_label
-            =form.label :forename, "Name"
-          =member_form.input :forename, :label => false, :input_html => {:class => "labelify", :title => "First name"}, :wrapper_html => {:class => "organisation_member_forename"}
-          =member_form.input :surname, :label => false, :input_html => {:class => "labelify", :title => "Last name"}, :wrapper_html => {:class => "organisation_member_surname"}
-          =member_form.input :email
-          =member_form.input :phone
-          =member_form.input :password, :label => "Choose a password"
-          =member_form.input :dont_generate_password, :as => :hidden, :value => true
+        =#form.input :terms, :label => "What are your terms and conditions?", :input_html => {:rows => 5}
       -form.buttons do
-        =form.commit_button "Sign up"
+        %li
+          %p Next you get to pick your activities!
+        =form.commit_button "Next"
               
 

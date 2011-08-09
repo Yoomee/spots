@@ -6472,4 +6472,19 @@ a.organisation_signup_link:hover {
   float: left;
   clear: both;
   width: 100%;
+  margin-bottom: 20px;  
+}
+.organisation_label_wrapper label, .organisation_label_wrapper p {
+  float: left;
+  clear: both;
+}
+.organisation_label_wrapper p {
+  margin-bottom: 0px;
+}
+form.organisation li.organisation_image_label_wrapper {
+  margin-top: 10px;
+}
+form.organisation ol li label span, .organisation_label_wrapper p {
+  font-size: 14px;
+  color: #666;
 }
