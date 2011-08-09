@@ -1,18 +1,37 @@
 -content_for :head do
   :javascript
     $(document).ready(function(){
-      $('.cycle').cycle({
+      $('.feature_panel_right').cycle({
         fx: 'scrollHorz',
         speed: 'slow',
         timeout: 8000,
         easing: 'easeOutQuint',
-        pager: '.cycle_nav',
-        next: '.cycle_next',
-        prev: '.cycle_prev'
+        pager: '#feature_panel_nav',
+        before: function(currSlideElement, nextSlideElement, options, forwardFlag) {
+          var slideNum = $(nextSlideElement).attr("data-slide-num");
+          $(".feature_panel_info").hide();
+          $("#feature_panel_info_" + slideNum).fadeIn();
+          console.log(slideNum);
+        }
       });
     });
 -no_content_row
 -hidden_title "Spots of Time"
+#feature_panel_row.row
+  .twelvecol
+    .feature_panel_left
+      %h3 How this works
+      #feature_panel_info_1.feature_panel_info
+        1. Select an activity
+      #feature_panel_info_2.feature_panel_info
+        2. Choose a date and time
+      #feature_panel_info_3.feature_panel_info
+        3. Turn up and make a difference!
+      #feature_panel_nav
+    .feature_panel_right
+      =holding_image("626x200!", "data-slide-num" => 1)
+      =holding_image("626x200!", "data-slide-num" => 2)
+      =holding_image("626x200!", "data-slide-num" => 3)
 .row
   .twelvecol.last
     -if !Activity.anytime.empty?

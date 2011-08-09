@@ -6488,3 +6488,60 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   font-size: 14px;
   color: #666;
 }
+
+/*========== Feature panel ==========*/
+#feature_panel_row {
+  margin-bottom: 20px;
+}
+.feature_panel_left {
+  padding: 10px;
+  width: 278px;
+  height: 180px;
+  background-color: #000;
+  float: left;
+  clear: both;
+}
+.feature_panel_left h3 {
+  line-height: 20px;
+  text-align: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;  
+  border-bottom: 1px solid white;
+  color: white;
+}
+.feature_panel_info {
+  display: none;
+  height: 84px;
+  font-size: 24px;
+  padding: 10px;
+  line-height: 30px;
+  color: white;
+}
+#feature_panel_nav {
+  padding-top: 10px;
+  margin-bottom: 5px;
+  height: 20px;
+  text-align: center;
+  width: 100%;  
+}
+#feature_panel_nav a {
+  font-size: 18px;
+  color: white;
+  margin: 0 10px;
+  padding: 2px 7px 2px 8px;
+}
+#feature_panel_nav a:hover {
+  text-decoration: none;
+}
+#feature_panel_nav a.activeSlide {
+  border: 2px white solid;
+  margin: 0 8px;
+  -moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	-o-border-radius:15px;
+}
+.feature_panel_right {
+  width: 626px;
+  height: 200px;
+}
