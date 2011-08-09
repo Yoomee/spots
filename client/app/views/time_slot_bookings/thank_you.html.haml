@@ -1,3 +1,16 @@
+-content_for(:head) do
+  :javascript
+    var FBSharer = {
+      share: function() {
+        FB.ui({
+          method: 'feed', 
+          link: "#{site_url}/#{organisation_activity_path(@time_slot_booking.organisation, @time_slot_booking.activity)}",
+          name: "#{site_name}",
+          description: "I'm helping out #{escape_javascript(@time_slot_booking.organisation_name)} with Spots of Time. You should too!",
+          picture: "#{site_url}/images/small_logo.png"
+        });
+      }
+    };
 -no_content_row
 -hidden_title "Thanks for volunteering for #{@time_slot_booking.organisation_name}"
 
@@ -12,6 +25,8 @@
     -if !@time_slot_booking.time_slot.note.blank?
       %p.time_slot_note=@time_slot_booking.time_slot.note
     %p
+      =link_to_function("Share this on Facebook", "FBSharer.share()", :class => "facebook_share_link")
+      or
       =link_to("Find some more activities", home_path)
 .row
   .twelvecol
