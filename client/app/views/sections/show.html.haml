@@ -20,7 +20,7 @@
         %p.index_read_more
 -if @section.slug_is?(:organisations)
   #organisation_signup_button.row
-    .ninecol.last
+    .twelvecol
       -if logged_in?
         -text = logged_in_member.organisations.empty? ? "Signup as an organisation" : "Add another organisation"
         =link_to("#{text} &rarr;", new_organisation_path, :class => "organisation_signup_link")
