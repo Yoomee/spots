@@ -21,6 +21,12 @@ class Organisation < ActiveRecord::Base
     (activities.volunteering.ascend_by_name + Activity.volunteering.ascend_by_name).uniq
   end
   
+  def validate
+    if member && member.phone.blank?
+      member.errors.add(:phone, "can't be blank")
+    end
+  end
+  
 end
 Organisation::GROUP_TYPES = ["Children up to 12", "Young people 12-19", "Older people 65+", "Carers people with learning disabilities", "People with health conditions", "Other...please describe"]
 Organisation::SIZE_OPTIONS = ["0-30", "30-50", "50-100", "100+"]

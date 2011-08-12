@@ -5,4 +5,6 @@ Member.class_eval do
     
   has_wall
   
+  validates_numericality_of :phone, :allow_blank => true
+  
 end

@@ -4,7 +4,7 @@
 #organisation_signup.row
   .twelvecol
     %p If you are an organisation that would like to benefit from Spots of Time then please fill out the form below.
-    -semantic_form_for(@organisation) do |form|
+    -semantic_form_for(@organisation, :html => {:multipart => true}) do |form|
       -form.inputs do
         =form.input :name, :label => "Name of your organisation or project"
         -form.semantic_fields_for(:member) do |member_form|
