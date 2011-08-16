@@ -21,16 +21,16 @@
     .feature_panel_left
       %h3 How this works
       #feature_panel_info_1.feature_panel_info
-        1. Select an activity
+        Got a moment?  We’ve created a range of fun, bite-size activities that you can do in your local community.  It's easy to get involved and there's no long term commitment.
       #feature_panel_info_2.feature_panel_info
-        2. Choose a date and time
+        Help us grow. Suggest 'Spots of Time' to organisations in your area and make it easy for people to give their time to benefit the community.
       #feature_panel_info_3.feature_panel_info
-        3. Turn up and make a difference!
+        Start changing your corner of the world with our simple anytime anywhere ideas that will bring a smile to you and those around you.
       #feature_panel_nav
     .feature_panel_right
-      =holding_image("626x200!", "data-slide-num" => 1)
-      =holding_image("626x200!", "data-slide-num" => 2)
-      =holding_image("626x200!", "data-slide-num" => 3)
+      =image_tag("how-it-works-user.jpg", "data-slide-num" => 1)
+      =image_tag("how-it-works-org.jpg", "data-slide-num" => 2)
+      =image_tag("feature-panel.jpg", "data-slide-num" => 3)
 .row
   .twelvecol.last
     -if !Activity.anytime.empty?

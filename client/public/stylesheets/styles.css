@@ -6494,7 +6494,7 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   margin-bottom: 20px;
 }
 .feature_panel_left {
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   width: 278px;
   height: 180px;
   background-color: #000;
@@ -6505,16 +6505,16 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   line-height: 20px;
   text-align: center;
   padding-bottom: 10px;
-  margin-bottom: 10px;  
+  margin-bottom: 0px;  
   border-bottom: 1px solid white;
   color: white;
 }
 .feature_panel_info {
   display: none;
-  height: 84px;
-  font-size: 18px;
+  height: 90px;
+  font-size: 16px;
   padding: 10px;
-  line-height: 30px;
+  line-height: 20px;
   color: white;
 }
 #feature_panel_nav {
