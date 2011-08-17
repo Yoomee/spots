@@ -6496,25 +6496,26 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 .feature_panel_left {
   padding: 10px 10px 0 10px;
   width: 278px;
-  height: 180px;
+  height: 190px;
   background-color: #000;
   float: left;
   clear: both;
 }
-.feature_panel_left h3 {
+.feature_panel_info {
+  display: none;
+  height: 135px;
+  margin-top: 5px;  
+  font-size: 16px;
+  padding: 0 10px;
+  line-height: 20px;
+  color: white;
+}
+.feature_panel_info h3 {
   line-height: 20px;
   text-align: center;
   padding-bottom: 10px;
-  margin-bottom: 0px;  
-  border-bottom: 1px solid white;
-  color: white;
-}
-.feature_panel_info {
-  display: none;
-  height: 90px;
-  font-size: 16px;
-  padding: 10px;
-  line-height: 20px;
+  margin-bottom: 10px;  
+  border-bottom: 1px solid gray;
   color: white;
 }
 #feature_panel_nav {
@@ -6534,8 +6535,10 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   text-decoration: none;
 }
 #feature_panel_nav a.activeSlide {
-  border: 2px white solid;
+/*  border: 2px white solid;*/
   margin: 0 8px;
+  background-color: white;
+  color: black;
   -moz-border-radius:15px;
 	-webkit-border-radius:15px;
 	border-radius:15px;
