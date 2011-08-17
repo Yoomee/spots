@@ -1,6 +1,5 @@
 -no_content_row
 -title "Organisation signup"
-
 #organisation_signup.row
   .twelvecol
     %p If you are an organisation that would like to benefit from Spots of Time then please fill out the form below.
@@ -29,7 +28,7 @@
           =form.label :description, "Description for your profile page"
           %p Who you are, what you do and anything else you want volunteers to know about you? If you're hard to find include directions! Do include information on the people you work with, especially if they have specific needs that require special care and consideration from volunteers.
         =form.input :description, :label => false, :input_html => {:rows => 8}
-        =form.input :group_type, :label => "Who does your organisation support?", :as => :select, :collection => Organisation::GROUP_TYPES, :include_blank => false, :wrapper_html => {:class => "inline-fields"}
+        =form.input :group_type, :label => "Who does your organisation support?", :as => :select, :collection => Organisation::GROUP_TYPES, :include_other => "Other...please describe", :include_blank => false, :wrapper_html => {:class => "inline-fields"}, :input_html => {:id => "organisation_group_type_select"}
         =form.input :size_of_organisation, :as => :select, :collection => Organisation::SIZE_OPTIONS, :include_blank => false, :wrapper_html => {:class => "inline-fields"}
         %li.organisation_label_wrapper.organisation_image_label_wrapper
           =form.label :image, "Profile picture"

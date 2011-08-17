@@ -25,7 +25,7 @@
       =form.label :image, "Profile picture"
       %p Please add a picture for your profile page – this could be a logo or a photo of the people you work with, whatever you prefer.
     =form.input :image, :as => :image, :label => false
-    =form.input :group_type, :label => "Who does your organisation support?", :as => :select, :collection => Organisation::GROUP_TYPES, :include_blank => false, :wrapper_html => {:class => "inline-fields"}
+    =form.input :group_type, :label => "Who does your organisation support?", :as => :select, :include_other => "Other...please describe", :collection => Organisation::GROUP_TYPES, :include_blank => false, :wrapper_html => {:class => "inline-fields"}
     =form.input :size_of_organisation, :as => :select, :collection => Organisation::SIZE_OPTIONS, :include_blank => false, :wrapper_html => {:class => "inline-fields"}  
     =#form.input :num_weeks_notice, :label => "How much notice do you need?", :as => :select, :collection => [["1 week", 1], ["2 weeks", 2]], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
     =#form.input :volunteers_insured, :label => "Are volunteers covered under your insurance?"
