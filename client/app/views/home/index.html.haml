@@ -37,7 +37,7 @@
   .twelvecol.last
     -if !Activity.anytime.empty?
       #activity_filter
-        %span Filter by
+        %span Filter activities by
         =link_to_function("All", "ActivityFilter.filter('all')", :id => "activity_filter_all", :class => "active")
         =link_to_function("Volunteering", "ActivityFilter.filter('volunteering')", :id => "activity_filter_volunteering")
         =link_to_function("Anytime anywhere", "ActivityFilter.filter('anytime')", :id => "activity_filter_anytime")
