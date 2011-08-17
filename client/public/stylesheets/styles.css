@@ -6538,8 +6538,6 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   text-decoration: none;
 }
 #feature_panel_nav a.activeSlide {
-/*  border: 2px white solid;*/
-  margin: 0 8px;
   background-color: white;
   color: black;
   -moz-border-radius:15px;
