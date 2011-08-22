@@ -8,7 +8,7 @@
     =form.input :starts_at_string, :as => :select, :label => "From", :collection => (0..23).map{|h| ["%02d:00" % h,"%02d:30" % h]}.flatten, :include_blank => false, :wrapper_html => {:id => "#{unique_id}_starts_at_string_input"}, :input_html => {:id => "#{unique_id}_starts_at_string", :disabled => disabled}
     =form.input :ends_at_string, :as => :select, :label => "To", :collection => (0..23).map{|h| ["%02d:00" % h,"%02d:30" % h]}.flatten, :include_blank => false, :wrapper_html => {:id => "#{unique_id}_ends_at_string_input"}, :input_html => {:id => "#{unique_id}_ends_at_string", :disabled => disabled}
     -if !time_slot.errors.on_base.blank?
-      %li.time_slot_errors=time_slot.errors.on_base.join(' ').sub(/Starts_at must be before ends_at/, "End time must be after the start time")
+      %li.time_slot_errors=[*time_slot.errors.on_base].join(' ').sub(/Starts_at must be before ends_at/, "End time must be after the start time")
     %li.note
       %p
         %em=time_slot.note
