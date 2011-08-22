@@ -22,4 +22,24 @@ Notifier.class_eval do
     part :content_type => "text/html", :body => render_message("time_slot_booking_for_organisation.text.html", {}) 
   end
   
+  def organisation_signup_for_admin(organisation)
+    recipients Member.anna
+    from APP_CONFIG['site_email']
+    subject "Spots of Time: New organisation"
+    @organisation, @recipient = organisation, Member.anna
+    content_type "multipart/alternative"    
+    part :content_type => "text/plain", :body => render_message("organisation_signup_for_admin.text.plain", {})
+    part :content_type => "text/html", :body => render_message("organisation_signup_for_admin.text.html", {})
+  end
+  
+  def organisation_signup_for_organisation(organisation)
+    recipients organisation.email
+    from APP_CONFIG['site_email']
+    subject "Welcome to Spots of Time"
+    @organisation, @recipient = organisation, organisation.member
+    content_type "multipart/alternative"
+    part :content_type => "text/plain", :body => render_message("organisation_signup_for_organisation.text.plain", {})
+    part :content_type => "text/html", :body => render_message("organisation_signup_for_organisation.text.html", {}) 
+  end
+  
 end

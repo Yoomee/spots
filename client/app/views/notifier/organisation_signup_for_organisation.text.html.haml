@@ -1,0 +1,18 @@
+%p
+  ="Hi #{@recipient.forename},"
+%p
+  ="Welcome to Spots of Time. Thanks for signing up with your organisation <strong>#{@organisation}</strong>."
+%p
+  ="If you haven't already, you should #{link_to('add some activities', site_url + organisation_time_slots_path(@organisation))} for volunteers to book onto."
+%p
+  ="We'll email you when a volunteer books onto one of your activities and you can view all your volunteers #{link_to('here', site_url + organisation_time_slot_bookings_path(@organisation))}."
+%p
+  ="You can login with this email address and the password you entered in the signup form. If you ever forget your password, you can use #{link_to('this link', site_url + resend_password_path)} to reset it."
+%p
+  ="See you soon!"
+%p
+  Thanks,
+%p
+  ="The #{site_name} team"
+  %br
+  =site_email

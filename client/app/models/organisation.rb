@@ -7,6 +7,8 @@ class Organisation < ActiveRecord::Base
   has_many :time_slot_bookings, :through => :time_slots, :source => :bookings
   has_many :activities, :through => :time_slots, :uniq => true
 
+  after_create :send_emails
+
   delegate :email, :to => :member
 
   has_location
@@ -25,6 +27,12 @@ class Organisation < ActiveRecord::Base
     if member && member.phone.blank?
       member.errors.add(:phone, "can't be blank")
     end
+  end
+  
+  private
+  def send_emails
+    Notifier.deliver_organisation_signup_for_admin(self) if Member.anna
+    Notifier.deliver_organisation_signup_for_organisation(self)
   end
   
 end

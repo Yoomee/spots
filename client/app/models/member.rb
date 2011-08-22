@@ -7,4 +7,12 @@ Member.class_eval do
   
   validates_numericality_of :phone, :allow_blank => true
   
+  class << self
+    
+    def anna
+      Member.find_by_email("anna@spotsoftime.org.uk")
+    end
+    
+  end
+  
 end
