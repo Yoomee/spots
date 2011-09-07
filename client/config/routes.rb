@@ -10,7 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :time_slots, :except => [:index]
   map.resources :time_slot_bookings, :only => [:create, :update, :show], :member => {:thank_you => :get, :confirm => :get, :cancel => :get}
-  map.resources :members, :only => [], :member => {:agree_to_big_print => :put}
+  map.resources :members, :only => [], :member => {:agree_to_big_print => :put, :edit_bio => :get, :update_bio => :put}
   map.big_print "/big_print", :controller => "members", :action => "big_print"
   
 end

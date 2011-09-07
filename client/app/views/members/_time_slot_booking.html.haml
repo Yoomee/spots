@@ -1,0 +1,9 @@
+.member_time_slot_booking
+  .fl
+    =link_to(image_for(time_slot_booking.activity, "70x70#"), time_slot_booking.activity)
+  .fr
+    =link_to_self(time_slot_booking.activity, :class => "activity_name")
+    .organisation_name
+      ="with #{link_to_self(time_slot_booking.organisation)}"
+    .booking_date
+      ="on #{time_slot_booking.starts_at_neat_string}"

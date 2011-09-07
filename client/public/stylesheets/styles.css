@@ -6561,3 +6561,41 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 #time_slot_booking_form textarea, #time_slot_booking_form fieldset {
   margin-bottom: 0;
 }
+.member_time_slot_booking {
+  float: left;
+  clear: both;
+  margin-bottom: 10px;
+  width: 310px;
+}
+.member_time_slot_booking .fl {
+  width: 20%;
+}
+.member_time_slot_booking .fr {
+  width: 76%;
+}
+.member_time_slot_booking .fr .activity_name, .member_time_slot_booking .fr .organisation_name, .member_time_slot_booking .fr .booking_date {
+  float: left;
+  clear: both;
+  margin-bottom: 5px;  
+}
+.member_time_slot_booking .fr .activity_name {
+  font-size: 18px;
+}
+.member_time_slot_booking .fr .organisation_name {
+  font-size: 13px;
+}
+.member_time_slot_booking .fr .organisation_name a{
+/*  color: gray;
+  font-weight:bold;  
+  text-decoration: underline;*/
+}
+.member_time_slot_booking .fr .booking_date {
+  font-size: 13px;
+  color: gray;
+}
+
+/*========== Member bio ==========*/
+
+#member_bio_form textarea {
+  margin-bottom: 0;
+}

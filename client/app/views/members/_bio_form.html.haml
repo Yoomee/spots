@@ -1,0 +1,6 @@
+#member_bio_form
+  -semantic_remote_form_for(@member, :url => update_bio_member_path(@member), :html => {:onsubmit => "$('#member_submit').hide();$('#commit_loader').show();"}) do |form|
+    -form.inputs do
+      =form.input :bio, :label => "Edit your bio", :input_html => {:rows => 8}
+    -form.buttons do
+      =form.commit_button "Save", :loader => "ajax_loader_squares.gif"
