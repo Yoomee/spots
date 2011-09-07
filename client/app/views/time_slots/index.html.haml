@@ -28,10 +28,14 @@
       =link_to_function("Add a new time slot", "$(this).next().show();$(this).hide()",:class => "new_time_slot_link")
       .new_time_slot_form{:style => "display:none"}
         =render("time_slots/form", :time_slot => activity.time_slots.build(:organisation => @organisation), :disabled => false)
--if params[:signup] #just signed up
-  #signup_next_link_row.row
-    .twelvecol
+#signup_next_link_row.row
+  .twelvecol
+    -if params[:signup] #just signed up
       =link_to("Next", @organisation, :class => "bttn_l")
+    -else
+      =link_to("Ok, I'm done", @organisation, :class => "bttn_l")
+    
+
 .row
   .twelvecol
     =options_panel
