@@ -22,6 +22,26 @@ Notifier.class_eval do
     part :content_type => "text/html", :body => render_message("time_slot_booking_for_organisation.text.html", {}) 
   end
   
+  def confirm_time_slot_booking(time_slot_booking)
+    recipients time_slot_booking.member_email
+    from APP_CONFIG['site_email']
+    subject "Spots of Time: Spot confirmed with #{time_slot_booking.organisation}"
+    @time_slot_booking, @recipient = time_slot_booking, time_slot_booking.member
+    content_type "multipart/alternative"
+    part :content_type => "text/plain", :body => render_message("confirm_time_slot_booking.text.plain", {})
+    part :content_type => "text/html", :body => render_message("confirm_time_slot_booking.text.html", {})
+  end
+
+  def cancel_time_slot_booking(time_slot_booking)
+    recipients time_slot_booking.member_email
+    from APP_CONFIG['site_email']
+    subject "Spots of Time: Spot #{time_slot_booking.confirmed? ? 'cancelled' : 'not confirmed'} with #{time_slot_booking.organisation}"
+    @time_slot_booking, @recipient = time_slot_booking, time_slot_booking.member
+    content_type "multipart/alternative"
+    part :content_type => "text/plain", :body => render_message("cancel_time_slot_booking.text.plain", {})
+    part :content_type => "text/html", :body => render_message("cancel_time_slot_booking.text.html", {})
+  end
+  
   def organisation_signup_for_admin(organisation)
     recipients Member.anna
     from APP_CONFIG['site_email']

@@ -1,0 +1,17 @@
+="Hi #{@recipient.forename},"
+-if @time_slot_booking.confirmed?
+  ="Unfortunately, your spot with #{@time_slot_booking.organisation} has been cancelled."
+-else
+  ="Unfortunately, your spot with #{@time_slot_booking.organisation} has not been confirmed."
+
+="You will no longer be needed to do the activity #{@time_slot_booking.activity} on #{@time_slot_booking.starts_at_neat_string}."
+-if !@time_slot_booking.email_message.blank?
+  ="The people at #{@time_slot_booking.organisation} left you this message:"
+  ="\"#{@time_slot_booking.email_message}\""
+
+="If you have any queries you can email us at #{APP_CONFIG['site_email']}."
+
+Thanks,
+
+="The #{site_name} team"
+=site_email

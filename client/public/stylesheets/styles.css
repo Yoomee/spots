@@ -6549,3 +6549,15 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   width: 626px;
   height: 200px;
 }
+
+/*========== Time slot bookings ==========*/
+
+#unconfirmed_time_slot_bookings, #confirmed_time_slot_bookings {
+  margin-top: 20px;
+}
+#time_slot_booking_form textarea {
+  width: 100%;
+}
+#time_slot_booking_form textarea, #time_slot_booking_form fieldset {
+  margin-bottom: 0;
+}

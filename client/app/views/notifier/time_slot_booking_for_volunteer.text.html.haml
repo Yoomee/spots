@@ -1,25 +1,13 @@
 %p
   ="Hi #{@recipient.forename},"
-
 %p
   ="Thank you for volunteering to help out #{@time_slot_booking.organisation}."
-
 %p
-  ="You have signed up to <strong>#{@time_slot_booking.activity}</strong> on <strong>#{@time_slot_booking.starts_at_neat_string}</strong>. This is the address:"
-  
+  ="We have informed #{@time_slot_booking.organisation} that you have volunteered to do the activity <strong>#{@time_slot_booking.activity}</strong> on <strong>#{@time_slot_booking.starts_at_neat_string}</strong>. They just need to confirm your spot."
 %p
-  ="#{@time_slot_booking.organisation}<br />"
-  =render_address(@time_slot_booking.organisation_location, :multi_line => true, :html => false, :separator => "<br />")
-  
--if !@time_slot_booking.note.blank?
-  %p
-    ="The people at #{@time_slot_booking.organisation} left this note:"
-  %p
-    ="\t\"#{@time_slot_booking.note}\""
-
+  ="So hold tight and you will receive a confirmation email very soon."
 %p
-  ="If you have any queries you can email us at #{APP_CONFIG['site_email']}. See you soon!"
-
+  ="If you have any queries you can email us at #{APP_CONFIG['site_email']}."
 %p
   Thanks,
 %p

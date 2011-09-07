@@ -1,0 +1,14 @@
+-no_content_row
+-title "Previous volunteers for #{@organisation}"
+
+.row
+  .twelvecol
+    -if @time_slot_bookings.empty?
+      %p There are no previous volunteers.
+    -else
+      =render("time_slot_bookings/table", :time_slot_bookings => @time_slot_bookings)
+  .twelvecol
+    =will_paginate(@time_slot_bookings)
+.row
+  .twelvecol
+    =options_panel

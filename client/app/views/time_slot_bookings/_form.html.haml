@@ -1,0 +1,15 @@
+#time_slot_booking_form
+  :javascript
+    $(document).ready(function() {
+      $('#time_slot_booking_submit').click(function() {
+        $(this).hide();
+        $(this).next('#commit_loader').show();
+      });  
+    });
+  -semantic_remote_form_for(time_slot_booking) do |form|
+    -form.inputs do
+      =form.input :confirmed, :as => :hidden
+      =form.input :cancel, :as => :hidden
+      =form.input :email_message, :as => :text, :label => "Optional message", :input_html => {:rows => 10}
+    -form.buttons do
+      =form.commit_button "Send", :loader => "ajax_loader_squares.gif"

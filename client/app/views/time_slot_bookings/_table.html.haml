@@ -1,0 +1,18 @@
+%table
+  %tr
+    %th Who
+    %th What
+    %th When
+    %th Options
+  -time_slot_bookings.each do |booking|
+    %tr
+      %td=link_to_self(booking.member)
+      %td=link_to(booking.activity, organisation_activity_path(booking.organisation, booking.activity))
+      %td=booking.starts_at.strftime("%A %d %B %H:%M")
+      %td
+        -separate_links do
+          -if !booking.confirmed?
+            =link_to_box("Confirm", confirm_time_slot_booking_path(booking))
+          =link_to_box("Remove", cancel_time_slot_booking_path(booking))
+        |
+        =mail_to(booking.member_email, "Send email")

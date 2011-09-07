@@ -1,23 +1,29 @@
 -no_content_row
 -title "Volunteers for #{@organisation}"
 
-.row
-  .twelvecol
-    -if @time_slot_bookings.empty?
+-if @confirmed_time_slot_bookings.empty? && @unconfirmed_time_slot_bookings.empty?
+  .row
+    .twelvecol
       %p Sorry, you have no volunteers at the moment.
-    -else
-      %table
-        %tr
-          %th Who
-          %th What
-          %th When
-        -@time_slot_bookings.each do |booking|
-          %tr
-            %td=link_to_self(booking.member)
-            %td=link_to(booking.activity, organisation_activity_path(@organisation, booking.activity))
-            %td=booking.starts_at.strftime("%A %d %B %H:00")
+-else
+  #unconfirmed_time_slot_bookings.row
+    .twelvecol
+      %h3 Unconfirmed spots
+      -if @unconfirmed_time_slot_bookings.empty?
+        %p=@confirmed_time_slot_bookings.empty? ? "There are no unconfirmed spots." : "All spots have been confirmed."
+      -else
+        =render("time_slot_bookings/table", :time_slot_bookings => @unconfirmed_time_slot_bookings)
+  #confirmed_time_slot_bookings.row
+    .twelvecol        
+      %h3 Confirmed spots
+      -if @confirmed_time_slot_bookings.empty?
+        %p There are no confirmed spots.
+      -else
+        =render("time_slot_bookings/table", :time_slot_bookings => @confirmed_time_slot_bookings)
 
 .row
   .twelvecol
-    =options_panel
+    -options_panel do
+      =back_link
+      =link_to("Previous volunteers", in_past_organisation_time_slot_bookings_path(@organisation))
     

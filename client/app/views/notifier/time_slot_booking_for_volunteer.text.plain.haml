@@ -2,15 +2,11 @@
 
 ="Thank you for volunteering to help out #{@time_slot_booking.organisation}."
 
-="You have signed up to #{@time_slot_booking.activity} on #{@time_slot_booking.starts_at_neat_string}. This is the address:"
+="We have informed #{@time_slot_booking.organisation} that you have volunteered to do the activity #{@time_slot_booking.activity} on #{@time_slot_booking.starts_at_neat_string}. They just need to confirm your spot."
 
-=@time_slot_booking.organisation_name
-=render_address(@time_slot_booking.organisation_location, :multi_line => true, :html => false)
-="\n"
--if !@time_slot_booking.note.blank?
-  ="The people at #{@time_slot_booking.organisation} left this note:"
-  ="\"#{@time_slot_booking.note}\""
-="If you have any queries you can email us at #{APP_CONFIG['site_email']}. See you soon!"
+="So hold tight and you will receive a confirmation email very soon."
+
+="If you have any queries you can email us at #{APP_CONFIG['site_email']}."
 
 Thanks,
 

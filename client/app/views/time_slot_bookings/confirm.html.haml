@@ -1,0 +1,9 @@
+#confirm_time_slot_booking.time_slot_booking_confirmation_box
+  %h3 Confirm spot
+  %p
+    This will inform
+    %strong=@time_slot_booking.member
+    that this spot is going ahead.
+    %br
+    You can include a personal message in the email that will be sent to them.
+  =render("time_slot_bookings/form", :time_slot_booking => @time_slot_booking)

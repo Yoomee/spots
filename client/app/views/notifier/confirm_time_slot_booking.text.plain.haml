@@ -1,0 +1,19 @@
+="Hi #{@recipient.forename},"
+
+="Your activity with #{@time_slot_booking.organisation} has been confirmed."
+
+="You will be doing the activity #{@time_slot_booking.activity} on #{@time_slot_booking.starts_at_neat_string}. This is the address:"
+
+="#{@time_slot_booking.organisation}"
+=render_address(@time_slot_booking.organisation_location, :multi_line => true, :html => false)
+="\n"
+-if !@time_slot_booking.email_message.blank?
+  ="The people at #{@time_slot_booking.organisation} left you this message:"
+  ="\"#{@time_slot_booking.email_message}\""
+
+="If you have any queries you can email us at #{APP_CONFIG['site_email']}. See you soon!"
+
+Thanks,
+
+="The #{site_name} team"
+=site_email

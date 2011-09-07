@@ -1,0 +1,22 @@
+%p
+  ="Hi #{@recipient.forename},"
+%p
+  ="Your activity with #{@time_slot_booking.organisation} has been confirmed."
+%p
+  ="You will be doing the activity <strong>#{@time_slot_booking.activity}</strong> on <strong>#{@time_slot_booking.starts_at_neat_string}</strong>. This is the address:"
+%p
+  ="#{@time_slot_booking.organisation}<br />"
+  =render_address(@time_slot_booking.organisation_location, :multi_line => true, :html => false, :separator => "<br />")
+-if !@time_slot_booking.email_message.blank?
+  %p
+    ="The people at #{@time_slot_booking.organisation} left you this message:"
+  %p
+    ="\t\"#{@time_slot_booking.email_message}\""
+%p
+  ="If you have any queries you can email us at #{APP_CONFIG['site_email']}. See you soon!"
+%p
+  Thanks,
+%p
+  ="The #{site_name} team"
+  %br
+  =site_email
