@@ -20,11 +20,11 @@ class TimeSlotBooking < ActiveRecord::Base
   
   def starts_at_time_string
     return nil if starts_at.nil? && time_slot.nil?
-    @starts_at_time_string || "%02d:00" % (starts_at.try(:hour) || time_slot.starts_at.hour)
+    @starts_at_time_string || (starts_at || time_slot.starts_at).strftime("%H:%M")
   end
   
   def starts_at_neat_string
-    starts_at.strftime('%d %b at %H:00')
+    starts_at.strftime("%d %b at %H:%M")
   end
   
   private
@@ -47,7 +47,7 @@ class TimeSlotBooking < ActiveRecord::Base
   
   def starts_at_is_within_time_limits
     return true if !new_record? || starts_at.nil? || time_slot.nil?
-    unless (starts_at <= Time.zone.parse(time_slot.ends_at_string, starts_at) && starts_at >= Time.zone.parse(time_slot.starts_at_string, starts_at))
+    unless (starts_at <= Time.zone.parse((time_slot.ends_at - time_slot.duration.minutes).try(:strftime, "%H:%M"), starts_at) && starts_at >= Time.zone.parse(time_slot.starts_at_string, starts_at))
       errors.add(:starts_at, "is outide the time limits")
     end
   end

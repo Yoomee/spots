@@ -42,22 +42,22 @@
       =google_map(@activity.time_slots.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
     .sevencol.last
       .subrow
-        Not found anything near you? – 
+        Not found anything near you? -
         =link_to_slug("Click here", :organisations)
         to set up Spots of Time in your area.
       .subrow
-      #organisation_panel
-        -if @panel_organisation
-          =render("activities/organisation_panel", :activity => @activity, :organisation => @panel_organisation)
-        -else
-          %p.no_results Sorry, we couldn't find anywhere for you to do this activity.
-          -if !Activity.anytime.empty?
-            %h4 See our anytime, anywhere 'Spots of Time' 
-            .activity_grid.small_activity_grid
-              -Activity.anytime.limit(5).each do |activity|
-                -link_to(activity, :class => "activity") do
-                  =image_for(activity, "147x147#")
-                  .label=activity
+        #organisation_panel
+          -if @panel_organisation
+            =render("activities/organisation_panel", :activity => @activity, :organisation => @panel_organisation)
+          -else
+            %p.no_results Sorry, we couldn't find anywhere for you to do this activity.
+            -if !Activity.anytime.empty?
+              %h4 See our anytime, anywhere 'Spots of Time' 
+              .activity_grid.small_activity_grid
+                -Activity.anytime.limit(5).each do |activity|
+                  -link_to(activity, :class => "activity") do
+                    =image_for(activity, "147x147#")
+                    .label=activity
         
 .row
   .twelvecol

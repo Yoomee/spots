@@ -26,6 +26,11 @@ class TimeSlot < ActiveRecord::Base
     out
   end
   
+  # Length of each slot in minutes
+  def duration
+    30
+  end
+  
   def ends_at_string
     @ends_at_string || ends_at.try(:strftime, "%H:%M") || "17:00"
   end
@@ -40,7 +45,7 @@ class TimeSlot < ActiveRecord::Base
   end
   
   def starts_at_string
-    @starts_at_string || "%02d:00" % (starts_at.try(:hour) || 9)
+    @starts_at_string || starts_at.try(:strftime, "%H:%M") || "09:00"
   end
   
   def starts_at_string=(value)
@@ -50,14 +55,14 @@ class TimeSlot < ActiveRecord::Base
   
   def timespan(am_pm = true)
     if am_pm
-      "#{starts_at.strftime("%H:00%p")} - #{ends_at.strftime("%H:00%p")}".downcase
+      "#{starts_at.strftime("%H:%M%p")} - #{ends_at.strftime("%H:%M%p")}".downcase
     else
       "#{starts_at_string} - #{ends_at_string}"
     end
   end
   
   def possible_time_strings
-    (starts_at.hour..ends_at.hour).collect {|h| "%02d:00" % h}
+    (starts_at..(ends_at - duration.minutes)).step(duration.minutes).collect {|t| t.strftime("%H:%M")}
   end
   
   def to_s
