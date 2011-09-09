@@ -13,6 +13,7 @@ class TimeSlot < ActiveRecord::Base
   delegate :has_lat_lng?, :lat_lng, :lat, :lng, :num_weeks_notice, :to => :organisation
 
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
+  named_scope :confirmed, :joins => :organisation, :conditions => {:organisations => {:confirmed => true}}
   
   def day_integers
     out = []
