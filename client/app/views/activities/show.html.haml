@@ -27,6 +27,7 @@
             -link_to(@organisation ? organisation_activity_path(@organisation, activity) : activity, :class => "activity") do
               =image_for(activity, "147x147#")
               .label=activity
+  .line            
 -if @organisation.nil? && @activity.activity_type=="volunteering"
   #activity_search_row.row
     .fivecol

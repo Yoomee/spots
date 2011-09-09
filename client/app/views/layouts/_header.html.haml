@@ -2,18 +2,18 @@
   #flash_message.twelvecol.no_padding
     =render_flash
   .threecol
-    -if is_home?
-      %h1#site_logo
-        =link_to "#{site_name}", root_path, :id=>"home_site_logo_link"
-    -else
-      =link_to "#{site_name}", root_path, :id=>"site_logo_link"
-  #header_right.ninecol.last 
+    %h1#site_logo
+      =link_to "#{site_name}", root_path, :id=>"home_site_logo_link"
+
+  #header_right.ninecol.last
     -if logged_in?
       .panel
         .logged_in_as
-          =link_to(@logged_in_member, "#", :class => 'logged_in_member_link logged_in_as_link')
-          =link_if_allowed('Admin', admin_proc, :class => "logged_in_as_link")
           =link_to("My organisations", "#", :class => 'my_organisations_link logged_in_as_link') if !logged_in_member.organisations.empty?
+          =link_if_allowed('Admin', admin_proc, :class => "logged_in_as_link")
+          =link_to(@logged_in_member, "#", :class => 'logged_in_member_link logged_in_as_link')
+          
+          
           =#link_to "Notifications#{current_page?(notifications_path) || @logged_in_member.notifications.unread.empty? ? "" : " <span>#{@logged_in_member.notifications.unread.count}</span>"}", notifications_path, :class => "notifications", :title => "#{pluralize(@logged_in_member.notifications.unread.count, 'new notification')}"
           =#link_to "Inbox#{current_page?(messages_path) || !@logged_in_member.has_unread_messages? ? "" : " <span>#{@logged_in_member.unread_message_count}</span>"}", messages_path, :class => "messages", :title => "#{pluralize(@logged_in_member.unread_message_count, 'new messages')}"
           =#link_to('My profile', @logged_in_member, :class=>'profile_link')
@@ -33,3 +33,8 @@
     -else
       =link_to "Login", "#login_popup", :id=>'login_link', :class=>"button"
       =link_to("Signup", new_member_path, :class => 'button')
+    .social_media_links  
+      =link_to "Like us on Facebook", "http://www.facebook.com/spotsoftimeuk", :target=>"_blank", :class=>"social_media_link facebook_link"
+      =link_to "Follow us on twitter", "http://twitter.com/spotsoftimeuk", :target=>"_blank", :class=>"social_media_link twitter_link"
+    =link_to_slug "Organisation signup", :organisations, :id => "nav_organisations"
+      
