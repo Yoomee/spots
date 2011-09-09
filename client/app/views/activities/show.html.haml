@@ -39,7 +39,7 @@
       #find_me_automatically
         or
         =link_to_function("Find me automatically", "ActivityMap.findMe('#{@activity.id}')")
-      =google_map(@activity.time_slots.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
+      =google_map(@activity.time_slots.confirmed.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
     .sevencol.last
       .subrow
         Not found anything near you? -

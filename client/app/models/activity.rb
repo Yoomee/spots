@@ -8,6 +8,7 @@ class Activity < ActiveRecord::Base
   validates_presence_of :name
 
   named_scope :anytime, :conditions => {:activity_type => "anytime"}
+  named_scope :confirmed, :joins => :organisation, :conditions => {:organisation => {:confirmed => true}}
   named_scope :volunteering, :conditions => {:activity_type => "volunteering"}
 
 end

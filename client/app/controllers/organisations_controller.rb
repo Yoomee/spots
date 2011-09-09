@@ -1,20 +1,31 @@
 class OrganisationsController < ApplicationController
-  
+ 
+  admin_only :confirm 
   member_only :new
-  owner_only :edit, :destroy, :update
+  owner_only :destroy, :edit, :update
   
-  before_filter :get_organisation, :only => %w{edit destroy show update}
+  before_filter :get_organisation, :only => %w{confirm destroy edit show update}
+
+  class << self
   
-  def index
-    @organisations = Organisation.all
+    def allowed_to_with_confirmation?(url_options, member)
+      return false if !allowed_to_without_confirmation?(url_options, member)
+      if url_options == 'show'
+        return true if member.try(:is_admin?)
+        organisation = Organisation.find(url_options[:id])
+        organisation.confirmed? || organisation.owned_by?(member)
+      else
+        true
+      end
+    end
+    alias_method_chain :allowed_to?, :confirmation
+
   end
-  
-  def show
-  end
-  
-  def new
-    @organisation = Organisation.new
-    set_default_lat_lng
+
+  def confirm
+    @organisation.update_attribute(:confirmed, true)
+    flash[:notice] = "#{@organisation} has now been confirmed"
+    redirect_to_waypoint
   end
   
   def create
@@ -37,25 +48,25 @@ class OrganisationsController < ApplicationController
     end
   end
   
-  def edit
-    set_default_lat_lng
-  end
-  
-  def update
-    if @organisation.update_attributes(params[:organisation])
-      flash[:notice] = "Successfully updated organisation."
-      redirect_to @organisation
-    else
-      render :action => 'edit'
-    end
-  end
-  
   def destroy
     @organisation.destroy
     flash[:notice] = "Successfully deleted organisation."
     redirect_to_waypoint_after_destroy
   end
 
+  def edit
+    set_default_lat_lng
+  end
+  
+  def index
+    @organisations = Organisation.all
+  end
+  
+  def new
+    @organisation = Organisation.new
+    set_default_lat_lng
+  end
+  
   def search_address
     if params[:lat] && params[:lng]
       lat, lng = params[:lat], params[:lng]
@@ -64,7 +75,7 @@ class OrganisationsController < ApplicationController
     end
     if lat && lng
       @activity = Activity.find(params[:activity_id])
-      if @organisation = Organisation.with_activity(@activity).nearest_to(Location.new(:lat => lat, :lng => lng)).first
+      if @organisation = Organisation.confirmed.with_activity(@activity).nearest_to(Location.new(:lat => lat, :lng => lng)).first
         html = @template.render("activities/organisation_panel", :activity => @activity, :organisation => @organisation, :lat => lat, :lng => lng)
         return render(:json => {:lat => @organisation.lat, :lng => @organisation.lng, :organisation_id => @organisation.id, :organisation_html => html})
       else
@@ -75,12 +86,24 @@ class OrganisationsController < ApplicationController
     end
   end
 
+  def show
+  end
+  
   def signup
     if logged_in?
       render_404
     else
       @organisation = Organisation.new
       @organisation.build_member
+    end
+  end
+  
+  def update
+    if @organisation.update_attributes(params[:organisation])
+      flash[:notice] = "Successfully updated organisation."
+      redirect_to @organisation
+    else
+      render :action => 'edit'
     end
   end
   
