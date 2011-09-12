@@ -2,13 +2,21 @@ class TimeSlotBookingsController < ApplicationController
   
   member_only :create
   owner_only :thank_you
+
+  custom_permission :index, :in_past do |url_options, member|
+    organisation = Organisation.find(url_options[:organisation_id])
+    organisation.owned_by?(member) || (member && member.is_admin?)
+  end
+  
   custom_permission :update, :cancel, :confirm do |url_options, member|
     time_slot_booking = TimeSlotBooking.find(url_options[:id])
     time_slot_booking.organisation.owned_by?(member) || (member && member.is_admin?)
   end
-  custom_permission :index, :in_past do |url_options, member|
-    organisation = Organisation.find(url_options[:organisation_id])
-    organisation.owned_by?(member) || (member && member.is_admin?)
+
+  def cancel
+    @time_slot_booking = TimeSlotBooking.find(params[:id])
+    @time_slot_booking.cancel = true
+    render :layout => false
   end
   
   def confirm
@@ -28,6 +36,11 @@ class TimeSlotBookingsController < ApplicationController
     end
   end
   
+  def in_past
+    @organisation = Organisation.find(params[:organisation_id])
+    @time_slot_bookings = @organisation.time_slot_bookings.starts_at_lte(Time.now).ascend_by_starts_at.paginate(:per_page => 20, :page => params[:page])
+  end
+  
   def index
     @organisation = Organisation.find(params[:organisation_id])
     time_slot_bookings = @organisation.time_slot_bookings.starts_at_gt(Time.now).ascend_by_starts_at
@@ -35,19 +48,8 @@ class TimeSlotBookingsController < ApplicationController
     @confirmed_time_slot_bookings = time_slot_bookings.confirmed
   end
   
-  def in_past
-    @organisation = Organisation.find(params[:organisation_id])
-    @time_slot_bookings = @organisation.time_slot_bookings.starts_at_lte(Time.now).ascend_by_starts_at.paginate(:per_page => 20, :page => params[:page])
-  end
-  
   def thank_you
     @time_slot_booking = TimeSlotBooking.find(params[:id])
-  end
-  
-  def cancel
-    @time_slot_booking = TimeSlotBooking.find(params[:id])
-    @time_slot_booking.cancel = true
-    render :layout => false
   end
   
   # currently only used for confirm and cancel actions

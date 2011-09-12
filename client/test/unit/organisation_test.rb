@@ -4,6 +4,8 @@ class OrganisationTest < ActiveSupport::TestCase
   should have_db_column(:awake).of_type(:boolean).with_options(:default => true)
   should have_db_column(:confirmed).of_type(:boolean).with_options(:default => false)
   should have_db_column(:description).of_type(:text)  
+  should have_db_column(:email_each_day).of_type(:boolean).with_options(:default => false)
+  should have_db_column(:email_each_week).of_type(:boolean).with_options(:default => false)
   should have_db_column(:image_uid).of_type(:string)
   should have_db_column(:member_id).of_type(:integer)
   should have_db_column(:name).of_type(:string)

@@ -20,6 +20,14 @@
         %p There are no confirmed spots.
       -else
         =render("time_slot_bookings/table", :time_slot_bookings => @confirmed_time_slot_bookings)
+.row
+  .twelvecol
+    -semantic_form_for @organisation do |form|
+      -form.inputs do
+        =form.input :email_each_day, :as => :boolean, :label => "Email me this list each day (only if it has changed)"
+        =form.input :email_each_week, :as => :boolean, :label => "Email me this list each week"
+      -form.buttons do
+        =form.commit_button 'Update'
 
 .row
   .twelvecol
