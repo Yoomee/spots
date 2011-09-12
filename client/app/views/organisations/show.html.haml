@@ -8,8 +8,7 @@
     %h1=@organisation
     -if !@organisation.confirmed? && allowed_to?(confirm_organisation_proc(@organisation))
       %p.confirm_message
-        This organisation has not been confirmed yet.
-        =link_to 'Click here to confirm them and make their activities visible on the site.', confirm_organisation_path(@organisation)
+        =link_to 'This organisation has not been confirmed yet. Click here to confirm them and make their activities visible on the site.', confirm_organisation_path(@organisation)
     =simple_format(@organisation.description)
     .subrow
       %hr

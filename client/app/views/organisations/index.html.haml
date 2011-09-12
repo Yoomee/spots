@@ -3,5 +3,7 @@
   -@organisations.each do |organisation|
     %li
       =link_to_self(organisation)
+      -unless organisation.confirmed?
+        %span.unconfirmed (Unconfirmed)
 
 =options_panel([Organisation.new])
