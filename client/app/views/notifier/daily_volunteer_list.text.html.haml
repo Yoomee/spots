@@ -1,0 +1,41 @@
+:css
+  table, td, th {
+    border:1px solid gray;
+    border-collapse:collapse;
+  }
+  td, th {
+    padding:5px;
+  }
+%p
+  Dear
+  ="#{@organisation.member},"
+%p
+  Here is today's update of volunteers:
+-unless @unconfirmed_time_slot_bookings.empty?
+  %h4 Unconfirmed spots
+  %table
+    %tr
+      %th Who
+      %th What
+      %th When
+    -@unconfirmed_time_slot_bookings.each do |booking|
+      %tr
+        %td=booking.member
+        %td=booking.activity
+        %td=booking.starts_at.strftime("%A %d %B %H:%M")
+        
+-unless @confirmed_time_slot_bookings.empty?
+  %h4 Confirmed spots
+  %table
+    %tr
+      %th Who
+      %th What
+      %th When
+    -@confirmed_time_slot_bookings.each do |booking|
+      %tr
+        %td=booking.member
+        %td=booking.activity
+        %td=booking.starts_at.strftime("%A %d %B %H:%M")
+%p
+  For more details, please click
+  =link_to 'here', url_for(:controller => 'time_slot_bookings', :organisation_id => @organisation.id, :host => site_url_without_protocol)

@@ -21,6 +21,18 @@ Notifier.class_eval do
     part :content_type => "text/plain", :body => render_message("confirm_time_slot_booking.text.plain", {})
     part :content_type => "text/html", :body => render_message("confirm_time_slot_booking.text.html", {})
   end
+  
+  def daily_volunteer_list(organisation)
+    recipients organisation.email
+    from APP_CONFIG[:site_email]
+    subject "Daily volunteer update for #{organisation}"
+    @organisation = organisation
+    @confirmed_time_slot_bookings = @organisation.time_slot_bookings.confirmed.starts_at_gt(Time.now).ascend_by_starts_at
+    @unconfirmed_time_slot_bookings = @organisation.time_slot_bookings.not_confirmed.starts_at_gt(Time.now).ascend_by_starts_at
+    content_type 'multipart/alternative'
+    part :content_type => 'text/plain', :body => render_message("daily_volunteer_list.text.plain", {})
+    part :content_type => 'text/html', :body => render_message('daily_volunteer_list.text.html', {})
+  end
 
   def organisation_signup_for_admin(organisation)
     recipients Member.anna.email

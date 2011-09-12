@@ -49,6 +49,10 @@ class Organisation < ActiveRecord::Base
     end
   end
   
+  def volunteers_changed_in_past_day?
+    time_slot_bookings.any? {|booking| booking.updated_at > 1.day.ago}
+  end
+  
   private
   def send_emails
     Notifier.deliver_organisation_signup_for_admin(self) if Member.anna
