@@ -99,10 +99,11 @@ var ActivityMap = {
     ActivityMap.findNearestOrganisation(null, geoposition);
   },
   findNearestOrganisation: function(postcode, geoposition) {
+    var urlData;
     if (postcode == null) {
-      var urlData = {'activity_id':ActivityMap.activityId, 'lat':geoposition.coords.latitude, 'lng': geoposition.coords.longitude};
+      urlData = {'activity_id':ActivityMap.activityId, 'lat':geoposition.coords.latitude, 'lng': geoposition.coords.longitude};
     } else {
-      var urlData = {'activity_id':ActivityMap.activityId, 'address':postcode+',UK'};
+      urlData = {'activity_id':ActivityMap.activityId, 'address':postcode+',UK'};
     }
     $.ajax({
       url: '/organisations/search_address/',
@@ -115,6 +116,7 @@ var ActivityMap = {
         ActivityMap.completed();
       },
       success: function(data) {
+        var point;
         if (data.unknown_location) {
           $('#postcode').addClass('not_found');
           $('#address_not_found').show();
@@ -122,16 +124,21 @@ var ActivityMap = {
         } else if(data.no_results) {
           $('#postcode').removeClass('not_found');
           $('#address_not_found').hide();
+          $('.organisation_panel').hide();
           $('.no_results').show().highlight(1000);
+          map.setZoom(10);
+          point = new google.maps.LatLng(data.lat, data.lng);
+          map.panTo(point);
         } else {
           $('#postcode').removeClass('not_found');
           $('#address_not_found').hide();
           $('#organisation_panel').html(data.organisation_html);
           map.setZoom(10);
-          var point = new google.maps.LatLng(data.lat, data.lng);
+          point = new google.maps.LatLng(data.lat, data.lng);
           map.panTo(point);
           ActivityMap.bounceMarker(data.organisation_id);
         }
+        return true;
       }
     });
   },
@@ -182,7 +189,7 @@ var FBLogin = {
     FB.login(
       function(response) {
         if (response.session) {
-          FBLogin.login_and_submit_form();
+          return FBLogin.login_and_submit_form();
         } else {
           return true;
         }

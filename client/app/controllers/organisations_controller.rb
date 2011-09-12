@@ -75,11 +75,12 @@ class OrganisationsController < ApplicationController
     end
     if lat && lng
       @activity = Activity.find(params[:activity_id])
-      if @organisation = Organisation.confirmed.with_activity(@activity).nearest_to(Location.new(:lat => lat, :lng => lng)).first
+      centre = Location.new(:lat => lat, :lng => lng)
+      if @organisation = Organisation.confirmed.with_activity(@activity).within_distance_of(centre, SEARCH_MILE_RADIUS).nearest_to(centre).first
         html = @template.render("activities/organisation_panel", :activity => @activity, :organisation => @organisation, :lat => lat, :lng => lng)
         return render(:json => {:lat => @organisation.lat, :lng => @organisation.lng, :organisation_id => @organisation.id, :organisation_html => html})
       else
-        render :json => {:no_results => true}        
+        render :json => {:no_results => true, :lat => lat, :lng => lng}        
       end
     else
       render :json => {:unknown_location => true}
@@ -118,3 +119,4 @@ class OrganisationsController < ApplicationController
   end
   
 end
+OrganisationsController::SEARCH_MILE_RADIUS = 20
