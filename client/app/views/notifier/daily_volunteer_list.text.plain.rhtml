@@ -1,0 +1,18 @@
+Dear <%=@organisation.member%>,
+
+Here is today's update of volunteers:
+
+<%unless @unconfirmed_time_slot_bookings.empty?%>
+Unconfirmed spots
+=================
+<%@unconfirmed_time_slot_bookings.each do |booking|%>
+<%=booking.member%> on <%=booking.activity%> (<%=booking.starts_at.strftime("%A %d %B %H:%M")%>)<%end%>
+<%end%>
+<%unless @confirmed_time_slot_bookings.empty?%>
+Confirmed spots
+=================
+<%@confirmed_time_slot_bookings.each do |booking|%>
+<%=booking.member%> on <%=booking.activity%> (<%=booking.starts_at.strftime("%A %d %B %H:%M")%>)<%end%>
+<%end%>
+
+For more details, please go to <%=url_for(:controller => 'time_slot_bookings', :organisation_id => @organisation.id, :host => site_url_without_protocol)%>.
