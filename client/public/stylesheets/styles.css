@@ -6559,6 +6559,9 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   border-bottom: 1px solid gray;
   color: white;
 }
+.feature_panel_info h3 a {
+  color: white;
+}
 #feature_panel_nav {
   padding-top: 10px;
   margin-bottom: 5px;
