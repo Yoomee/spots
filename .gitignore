@@ -1,3 +1,4 @@
+.DS_Store
 /app
 /config
 /db
@@ -8,11 +9,10 @@
 /test
 /tmp
 /vendor
-/vendor/plugins/tramlines_walls
-/vendor/plugins/tramlines_events
 /vendor/plugins/event_calendar
 /vendor/plugins/facebooker
-.DS_Store
-/vendor/plugins/tramlines_locations
-/vendor/plugins/tramlines_blog
 /vendor/plugins/tramlines_auth
+/vendor/plugins/tramlines_blog
+/vendor/plugins/tramlines_events
+/vendor/plugins/tramlines_locations
+/vendor/plugins/tramlines_walls

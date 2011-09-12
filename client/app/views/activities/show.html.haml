@@ -42,6 +42,12 @@
         or
         =link_to_function("Find me automatically", "ActivityMap.findMe('#{@activity.id}')")
       =google_map(@activity.time_slots.confirmed.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
+      -unless @activity.documents.empty?
+        %h4#activity_documents_header More information
+        %ul.lst#activity_documents
+          -@activity.documents.each do |document|
+            %li=render('documents/document', :document => document)
+      
     .sevencol.last
       .subrow
         Not found anything near you? -
@@ -63,4 +69,9 @@
         
 .row
   .twelvecol
-    =options_panel(@activity)
+    -options_panel do
+      =back_link
+      =edit_link(@activity)
+      =link_if_allowed("Attach document", new_activity_document_proc(:activity_id => @activity.id))
+      =delete_link(@activity)
+      =new_link(@activity)

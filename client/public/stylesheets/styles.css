@@ -6637,3 +6637,21 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 #member_bio_form textarea {
   margin-bottom: 0;
 }
+
+/* ============= Documents =============== */
+.doc{
+	display:block;
+	float:left;
+	font-size:12px;
+	width: 370px;
+	margin: 0 0 10px;
+	padding: 0 0 10px;
+	border-bottom: 1px solid #e8e8e8;
+}
+.doc .doc_icon {
+  float:left;
+  margin: 0 10px 0 0;
+}
+#activity_documents_header {
+  margin-top:30px;
+}
