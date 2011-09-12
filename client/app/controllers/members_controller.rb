@@ -17,6 +17,7 @@ MembersController.class_eval do
   
   def big_print
     @member = logged_in_member
+    @page = Page.slug(:big_print)
   end
   
   def edit_bio
