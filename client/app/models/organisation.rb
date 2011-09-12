@@ -18,9 +18,29 @@ class Organisation < ActiveRecord::Base
   accepts_nested_attributes_for :member
   
   named_scope :with_activity, lambda {|activity| {:joins => :activities, :conditions => {:activities => {:id => activity.id}}}}
+  named_scope :visible, {:conditions => {:awake => true, :confirmed => true}}
+
+  def active?
+    confirmed? && awake?
+  end
+  
+  def asleep?
+    !awake?
+  end
   
   def ordered_activities
     (activities.volunteering.ascend_by_name + Activity.volunteering.ascend_by_name).uniq
+  end
+  
+  def status
+    case
+    when active?
+      'active'
+    when !confirmed?
+      'unconfirmed'
+    when asleep?
+      'asleep'
+    end
   end
   
   def validate

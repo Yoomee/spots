@@ -1,4 +1,5 @@
 class AddFieldsToOrganisations < ActiveRecord::Migration
+
   def self.up
     change_table :organisations do |t|
       t.integer :num_weeks_notice, :default => 2
@@ -18,4 +19,5 @@ class AddFieldsToOrganisations < ActiveRecord::Migration
       t.remove :active
     end
   end
+
 end

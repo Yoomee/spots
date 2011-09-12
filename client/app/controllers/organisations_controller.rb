@@ -1,19 +1,19 @@
 class OrganisationsController < ApplicationController
  
-  admin_only :confirm 
+  admin_only :confirm, :sleep, :wake
   member_only :new
   owner_only :destroy, :edit, :update
   
-  before_filter :get_organisation, :only => %w{confirm destroy edit show update}
+  before_filter :get_organisation, :only => %w{confirm destroy edit show sleep update wake}
 
   class << self
   
     def allowed_to_with_confirmation?(url_options, member)
       return false if !allowed_to_without_confirmation?(url_options, member)
-      if url_options == 'show'
+      if url_options[:action] == 'show'
         return true if member.try(:is_admin?)
         organisation = Organisation.find(url_options[:id])
-        organisation.confirmed? || organisation.owned_by?(member)
+        organisation.active? || organisation.owned_by?(member)
       else
         true
       end
@@ -76,7 +76,7 @@ class OrganisationsController < ApplicationController
     if lat && lng
       @activity = Activity.find(params[:activity_id])
       centre = Location.new(:lat => lat, :lng => lng)
-      if @organisation = Organisation.confirmed.with_activity(@activity).within_distance_of(centre, SEARCH_MILE_RADIUS).nearest_to(centre).first
+      if @organisation = Organisation.visible.with_activity(@activity).within_distance_of(centre, SEARCH_MILE_RADIUS).nearest_to(centre).first
         html = @template.render("activities/organisation_panel", :activity => @activity, :organisation => @organisation, :lat => lat, :lng => lng)
         return render(:json => {:lat => @organisation.lat, :lng => @organisation.lng, :organisation_id => @organisation.id, :organisation_html => html})
       else
@@ -99,6 +99,12 @@ class OrganisationsController < ApplicationController
     end
   end
   
+  def sleep
+    @organisation.update_attribute(:awake, false)
+    flash[:notice] = "This organisation is now sleeping and will not show on any activity pages."
+    redirect_to @organisation
+  end
+  
   def update
     if @organisation.update_attributes(params[:organisation])
       flash[:notice] = "Successfully updated organisation."
@@ -106,6 +112,12 @@ class OrganisationsController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+  
+  def wake
+    @organisation.update_attribute(:awake, true)
+    flash[:notice] = "This organisation has now been re-activated"
+    redirect_to @organisation
   end
   
   private

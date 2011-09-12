@@ -3,7 +3,8 @@
   -@organisations.each do |organisation|
     %li
       =link_to_self(organisation)
-      -unless organisation.confirmed?
-        %span.unconfirmed (Unconfirmed)
+      -unless organisation.active?
+        %span.organisation_status 
+          ="(#{organisation.status})"
 
 =options_panel([Organisation.new])

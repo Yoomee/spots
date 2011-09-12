@@ -37,7 +37,7 @@ class ActivitiesController < ApplicationController
     elsif @activity.anytime?
       @other_activities = Activity.anytime.not_including(@activity)
     else
-      @panel_organisation = @activity.organisations.confirmed.random.first
+      @panel_organisation = @activity.organisations.visible.random.first
     end
     if request.xhr?
       render :partial => "activities/organisation_panel", :locals => {:activity => @activity, :organisation => @organisation}

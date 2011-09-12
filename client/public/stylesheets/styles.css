@@ -6449,7 +6449,7 @@ table.time_slots td.link {width:20%;}
 }
 
 /*========== Organisations section ==========*/
-.confirm_message, .confirm_message a {
+.confirm_message, .confirm_message a, .asleep_message, .asleep_message a {
   color: red;
 }
 #organisation_signup_button {
