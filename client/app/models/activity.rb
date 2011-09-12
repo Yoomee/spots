@@ -11,5 +11,9 @@ class Activity < ActiveRecord::Base
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisation => {:confirmed => true}}
   named_scope :volunteering, :conditions => {:activity_type => "volunteering"}
 
+  def anytime?
+    activity_type == 'anytime'
+  end
+
 end
 Activity::TYPES = %w{volunteering anytime}

@@ -34,7 +34,7 @@ class ActivitiesController < ApplicationController
   def show
     if @organisation = Organisation.find_by_id(params[:organisation_id])
       @other_activities = @organisation.activities.id_is_not(@activity.id)
-    elsif @activity.activity_type == 'anytime'
+    elsif @activity.anytime?
       @other_activities = Activity.anytime.not_including(@activity)
     else
       @panel_organisation = @activity.organisations.confirmed.random.first
