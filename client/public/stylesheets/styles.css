@@ -15,7 +15,7 @@ activity_search_row/* @override
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 /* ===============================  text styles ================================ */
-body, textarea, input {font:12px/1.6 'Merriweather', Arial,'Liberation Sans',FreeSans,sans-serif}a:focus{outline:1px dotted invert}hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}h1{font-size:25px}h2{font-size:23px}h3{font-size:21px}h4{font-size:19px}h5{font-size:17px}h6{font-size:15px}ol{list-style:decimal}ul{list-style:disc}li{margin-left:30px}p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:13px}
+body, textarea, input {font:13px/1.6 'Merriweather', Arial,'Liberation Sans',FreeSans,sans-serif}a:focus{outline:1px dotted invert}hr{border:0 #ccc solid;border-top-width:1px;clear:both;height:0}h1{font-size:25px}h2{font-size:23px}h3{font-size:21px}h4{font-size:19px}h5{font-size:17px}h6{font-size:15px}ol{list-style:decimal}ul{list-style:disc}li{margin-left:30px}p,dl,hr,h1,h2,h3,h4,h5,h6,ol,ul,pre,table,address,fieldset{margin-bottom:13px}
 
 /* ======================  CSS3 regularly used stuff ================== */
 
@@ -27,7 +27,7 @@ body, textarea, input {font:12px/1.6 'Merriweather', Arial,'Liberation Sans',Fre
 	
 }
 a, p.inline-errors, .formError {
-	color:#32DBA1;
+	color:#fa6258;
 
 }
 body span.cal_sheet span.month {
@@ -41,8 +41,8 @@ h1, h2, h3, h4, h5, h6, #nav, #subnav, #user_links .button, .bring_quote, .cycle
 	font-weight: lighter;
 
 }
-span.click_here_beta, p.club_welcome_intro_text {
-	font-family:'VAG Rounded W02 Thin', arial, sans-serif;
+#feature_panel_nav a {
+	font-family:'droid sans', arial, sans-serif;
 }
 #page_left_col, #page_right_col, p.index_text, p.blog_like_news_text {
 	color: #666;
@@ -131,13 +131,14 @@ a:hover {
 #header_right a.button {
 		display: block;
 
-	background:#000;
+	background:#b9b7b8;
 
 	float: right;
 	font-size: 12px;
 	padding: 3px 9px;
 	margin: 0px 0 0 10px;
 	font-weight: bold;
+	font-family: droid sans, arial sans serif;
 
 
 	color: #fff;
@@ -149,6 +150,7 @@ a:hover {
  #header_right a.button:hover {
 	text-decoration: none;
 	background-color: #777;
+	color: #fff;
 	
 	 -webkit-transition: .2s ease-in;
      -moz-transition: .2s ease-in;
@@ -339,8 +341,8 @@ a.bttn_l:hover, .join_activity_link:hover {
 }
 
 /* general small button */
-#news_feed_older_btn, .bx_h a, button, html body .bttn {
-	background:#FCFCFC url(/images/bttn_small.png) repeat-x scroll 0 0;
+#news_feed_older_btn, .bx_h a, button, html body .bttn, .bttn {
+	background:#e4e4e4 url(/images/bttn_small.png) repeat-x scroll 0 0;
 	border:1px solid #d6d6d6;
 	color:#333333;
 	display:block;
@@ -350,15 +352,16 @@ a.bttn_l:hover, .join_activity_link:hover {
 	line-height:100%;
 	padding:6px 8px;
 	float:left;
-	text-shadow: 0 1px 0 #fff;
+	margin: 0 9px 0 0;
+	text-shadow: none;
 	
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	border-radius:4px;
 	
-	-webkit-box-shadow:0px 0px 1px #ccc;
-	-moz-box-shadow:0px 0px 1px #ccc;
-	box-shadow:0px 0px 1px #ccc;
+	-webkit-box-shadow:0px 1px 1px rgba(0,0,0,0.2);
+	-moz-box-shadow:0px 1px 1px rgba(0,0,0,0.2);
+	box-shadow:0px 1px 1px rgba(0,0,0,0.2);
 }
 #news_feed_older_btn:hover, .bx_h a:hover {
 	background:#F5F5F5 none repeat scroll 0 0;
@@ -1359,7 +1362,7 @@ a.social_media_link {
 	width: 220px;
 	height: 48px;
 	display: block;
-	background: url(/images/organisation_signup.png) 0 -4px no-repeat;
+	background: url(/images/organisation_signup_2.png) 0 -4px no-repeat;
 	text-indent: -9000em;
 	
 }
@@ -1503,8 +1506,8 @@ div.line {
 #nav li.active a, #subnav li.active a, .controller_home #home_nav a, .section_1 #about_us_nav a   {
   text-decoration:none;
   font-weight: bold;
-  color: #000;
-  background: #e8e8e8;
+  color: #fff;
+  background: #b9b7b8;
 
 }
 
@@ -1523,7 +1526,7 @@ ul.subnav li.active a {
 	font-weight: bold;
 }
 #subnav_0 {
-	padding: 10px 0 0;
+	padding: 10px 0 0 20px;
 	float: left;
 	width: 100%;
 }
@@ -1703,9 +1706,9 @@ p.latest_text {
 	background: #000;
 	color: #fff;
 	padding: 4px 10px;
-	border-radius:12px;
-	-moz-border-radius: 12px;
-	-webkit-border-radius: 12px;
+	border-radius:55px;
+	-moz-border-radius: 55px;
+	-webkit-border-radius: 55px;
 }
 #activity_filter span {
   color: black;
@@ -1731,13 +1734,17 @@ p.latest_text {
   border-radius: 3px;
 }
 .activity_grid .activity:hover {
-	background: #8dfbd5 url(/images/activity_hover.png) 0 90px repeat-x;
+	background: #f15f5f;
 	text-decoration: none;
 	text-shadow: none;
-	
+	 border: 1px solid #c34b4a;
 	box-shadow:1px 0px 2px rgba(0,0,0,0.3);
 	-webkit-box-shadow:1px 0px 2px rgba(0,0,0,0.3);
 	-moz-box-shadow:1px 0px 2px rgba(0,0,0,0.3);
+}
+.activity_grid .activity:hover div.label {
+	color: #fff;
+	
 }
 .activity_grid .activity img {
   float:left;
@@ -1751,9 +1758,12 @@ p.latest_text {
   color:#000;
   text-align:center; 
   width:124px;
+  font-size: 14px;
+  line-height: 16px;
   height: 34px;
   overflow: hidden;
   font-family: droid sans, arial, sans serif;
+
 
 }
 
@@ -6449,11 +6459,46 @@ table.time_slots td.link {width:20%;}
 }
 
 /*========== Organisations section ==========*/
-.confirm_message, .confirm_message a, .asleep_message, .asleep_message a {
-  color: red;
+.confirm_message, .asleep_message, .not_found_anything, p.no_results {
+  background: #fdb94c;
+  display: block;
+  float: left;
+  clear: both;
+  padding: 10px;
+  color: #fff;
+  font-size: 15px;
+  margin: 20px 0;
+}
+div.not_found_anything {
+	margin: 0;
+	width: 400px;
+}
+.not_found_anything a.bttn {
+	display: inline;
+	float: none;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 7px 20px;
+}
+p.no_results {
+	width: 100%;
+	background: #fa6258;
+}
+
+.not_found_anything h4 {
+	color: #fff;
+}
+.confirm_message a, .asleep_message a {
+	color: #000;
+	display: block;
 }
 #organisation_signup_button {
   margin-top: 40px;
+}
+.organisation_description p {
+	float: left;
+	clear: both;
+	width: 100%;
 }
 a.organisation_signup_link {
   background-color: #8BFBD5;
@@ -6533,13 +6578,18 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 /*========== Feature panel ==========*/
 #feature_panel_row {
   margin-bottom: 30px;
+  
+  -webkit-box-shadow:1px 1px 10px rgba(0,0,0,0.2);
+  -moz-box-shadow:1px 1px 10px rgba(0,0,0,0.2);
+  box-shadow:1px 1px 10px rgba(0,0,0,0.2);
 }
 .feature_panel_left {
   padding: 10px 10px 0 10px;
   width: 278px;
-  height: 190px;
+  height: 250px;
   background-color: #000;
   float: left;
+  position: relative;
   clear: both;
 }
 .feature_panel_info {
@@ -6549,7 +6599,7 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   font-size: 13px;
   padding: 0 10px;
   line-height: 20px;
-  color: white;
+  color: #ccc;
 }
 .feature_panel_info h3 {
   line-height: 20px;
@@ -6568,6 +6618,9 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   height: 20px;
   text-align: center;
   width: 100%;  
+  position: absolute;
+  
+  bottom: 20px;
 }
 #feature_panel_nav a {
   font-size: 18px;
@@ -6587,8 +6640,9 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 	-o-border-radius:15px;
 }
 .feature_panel_right {
-  width: 626px;
-  height: 200px;
+  width: 636px;
+  height: 220px;
+  margin: 20px 0 0;
 }
 
 /*========== Time slot bookings ==========*/

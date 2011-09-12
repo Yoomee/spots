@@ -4,20 +4,26 @@
 .row
   .threecol
     =image_for(@organisation, "200x")
+    .subrow
+      %hr
+      %h4 Where?
+      =render_address(@organisation.location) unless @organisation.location.unknown?
+      =google_map(@organisation, :width => "100%", :height => 350, :zoom => 7, :infoboxes => true) if @organisation.has_lat_lng?
   .ninecol.last
     %h1=@organisation
+    
+    =link_if_allowed("List activities", organisation_time_slots_proc(:organisation_id => @organisation), :class=>"bttn")
+    =link_if_allowed("List volunteers", organisation_time_slot_bookings_proc(:organisation_id => @organisation), :class=>"bttn")
+    =link_if_allowed("Edit organisation", edit_organisation_proc(@organisation), :class=>"bttn")
+    
     -if !@organisation.confirmed? && allowed_to?(confirm_organisation_proc(@organisation))
       %p.confirm_message
         =link_to 'This organisation has not been confirmed yet. Click here to confirm them and make their activities visible on the site.', confirm_organisation_path(@organisation)
     -elsif @organisation.asleep? && allowed_to?(wake_organisation_proc)
       %p.asleep_message
         =link_to 'This organisation is asleep. Click here to re-activate them and make their activities visible on the site.', wake_organisation_path(@organisation)
-    =simple_format(@organisation.description)
-    .subrow
-      %hr
-      %h4 Where?
-      =render_address(@organisation.location) unless @organisation.location.unknown?
-      =google_map(@organisation, :width => "100%", :height => 350, :zoom => 7, :infoboxes => true) if @organisation.has_lat_lng?
+    .organisation_description    
+      =simple_format(@organisation.description)
     .subrow
       %hr
       %h4 What can you do to help out?

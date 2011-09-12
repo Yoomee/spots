@@ -50,10 +50,6 @@
       
     .sevencol.last
       .subrow
-        Not found anything near you? -
-        =link_to_slug("Click here", :organisations)
-        to set up Spots of Time in your area.
-      .subrow
         #organisation_panel
           -if @panel_organisation
             =render("activities/organisation_panel", :activity => @activity, :organisation => @panel_organisation)
@@ -66,6 +62,11 @@
                   -link_to(activity, :class => "activity") do
                     =image_for(activity, "147x147#")
                     .label=activity
+      .not_found_anything.subrow
+        %h4
+          Not found anything near you?
+        %p  
+          =link_to_slug("Set up Spots of Time in your area.", :organisations, :class=>'bttn')                  
         
 .row
   .twelvecol
