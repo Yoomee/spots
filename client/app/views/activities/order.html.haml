@@ -1,0 +1,38 @@
+-content_for(:head) do
+  :javascript
+    ActivityOrder = {
+      save_order: function() {
+        $('#orderable_activities li').each(function(index) {
+          $('#activity_id_' + index).val($(this).attr('data-activity-id'));
+        });
+      }
+    };
+  
+    $(document).ready(function() {
+      $('#orderable_activities').sortable({
+        axis: "y",
+        handle: ".drag_icon",
+        stop: function(event, ui) {
+          ActivityOrder.save_order();
+        }
+      });
+    });
+
+
+-title "Order activities"
+%p.help
+  Click and drag using the icons on the left. Once you are happy with the order, click "Save order" at the bottom.
+
+%ul#orderable_activities.lst.flcb
+  -@activities.each do |activity|
+    %li{'data-activity-id' => activity.id}
+      =image_tag("drag_icon.png", :class => "drag_icon")
+      %span=activity
+
+-form_tag('/activities/update_weights', :class => "flcb") do
+  -@activities.each_with_index do |activity, i|
+    =hidden_field_tag("activities[#{i}][activity_id]", activity.id, :id => "activity_id_#{i}")
+  =submit_tag("Save order")
+
+-options_panel do
+  =back_link

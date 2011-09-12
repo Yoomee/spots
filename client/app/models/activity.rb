@@ -8,6 +8,8 @@ class Activity < ActiveRecord::Base
   
   validates_presence_of :name
 
+  default_scope :order => "weight, created_at DESC"
+
   named_scope :anytime, :conditions => {:activity_type => "anytime"}
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisation => {:confirmed => true}}
   named_scope :volunteering, :conditions => {:activity_type => "volunteering"}

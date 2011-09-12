@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   
-  map.resources :activities do |activities|
+  map.resources :activities, :collection => {:order => :get, :update_weights => :post} do |activities|
     activities.resources :documents
   end
   map.signup_organisation "/organisations/signup", :controller => "organisations", :action => "signup"  

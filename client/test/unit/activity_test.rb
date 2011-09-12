@@ -5,6 +5,7 @@ class ActivityTest < ActiveSupport::TestCase
   should have_db_column(:description).of_type(:text)
   should have_db_column(:image_uid).of_type(:string)
   should have_db_column(:activity_type).of_type(:string)
+  should have_db_column(:weight).of_type(:integer).with_options(:default => 0)
   should have_timestamps
 
   should have_many(:documents).dependent(:destroy)

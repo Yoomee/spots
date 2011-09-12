@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   
-  admin_only :create, :destroy, :edit, :new, :update
+  admin_only :create, :destroy, :edit, :order, :new, :update, :update_weights
   
   before_filter :get_activity, :only => %w{destroy edit show update}
   
@@ -30,6 +30,10 @@ class ActivitiesController < ApplicationController
   def new
     @activity = Activity.new
   end
+
+  def order
+    @activities = Activity.all
+  end
   
   def show
     if @organisation = Organisation.find_by_id(params[:organisation_id])
@@ -53,6 +57,13 @@ class ActivitiesController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+
+  def update_weights
+    params[:activities].each do |index, sortable_hash|
+      Activity.find(sortable_hash["activity_id"]).update_attribute(:weight, index)
+    end
+    redirect_to activities_path
   end
   
   private
