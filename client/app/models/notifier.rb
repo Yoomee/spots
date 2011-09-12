@@ -23,7 +23,7 @@ Notifier.class_eval do
   end
 
   def organisation_signup_for_admin(organisation)
-    recipients Member.anna
+    recipients Member.anna.email
     from APP_CONFIG['site_email']
     subject "Spots of Time: New organisation"
     @organisation, @recipient = organisation, Member.anna
