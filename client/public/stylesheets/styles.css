@@ -6415,6 +6415,9 @@ form.time_slot li.commit, form.time_slot .edit_link {
   color: gray;
   font-size: 15px;
 }
+#organisation_panel .fr {
+  float:right;
+}
 /*========== TimeSlot Show ==========*/
 
 #time_slot_booking_form {

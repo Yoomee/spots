@@ -9,5 +9,8 @@
           %td.time=time_slot.timespan
           %td.note
             %em=time_slot.note
-          %td.link
-            =link_to("Book a date", time_slot)
+          -if false
+            %td.link
+              =link_to("Book a date", time_slot)
+=link_to 'Book me in', time_slots.first, :class => 'bttn fr'
+%br.clear
