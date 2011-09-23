@@ -1,0 +1,8 @@
+- title @blog_post.title
+=render 'blog_post', :blog_post => @blog_post
+
+-options_panel do
+  =back_link
+  =#link_to @blog_post.blog.name, blog_blog_posts_path(@blog_post.blog)
+  = link_if_allowed "Edit", edit_blog_post_proc(@blog_post)
+  = link_if_allowed "Delete", @blog_post, :confirm => 'Are you sure?', :method => :delete

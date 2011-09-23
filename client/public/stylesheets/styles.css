@@ -966,6 +966,9 @@ html body form {
 	clear: both;
 	margin: 0 0 0 50px;
 }
+.dash_item#dash_blogs li a {
+  width:100px;
+}
 .dash_item ul {
 	margin: 0;
 }
@@ -982,7 +985,7 @@ html body form {
 	top: 10px;
 	left: 0;
 }
-#dash_sections_and_pages .dash_icon {
+#dash_sections_and_pages .dash_icon, #dash_blogs .dash_icon {
 	background-position: 0 -940px;
 
 }
@@ -6644,6 +6647,14 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   width: 636px;
   height: 220px;
   margin: 20px 0 0;
+}
+#feature_panel_blog_photo_wrapper {
+  width:626px;
+  height:200px;
+  text-align:center;
+  vertical-align: middle;
+}
+#feature_panel_blog_photo_wrapper {
 }
 
 /*========== Time slot bookings ==========*/

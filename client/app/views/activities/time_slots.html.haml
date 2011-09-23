@@ -1,0 +1,62 @@
+-content_for(:head) do
+  :javascript
+     var BookedDates = #{@organisation.existing_bookings_for_activity(@activity).to_json};
+     $(document).ready(function() {
+       $('#starts_at_datepicker').datepicker({
+         dateFormat: 'dd-mm-yy',
+         minDate: (+#{@organisation.num_weeks_notice * 7}),
+         onSelect: function(dateText, inst) {
+           $('#time_slot_booking_starts_at').val(dateText);
+         },
+         beforeShowDay: function(date) {
+           var allowed_on_day = $.inArray(date.getDay(), #{@organisation.activity_day_integers(@activity).to_json}) == -1 ? false : true;
+           var already_booked =  $.inArray(date.toDateString(), BookedDates) == -1 ? false : true;
+           return [!already_booked && allowed_on_day, already_booked ? "already_booked" : "", ""];
+         }        
+       });
+     });
+-hidden_title @activity
+
+.row
+  .twelvecol
+    %h1.time_slot_booking_title
+      =@activity
+      %span
+        with
+        =link_to_self(@organisation)
+    -if false && !@time_slot.note.blank?
+      %p
+        =@time_slot.note
+#time_slot_booking_form.row
+  .twelvecol
+    %h4 Thanks for offering to help out. When's good for you?
+  .fourcol
+    #starts_at_datepicker
+  .fourcol.last
+    -if !@time_slot_booking.errors.empty?
+      #time_slot_booking_error
+        Make sure you pick an available date using the calendar on the left.
+    -semantic_form_for(@time_slot_booking) do |form|
+      -form.inputs do
+        =form.input :time_slot_id, :as => :hidden
+        =form.input :starts_at, :as => :hidden
+        =form.input :starts_at_time_string, :as => :select, :collection => @time_slots.first.possible_time_strings, :include_blank => false, :label => "Time:", :wrapper_html => {:class => "inline-fields"}
+        %li
+          %p Click a date on the calendar, choose a time you'd like to arrive and hit the button below.
+        =form.commit_button "COUNT ME IN", :button_html => {:id => "time_slot_booking_submit", :style => "display:#{logged_in? ? 'block' : 'none'}"}
+        -if logged_out?
+          %li.commit=link_to_function("COUNT ME IN", "FBLogin.process()", :class => "bttn_l")
+.row
+  .twelvecol
+    =google_map(@organisation, :width => "100%", :height => 500, :version => "3.5", :infoboxes => true)
+    -content_for(:head) do
+      :javascript
+        $(document).ready(function() {
+          google.maps.event.trigger(markerTimeSlot#{@organisation.id}, "click");
+        });
+.row
+  .twelvecol
+    -options_panel do
+      =back_link
+      =link_if_allowed("Edit activity", edit_activity_proc(@activity))
+      =link_if_allowed("Edit organisation", edit_organisation_proc(@organisation))

@@ -26,6 +26,7 @@
         %li=link_to("List activities", activities_path)
         %li=link_to("Add an activity", new_activity_path)
     #dash_blogs.dash_item
+      .dash_icon
       %h3
         Blog
       %ul
@@ -47,7 +48,17 @@
         %li
           %a{ :href => "/photos/new" }
             Add an image
-          
+    #dash_documents.dash_item
+      .dash_icon
+      %h3
+        Documents
+      %ul
+        %li
+          =link_to("List documents", document_folders_path)
+        %li
+          =link_to("Add a folder", new_document_folder_path)
+        %li
+          =link_to("Add a document", new_document_path)
   #dash_technical_stuff.dash_col.fourcol
     %h2
       Technical stuff
