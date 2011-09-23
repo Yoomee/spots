@@ -19,6 +19,8 @@ class TimeSlotBooking < ActiveRecord::Base
   delegate :activity, :activity_name, :organisation, :note, :to => :time_slot, :allow_nil => true
   delegate :email, :location, :member, :name, :to => :organisation, :prefix => true
   delegate :email, :to => :member, :prefix => true
+
+  named_scope :for_activity, lambda{|activity| {:joins => "INNER JOIN time_slots AS bts ON time_slot_bookings.time_slot_id=bts.id", :conditions => ["bts.activity_id=?", activity.id]}}
   
   def in_future?
     starts_at > Time.now

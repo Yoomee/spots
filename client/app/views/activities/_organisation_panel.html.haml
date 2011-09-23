@@ -14,7 +14,7 @@
       =read_more_truncate(organisation.description) 
   %hr
   %h4 When can you help out?          
-  =render("time_slots/table", :time_slots => activity.time_slots.organisation_id_is(organisation.id).ascend_by_starts_at)
+  =render("time_slots/table", :time_slots => activity.time_slots.organisation_id_is(organisation.id).ascend_by_starts_at, :organisation => organisation, :activity => activity)
   -if !(other_activities = organisation.activities.id_is_not(@activity.id)).blank?
     %h4 Other things you can do here
     .activity_grid.small_activity_grid

@@ -8,13 +8,13 @@ class TimeSlot < ActiveRecord::Base
   validates_order_of :starts_at, :ends_at
   validate :presence_of_days
 
-  delegate :name, :to => :activity, :prefix => true
   delegate :description, :name, :email, :to => :organisation, :prefix => true
   delegate :has_lat_lng?, :lat_lng, :lat, :lng, :num_weeks_notice, :to => :organisation
+  delegate :name, :to => :activity, :prefix => true
 
-  named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisations => {:confirmed => true}}
-  
+  named_scope :group_by_organisation, :group => "time_slots.organisation_id"
+
   def day_integers
     out = []
     TimeSlot::DAYS.each_with_index do |day, index|
@@ -45,6 +45,14 @@ class TimeSlot < ActiveRecord::Base
     bookings.starts_at_greater_than(num_weeks_notice.weeks.from_now).collect {|b| b.starts_at.strftime("%a %b %d %Y")}.to_json
   end
   
+  def last_time
+    duration > 60 ? (ends_at - (duration * 60)) : (ends_at - 3600)
+  end
+
+  def possible_time_strings
+    (starts_at..last_time).step(duration.minutes).collect {|t| t.strftime("%H:%M")}
+  end
+  
   def starts_at_string
     @starts_at_string || starts_at.try(:strftime, "%H:%M") || "09:00"
   end
@@ -60,10 +68,6 @@ class TimeSlot < ActiveRecord::Base
     else
       "#{starts_at_string} - #{ends_at_string}"
     end
-  end
-  
-  def possible_time_strings
-    (starts_at..(ends_at - duration.minutes)).step(duration.minutes).collect {|t| t.strftime("%H:%M")}
   end
   
   def to_s

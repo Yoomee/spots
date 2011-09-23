@@ -24,8 +24,25 @@ class Organisation < ActiveRecord::Base
     confirmed? && awake?
   end
   
+  def activity_day_integers(activity)
+    out = []
+    TimeSlot::DAYS.each_with_index do |day, index|
+      if day == :sun
+        out << 0 if time_slots_for_activity(activity).any?(&:sun?)
+      else
+        out << index + 1 if time_slots_for_activity(activity).any? {|ts| ts.send(day)}
+      end
+    end
+    out
+  end
+  
   def asleep?
     !awake?
+  end
+  
+  
+  def existing_bookings_for_activity(activity)
+    time_slot_bookings.for_activity(activity).starts_at_greater_than(num_weeks_notice.weeks.from_now).collect {|b| b.starts_at.strftime("%a %b %d %Y")}
   end
   
   def ordered_activities
@@ -42,6 +59,10 @@ class Organisation < ActiveRecord::Base
       'asleep'
     end
   end
+  
+  def time_slots_for_activity(activity)
+    time_slots.activity_id_is(activity.id)
+  end    
   
   def validate
     if member && member.phone.blank?

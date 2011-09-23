@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :organisations, :member => {:wake => :get, :confirm => :get, :sleep => :get} do |organisation|
     organisation.resources :time_slots, :only => [:index]
     organisation.resources :time_slot_bookings, :only => [:index], :collection => {:in_past => :get}
-    organisation.resources :activities, :only => [:show]
+    organisation.resources :activities, :only => [:show], :member => {:time_slots => :get}
   end
   map.resources :time_slots, :except => [:index]
   map.resources :time_slot_bookings, :only => [:create, :update, :show], :member => {:thank_you => :get, :confirm => :get, :cancel => :get}

@@ -74,4 +74,24 @@ class TimeSlotBookingTest < ActiveSupport::TestCase
     
   end
   
+  context "class on call to for_activity" do
+    
+    setup do
+      @activity = Factory.create(:activity)
+    end
+    
+    should "find a time slot booking for the activity" do
+      time_slot = Factory.create(:time_slot, :activity => @activity)
+      time_slot_booking = Factory.create(:time_slot_booking, :time_slot => time_slot, :starts_at => Time.parse("09:00", 3.weeks.from_now))
+      assert_contains TimeSlotBooking.for_activity(@activity), time_slot_booking
+    end
+    
+    should "not find a time slot booking for another activity" do
+      time_slot = Factory.create(:time_slot, :activity => Factory.create(:activity))
+      time_slot_booking = Factory.create(:time_slot_booking, :time_slot => time_slot, :starts_at => Time.parse("09:00", 3.weeks.from_now))
+      assert_does_not_contain TimeSlotBooking.for_activity(@activity), time_slot_booking
+    end
+    
+  end
+  
 end

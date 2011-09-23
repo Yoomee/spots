@@ -50,6 +50,13 @@ class ActivitiesController < ApplicationController
     end
   end
   
+  def time_slots
+    @organisation = Organisation.find(params[:organisation_id])
+    @activity = Activity.find(params[:id])
+    @time_slots = @activity.time_slots.organisation_id_is(@organisation.id).ascend_by_starts_at
+    @time_slot_booking = TimeSlotBooking.new
+  end
+  
   def update
     if @activity.update_attributes(params[:activity])
       flash[:notice] = "Successfully updated activity."

@@ -12,10 +12,6 @@ class TimeSlotsController < ApplicationController
     time_slot.organisation.owned_by?(member) || (member && member.is_admin?)
   end
   
-  def index
-    @organisation = Organisation.find(params[:organisation_id])
-  end
-  
   def create
     @time_slot = TimeSlot.new(params[:time_slot])
     activity = @time_slot.activity
@@ -37,6 +33,10 @@ class TimeSlotsController < ApplicationController
         page[unique_id].remove
       end
     end
+  end
+  
+  def index
+    @organisation = Organisation.find(params[:organisation_id])
   end
   
   def show
