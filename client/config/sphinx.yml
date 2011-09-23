@@ -1,0 +1,6 @@
+development:
+  bin_path: /usr/local/bin
+  min_prefix_len: 1
+production:
+  min_prefix_len: 1
+  port: 9317

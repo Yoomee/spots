@@ -5,7 +5,7 @@
     =link_to "Create the first one now.", new_blog_blog_post_path(@blog)
 -else
   -@blog_posts.each do |blog_post|
-    %h3=blog_post
+    %h3=link_to_self blog_post
     =render("blog_posts/blog_post", :blog_post => blog_post)
     -unless blog_post == @blog_posts.last
       %hr
