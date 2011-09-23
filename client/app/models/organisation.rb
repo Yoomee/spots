@@ -20,6 +20,8 @@ class Organisation < ActiveRecord::Base
   named_scope :with_activity, lambda {|activity| {:joins => :activities, :conditions => {:activities => {:id => activity.id}}}}
   named_scope :visible, {:conditions => {:awake => true, :confirmed => true}}
 
+  search_attributes %w{name description}
+
   def active?
     confirmed? && awake?
   end
