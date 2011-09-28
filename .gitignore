@@ -1,4 +1,5 @@
 .DS_Store
+spots.sql
 /app
 /config
 /db
