@@ -4,3 +4,8 @@ development:
 production:
   min_prefix_len: 1
   port: 9317
+  config_file: /data/spots/shared/production.sphinx.conf
+  searchd_file_path: /data/spots/shared/sphinx
+  searchd_log_path: /data/spots/shared/searchd.log
+  query_log_file: /data/spots/shared/searchd.query.log
+  pid_file: /data/spots/shared/searchd.production.pid
