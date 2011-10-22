@@ -1368,6 +1368,14 @@ a.social_media_link {
 	
 }
 
+a.twitter_link {
+	background-position: top;
+	margin-left: 10px;
+}
+a.mailchimp_link {
+	background-position: top left;
+	margin-left: 10px;
+}
 a.facebook_link {
 	background-position: top right;
 	margin-left: 10px;
