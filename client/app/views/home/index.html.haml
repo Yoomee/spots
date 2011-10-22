@@ -16,7 +16,7 @@
     });
 -no_content_row
 -hidden_title "Spots of Time"
-#headline.row
+.row.headline
   .twelvecol
     We make it easy for you to do fun, inspiring &amp; bite-size activities to benefit people in your community.
 #feature_panel_row.row
@@ -45,11 +45,15 @@
           =photo_for(@blog_post, '626x200')
       -else
         =image_tag("feature-panel.jpg", "data-slide-num" => 3)
-.row
-  .twelvecol.last
+.row.headline.find
+  .twelvecol
+    Find an activity
+  .sixcol.info
+    Find something you'd like to do in our selection below and click through to book. 
+  .sixcol.last.activity
     -if !Activity.anytime.empty?
       #activity_filter
-        %span Filter activities by
+        %span Filter activities by:
         =link_to_function("All", "ActivityFilter.filter('all')", :id => "activity_filter_all", :class => "active")
         =link_to_function("Volunteering", "ActivityFilter.filter('volunteering')", :id => "activity_filter_volunteering")
         =link_to_function("Anytime anywhere", "ActivityFilter.filter('anytime')", :id => "activity_filter_anytime")

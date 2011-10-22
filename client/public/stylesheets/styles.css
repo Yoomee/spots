@@ -6580,10 +6580,21 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 }
 
 /*========== Feature panel ==========*/
-#headline {
+.row.headline {
   margin-bottom: 30px;
   font-size: 32px;
   line-height: 42px;
+}
+.row.find {
+  margin-bottom: 30px;
+}
+.row.find .info {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 10px 0;
+}
+.row.find .activity {
+  float: right;
 }
 
 #feature_panel_row {
