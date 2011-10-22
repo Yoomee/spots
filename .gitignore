@@ -18,3 +18,5 @@ spots.sql
 /vendor/plugins/tramlines_locations
 /vendor/plugins/tramlines_walls
 .rvmrc
+Gemfile
+Gemfile.lock
