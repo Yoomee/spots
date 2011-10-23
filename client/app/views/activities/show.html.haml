@@ -13,7 +13,8 @@
       %br.clear
       %br.clear
     =read_more_truncate(@activity.description, :length => 1200)
-    =render_share_link 'Share with a friend'
+    .share_box
+      =render_share_link 'Share this activity with others'
     -if @organisation
       .subrow
         %hr

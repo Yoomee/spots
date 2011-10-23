@@ -6372,6 +6372,13 @@ form.time_slot li.commit, form.time_slot .edit_link {
 
 /*========== Activity show ==========*/
 
+.share_box a {
+  display: inline-block;
+  padding: 10px 10px 10px 163px;
+  background-image: url('/images/social_media_links.png');
+  background-repeat: no-repeat;
+}
+
 #activity_search_row, #activity_search_results {
   margin-top: 20px;
 }
