@@ -6512,7 +6512,7 @@ p.no_results {
 	display: block;
 }
 #organisation_signup_button {
-  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .organisation_description p {
 	float: left;
@@ -6524,7 +6524,7 @@ a.organisation_signup_link {
   color: black;
   font-size: 18px;
   padding: 10px 20px;
-  float: right;
+  float: left;
  	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
