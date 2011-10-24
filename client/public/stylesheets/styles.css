@@ -1368,6 +1368,14 @@ a.social_media_link {
 	
 }
 
+a.twitter_link {
+	background-position: top;
+	margin-left: 10px;
+}
+a.mailchimp_link {
+	background-position: top left;
+	margin-left: 10px;
+}
 a.facebook_link {
 	background-position: top right;
 	margin-left: 10px;
@@ -6364,6 +6372,13 @@ form.time_slot li.commit, form.time_slot .edit_link {
 
 /*========== Activity show ==========*/
 
+.share_box a {
+  display: inline-block;
+  padding: 10px 10px 10px 163px;
+  background-image: url('/images/social_media_links.png');
+  background-repeat: no-repeat;
+}
+
 #activity_search_row, #activity_search_results {
   margin-top: 20px;
 }
@@ -6475,7 +6490,7 @@ table.time_slots td.link {width:20%;}
 }
 div.not_found_anything {
 	margin: 0;
-	width: 400px;
+	width: 95%;
 }
 .not_found_anything a.bttn {
 	display: inline;
@@ -6497,7 +6512,7 @@ p.no_results {
 	display: block;
 }
 #organisation_signup_button {
-  margin-top: 40px;
+  margin-bottom: 40px;
 }
 .organisation_description p {
 	float: left;
@@ -6509,7 +6524,7 @@ a.organisation_signup_link {
   color: black;
   font-size: 18px;
   padding: 10px 20px;
-  float: right;
+  float: left;
  	-moz-border-radius:3px;
 	-webkit-border-radius:3px;
 	border-radius:3px;
@@ -6580,6 +6595,23 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 }
 
 /*========== Feature panel ==========*/
+.row.headline {
+  margin-bottom: 30px;
+  font-size: 32px;
+  line-height: 42px;
+}
+.row.find {
+  margin-bottom: 30px;
+}
+.row.find .info {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 10px 0;
+}
+.row.find .activity {
+  float: right;
+}
+
 #feature_panel_row {
   margin-bottom: 30px;
   
