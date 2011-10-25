@@ -33,7 +33,7 @@
 -if @organisation.nil? && @activity.activity_type=="volunteering"
   #activity_search_row.row
     .fivecol
-      %h4 Places to do this activity
+      %h2 Places to do this activity
       -#postcode_search
         =text_field_tag :postcode, params[:postcode], :class => "labelify fl", :title => "e.g. SW1 2BJ", :onkeypress => "if (event.keyCode==13) {ActivityMap.findPostCode('#{@activity.id}');} else {return true;}"
         =link_to_function("Go", "ActivityMap.findPostCode('#{@activity.id}')", :class => "bttn_l")
