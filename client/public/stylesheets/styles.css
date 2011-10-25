@@ -6372,6 +6372,11 @@ form.time_slot li.commit, form.time_slot .edit_link {
 
 /*========== Activity show ==========*/
 
+.section_organisations h1#page_title {
+  display: inline-block;
+  float: left;
+}
+
 .share_box a {
   display: inline-block;
   padding: 10px 163px 10px 0px;
@@ -6513,7 +6518,7 @@ p.no_results {
 	display: block;
 }
 #organisation_signup_button {
-  margin-bottom: 40px;
+  float: right;
 }
 .organisation_description p {
 	float: left;

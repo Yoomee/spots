@@ -1,8 +1,11 @@
--@page_title = @section.name
+-#-@page_title = @section.name
 -no_content_row
--if @section.slug_is?(:organisations)
-  #organisation_signup_button.row
-    .twelvecol
+.row
+  %h1#page_title
+    Organisations
+
+  -if @section.slug_is?(:organisations)
+    #organisation_signup_button
       -if logged_in?
         -text = logged_in_member.organisations.empty? ? "Signup as an organisation" : "Add another organisation"
         =link_to("#{text} &rarr;", new_organisation_path, :class => "organisation_signup_link")
