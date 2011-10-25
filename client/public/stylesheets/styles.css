@@ -2511,9 +2511,10 @@ div.stories_filter li {
 	position: relative;
 }
 
+#footer .logos img {
+  margin-right: 2em;
+}
 #footer_sitemap {
-
-
 	margin-top: 10px;
 	margin-bottom: 0px;
 	padding-top: 10px;
