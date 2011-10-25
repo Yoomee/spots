@@ -6372,9 +6372,13 @@ form.time_slot li.commit, form.time_slot .edit_link {
 
 /*========== Activity show ==========*/
 
+.section_organisations .row.header {
+  margin-bottom: 1em;
+}
 .section_organisations h1#page_title {
   display: inline-block;
   float: left;
+  line-height: 40px;
 }
 
 .share_box a {
