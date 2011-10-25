@@ -6375,7 +6375,7 @@ form.time_slot li.commit, form.time_slot .edit_link {
 .section_organisations .row.header {
   margin-bottom: 1em;
 }
-.section_organisations h1#page_title {
+.section_organisations .header h1#page_title {
   display: inline-block;
   float: left;
   line-height: 40px;
