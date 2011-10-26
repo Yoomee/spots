@@ -2511,9 +2511,10 @@ div.stories_filter li {
 	position: relative;
 }
 
+#footer .logos img {
+  margin-right: 2em;
+}
 #footer_sitemap {
-
-
 	margin-top: 10px;
 	margin-bottom: 0px;
 	padding-top: 10px;
@@ -2569,7 +2570,7 @@ div#footer_links {
 	width:60px;
 	float: right;
 	position: absolute;
-	top: 20px;
+	top: 82px;
 	right: 0;
 }
 #siteby:hover {
@@ -6372,11 +6373,20 @@ form.time_slot li.commit, form.time_slot .edit_link {
 
 /*========== Activity show ==========*/
 
+.section_organisations .row.header {
+}
+.section_organisations .header h1#page_title {
+  display: inline-block;
+  float: left;
+  line-height: 40px;
+}
+
 .share_box a {
   display: inline-block;
-  padding: 10px 10px 10px 163px;
+  padding: 10px 163px 10px 0px;
   background-image: url('/images/social_media_links.png');
   background-repeat: no-repeat;
+  background-position: center right;
 }
 
 #activity_search_row, #activity_search_results {
@@ -6512,7 +6522,8 @@ p.no_results {
 	display: block;
 }
 #organisation_signup_button {
-  margin-bottom: 40px;
+  float: right;
+  margin-bottom: 1em;
 }
 .organisation_description p {
 	float: left;
