@@ -1,7 +1,13 @@
 #nav
   %ul
     =li_with_active(current_page?(home_path), link_to("Home", home_path), :id => "home_nav")
-    =li_with_active_slug(:about_us, link_to_slug('About us', :about_us), :id => "about_us_nav")
-    =li_with_active_slug(:our_work, link_to_slug('What we do', :our_work), :id => "our_work_nav")
-    =li_with_active(controller_name =~ /blog/, link_to('Spotted', blog_path(Blog.first)), :id => 'blog_nav')
-    =li_with_active_slug(:contact_us, link_to_slug('Contact us', :contact_us), :id => "contact_us_nav")
+    -nav_items.each do |nav_item|
+      -if nav_item.is_a?(Section)
+        =li_with_active(nav_item == current_section, link_to_self(nav_item))
+      -else
+        =li_with_active(in_nav_item?(nav_item), link_to(nav_item_heading(nav_item), nav_item_path(nav_item)))
+    -if false
+      =li_with_active_slug(:about_us, link_to_slug('About us', :about_us), :id => "about_us_nav")
+      =li_with_active_slug(:our_work, link_to_slug('What we do', :our_work), :id => "our_work_nav")
+      =li_with_active(controller_name =~ /blog/, link_to('Spotted', blog_path(Blog.first)), :id => 'blog_nav')
+      =li_with_active_slug(:contact_us, link_to_slug('Contact us', :contact_us), :id => "contact_us_nav")
