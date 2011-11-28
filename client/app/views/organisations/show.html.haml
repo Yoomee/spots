@@ -36,6 +36,10 @@
           %strong Email
           %br
           =link_to @organisation.email, "mailto:#{@organisation.email}"
+        %p
+          %strong Member type
+          %br
+          =member_type(@organisation.member)
     .subrow
       %hr
       %h4 What can you do to help out?
