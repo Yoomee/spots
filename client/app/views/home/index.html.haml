@@ -4,7 +4,7 @@
       $('.feature_panel_right').cycle({
         fx: 'scrollHorz',
         speed: 'slow',
-        timeout: 8000,
+        timeout: 0,
         easing: 'easeOutQuint',
         pager: '#feature_panel_nav',
         before: function(currSlideElement, nextSlideElement, options, forwardFlag) {
@@ -25,26 +25,27 @@
       #feature_panel_info_1.feature_panel_info
         %h3 Got a moment?      
         %p We’ve created a range of fun, bite-size activities that you can do in your local community.  It's easy to get involved and there's no long term commitment.
-      #feature_panel_info_2.feature_panel_info
-        %h3 Help us grow
-        %p Suggest 'Spots of Time' to organisations in your area and make it easy for people to give their time to benefit the community.
+      -if false
+        #feature_panel_info_2.feature_panel_info
+          %h3 Help us grow
+          %p Suggest 'Spots of Time' to organisations in your area and make it easy for people to give their time to benefit the community.
       -if @blog_post
-        #feature_panel_info_3.feature_panel_info
+        #feature_panel_info_2.feature_panel_info
           %h3=link_to_self @blog_post
           %p=strip_tags @blog_post.text.word_truncate(150)
       -else
-        #feature_panel_info_3.feature_panel_info
+        #feature_panel_info_2.feature_panel_info
           %h3 Anytime anywhere
           Start changing your corner of the world with our simple anytime anywhere ideas that will bring a smile to you and those around you.
       #feature_panel_nav
     .feature_panel_right
       =image_tag("how-it-works-user.jpg", "data-slide-num" => 1)
-      =image_tag("how-it-works-org.jpg", "data-slide-num" => 2)
+      =#image_tag("how-it-works-org.jpg", "data-slide-num" => 2)
       -if @blog_post.try(:has_photo?)
-        #feature_panel_blog_photo_wrapper{'data-slide-num' => 3}
+        #feature_panel_blog_photo_wrapper{'data-slide-num' => 2}
           =photo_for(@blog_post, '626x200')
       -else
-        =image_tag("feature-panel.jpg", "data-slide-num" => 3)
+        =image_tag("feature-panel.jpg", "data-slide-num" => 2)
 .row.headline.find
   .twelvecol
     Find an activity
