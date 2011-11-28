@@ -27,9 +27,9 @@ module NavHelper
   end
   
   def nav_items
-    returning out = Section.not_hidden do
-      idx = [out.size, 2].min * -1
-      out.insert(idx, :blog)
+    returning @nav_items ||= Section.root.not_hidden.dup do
+      idx = [@nav_items.size, 2].min * -1
+      @nav_items.insert(idx, :blog)
     end
   end
   
