@@ -2,6 +2,6 @@
   %ul
     =li_with_active(current_page?(home_path), link_to("Home", home_path), :id => "home_nav")
     =li_with_active_slug(:about_us, link_to_slug('About us', :about_us), :id => "about_us_nav")
-    =li_with_active_slug(:our_work, link_to_slug('Our work', :our_work), :id => "our_work_nav")
-    =li_with_active(controller_name =~ /blog/, link_to('Blog', blog_path(Blog.first)), :id => 'blog_nav')
+    =li_with_active_slug(:our_work, link_to_slug('What we do', :our_work), :id => "our_work_nav")
+    =li_with_active(controller_name =~ /blog/, link_to('Spotted', blog_path(Blog.first)), :id => 'blog_nav')
     =li_with_active_slug(:contact_us, link_to_slug('Contact us', :contact_us), :id => "contact_us_nav")
