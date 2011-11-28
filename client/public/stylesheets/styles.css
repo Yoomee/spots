@@ -1360,10 +1360,10 @@ a.social_media_link {
 	bottom: 5px;
 	right: 0;
 	font-size: 16px;
-	width: 220px;
-	height: 48px;
+	width: 231px;
+	height: 41px;
 	display: block;
-	background: url(/images/organisation_signup_2.png) 0 -4px no-repeat;
+	background: url(/images/organisations_click_here.png) 0 0 no-repeat;
 	text-indent: -9000em;
 	
 }
