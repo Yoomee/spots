@@ -24,6 +24,18 @@
         =link_to 'This organisation is asleep. Click here to re-activate them and make their activities visible on the site.', wake_organisation_path(@organisation)
     .organisation_description    
       =simple_format(@organisation.description)
+    -if admin_logged_in?
+      .subrow
+        %hr
+        %h4 Contact details
+        %p 
+          %strong Lead contact
+          %br
+          =link_to_self @organisation.member
+        %p
+          %strong Email
+          %br
+          =link_to @organisation.email, "mailto:#{@organisation.email}"
     .subrow
       %hr
       %h4 What can you do to help out?
