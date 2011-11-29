@@ -34,6 +34,7 @@ class OrganisationTest < ActiveSupport::TestCase
   should have_db_column(:member_id).of_type(:integer)
   should have_db_column(:name).of_type(:string)
   should have_db_column(:num_weeks_notice).of_type(:integer)
+  should have_db_column(:phone).of_type(:string)
   should have_db_column(:require_crb).of_type(:boolean)
   should have_db_column(:terms).of_type(:text)
   should have_db_column(:volunteers_insured).of_type(:boolean)
@@ -44,5 +45,6 @@ class OrganisationTest < ActiveSupport::TestCase
   
   should validate_presence_of(:member)
   should validate_presence_of(:name)
+  should validate_presence_of(:phone)
   
 end

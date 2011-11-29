@@ -37,7 +37,7 @@ class Organisation < ActiveRecord::Base
 
   has_location
 
-  validates_presence_of :name, :member, :location, :group_type
+  validates_presence_of :name, :member, :location, :group_type, :phone
   
   accepts_nested_attributes_for :member
   

@@ -12,6 +12,8 @@
       =location_form.input :postcode, :label => false, :input_html => {:class => "labelify", :title => "Postcode"}
       =location_form.input :lat, :as => :hidden, :input_html => {:id => "organisation_lat"}
       =location_form.input :lng, :as => :hidden, :input_html => {:id => "organisation_lng"}
+  -form.inputs do
+    =form.input :phone, :label => 'Phone number'
   #organisation_map
     %label
       You can drag the marker below to specify the location of your organisation.

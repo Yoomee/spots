@@ -933,7 +933,7 @@ html body form {
      border-radius:8px;
 }
 #dash_emails li a {
-  background:none;
+  width:104px;
 }
 
 .dash_col h2 {
