@@ -1,0 +1,28 @@
+-content_for(:head) do
+  =javascript_include_tag :ckeditor
+-semantic_form_for @mailing do |form|
+  -form.inputs do
+    =form.input :send_emails_after_save, :as => :hidden, :value => false
+    =form.input :name, :as => :hidden
+    =form.input :from
+    =form.input :subject
+    -if @mailing.name == 'activity_passed_volunteer'
+      %li
+        You can use the following placeholders, which will be replaced when the email is sent:
+        %br
+        %br
+        {volunteer_full_name}
+        %br
+        {volunteer_forename}
+        %br
+        {activity_name}
+        %br
+        {activity_time}
+        %br
+        {activity_date}
+          
+    %li
+    =form.input :html_body, :as => :ck_text, :label => "Body"
+  -form.buttons do
+    =form.commit_button "Save"
+    =#form.commit_button "Send", :button_html => {:onclick => "$('#mailing_send_emails_after_save').val('true');return true"}

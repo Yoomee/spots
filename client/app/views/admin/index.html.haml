@@ -70,7 +70,12 @@
         %li
           %a{ :href => "/enquiries" }
             List enquiries
-        
+    #dash_emails.dash_item
+      .dash_icon
+      %h3
+        Emails
+      %ul
+        %li=link_to("Activity passed email (volunteer)", edit_mailing_path(Mailing.find_by_name('activity_passed_volunteer')))        
   #dash_membership.dash_col.fourcol.last
     %h2
       Membership

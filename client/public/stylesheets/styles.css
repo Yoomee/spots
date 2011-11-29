@@ -932,7 +932,9 @@ html body form {
      -webkit-border-radius:8px;
      border-radius:8px;
 }
-
+#dash_emails li a {
+  background:none;
+}
 
 .dash_col h2 {
 	float: left;
@@ -6767,3 +6769,4 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 #activity_documents_header {
   margin-top:30px;
 }
+

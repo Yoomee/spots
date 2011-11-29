@@ -22,7 +22,10 @@
 # loan or create derivative works based on the whole or any part
 # of the Works supplied by us under this agreement without prior
 # written agreement with Yoomee Digital Ltd.
+require 'forwardable'
 class TimeSlotBooking < ActiveRecord::Base
+
+  extend Forwardable
   
   belongs_to :member
   belongs_to :time_slot
@@ -43,8 +46,12 @@ class TimeSlotBooking < ActiveRecord::Base
   delegate :activity, :activity_name, :organisation, :note, :to => :time_slot, :allow_nil => true
   delegate :email, :location, :member, :name, :to => :organisation, :prefix => true
   delegate :email, :to => :member, :prefix => true
+  def_delegator :member, :full_name, :member_name
+  def_delegator :member, :forename, :member_forename
 
   named_scope :for_activity, lambda{|activity| {:joins => "INNER JOIN time_slots AS bts ON time_slot_bookings.time_slot_id=bts.id", :conditions => ["bts.activity_id=?", activity.id]}}
+  named_scope :in_past_day, lambda {{:conditions => ["time_slot_bookings.starts_at < ? AND time_slot_bookings.starts_at >= ?", Time.zone.now, 24.hours.ago]}}
+  named_scope :with_activity, :joins => "INNER JOIN time_slots ON time_slots.id=time_slot_bookings.time_slot_id INNER JOIN activities ON activities.id=time_slots.activity_id"
   
   def in_future?
     starts_at > Time.now

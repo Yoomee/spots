@@ -14,4 +14,19 @@ namespace :spots do
     end
   end
   
+  desc "Send daily emails of passed activities"
+  task :daily_passed_activities => :environment do
+    TimeSlotBooking.with_activity.in_past_day.all.each do |booking|
+      Notifier.deliver_activity_passed_volunteer(booking)
+    end
+  end
+  
+  desc "Send daily emails"
+  task :daily => [:daily_volunteer_updates, :daily_passed_activities] do
+  end
+  
+  desc "Send weekly emails"
+  task :weekly => :weekly_volunteer_updates do
+  end  
+  
 end
