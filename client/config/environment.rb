@@ -29,6 +29,7 @@ class ClientEnvironment
     def setup(config)
       config.gem 'searchlogic'
       config.gem 'facebooker2'
+      config.gem 'validatable'
     end
     
   end

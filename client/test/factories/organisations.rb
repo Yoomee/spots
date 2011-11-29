@@ -27,4 +27,5 @@ Factory.define(:organisation) do |f|
   f.association :location, :factory => :location  
   f.name "An Organisation"
   f.group_type Organisation::GROUP_TYPES.first
+  f.phone "0114-228728"
 end

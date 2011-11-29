@@ -18,6 +18,7 @@ namespace :spots do
   task :daily_passed_activities => :environment do
     TimeSlotBooking.with_activity.in_past_day.all.each do |booking|
       Notifier.deliver_activity_passed_volunteer(booking)
+      Notifier.deliver_activity_passed_organisation(booking)
     end
   end
   

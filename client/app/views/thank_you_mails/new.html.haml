@@ -1,0 +1,7 @@
+-title 'Send thank you'
+-semantic_form_for([time_slot_booking, thank_you_mail], :url => time_slot_booking_thank_you_mail_path, :html => {:method => :post}) do |form|
+  -form.inputs do
+    =form.input :subject
+    =form.input :body, :as => :text
+  -form.buttons do
+    =form.commit_button 'Send'

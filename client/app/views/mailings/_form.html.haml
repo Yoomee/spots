@@ -6,7 +6,7 @@
     =form.input :name, :as => :hidden
     =form.input :from
     =form.input :subject
-    -if @mailing.name == 'activity_passed_volunteer'
+    -if @mailing.name.in?(%w{activity_passed_volunteer activity_passed_organisation})
       %li
         You can use the following placeholders, which will be replaced when the email is sent:
         %br
@@ -20,6 +20,13 @@
         {activity_time}
         %br
         {activity_date}
+        %br
+        {organisation_name}
+        -if @mailing.name == 'activity_passed_organisation'
+          %br
+          {confirm_placement_url}
+          %br
+          {thank_you_url}
           
     %li
     =form.input :html_body, :as => :ck_text, :label => "Body"

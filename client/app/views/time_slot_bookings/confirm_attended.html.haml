@@ -1,0 +1,14 @@
+-title "Thank you"
+%p
+  Thank you for registering
+  =link_to "#{@time_slot_booking.member}'s", @time_slot_booking.member
+  attendance at
+  ="#{@time_slot_booking}."
+%p
+  Click
+  =link_to 'here', [:new, @time_slot_booking, :thank_you_mail]
+  to send a personalised thank you to
+  ="#{@time_slot_booking.member_forename},"
+  or
+  =link_to 'here', root_path
+  to return to the homepage.

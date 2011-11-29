@@ -31,7 +31,7 @@ class TimeSlotsController < ApplicationController
     organisation.owned_by?(member) || (member && member.is_admin?)
   end
   
-  custom_permission [:update, :destroy] do |url_options, member|
+  custom_permission [:destroy, :update] do |url_options, member|
     time_slot = TimeSlot.find(url_options[:id])
     time_slot.organisation.owned_by?(member) || (member && member.is_admin?)
   end

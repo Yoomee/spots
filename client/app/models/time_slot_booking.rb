@@ -57,6 +57,10 @@ class TimeSlotBooking < ActiveRecord::Base
     starts_at > Time.now
   end
   
+  def in_past?
+    starts_at < Time.now
+  end
+  
   def starts_at_time_string
     return nil if starts_at.nil? && time_slot.nil?
     @starts_at_time_string || (starts_at || time_slot.starts_at).strftime("%H:%M")
@@ -64,6 +68,14 @@ class TimeSlotBooking < ActiveRecord::Base
   
   def starts_at_neat_string
     starts_at.strftime("%d %b at %H:%M")
+  end
+  
+  def thank_you_mail
+    ThankYouMail.new(:time_slot_booking => self)
+  end
+  
+  def to_s
+    "#{time_slot} on #{starts_at.strftime("%A %b %d at %H:%M")}"
   end
   
   private

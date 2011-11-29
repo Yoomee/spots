@@ -35,7 +35,9 @@ ActionController::Routing::Routes.draw do |map|
     organisation.resources :activities, :only => [:show], :member => {:time_slots => :get}
   end
   map.resources :time_slots, :except => [:index]
-  map.resources :time_slot_bookings, :only => [:create, :update, :show], :member => {:thank_you => :get, :confirm => :get, :cancel => :get}
+  map.resources :time_slot_bookings, :only => [:create, :update, :show], :member => {:thank_you => :get, :confirm => :get, :confirm_attended => :get, :cancel => :get} do |time_slot_bookings|
+    time_slot_bookings.resource :thank_you_mail
+  end
   map.resources :members, :only => [], :member => {:agree_to_big_print => :put, :edit_bio => :get, :update_bio => :put}
   map.big_print "/big_print", :controller => "members", :action => "big_print"
   

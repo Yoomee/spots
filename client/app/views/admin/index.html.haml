@@ -77,6 +77,8 @@
       %ul
         -if Mailing.activity_passed_volunteer
           %li=link_to("Activity passed (volunteer)", edit_mailing_path(Mailing.activity_passed_volunteer))        
+        -if Mailing.activity_passed_organisation
+          %li=link_to("Activity passed (organisation)", edit_mailing_path(Mailing.activity_passed_organisation))
   #dash_membership.dash_col.fourcol.last
     %h2
       Membership

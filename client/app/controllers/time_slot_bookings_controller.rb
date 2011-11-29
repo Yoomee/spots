@@ -32,7 +32,7 @@ class TimeSlotBookingsController < ApplicationController
     organisation.owned_by?(member) || (member && member.is_admin?)
   end
   
-  custom_permission :update, :cancel, :confirm do |url_options, member|
+  custom_permission :update, :cancel, :confirm, :confirm_attended, :organisation_thank_you do |url_options, member|
     time_slot_booking = TimeSlotBooking.find(url_options[:id])
     time_slot_booking.organisation.owned_by?(member) || (member && member.is_admin?)
   end
@@ -47,6 +47,11 @@ class TimeSlotBookingsController < ApplicationController
     @time_slot_booking = TimeSlotBooking.find(params[:id])
     @time_slot_booking.confirmed = true
     render :layout => false    
+  end
+  
+  def confirm_attended
+    @time_slot_booking = TimeSlotBooking.find(params[:id])
+    @time_slot_booking.update_attribute(:attended, true)
   end
   
   def create

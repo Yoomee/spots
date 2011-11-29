@@ -26,6 +26,15 @@ Notifier.class_eval do
   
   helper :locations
 
+  def activity_passed_organisation(time_slot_booking)
+    recipients time_slot_booking.organisation
+    mailing = Mailing.activity_passed_organisation
+    from mailing.from
+    subject process_substitutions!(mailing.subject.dup, time_slot_booking)
+    @body = process_substitutions!(mailing.html_body.dup, time_slot_booking)
+    content_type 'text/html'
+  end
+
   def activity_passed_volunteer(time_slot_booking)
     recipients time_slot_booking.member_email
     mailing = Mailing.activity_passed_volunteer
@@ -34,7 +43,7 @@ Notifier.class_eval do
     @body = process_substitutions!(mailing.html_body.dup, time_slot_booking)
     content_type 'text/html'
   end
-
+  
   def cancel_time_slot_booking(time_slot_booking)
     recipients time_slot_booking.member_email
     from APP_CONFIG['site_email']
@@ -65,6 +74,14 @@ Notifier.class_eval do
     content_type 'multipart/alternative'
     part :content_type => 'text/plain', :body => render_message("daily_volunteer_list.text.plain", {})
     part :content_type => 'text/html', :body => render_message('daily_volunteer_list.text.html', {})
+  end
+
+  def email(email)
+    recipients email.recipients
+    from email.from
+    subject email.subject
+    @body = email.body
+    content_type 'text/plain'
   end
 
   def organisation_signup_for_admin(organisation)
@@ -114,6 +131,9 @@ Notifier.class_eval do
     text.gsub!(/\{activity_name\}/, time_slot_booking.activity_name)
     text.gsub!(/\{activity_time\}/, time_slot_booking.starts_at.strftime("%I:%M%p").downcase)
     text.gsub!(/\{activity_date\}/, time_slot_booking.starts_at.strftime("%d %B %Y"))
+    text.gsub!(/\{organisation_name\}/, time_slot_booking.organisation_name)
+    text.gsub!(/\{confirm_placement_url\}/, "#{APP_CONFIG[:site_url]}/time_slot_bookings/#{time_slot_booking.id}/confirm_attended")
+    text.gsub!(/\{thank_you_url\}/, "#{APP_CONFIG[:site_url]}/time_slot_bookings/#{time_slot_booking.id}/organisation_thank_you")
     text
   end
     
