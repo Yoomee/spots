@@ -3,16 +3,23 @@
     %th Who
     %th What
     %th When
+    -if time_slot_bookings.any?(&:in_past?)
+      %th Attended?
     %th Options
   -time_slot_bookings.each do |booking|
     %tr
       %td=link_to_self(booking.member)
       %td=link_to(booking.activity, organisation_activity_path(booking.organisation, booking.activity))
       %td=booking.starts_at.strftime("%A %d %B %H:%M")
+      -if time_slot_bookings.any?(&:in_past?)
+        %td
+          ="Yes" if booking.attended?
       %td
         -separate_links do
-          -if !booking.confirmed?
+          -if !booking.confirmed? && booking.in_future?
             =link_to_box("Confirm", confirm_time_slot_booking_path(booking))
+          -if !booking.attended? && booking.in_past?
+            =link_to("Confirm attended", [:confirm_attended, booking])
           =link_to_box("Remove", cancel_time_slot_booking_path(booking))
         |
         =mail_to(booking.member_email, "Send email")

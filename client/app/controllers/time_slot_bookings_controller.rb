@@ -27,6 +27,8 @@ class TimeSlotBookingsController < ApplicationController
   member_only :create
   owner_only :thank_you
 
+  after_filter :set_waypoint, :only => %w{confirm_attended index list show}
+
   custom_permission :index, :in_past do |url_options, member|
     organisation = Organisation.find(url_options[:organisation_id])
     organisation.owned_by?(member) || (member && member.is_admin?)
