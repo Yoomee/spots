@@ -3,6 +3,7 @@
     %th Who
     %th What
     %th When
+    %th Notes
     -if time_slot_bookings.any?(&:in_past?)
       %th Attended?
     %th Options
@@ -11,6 +12,7 @@
       %td=link_to_self(booking.member)
       %td=link_to(booking.activity, organisation_activity_path(booking.organisation, booking.activity))
       %td=booking.starts_at.strftime("%A %d %B %H:%M")
+      %td=booking.notes
       -if time_slot_bookings.any?(&:in_past?)
         %td
           ="Yes" if booking.attended?
@@ -23,3 +25,6 @@
           =link_to_box("Remove", cancel_time_slot_booking_path(booking))
         |
         =mail_to(booking.member_email, "Send email")
+        -if booking.in_past?
+          |
+          =link_to("Send thank you", [:new, booking, :thank_you_mail])

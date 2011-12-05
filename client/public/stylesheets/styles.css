@@ -6770,3 +6770,7 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   margin-top:30px;
 }
 
+
+#time_slot_booking_notes_input label {
+  font-weight:normal;
+}

@@ -28,6 +28,7 @@ class TimeSlotBookingTest < ActiveSupport::TestCase
   should have_db_column(:member_id)
   should have_db_column(:time_slot_id)
   should have_db_column(:starts_at)
+  should have_db_column(:notes).of_type(:text)
   should have_db_column(:attended).of_type(:boolean).with_options(:default => false)
   should have_timestamps
   
