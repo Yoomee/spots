@@ -68,6 +68,7 @@ class OrganisationsController < ApplicationController
         redirect_to organisation_time_slots_path(@organisation, :signup => true)
       end
     else
+      puts @organisation.errors.full_messages.inspect
       render :action => logged_in? ? 'new' : 'signup'
     end
   end

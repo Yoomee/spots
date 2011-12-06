@@ -12,7 +12,7 @@
           =member_form.input :forename, :label => false, :input_html => {:class => "labelify", :title => "First name"}, :wrapper_html => {:class => "organisation_member_forename"}
           =member_form.input :surname, :label => false, :input_html => {:class => "labelify", :title => "Last name"}, :wrapper_html => {:class => "organisation_member_surname"}
           =member_form.input :email, :label => "Email address <span>(where notifications of volunteers will be sent)</span>"
-          =member_form.input :phone, :label => "Phone number <span>(we’ll only contact you by phone if we have to)</span>"
+          =form.input :phone, :label => "Phone number <span>(we’ll only contact you by phone if we have to)</span>"
           =member_form.input :password, :label => "Choose a password <span>(so you can login)</span>"
           =member_form.input :dont_generate_password, :as => :hidden, :value => true
       -form.semantic_fields_for(:location) do |location_form|
