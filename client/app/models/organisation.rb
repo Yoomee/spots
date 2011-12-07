@@ -107,5 +107,5 @@ class Organisation < ActiveRecord::Base
   end
   
 end
-Organisation::GROUP_TYPES = ["Children up to 12", "Young people 12-19", "Older people 65+", "Carers people with learning disabilities", "People with health conditions"]
+Organisation::GROUP_TYPES = ["Children up to 12", "Young people 12-19", "Older people 65+", "Carers", "People with learning disabilities", "People with health conditions"]
 Organisation::SIZE_OPTIONS = ["0-30", "30-50", "50-100", "100+"]
