@@ -6490,6 +6490,9 @@ table.time_slots td.link {width:20%;}
 }
 
 /*========== Organisations section ==========*/
+#organisation_documents .doc, #activity_documents {
+  width:210px;
+}
 .confirm_message, .asleep_message, .not_found_anything, p.no_results {
   background: #fdb94c;
   display: block;
@@ -6769,7 +6772,18 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 #activity_documents_header {
   margin-top:30px;
 }
-
+#activity_documents {
+  float:left;
+  margin-bottom:0;
+  margin-left: 30px;
+}
+#activity_documents .doc {
+  border-bottom:none;
+  margin-bottom:0;
+}
+.controller_activities .share_box {
+  float:left;
+}
 
 #time_slot_booking_notes_input label {
   font-weight:normal;

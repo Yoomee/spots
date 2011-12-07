@@ -26,5 +26,6 @@ require File.dirname(__FILE__) + '/../../../test/test_helper'
 class DocumentTest < ActiveSupport::TestCase
   
   should belong_to(:activity)
+  should belong_to(:organisation)
   
 end

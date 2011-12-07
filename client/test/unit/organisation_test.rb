@@ -42,6 +42,7 @@ class OrganisationTest < ActiveSupport::TestCase
   
   should belong_to(:member)
   should have_many(:time_slots)
+  should have_many(:documents)
   
   should validate_presence_of(:member)
   should validate_presence_of(:name)

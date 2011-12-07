@@ -30,7 +30,7 @@ DocumentsController.class_eval do
     @document = Document.new(params[:document])
     if @document.save
       flash[:notice] = "Successfully created document."
-      redirect_to (@document.activity || documents_url)
+      redirect_to (@document.activity || @document.organisation || documents_url)
     else
       render :action => 'new'
     end
@@ -42,11 +42,11 @@ DocumentsController.class_eval do
     redirect_to (@document.activity || documents_url)
   end
   
-  def new_with_activities
-    new_without_activities
-    @document.activity_id = params[:activity_id]
+  def new_with_spots
+    new_without_spots
+    @document.attributes = {:activity_id => params[:activity_id], :organisation_id => params[:organisation_id]}
   end
-  alias_method_chain :new, :activities
+  alias_method_chain :new, :spots
 
   def update
     if @document.update_attributes(params[:document])
