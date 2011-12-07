@@ -23,8 +23,9 @@
     =render_slug(@page.slug)
 
   #page_right_col
-    #organisation_signup_button
-      =link_to("Signup as an organisation &rarr;", signup_organisation_path, :class => "organisation_signup_link")
+    -if @page.root_section == Section.slug('organisations')
+      #organisation_signup_button
+        =link_to("Signup as an organisation &rarr;", signup_organisation_path, :class => "organisation_signup_link")
     =render "pages/right_col", :page => @page
   -if @page.has_related_items?
     #related_content.row

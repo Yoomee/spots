@@ -36,6 +36,7 @@ class Organisation < ActiveRecord::Base
   delegate :email, :to => :member
 
   has_location
+  has_permalink
 
   validates_presence_of :name, :member, :location, :group_type, :phone
   
@@ -88,7 +89,11 @@ class Organisation < ActiveRecord::Base
   
   def time_slots_for_activity(activity)
     time_slots.activity_id_is(activity.id)
-  end    
+  end
+  
+  def to_s
+    name
+  end
   
   def validate
     if member && member.phone.blank?
