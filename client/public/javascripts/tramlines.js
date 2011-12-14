@@ -178,7 +178,7 @@ var FBLogin = {
           return true;
         }
       },
-      {perms:'email'}
+      {scope:'email'}
     );
     return false;
   }

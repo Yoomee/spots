@@ -43,7 +43,7 @@ class TimeSlotBooking < ActiveRecord::Base
   
   formatted_date_accessor :starts_at
   
-  delegate :activity, :activity_name, :organisation, :note, :to => :time_slot, :allow_nil => true
+  delegate :activity, :activity_id, :activity_name, :organisation, :note, :to => :time_slot, :allow_nil => true
   delegate :email, :location, :member, :name, :to => :organisation, :prefix => true
   delegate :email, :to => :member, :prefix => true
   def_delegator :member, :full_name, :member_name

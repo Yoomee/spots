@@ -6788,3 +6788,28 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 #time_slot_booking_notes_input label {
   font-weight:normal;
 }
+
+/*========== Thank yous ==========*/
+#thank_you_actions .share_box a {
+  height:39px;
+  background-position: 0 0;
+}
+#thank_you_actions .ampersand {
+  float:left;
+  font-weight:bold;
+  width:10px;
+  margin: 0 30px;
+  line-height: 100px;
+}
+#thank_you_actions .threecol {
+  margin-right:0;
+}
+#thank_you_actions #add_profile_details {
+  font-size: 16px;
+  width: 231px;
+  height: 41px;
+  display: block;
+  background: url(/images/organisations_click_here.png) 0 0 no-repeat;
+  text-indent: -9000em;
+  margin-bottom:25px;
+}

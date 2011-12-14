@@ -18,12 +18,29 @@
   .twelvecol
     %h1 Thank you!
     %p
-      ="Thanks for volunteering for #{@time_slot_booking.organisation_name}."
+      Thanks for volunteering for a Spot of Time at
+      =@time_slot_booking.organisation
+      \- You'll receive an email from us and then in a couple of days a confirmation from your chosen organisation but please also make a note in your diary.
     %p
       %strong=@time_slot_booking.activity_name
       ="on #{@time_slot_booking.starts_at_neat_string}."
     -if !@time_slot_booking.time_slot.note.blank?
       %p.time_slot_note=@time_slot_booking.time_slot.note
+.row#thank_you_actions
+  .threecol
+    %p
+      =link_to 'Add profile details', logged_in_member, :id => 'add_profile_details'
+    %p
+      =link_to 'Add some details to your profile so organisations can see a bit more about you'
+    
+  .ampersand
+    &amp;
+  .threecol
+    .share_box
+      =link_to '', :controller => 'share', :action => 'new', :model_name => 'activity', :id => @time_slot_booking.activity_id
+    %p=link_to "Invite friends to join you", :controller => "share", :action => "new", :model_name => 'activity', :id => @time_slot_booking.activity_id
+-if false    
+  .row
     %p
       =link_to_function("Share this on Facebook", "FBSharer.share()", :class => "facebook_share_link")
       |
