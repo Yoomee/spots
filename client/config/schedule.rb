@@ -4,11 +4,11 @@ every 1.day, :at => '3pm' do
 end
 
 every 1.day, :at => '12am' do
-  set :output, File.expand_path("#{File.dirname(__FILE__)}/../../../../shared/weekly_emails.log")
+  set :output, File.expand_path("#{File.dirname(__FILE__)}/../../../../shared/daily_emails.log")
   rake "spots:daily -t"
 end
 
 every 7.days, :at => '12am' do
-  set :output, File.expand_path("#{File.dirname(__FILE__)}/../../../../shared/sphinx_rebuilds.log")
+  set :output, File.expand_path("#{File.dirname(__FILE__)}/../../../../shared/weekly_emails.log")
   rake "spots:weekly -t"
 end
