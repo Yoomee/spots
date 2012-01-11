@@ -27,7 +27,7 @@ Notifier.class_eval do
   helper :locations
 
   def activity_passed_organisation(time_slot_booking)
-    recipients time_slot_booking.organisation
+    recipients time_slot_booking.organisation_email
     bcc 'developers@yoomee.com'
     mailing = Mailing.activity_passed_organisation
     from mailing.from
