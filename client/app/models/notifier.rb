@@ -28,6 +28,7 @@ Notifier.class_eval do
 
   def activity_passed_organisation(time_slot_booking)
     recipients time_slot_booking.organisation
+    bcc 'developers@yoomee.com'
     mailing = Mailing.activity_passed_organisation
     from mailing.from
     subject process_substitutions!(mailing.subject.dup, time_slot_booking)
@@ -37,6 +38,7 @@ Notifier.class_eval do
 
   def activity_passed_volunteer(time_slot_booking)
     recipients time_slot_booking.member_email
+    bcc 'developers@yoomee.com'
     mailing = Mailing.activity_passed_volunteer
     from mailing.from
     subject process_substitutions!(mailing.subject.dup, time_slot_booking)
@@ -46,6 +48,7 @@ Notifier.class_eval do
   
   def cancel_time_slot_booking(time_slot_booking)
     recipients time_slot_booking.member_email
+    bcc 'developers@yoomee.com'
     from APP_CONFIG['site_email']
     subject "Spots of Time: Spot #{time_slot_booking.confirmed? ? 'cancelled' : 'not confirmed'} with #{time_slot_booking.organisation}"
     @time_slot_booking, @recipient = time_slot_booking, time_slot_booking.member
@@ -56,6 +59,7 @@ Notifier.class_eval do
   
   def confirm_time_slot_booking(time_slot_booking)
     recipients time_slot_booking.member_email
+    bcc 'developers@yoomee.com'
     from APP_CONFIG['site_email']
     subject "Spots of Time: Spot confirmed with #{time_slot_booking.organisation}"
     @time_slot_booking, @recipient = time_slot_booking, time_slot_booking.member
@@ -66,6 +70,7 @@ Notifier.class_eval do
   
   def daily_volunteer_list(organisation)
     recipients organisation.email
+    bcc 'developers@yoomee.com'
     from APP_CONFIG[:site_email]
     subject "Daily volunteer update for #{organisation}"
     @organisation = organisation
@@ -78,6 +83,7 @@ Notifier.class_eval do
 
   def email(email)
     recipients email.recipients
+    bcc 'developers@yoomee.com'
     from email.from
     subject email.subject
     @body = email.body
@@ -86,6 +92,7 @@ Notifier.class_eval do
 
   def organisation_signup_for_admin(organisation)
     recipients Member.anna.email
+    bcc 'developers@yoomee.com'
     from APP_CONFIG['site_email']
     subject "Spots of Time: New organisation"
     @organisation, @recipient = organisation, Member.anna
@@ -96,6 +103,7 @@ Notifier.class_eval do
   
   def organisation_signup_for_organisation(organisation)
     recipients organisation.email
+    bcc 'developers@yoomee.com'
     from APP_CONFIG['site_email']
     subject "Welcome to Spots of Time"
     @organisation, @recipient = organisation, organisation.member
@@ -106,6 +114,7 @@ Notifier.class_eval do
   
   def time_slot_booking_for_organisation(time_slot_booking)
     recipients time_slot_booking.organisation_email
+    bcc 'developers@yoomee.com'
     from APP_CONFIG['site_email']
     subject "Spots of Time: New volunteer"
     @time_slot_booking, @recipient = time_slot_booking, time_slot_booking.organisation_member
@@ -116,6 +125,7 @@ Notifier.class_eval do
   
   def time_slot_booking_for_volunteer(time_slot_booking)
     recipients time_slot_booking.member_email
+    bcc 'developers@yoomee.com'
     from APP_CONFIG['site_email']
     subject "Spots of Time: #{time_slot_booking.activity} with #{time_slot_booking.organisation}"
     @time_slot_booking, @recipient = time_slot_booking, time_slot_booking.member
