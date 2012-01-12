@@ -1,5 +1,5 @@
 run "rm -rf #{release_path}/public/uploads"
-(2010..Time.now.year).each do |year|
+(2010..Time.now.year+5).each do |year|
   release_year_path = "#{release_path}/public/dragonfly/#{year}"
   shared_year_path = "#{shared_path}/dragonfly/#{year}"
   run "rm -rf #{release_year_path}" if File.exists?(release_year_path)
@@ -9,7 +9,7 @@ end
 run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
 
 run "mkdir -p #{release_path}/uploads"
-(2010..Time.now.year).each do |year|
+(2010..Time.now.year+5).each do |year|
   release_year_path = "#{release_path}/uploads/#{year}"
   shared_year_path = "#{shared_path}/doc_uploads/#{year}"
   run "rm -rf #{release_year_path}" if File.exists?(release_year_path)
