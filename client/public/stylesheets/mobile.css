@@ -5,12 +5,19 @@
 /* ============================= */
 
 @media handheld, only screen and (max-width: 767px) {
-
     
+  body {
+    min-width: 940px;
+  }
+  .row .onecol, .row .twocol, .row .threecol, .row .fourcol, .row .fivecol, .row .sixcol, .row .sevencol, .row .eightcol, .row .ninecol, .row .tencol, .row .elevencol, .row .twelvecol
+  {
+    width:940px;
+  }
 	#page_subnav {
   	width: 100%;
   	font-size: 19px;
 	}
+
 	body #user_links .panel {
   	position: absolute;
   	top: 0;
