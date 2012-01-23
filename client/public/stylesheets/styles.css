@@ -6435,7 +6435,7 @@ form.time_slot li.commit, form.time_slot .edit_link {
   width: 83%;
 }
 #organisation_panel .organisation_details h2 {
-  float: left;
+  display: block;
 }
 #organisation_panel .miles_away {
   color: gray;
