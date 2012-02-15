@@ -1,0 +1,7 @@
+-semantic_form_for organisation_group, :html => {:multipart => true} do |form|
+  -form.inputs do
+    =form.input :name
+    =form.input :image, :as => :image
+    =form.input :description, :input_html => {:rows => 8}
+  -form.buttons do
+    =form.commit_button "Save"

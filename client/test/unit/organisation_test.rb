@@ -33,6 +33,7 @@ class OrganisationTest < ActiveSupport::TestCase
   should have_db_column(:image_uid).of_type(:string)
   should have_db_column(:member_id).of_type(:integer)
   should have_db_column(:name).of_type(:string)
+  should have_db_column(:organisation_group_id).of_type(:integer)
   should have_db_column(:num_weeks_notice).of_type(:integer)
   should have_db_column(:phone).of_type(:string)
   should have_db_column(:require_crb).of_type(:boolean)
@@ -41,6 +42,7 @@ class OrganisationTest < ActiveSupport::TestCase
   should have_timestamps
   
   should belong_to(:member)
+  should belong_to(:organisation_group)
   should have_many(:time_slots)
   should have_many(:documents)
   

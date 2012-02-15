@@ -1,0 +1,7 @@
+-title "Organisation groups"
+%ul.lst
+  -organisation_groups.each do |organisation_group|
+    %li
+      =link_to_self(organisation_group)
+
+=options_panel([OrganisationGroup.new])

@@ -22,17 +22,41 @@
 # loan or create derivative works based on the whole or any part
 # of the Works supplied by us under this agreement without prior
 # written agreement with Yoomee Digital Ltd.
-class ClientEnvironment
+class OrganisationGroupsController < ApplicationController
+ 
+  admin_only :destroy, :edit, :update, :create, :new
+  expose(:organisation_group)
+  expose(:organisation_groups){OrganisationGroup.scoped_all}
   
-  class << self
-    
-    def setup(config)
-      config.gem 'searchlogic'
-      config.gem 'facebooker2'
-      config.gem 'validatable'
-      config.gem 'linkedin'
+  def create
+    if organisation_group.save
+      redirect_to organisation_group
+    else
+      render :action => "new"
     end
-    
   end
-    
+  
+  def destroy
+  end
+  
+  def edit
+  end
+  
+  def index
+  end
+  
+  def new
+  end
+  
+  def show
+  end
+  
+  def update
+    if organisation_group.save
+      redirect_to organisation_group
+    else
+      render :action => "edit"
+    end
+  end
+  
 end

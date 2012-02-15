@@ -35,7 +35,7 @@
       .subrow
         %hr
         %h4 Contact details
-        .threecol
+        .fourcol.overflow_hidden
           %p 
             %strong Lead contact
             %br
@@ -43,13 +43,13 @@
           %p
             %strong Email
             %br
-            =link_to @organisation.email, "mailto:#{@organisation.email}"
+            =link_to truncate(@organisation.email,:length => 28), "mailto:#{@organisation.email}"
           -if @organisation.phone.present?
             %p
               %strong Phone number
               %br
               =@organisation.phone
-        .threecol
+        .fourcol  
           -if @organisation.group_type.present?
             %p
               %strong Group type

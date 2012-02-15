@@ -1,4 +1,4 @@
--title "Organisations"
+-title @organisation_group ? "Organisations in the #{@organisation_group} group" : "Organisations"
 %ul.lst
   -@organisations.each do |organisation|
     %li
@@ -7,4 +7,9 @@
         %span.organisation_status 
           ="(#{organisation.status})"
 
-=options_panel([Organisation.new])
+-options_panel do
+  =back_link
+  -if @organisation_group
+    =link_to("New organisation in this group", new_organisation_group_organisation_path(@organisation_group))
+  -else
+    =link_to("New organisation", new_organisation_path)

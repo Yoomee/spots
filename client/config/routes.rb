@@ -29,6 +29,10 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.signup_organisation "/organisations/signup", :controller => "organisations", :action => "signup"  
   map.connect '/organisations/search_address', :controller => 'organisations', :action => 'search_address'
+  map.resources :organisation_groups do |organisation_group|
+    organisation_group.resources :activities, :only => [:show]
+    organisation_group.resources :organisations, :only => [:index, :new]
+  end
   map.resources :organisations, :member => {:wake => :get, :confirm => :get, :sleep => :get} do |organisation|
     organisation.resources :documents
     organisation.resources :time_slots, :only => [:index]

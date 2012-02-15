@@ -1,0 +1,36 @@
+-no_content_row
+-hidden_title organisation_group
+
+.row
+  .threecol
+    =image_for(organisation_group, "200x")
+    .subrow
+      %hr
+      %h4 Where?
+      =#render_address(@organisation.location) unless @organisation.location.unknown?
+      =google_map(organisation_group.organisations, :width => "100%", :height => 350, :zoom => 7, :infoboxes => false) if organisation_group.organisations.any?(&:has_lat_lng?)
+    -if false #unless @organisation.documents.empty?
+      .subrow
+        %h4#organisation_documents_header More information
+        %ul.lst#organisation_documents
+          -@organisation.documents.each do |document|
+            %li=render('documents/document', :document => document)
+  .ninecol.last
+    %h1=organisation_group
+    -if admin_logged_in?
+      =link_to("List organisations", organisation_group_organisations_path(organisation_group), :class=>"bttn")
+      =link_to("New organisation in this group", new_organisation_group_organisation_path(organisation_group), :class=>"bttn")
+    .organisation_description    
+      =simple_format(organisation_group.description)
+    .subrow
+      %hr
+      %h4 What can you do to help out?
+      .activity_grid.small_activity_grid
+        -organisation_group.activities.each do |activity|
+          -link_to(organisation_group_activity_path(organisation_group,activity), :class => "activity") do
+            =image_for(activity, "147x147#")
+            .label=activity
+    
+.row
+  .twelvecol
+    =options_panel(organisation_group)

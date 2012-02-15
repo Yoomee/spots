@@ -1,5 +1,6 @@
 -semantic_form_for(organisation, :html => {:multipart => true}) do |form|
   -form.inputs do
+    =form.input :organisation_group if admin_logged_in?
     =form.input :member, :as => :select if organisation.new_record? && admin_logged_in?
     =form.input :name, :label => "Name of your organisation or project"
   -form.semantic_fields_for(:location) do |location_form|

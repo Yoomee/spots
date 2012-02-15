@@ -38,6 +38,8 @@ class TimeSlot < ActiveRecord::Base
 
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisations => {:confirmed => true}}
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
+  named_scope :for_organisation_group, lambda {|organisation_group| {:joins => :organisation, :conditions => ["organisations.organisation_group_id=?", organisation_group.id], :group => "time_slots.id"}}
+  
 
   def day_integers
     out = []

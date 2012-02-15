@@ -39,6 +39,7 @@ class Activity < ActiveRecord::Base
   named_scope :anytime, :conditions => {:activity_type => "anytime"}
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisation => {:confirmed => true}}
   named_scope :volunteering, :conditions => {:activity_type => "volunteering"}
+  named_scope :for_organisation_group, lambda {|organisation_group| {:joins => :organisations, :conditions => ["organisations.organisation_group_id=?", organisation_group.id], :group => "activities.id"}}
 
   def anytime?
     activity_type == 'anytime'

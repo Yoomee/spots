@@ -27,6 +27,7 @@ class Organisation < ActiveRecord::Base
   include TramlinesImages
   
   belongs_to :member
+  belongs_to :organisation_group
   has_many :time_slots, :dependent => :destroy
   has_many :time_slot_bookings, :through => :time_slots, :source => :bookings
   has_many :activities, :through => :time_slots, :uniq => true

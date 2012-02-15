@@ -6,10 +6,10 @@
     =image_for(@activity, "300x")
   .ninecol.last
     %h1=@activity
-    -if @organisation
+    -if @organisation || @organisation_group
       %span 
         with
-        =link_to_self(@organisation)
+        =link_to_self(@organisation || @organisation_group)
       %br.clear
       %br.clear
     =read_more_truncate(@activity.description, :length => 1200)
@@ -47,7 +47,10 @@
       -#find_me_automatically
         or
         =link_to_function("Find me automatically", "ActivityMap.findMe('#{@activity.id}')")
-      =google_map(@activity.time_slots.confirmed.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
+      -if @organisation_group
+        =google_map(@activity.time_slots.for_organisation_group(@organisation_group).confirmed.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
+      -else
+        =google_map(@activity.time_slots.confirmed.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
       .not_found_anything.subrow
         %h4
           Not found anything near you?

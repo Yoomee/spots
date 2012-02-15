@@ -84,11 +84,12 @@ class OrganisationsController < ApplicationController
   end
   
   def index
-    @organisations = Organisation.all
+    @organisation_group = OrganisationGroup.find_by_id(params[:organisation_group_id])
+    @organisations = @organisation_group ? @organisation_group.organisations : Organisation.all
   end
   
   def new
-    @organisation = Organisation.new
+    @organisation = Organisation.new(:organisation_group_id => params[:organisation_group_id])
     set_default_lat_lng
   end
   

@@ -22,17 +22,16 @@
 # loan or create derivative works based on the whole or any part
 # of the Works supplied by us under this agreement without prior
 # written agreement with Yoomee Digital Ltd.
-class ClientEnvironment
+require File.dirname(__FILE__) + '/../../../test/test_helper'
+class OrganisationGroupTest < ActiveSupport::TestCase
   
-  class << self
-    
-    def setup(config)
-      config.gem 'searchlogic'
-      config.gem 'facebooker2'
-      config.gem 'validatable'
-      config.gem 'linkedin'
-    end
-    
-  end
-    
+  should have_db_column(:description).of_type(:text)  
+  should have_db_column(:image_uid).of_type(:string)
+  should have_db_column(:name).of_type(:string)
+  should have_timestamps
+  
+  should have_many(:organisations)
+  
+  should validate_presence_of(:name)
+  
 end
