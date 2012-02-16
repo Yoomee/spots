@@ -30,6 +30,8 @@ class Activity < ActiveRecord::Base
   has_many :organisations, :through => :time_slots
   has_many :time_slots, :dependent => :destroy
   
+  belongs_to :organisation_group
+  
   validates_presence_of :name
 
   default_scope :order => "weight, created_at DESC"
@@ -40,6 +42,7 @@ class Activity < ActiveRecord::Base
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisation => {:confirmed => true}}
   named_scope :volunteering, :conditions => {:activity_type => "volunteering"}
   named_scope :for_organisation_group, lambda {|organisation_group| {:joins => :organisations, :conditions => ["organisations.organisation_group_id=?", organisation_group.id], :group => "activities.id"}}
+  named_scope :available_to_organisation, lambda {|organisation|{:conditions => ["activities.organisation_group_id IS NULL OR activities.organisation_group_id = ?", organisation.organisation_group_id]}}
 
   def anytime?
     activity_type == 'anytime'

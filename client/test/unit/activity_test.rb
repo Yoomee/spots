@@ -34,6 +34,7 @@ class ActivityTest < ActiveSupport::TestCase
 
   should have_many(:documents).dependent(:destroy)
   should have_many(:time_slots).dependent(:destroy)
+  should belong_to(:organisation_group)
     
   should validate_presence_of(:name)
   

@@ -966,7 +966,7 @@ html body form {
 }
 .dash_item li a {
 	display: block;
-	background: url(/images/sprite.png) 0px -137px no-repeat;
+	background: url(/images/arrow_sprite.png) 0px 0px no-repeat;
 	padding: 0 0 0 17px;
 	float: left;
 	clear: both;

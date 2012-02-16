@@ -75,7 +75,7 @@ class Organisation < ActiveRecord::Base
   end
   
   def ordered_activities
-    (activities.volunteering.ascend_by_name + Activity.volunteering.ascend_by_name).uniq
+    (activities.volunteering.available_to_organisation(self).ascend_by_name + Activity.volunteering.available_to_organisation(self).ascend_by_name).uniq
   end
   
   def status
