@@ -52,6 +52,7 @@ class Organisation < ActiveRecord::Base
   def active?
     confirmed? && awake?
   end
+  alias_method :visible?, :active?
   
   def activity_day_integers(activity)
     out = []
@@ -85,7 +86,7 @@ class Organisation < ActiveRecord::Base
     when !confirmed?
       'unconfirmed'
     when asleep?
-      'asleep'
+      'hidden'
     end
   end
   
