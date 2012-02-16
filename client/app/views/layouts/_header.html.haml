@@ -1,6 +1,6 @@
 .row
   #flash_message.twelvecol.no_padding
-    =render_flash
+    =render_flash unless flash[:registered].present?
   .threecol
     %h1#site_logo
       =link_to "#{site_name}", root_path, :id=>"home_site_logo_link"
