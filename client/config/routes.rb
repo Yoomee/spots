@@ -28,6 +28,7 @@ ActionController::Routing::Routes.draw do |map|
     activities.resources :documents
   end
   map.signup_organisation "/organisations/signup", :controller => "organisations", :action => "signup"  
+  map.signup_organisation_with_ref "/organisations/signup/:ref", :controller => "organisations", :action => "signup"  
   map.connect '/organisations/search_address', :controller => 'organisations', :action => 'search_address'
   map.resources :organisation_groups do |organisation_group|
     organisation_group.resources :activities, :only => [:show]

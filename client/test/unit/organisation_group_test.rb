@@ -34,4 +34,41 @@ class OrganisationGroupTest < ActiveSupport::TestCase
   
   should validate_presence_of(:name)
   
+  context "find_by_ref" do
+    should "return nil if ref blank" do
+      assert_nil OrganisationGroup.find_by_ref("")
+    end
+    
+    should "return nil if ref nil" do
+      assert_nil OrganisationGroup.find_by_ref(nil)
+    end
+  end
+  
+  context "an instance" do
+
+    setup do
+      @organisation_group = Factory.create(:organisation_group, :id => 1)
+    end
+    
+    should "have a ref method" do
+      assert_respond_to @organisation_group, :ref
+    end
+    
+    should "generate Base64 ref" do
+      assert_equal Base64.encode64((@organisation_group.id+1000).to_s).strip.sub(/\=*$/,''), @organisation_group.ref
+    end
+    
+    should "be findable by its ref" do
+      assert_equal @organisation_group, OrganisationGroup.find_by_ref(@organisation_group.ref)
+    end
+    
+    should "be findable by its ref with bigger IDs" do
+      [10,123,1000,12345, 100000].each do |num|
+        organisation_group = Factory.create(:organisation_group, :id => num)
+        assert_equal organisation_group, OrganisationGroup.find_by_ref(organisation_group.ref)
+      end
+    end
+    
+  end
+  
 end

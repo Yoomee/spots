@@ -2,9 +2,18 @@
 -title "Organisation signup"
 #organisation_signup.row
   .twelvecol
-    %p If you are an organisation that would like to benefit from Spots of Time then please fill out the form below.
+    -if @organisation.organisation_group
+      .twocol
+        =image_for(@organisation.organisation_group, '150x150#')
+      .eightcol.last
+        %h3="Sign up as part of the #{@organisation.organisation_group} group"
+        =read_more_truncate(@organisation.organisation_group.description, :length => 320)
+      %br.clear
+    -else
+      %p If you are an organisation that would like to benefit from Spots of Time then please fill out the form below.
     -semantic_form_for(@organisation, :html => {:multipart => true}) do |form|
       -form.inputs do
+        =form.input :organisation_group_id, :as => :hidden
         =form.input :name, :label => "Name of your organisation or project"
         -form.semantic_fields_for(:member) do |member_form|
           %li.organisation_member_name_label

@@ -22,41 +22,6 @@
 # loan or create derivative works based on the whole or any part
 # of the Works supplied by us under this agreement without prior
 # written agreement with Yoomee Digital Ltd.
-class OrganisationGroupsController < ApplicationController
- 
-  admin_only :destroy, :edit, :update, :create, :new, :index
-  expose(:organisation_group)
-  expose(:organisation_groups){OrganisationGroup.scoped_all}
-  
-  def create
-    if organisation_group.save
-      redirect_to organisation_group
-    else
-      render :action => "new"
-    end
-  end
-  
-  def destroy
-  end
-  
-  def edit
-  end
-  
-  def index
-  end
-  
-  def new
-  end
-  
-  def show
-  end
-  
-  def update
-    if organisation_group.save
-      redirect_to organisation_group
-    else
-      render :action => "edit"
-    end
-  end
-  
+Factory.define(:organisation_group) do |f|
+  f.name "An Organisation Group"
 end

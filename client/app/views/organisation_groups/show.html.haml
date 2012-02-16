@@ -20,6 +20,17 @@
     -if admin_logged_in?
       =link_to("List organisations", organisation_group_organisations_path(organisation_group), :class=>"bttn")
       =link_to("New organisation in this group", new_organisation_group_organisation_path(organisation_group), :class=>"bttn")
+      =link_to_box("Show organisation signup link", '#organisation_group_signup_link', :class=>"bttn", :inline => true)
+      %div{:style => "display:none"}
+        #organisation_group_signup_link
+          %h2 Organisation signup link
+          %p
+            Send this link to organisations who want to sign up as part of the 
+            =organisation_group
+            group.
+          =text_field_tag("signup_link", signup_organisation_with_ref_url(organisation_group.ref), :disabled => true, :size => 70)
+          %br.clear
+          =link_to_function("Done", "$.fancybox.close()", :class => 'bttn')
     .organisation_description    
       =simple_format(organisation_group.description)
     .subrow

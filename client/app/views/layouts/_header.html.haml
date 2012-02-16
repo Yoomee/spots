@@ -37,5 +37,5 @@
       =link_to "Like us on Facebook", "http://www.facebook.com/spotsoftimeuk", :target=>"_blank", :class=>"social_media_link facebook_link"
       =link_to "Follow us on twitter", "http://twitter.com/spotsoftimeuk", :target=>"_blank", :class=>"social_media_link twitter_link"
       =link_to "Sign up to our mailing list", "http://eepurl.com/gF2pH", :target=>"_blank", :class=>"social_media_link mailchimp_link"
-    =link_to_slug "Organisation signup", :organisations, :id => "nav_organisations"
+    =link_to_slug "Organisation signup", :organisations, :id => "nav_organisations" unless (controller_name  == "organisations" && action_name == "signup")
       

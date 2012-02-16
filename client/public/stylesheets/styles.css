@@ -3410,6 +3410,15 @@ span.cal_icon span.day {
 #organisation_profile_image img {
 	max-width:270px;
 }
+
+#organisation_group_signup_link {
+  width:450px;
+  height:200px;
+}
+#organisation_group_signup_link p{
+  color: #666;
+  font-size: 16px;
+}
 /*============================== Event Show ============================*/
 
 #event_left_col{
@@ -6533,6 +6542,10 @@ p.no_results {
 #organisation_signup_button {
   float: right;
   margin-bottom: 1em;
+}
+.organisation_description {
+  margin-top:10px;
+  float:left;
 }
 .organisation_description p {
 	float: left;

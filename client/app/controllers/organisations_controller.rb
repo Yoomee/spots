@@ -120,7 +120,7 @@ class OrganisationsController < ApplicationController
     if logged_in?
       render_404
     else
-      @organisation = Organisation.new
+      @organisation = Organisation.new(:organisation_group => OrganisationGroup.find_by_ref(params[:ref]))
       @organisation.build_member
     end
   end
