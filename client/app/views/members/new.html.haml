@@ -1,0 +1,22 @@
+-no_content_row
+-title "Register"
+
+.row
+  .sixcol.last
+    %p Signup is easy with Facebook, we'll just grab your name and email.
+    .fb_login_link
+      =fb_login_and_redirect("/sessions/create_fb", :scope => 'email', :text => "Signup with Facebook")
+.row
+  .sixcol.last
+    %p Or you can enter you email, password and name below.
+    -semantic_form_for @member do |form|
+      -form.inputs do
+        =form.input :dont_generate_password, :as => :hidden, :value => true
+        =form.input :email, :input_html => {:size => 25}, :wrapper_html => {:class => "inline-fields"}
+        =form.input :password, :as => :password, :input_html => {:size => 25}, :wrapper_html => {:class => "inline-fields"}
+        =form.input :forename, :label => "First name", :input_html => {:size => 25}, :wrapper_html => {:class => "inline-fields"}
+        =form.input :surname, :label => "Last name", :input_html => {:size => 25}, :wrapper_html => {:class => "inline-fields"}
+      -form.buttons do
+        =form.commit_button
+    
+=options_panel(:row => true)

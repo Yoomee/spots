@@ -55,8 +55,7 @@ MembersController.class_eval do
         flash[:notice] = "The account has been created."
         redirect_to_waypoint
       else
-        flash[:registered] = "Welcome to #{APP_CONFIG['site_name']}, thanks for signing up."
-        redirect_to home_path
+        redirect_after_signup
       end
     elsif @member.twitter_connected? || @member.facebook_connected? || @member.linked_in_connected?
       session[:auth_data] = nil

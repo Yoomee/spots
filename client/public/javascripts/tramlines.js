@@ -157,7 +157,7 @@ var ActivityMap = {
 };
 
 var FBLogin = {
-  login_and_submit_form: function() {
+  loginAndSubmitTimeSlotForm: function() {
     $.ajax({
       url:"/sessions/create_fb",
       success: function(data) {
@@ -169,7 +169,7 @@ var FBLogin = {
       }
     });
   },
-  process: function() {
+  processTimeSlotBooking: function() {
     FB.login(
       function(response) {
         if (response.session) {

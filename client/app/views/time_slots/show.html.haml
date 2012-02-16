@@ -49,9 +49,7 @@
         =form.input :notes, :as => :text, :input_html => {:rows => 2}, :label => 'Add a note to the organisation to tell them more about what you plan to do e.g. type of performance, craft activity, pamper treat, quiz or game.'
         =form.commit_button "COUNT ME IN", :button_html => {:id => "time_slot_booking_submit", :style => "display:#{logged_in? ? 'block' : 'none'}"}
         -if logged_out?
-          %li.commit=link_to_function("COUNT ME IN", "FBLogin.process()", :class => "bttn_l")
-
-
+          %li.commit=link_to_function("COUNT ME IN", "FBLogin.processTimeSlotBooking()", :class => "bttn_l")
 
 .row
   .twelvecol

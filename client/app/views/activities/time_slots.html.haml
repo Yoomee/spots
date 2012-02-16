@@ -45,7 +45,7 @@
           %p Click a date on the calendar, choose a time you'd like to arrive and hit the button below.
         =form.commit_button "COUNT ME IN", :button_html => {:id => "time_slot_booking_submit", :style => "display:#{logged_in? ? 'block' : 'none'}"}
         -if logged_out?
-          %li.commit=link_to_function("COUNT ME IN", "FBLogin.process()", :class => "bttn_l")
+          %li.commit=link_to_function("COUNT ME IN", "FBLogin.processTimeSlotBooking()", :class => "bttn_l")
 .row
   .twelvecol
     =google_map(@organisation, :width => "100%", :height => 500, :version => "3.5", :infoboxes => true)
