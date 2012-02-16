@@ -2065,7 +2065,7 @@ span.cal_sheet span.day {
 /* ============  popup login form  ============ */
 #login_popup {
 	width: 260px;
-	height: 240px;
+	height: 270px;
 	margin: 20px;
 }
 #login_popup p {
@@ -2077,6 +2077,9 @@ span.cal_sheet span.day {
 }
 #login_popup input {
 	margin: 0;
+}
+.fb_login_link {
+  margin-bottom: 20px;
 }
 
 
@@ -6829,4 +6832,13 @@ form.organisation ol li label span, .organisation_label_wrapper p {
   background: url(/images/add_profile_details.png) 0 0 no-repeat;
   text-indent: -9000em;
   margin-bottom:25px;
+}
+
+/*========== Signup ==========*/
+
+form#new_member label {
+  width: 100px;
+}
+form#new_member li {
+  margin: 0;
 }

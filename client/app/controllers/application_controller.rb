@@ -33,4 +33,10 @@ ApplicationController.class_eval do
     return redirect_to(big_print_path)
   end
   
+  protected
+  def redirect_after_signup
+    flash[:registered] = "Hi #{logged_in_member.forename}, welcome to #{APP_CONFIG['site_name']}."
+    redirect_to home_path
+  end
+  
 end

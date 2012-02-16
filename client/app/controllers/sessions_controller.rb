@@ -29,7 +29,7 @@ SessionsController.class_eval do
   def create_fb
     if request.xhr?
       if current_facebook_user
-        process_login_fb
+        @logged_in_member = Member.find_by_fb_user_id(current_facebook_user.id) || create_member_from_fb
         session[:logged_in_member_id] = @logged_in_member.id
         render :text => "success"
       else
@@ -37,8 +37,13 @@ SessionsController.class_eval do
       end
     else
       if current_facebook_user
-        process_login_fb
-        login_member!(@logged_in_member)
+        if @logged_in_member = Member.find_by_fb_user_id(current_facebook_user.id)
+          login_member!(@logged_in_member)
+        else
+          @logged_in_member = create_member_from_fb
+          session[:logged_in_member_id] = @logged_in_member.id
+          redirect_after_signup
+        end
       else
         redirect_hash = waypoint || {}
         redirect_to redirect_hash.merge(:denied_fb_perms => true)
@@ -47,13 +52,11 @@ SessionsController.class_eval do
   end
 
   private
-  def process_login_fb
-    @logged_in_member = Member.find_by_fb_user_id(current_facebook_user.id)
-    if @logged_in_member.nil?
-      current_facebook_user.fetch
-      @logged_in_member = Member.find_or_initialize_by_email(current_facebook_user.email)
-      @logged_in_member.update_attributes(:fb_user_id => current_facebook_user.id, :forename => current_facebook_user.first_name, :surname => current_facebook_user.last_name)
-    end
+  def create_member_from_fb
+    current_facebook_user.fetch
+    member = Member.find_or_initialize_by_email(current_facebook_user.email)
+    member.update_attributes(:fb_user_id => current_facebook_user.id, :forename => current_facebook_user.first_name, :surname => current_facebook_user.last_name)
+    member
   end
 
 end
