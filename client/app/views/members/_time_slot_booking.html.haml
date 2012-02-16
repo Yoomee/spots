@@ -4,6 +4,7 @@
   .fr
     =link_to_self(time_slot_booking.activity, :class => "activity_name")
     .organisation_name
-      ="with #{link_to_self(time_slot_booking.organisation)}"
+      with
+      =time_slot_booking.organisation.active? ? link_to_self(time_slot_booking.organisation) : time_slot_booking.organisation
     .booking_date
       ="on #{time_slot_booking.starts_at_neat_string}"
