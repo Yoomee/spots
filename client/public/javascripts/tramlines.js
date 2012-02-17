@@ -46,6 +46,19 @@ var TimeSlot = {
   setAllSelected: function(){
     $('.time_slot_day_input input[type="checkbox"]:checked').parent().addClass('selected');
   },
+  showForm: function(link,one_off){
+    var form = $(link).parent().next('.new_time_slot_form');
+    if(one_off){
+      var today = new Date();
+      form.find('#time_slot_date_3i').val(today.getDate());
+      form.find('#time_slot_date_2i').val(today.getMonth() + 1);
+      form.find('#time_slot_date_1i').val(today.getFullYear());
+      form.find('.time_slot_days').hide();
+      form.find('.time_slot_date').show();
+    }
+    form.show();
+    $(link).parent().hide()
+  },
   toggleEdit: function(form_id){
     var form = $('#'+form_id);
     if (form.hasClass('disabled')) {
@@ -59,7 +72,6 @@ var TimeSlot = {
       form.find('select').attr('disabled', 'disabled');
       form.find('.edit_link').html('Edit');    
     }
-
   }
 };
 

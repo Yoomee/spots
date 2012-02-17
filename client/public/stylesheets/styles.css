@@ -6324,6 +6324,23 @@ form.time_slot ol li.time_slot_day_input, form.time_slot ol li.select {
 .formtastic ol li.time_slot_day_input input {
   display:none;
 }
+form.time_slot .time_slot_date,
+form.time_slot .time_slot_days{
+  float:left;
+  width:360px;
+}
+form.time_slot .time_slot_date label{
+  line-height: 26px;
+}
+.formtastic ol .time_slot_date li {
+  clear:none;
+}
+.tramlines_date ol {
+  margin:0px;
+}
+.tramlines_date ol li {
+  clear:none;
+}
 .formtastic ol li.time_slot_day_input label {
   border:1px solid black;
   font-weight:normal;
@@ -6359,9 +6376,13 @@ form.time_slot ol li.time_slot_day_input, form.time_slot ol li.select {
   padding:10px 0;
   border:2px solid #ccc;
 }
-.new_time_slot_link {
+.time_slot_links {
   float:left;
   clear:both;
+}
+.new_time_slot_link {
+  float:left;
+  margin-right:15px;
   font-size:14px;
 }
 .time_slot_errors {
