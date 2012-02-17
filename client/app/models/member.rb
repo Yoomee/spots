@@ -39,4 +39,12 @@ Member.class_eval do
     
   end
   
+  def future_time_slots
+    time_slot_bookings.starts_at_gt(Time.now).ascend_by_starts_at
+  end
+  
+  def past_time_slots
+    time_slot_bookings.starts_at_lt(Time.now).descend_by_starts_at
+  end
+  
 end

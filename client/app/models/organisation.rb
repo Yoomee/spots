@@ -52,6 +52,7 @@ class Organisation < ActiveRecord::Base
   def active?
     confirmed? && awake?
   end
+  alias_method :visible?, :active?
   
   def activity_day_integers(activity)
     out = []
@@ -77,7 +78,7 @@ class Organisation < ActiveRecord::Base
   end
   
   def ordered_activities
-    (activities.volunteering.ascend_by_name + Activity.volunteering.ascend_by_name).uniq
+    (activities.volunteering.available_to_organisation(self).ascend_by_name + Activity.volunteering.available_to_organisation(self).ascend_by_name).uniq
   end
   
   def next_available_date_for_activity(activity)
@@ -98,7 +99,7 @@ class Organisation < ActiveRecord::Base
     when !confirmed?
       'unconfirmed'
     when asleep?
-      'asleep'
+      'hidden'
     end
   end
   

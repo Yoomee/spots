@@ -31,6 +31,8 @@ class TimeSlot < ActiveRecord::Base
   validates_presence_of :activity, :organisation, :starts_at, :ends_at
   validates_order_of :starts_at, :ends_at
   validate :presence_of_days
+  validate :date_in_future
+  before_validation :set_day_from_date
 
   delegate :description, :name, :email, :to => :organisation, :prefix => true
   delegate :has_lat_lng?, :lat_lng, :lat, :lng, :num_weeks_notice, :to => :organisation
@@ -101,8 +103,20 @@ class TimeSlot < ActiveRecord::Base
   end
   
   private
+  def date_in_future
+    errors.add_to_base("Please select a date in the future") if date.present? && date < Date.today
+  end
+  
   def presence_of_days
     errors.add_to_base("Please select at least one day of the week") if TimeSlot::DAYS.all? {|d| !send(d)}
+  end
+  
+  def set_day_from_date
+    return true if date.blank?
+    wday = (date.wday - 1) % 7
+    TimeSlot::DAYS.each_with_index do |d,idx|
+      send("#{d}=", idx == wday)
+    end
   end
   
 end

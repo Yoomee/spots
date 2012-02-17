@@ -61,8 +61,13 @@ class ActivitiesController < ApplicationController
   
   def show
     if @organisation = Organisation.find_by_id(params[:organisation_id])
-      @other_activities = @organisation.activities.id_is_not(@activity.id)
-      @panel_organisation = @organisation
+      if @organisation.active?
+        @other_activities = @organisation.activities.id_is_not(@activity.id)
+        @panel_organisation = @organisation
+      else
+        @organisation = nil
+        @panel_organisation = @activity.organisations.visible.random.first
+      end
     elsif @organisation_group = OrganisationGroup.find_by_id(params[:organisation_group_id])
       @panel_organisation = @activity.organisations.organisation_group_id_is(@organisation_group.id).visible.random.first
     elsif @activity.anytime?

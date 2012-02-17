@@ -46,7 +46,7 @@
       -if @organisation_group
         =google_map(@activity.time_slots.for_organisation_group(@organisation_group).confirmed.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
       -else
-        =google_map(@activity.time_slots.confirmed.group_by_organisation.collect(&:organisation), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
+        =google_map(@activity.time_slots.confirmed.group_by_organisation.collect(&:organisation).select(&:visible?), :width => "100%", :height => 300, :version => "3.5", :marker_options => {:click => true}, :auto_bounds => true)
       .not_found_anything.subrow
         %h4
           Not found anything near you?

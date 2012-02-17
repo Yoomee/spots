@@ -4,6 +4,7 @@ class OrganisationGroup < ActiveRecord::Base
   validates_presence_of :name
   
   has_many :organisations, :dependent => :nullify
+  has_many :group_specific_activities, :class_name => "Activity"
 
   class << self
     def find_by_ref(ref)

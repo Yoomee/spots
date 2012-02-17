@@ -13,13 +13,19 @@
       %p=@member.bio
     -if logged_in_as?(@member)
       %p=link_to_box("Edit your bio", edit_bio_member_path(@member))
-    -if !@member.time_slot_bookings.starts_at_gt(Time.now).empty?
-      #member_upcoming_spots
+    -if @member.future_time_slots.present?
+      #member_upcoming_spots.subrow
         %h3="#{forename_or_your(@member, :capitalize => true)} upcoming spots"
-        -@member.time_slot_bookings.starts_at_gt(Time.now).ascend_by_starts_at.each do |booking|
-          =render("members/time_slot_booking", :time_slot_booking => booking)
-            
-            
+        -@member.future_time_slots.each_with_index do |booking, idx|
+          %div{:class => "sixcol #{'last' if idx.odd?}"}
+            =render("members/time_slot_booking", :time_slot_booking => booking)
+    -if @member.past_time_slots.present?
+      #member_upcoming_spots.subrow
+        %h3="#{forename_or_your(@member, :capitalize => true)} past spots"
+        %p="#{forename_or_you(@member, "have", :capitalize => true)} taken part in #{pluralize(@member.past_time_slots.count,'spot')}, here are some of the most recent ones."
+        -@member.past_time_slots.limit(20).each_with_index do |booking, idx|
+          %div{:class => "sixcol #{'last' if idx.odd?}"}
+            =render("members/time_slot_booking", :time_slot_booking => booking)
 .row
   .twelvecol
     -options_panel do

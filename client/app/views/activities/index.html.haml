@@ -3,6 +3,7 @@
   -@activities.each do |activity|
     %li
       =link_to_self(activity)
+      ="(restricted to #{activity.organisation_group})" if activity.organisation_group
 
 -options_panel do
   =back_link

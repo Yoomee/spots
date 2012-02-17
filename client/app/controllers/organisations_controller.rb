@@ -127,7 +127,7 @@ class OrganisationsController < ApplicationController
   
   def sleep
     @organisation.update_attribute(:awake, false)
-    flash[:notice] = "This organisation is now sleeping and will not show on any activity pages."
+    flash[:notice] = "This organisation is now hidden and will not show on any activity pages."
     redirect_to @organisation
   end
   

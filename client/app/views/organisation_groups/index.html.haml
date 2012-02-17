@@ -3,5 +3,6 @@
   -organisation_groups.each do |organisation_group|
     %li
       =link_to_self(organisation_group)
+      ="(#{pluralize(organisation_group.organisations.count, 'organisation')})"
 
 =options_panel([OrganisationGroup.new])

@@ -31,6 +31,7 @@ class OrganisationGroupTest < ActiveSupport::TestCase
   should have_timestamps
   
   should have_many(:organisations)
+  should have_many(:group_specific_activities)
   
   should validate_presence_of(:name)
   

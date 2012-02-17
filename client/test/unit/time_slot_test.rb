@@ -37,6 +37,7 @@ class TimeSlotTest < ActiveSupport::TestCase
   should have_db_column(:fri).of_type(:boolean)  
   should have_db_column(:sat).of_type(:boolean)  
   should have_db_column(:sun).of_type(:boolean)
+  should have_db_column(:date).of_type(:date)
   
   should belong_to(:activity)
   should belong_to(:organisation)

@@ -42,7 +42,9 @@ class TimeSlotsController < ApplicationController
     render :update do |page|
       if @time_slot.save
         page["activity_#{activity.id}_time_slots"].append(render("time_slots/time_slot", :time_slot => @time_slot))
+        time_slot_just_added_had_date = @time_slot.date.present?
         @time_slot = activity.time_slots.build(:organisation => @time_slot.organisation)
+        @time_slot.date = Date.today if time_slot_just_added_had_date
       end
       page["activity_#{activity.id}_time_slot_form"].replace(render("time_slots/form", :time_slot => @time_slot, :disabled => false))
       page << "#{labelify_javascript(:script_tag => false)};TimeSlot.setAllSelected();"
