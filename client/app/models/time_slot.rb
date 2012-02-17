@@ -39,7 +39,7 @@ class TimeSlot < ActiveRecord::Base
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisations => {:confirmed => true}}
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   named_scope :for_organisation_group, lambda {|organisation_group| {:joins => :organisation, :conditions => ["organisations.organisation_group_id=?", organisation_group.id], :group => "time_slots.id"}}
-  
+  named_scope :available_on_date, lambda {|date| {:conditions => ["#{date.strftime("%a").downcase} = 1 AND NOT EXISTS (SELECT id FROM time_slot_bookings WHERE time_slot_bookings.time_slot_id = time_slots.id AND DATE(time_slot_bookings.starts_at) = ? LIMIT 1)", date.to_date]}}
 
   def day_integers
     out = []

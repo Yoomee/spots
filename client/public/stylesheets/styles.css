@@ -2063,19 +2063,19 @@ span.cal_sheet span.day {
 
 
 /* ============  popup login form  ============ */
-#login_popup {
+#login_fancybox {
 	width: 260px;
-	height: 270px;
+	height: 300px;
 	margin: 20px;
 }
-#login_popup p {
+#login_fancybox p {
 	float: left;
 	margin: 0 0 10px;
 }
-#login_popup label {
+#login_fancybox label {
 	font-weight: bold;
 }
-#login_popup input {
+#login_fancybox input {
 	margin: 0;
 }
 .fb_login_link {
@@ -6467,7 +6467,7 @@ form.time_slot li.commit, form.time_slot .edit_link {
 #time_slot_booking_form {
   margin: 20px 0;
 }
-h1.time_slot_booking_title span {
+.time_slot_booking_title span {
   font-size: 15px;
 }
 table.ui-datepicker-calendar td.already_booked span {
@@ -6500,9 +6500,53 @@ table.time_slots td {
 table.time_slots td.time {width:30%;}
 table.time_slots td.note {width:35%;}
 table.time_slots td.link {width:20%;}
-
 .time_slot_note {
   font-style: italic;
+}
+
+#time_slot_date_selector {
+  float: left;
+  clear: both;
+  margin-bottom: 20px;
+}
+#time_slot_list {
+  width: 260px;  
+  margin-left: 20px;
+}
+#time_slot_list #time_slot_date {
+  margin-bottom: 5px;
+}
+#time_slot_list .time_slots {
+  border-top: 1px solid #ccc;
+}
+#time_slot_list .time_slots .time_slot {
+  width: 100%;
+  float: left;
+  clear: both;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+#time_slot_list .time_slots .time_slot_note {
+  width: 100%;
+  float: left;
+  clear: both;
+  font-style: normal;
+}
+#time_slot_list .time_slots .time_slot_note p {
+  margin: 10px 0 0 0;
+}
+#time_slot_list .time_slots .timespan {
+  float: left;
+  font-size: 14px;
+}
+#time_slot_list .time_slots .time_slot_book_link {
+  float: right;
+  padding: 3px 10px;
+  font-weight: normal;
+  font-size: 12px;  
+}
+#fancybox_time_slot_booking_form {
+  padding: 20px;
 }
 
 /*========== Organisations section ==========*/

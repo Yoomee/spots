@@ -24,7 +24,7 @@
 # written agreement with Yoomee Digital Ltd.
 class TimeSlotBookingsController < ApplicationController
   
-  member_only :create
+  member_only :create, :new
   owner_only :thank_you
 
   after_filter :set_waypoint, :only => %w{confirm_attended index list show}
@@ -58,12 +58,22 @@ class TimeSlotBookingsController < ApplicationController
   
   def create
     @time_slot_booking = logged_in_member.time_slot_bookings.build(params[:time_slot_booking])
-    if @time_slot_booking.save
-      flash[:notice] = "Thanks #{logged_in_member.forename}, you are now booked to be at #{@time_slot_booking.organisation_name} on #{@time_slot_booking.starts_at_neat_string}"
-      redirect_to thank_you_time_slot_booking_path(@time_slot_booking)
+    if request.xhr?
+      render :update do |page|
+        if @time_slot_booking.save
+          page.redirect_to thank_you_time_slot_booking_path(@time_slot_booking)
+        else
+          page[:fancybox_time_slot_booking_form].html render("time_slot_bookings/new_form", :time_slot_booking => @time_slot_booking)
+        end
+      end
     else
-      @time_slot = @time_slot_booking.time_slot
-      render :template => "time_slots/show"
+      if @time_slot_booking.save
+        flash[:notice] = "Thanks #{logged_in_member.forename}, you are now booked to be at #{@time_slot_booking.organisation_name} on #{@time_slot_booking.starts_at_neat_string}"
+        redirect_to thank_you_time_slot_booking_path(@time_slot_booking)
+      else
+        @time_slot = @time_slot_booking.time_slot
+        render :template => "time_slots/show"
+      end
     end
   end
   
@@ -77,6 +87,12 @@ class TimeSlotBookingsController < ApplicationController
     time_slot_bookings = @organisation.time_slot_bookings.starts_at_gt(Time.now).ascend_by_starts_at
     @unconfirmed_time_slot_bookings = time_slot_bookings.not_confirmed
     @confirmed_time_slot_bookings = time_slot_bookings.confirmed
+  end
+  
+  def new
+    @time_slot = TimeSlot.find(params[:time_slot_id])
+    @time_slot_booking = @time_slot.bookings.build(:starts_at => Date.parse(params[:date]))
+    render :partial => "new_form", :locals => {:time_slot_booking => @time_slot_booking}
   end
   
   def thank_you

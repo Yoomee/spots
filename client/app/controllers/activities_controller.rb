@@ -62,6 +62,7 @@ class ActivitiesController < ApplicationController
   def show
     if @organisation = Organisation.find_by_id(params[:organisation_id])
       @other_activities = @organisation.activities.id_is_not(@activity.id)
+      @panel_organisation = @organisation
     elsif @organisation_group = OrganisationGroup.find_by_id(params[:organisation_group_id])
       @panel_organisation = @activity.organisations.organisation_group_id_is(@organisation_group.id).visible.random.first
     elsif @activity.anytime?
@@ -69,6 +70,7 @@ class ActivitiesController < ApplicationController
     else
       @panel_organisation = @activity.organisations.visible.random.first
     end
+    @selected_date = Date.parse(params[:date]) if params[:date].present?
     if request.xhr?
       render :partial => "activities/organisation_panel", :locals => {:activity => @activity, :organisation => @organisation}
     else
@@ -79,8 +81,15 @@ class ActivitiesController < ApplicationController
   def time_slots
     @organisation = Organisation.find(params[:organisation_id])
     @activity = Activity.find(params[:id])
-    @time_slots = @activity.time_slots.organisation_id_is(@organisation.id).ascend_by_starts_at
-    @time_slot_booking = TimeSlotBooking.new
+    if request.xhr?
+      @date = Date.parse(params[:date])
+      render :update do |page|
+        page[:time_slot_list].html(render("time_slots/list", :organisation => @organisation, :activity => @activity, :date => @date))
+      end
+    else
+      @time_slots = @activity.time_slots.organisation_id_is(@organisation.id).ascend_by_starts_at
+      @time_slot_booking = TimeSlotBooking.new
+    end
   end
   
   def update

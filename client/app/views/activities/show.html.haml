@@ -1,15 +1,24 @@
 -no_content_row
 -hidden_title @activity
 
+-if @selected_date
+  -content_for(:head) do
+    :javascript
+      $(document).ready(function() {
+        $('html, body').animate({
+          scrollTop: $("#organisation_panel").offset().top
+        }, 2000);
+      });
+    
 .row
   .threecol 
     =image_for(@activity, "300x")
   .ninecol.last
     %h1=@activity
-    -if @organisation || @organisation_group
+    -if @organisation_group
       %span 
         with
-        =link_to_self(@organisation || @organisation_group)
+        =link_to_self(@organisation_group)
       %br.clear
       %br.clear
     =read_more_truncate(@activity.description, :length => 1200)
@@ -19,23 +28,10 @@
       %ul.lst#activity_documents
         -@activity.documents.each do |document|
           %li=render('documents/document', :document => document)
-  
-    -if @organisation
-      .subrow
-        %hr
-        %h4 When can you help out?
-        =render("time_slots/table", :time_slots => @activity.time_slots.organisation_id_is(@organisation.id).ascend_by_starts_at)
-    -if !@other_activities.blank?
-      .subrow
-        %hr
-        %h4="#{@activity.activity_type=='anytime' ? "Other things you can do anytime anywhere" : "Other things you can do here"}"
-        .activity_grid.small_activity_grid
-          -@other_activities.each do |activity|
-            -link_to(@organisation ? organisation_activity_path(@organisation, activity) : activity, :class => "activity") do
-              =image_for(activity, "147x147#")
-              .label=activity
-  .line            
--if @organisation.nil? && @activity.activity_type=="volunteering"
+          
+  .line
+           
+-if @activity.activity_type=="volunteering"
   #activity_search_row.row
     .fivecol
       %h2 Places to do this activity
@@ -61,7 +57,7 @@
       .subrow
         #organisation_panel
           -if @panel_organisation
-            =render("activities/organisation_panel", :activity => @activity, :organisation => @panel_organisation)
+            =render("activities/organisation_panel", :activity => @activity, :organisation => @panel_organisation, :selected_date => @selected_date)
           -else
             %p.no_results Sorry, we couldn't find anywhere for you to do this activity.
             -if !Activity.anytime.empty?

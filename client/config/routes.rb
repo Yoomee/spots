@@ -40,7 +40,9 @@ ActionController::Routing::Routes.draw do |map|
     organisation.resources :time_slot_bookings, :only => [:index], :collection => {:in_past => :get}
     organisation.resources :activities, :only => [:show], :member => {:time_slots => :get}
   end
-  map.resources :time_slots, :except => [:index]
+  map.resources :time_slots, :except => [:index] do |time_slot|
+    time_slot.resources :time_slot_bookings, :only => [:new]
+  end
   map.resources :time_slot_bookings, :only => [:create, :update, :show], :member => {:thank_you => :get, :confirm => :get, :confirm_attended => :get, :cancel => :get} do |time_slot_bookings|
     time_slot_bookings.resource :thank_you_mail
   end

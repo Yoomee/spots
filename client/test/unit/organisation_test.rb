@@ -50,4 +50,47 @@ class OrganisationTest < ActiveSupport::TestCase
   should validate_presence_of(:name)
   should validate_presence_of(:phone)
   
+  context "on call to next_available_date_for_activity" do
+    
+    setup do
+      @organisation = Factory.create(:organisation, :num_weeks_notice => 2)
+      @activity = Factory.create(:activity)
+      @time_slot = Factory.build(:time_slot, :activity => @activity, :organisation => @organisation, :mon => false, :tue => false, :wed => false, :thu => false, :fri => false, :sat => false, :sun => false)
+    end
+    
+    context "if today is a Wed 01/02/2012" do
+      
+      setup do
+        Timecop.freeze(Date.new(2012, 2, 1))
+      end
+      
+      teardown do
+        Timecop.return
+      end
+      
+      should "return Monday 20/02/2012 if time_slots contain a mon but no other days" do
+        @time_slot.update_attributes(:mon => true)
+        assert_equal "2012-02-20", @organisation.next_available_date_for_activity(@activity).strftime("%Y-%m-%d")
+      end
+      
+      should "return Friday 17/02/2012 if time_slots contain a fri, sat and sun but no other days" do
+        @time_slot.update_attributes(:fri => true, :sat => true, :sun => true)
+        assert_equal "2012-02-17", @organisation.next_available_date_for_activity(@activity).strftime("%Y-%m-%d")        
+      end
+      
+      should "return a Wednesday 15/02/2012 if time_slots contain all days" do
+        @time_slot.update_attributes(:mon => true, :tue => true, :wed => true, :thu => true, :fri => true, :sat => true, :sun => true)
+        assert_equal "2012-02-15", @organisation.next_available_date_for_activity(@activity).strftime("%Y-%m-%d")
+      end
+      
+      should "return Tuesday 21/02/2012 if time_slots contain a mon and tues but the mon is booked" do
+        @time_slot.update_attributes(:mon => true, :tue => true)
+        Factory.create(:time_slot_booking, :time_slot => @time_slot, :starts_at => Time.parse(@time_slot.possible_time_strings.first, Date.new(2012,2,20)))
+        assert_equal "2012-02-21", @organisation.next_available_date_for_activity(@activity).strftime("%Y-%m-%d")
+      end
+      
+    end
+    
+  end
+  
 end

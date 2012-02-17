@@ -69,13 +69,26 @@ class Organisation < ActiveRecord::Base
     !awake?
   end
   
-  
   def existing_bookings_for_activity(activity)
-    time_slot_bookings.for_activity(activity).starts_at_greater_than(num_weeks_notice.weeks.from_now).collect {|b| b.starts_at.strftime("%a %b %d %Y")}
+    date_strings = time_slot_bookings.for_activity(activity).starts_at_greater_than(num_weeks_notice.weeks.from_now).collect do |booking|
+      time_slots_for_activity(activity).available_on_date(booking.starts_at).present? ? nil : booking.starts_at.strftime("%a %b %d %Y")
+    end
+    date_strings.reject(&:blank?)
   end
   
   def ordered_activities
     (activities.volunteering.ascend_by_name + Activity.volunteering.ascend_by_name).uniq
+  end
+  
+  def next_available_date_for_activity(activity)
+    days = %w{sun mon tue wed thu fri sat}
+    date = num_weeks_notice.weeks.from_now.to_date
+    soonest_date = nil
+    until soonest_date.present?
+      soonest_date = date if time_slots_for_activity(activity).available_on_date(date).present?
+      date = date + 1.day
+    end
+    soonest_date
   end
   
   def status

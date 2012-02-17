@@ -1,0 +1,21 @@
+-selected_date ||= organisation.next_available_date_for_activity(activity)
+:javascript
+  var BookedDates = #{organisation.existing_bookings_for_activity(activity).to_json};
+  $(document).ready(function() {
+    $('#time_slot_datepicker').datepicker({
+      dateFormat: 'yy-mm-dd',
+      defaultDate: '#{selected_date.strftime("%Y-%m-%d")}',
+      minDate: (+#{organisation.num_weeks_notice * 7}),
+      onSelect: function(dateText, inst) {
+        $.get("/organisations/#{organisation.id}/activities/#{activity.id}/time_slots?date=" + dateText);
+      },
+      beforeShowDay: function(date) {
+        var allowed_on_day = $.inArray(date.getDay(), #{organisation.activity_day_integers(activity).to_json}) == -1 ? false : true;
+        var already_booked =  $.inArray(date.toDateString(), BookedDates) == -1 ? false : true;
+        return [!already_booked && allowed_on_day, already_booked ? "already_booked" : "", ""];
+      }
+    });
+  });
+#time_slot_datepicker.fl
+#time_slot_list.fl
+  =render("time_slots/list", :organisation => organisation, :activity => activity, :date => selected_date)
