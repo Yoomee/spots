@@ -2,7 +2,7 @@
   $(document).ready(function() {
     FancyboxLoader.loadAll();  
   });
--time_slots = organisation.time_slots_for_activity(activity).available_on_date(date)
+-time_slots = organisation.time_slots_for_activity(activity).available_on_date(date).ascend_by_starts_at
 %h4#time_slot_date=date.strftime("%A %o %b")
 -if same_note = (time_slots.collect(&:note).collect(&:strip).uniq.size == 1)
   =read_more_truncate(time_slots.first.note, :length => 110)
