@@ -48,7 +48,10 @@ MembersController.class_eval do
     @member = Member.new(params[:member])
     @member.generate_random_password(true) if logged_in_member_is_admin?
     if @member.save
-      session[:logged_in_member_id] = @member.id if logged_out?
+      if logged_out?
+        session[:logged_in_member_id] = @member.id
+        @logged_in_member = @member
+      end
       if Module.value_to_boolean(params[:in_popup])
         render(:text => "<script type='text/javascript'>window.close()</script>")
       elsif logged_in_member_is_admin?
