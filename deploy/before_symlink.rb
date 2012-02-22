@@ -35,6 +35,8 @@ if release_path =~ /staging/
   settings_yaml = YAML.load_file(settings_yaml_path)
   settings_yaml['site_url'] = 'http://spots.yoomee.com'
   settings_yaml['site_name'] = 'Spots of Time Staging'
+  settings_yaml['production'] ||= {}
+  settings_yaml['production']['disable_mail'] = true
   File.open(settings_yaml_path, 'w') do |file|
     file.puts YAML::dump(settings_yaml)
   end  
