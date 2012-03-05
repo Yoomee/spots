@@ -6327,7 +6327,7 @@ form.time_slot ol li.time_slot_day_input, form.time_slot ol li.select {
 form.time_slot .time_slot_date,
 form.time_slot .time_slot_days{
   float:left;
-  width:360px;
+  width:365px;
 }
 form.time_slot .time_slot_date label{
   line-height: 26px;

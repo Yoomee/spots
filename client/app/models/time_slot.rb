@@ -38,7 +38,7 @@ class TimeSlot < ActiveRecord::Base
   delegate :has_lat_lng?, :lat_lng, :lat, :lng, :num_weeks_notice, :to => :organisation
   delegate :name, :to => :activity, :prefix => true
 
-  named_scope :available_on_date, lambda {|date| {:conditions => ["#{date.strftime("%a").downcase} = 1 AND (time_slots.date IS NULL OR DATE(time_slots.date) = :date) AND NOT EXISTS (SELECT id FROM time_slot_bookings WHERE time_slot_bookings.time_slot_id = time_slots.id AND DATE(time_slot_bookings.starts_at) = :date LIMIT 1)", {:date => date.to_date}]}}
+  named_scope :available_on_date, lambda {|date| {:conditions => ["(DATE(time_slots.date) = :date OR #{date.strftime("%a").downcase} = 1) AND NOT EXISTS (SELECT id FROM time_slot_bookings WHERE time_slot_bookings.time_slot_id = time_slots.id AND DATE(time_slot_bookings.starts_at) = :date LIMIT 1)", {:date => date.to_date}]}}
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisations => {:confirmed => true}}
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   named_scope :for_organisation_group, lambda {|organisation_group| {:joins => :organisation, :conditions => ["organisations.organisation_group_id=?", organisation_group.id], :group => "time_slots.id"}}
