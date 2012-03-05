@@ -36,7 +36,7 @@ ApplicationController.class_eval do
   protected
   def redirect_after_signup
     flash[:registered] = "Hi #{logged_in_member.forename}, welcome to #{APP_CONFIG['site_name']}."
-    redirect_to home_path
+    redirect_to welcome_path
   end
   
 end

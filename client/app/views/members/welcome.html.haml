@@ -1,0 +1,49 @@
+-content_for :head do
+  :coffeescript
+
+    $ ->
+
+      ActivityFilter.filter('volunteering')
+    
+      $('.feature_panel_right').cycle
+        fx: 'scrollHorz',
+        speed: 'slow',
+        timeout: 0,
+        easing: 'easeOutQuint',
+        pager: '#feature_panel_nav',
+        before: (currSlideElement, nextSlideElement, options, forwardFlag) ->
+          slideNum = $(nextSlideElement).attr 'data-slide-num'
+          $('.feature_panel_info').hide()
+          $('#feature_panel_info_' + slideNum).fadeIn()
+
+-hidden_title "Welcome to Spots of Time"
+-no_content_row
+.row
+  .eightcol
+    %h1="Your account has now been created"
+.row.find
+  .sixcol.info
+    Why not get started by by finding something you'd like to do from our selection below.
+  .sixcol.last.activity
+    -if !Activity.anytime.empty?
+      #activity_filter
+        %span Filter activities by:
+        =#link_to_function("All", "ActivityFilter.filter('all')", :id => "activity_filter_all", :class => "active")
+        =link_to_function("Volunteering", "ActivityFilter.filter('volunteering')", :id => "activity_filter_volunteering", :class => 'active')
+        =link_to_function("Anytime anywhere", "ActivityFilter.filter('anytime')", :id => "activity_filter_anytime")
+  .twelvecol
+    .activity_grid
+      -@activities.each do |activity|
+        -link_to(activity, :class => "activity type_#{activity.activity_type}") do
+          =image_for(activity, "124x124#")
+          .label=activity
+#signup_next_link_row.row
+  .sixcol
+  .sixcol.last
+    .edit_profile Or add some more details to your profile
+    =link_to("Edit my profile", [:edit, logged_in_member], :class => "bttn_l")
+  
+
+.row
+.twelvecol
+  =options_panel

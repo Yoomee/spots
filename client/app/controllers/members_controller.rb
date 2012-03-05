@@ -24,7 +24,7 @@
 # written agreement with Yoomee Digital Ltd.
 MembersController.class_eval do
   
-  member_only :big_print
+  member_only :big_print, :welcome
   owner_only :agree_to_big_print, :edit_bio, :update_bio
   
   skip_before_filter :redirect_to_organisation_terms, :only => %w{agree_to_big_print big_print}
@@ -59,6 +59,7 @@ MembersController.class_eval do
         redirect_to_waypoint
       else
         redirect_after_signup
+        # Render create
       end
     elsif @member.twitter_connected? || @member.facebook_connected? || @member.linked_in_connected?
       session[:auth_data] = nil
@@ -91,6 +92,10 @@ MembersController.class_eval do
         page[:member_bio_form].replace(render("members/bio_form", :member => @member))
       end
     end
+  end
+  
+  def welcome
+    @activities = Activity.non_group_specific
   end
   
 end

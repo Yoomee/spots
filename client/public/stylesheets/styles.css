@@ -6907,3 +6907,10 @@ form#new_member label {
 form#new_member li {
   margin: 0;
 }
+
+.edit_profile {
+  float:left;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 20px;
+}

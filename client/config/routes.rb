@@ -47,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
     time_slot_bookings.resource :thank_you_mail
   end
   map.resources :members, :only => [], :member => {:agree_to_big_print => :put, :edit_bio => :get, :update_bio => :put}
+  map.welcome '/welcome', :controller => 'members', :action => 'welcome'
   map.big_print "/big_print", :controller => "members", :action => "big_print"
   
 end
