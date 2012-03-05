@@ -32,16 +32,17 @@ class TimeSlot < ActiveRecord::Base
   validates_order_of :starts_at, :ends_at
   validate :presence_of_days
   validate :date_in_future
-  before_validation :set_day_from_date
+  #before_validation :set_day_from_date
 
   delegate :description, :name, :email, :to => :organisation, :prefix => true
   delegate :has_lat_lng?, :lat_lng, :lat, :lng, :num_weeks_notice, :to => :organisation
   delegate :name, :to => :activity, :prefix => true
 
+  named_scope :available_on_date, lambda {|date| {:conditions => ["#{date.strftime("%a").downcase} = 1 AND (time_slots.date IS NULL OR DATE(time_slots.date) = :date) AND NOT EXISTS (SELECT id FROM time_slot_bookings WHERE time_slot_bookings.time_slot_id = time_slots.id AND DATE(time_slot_bookings.starts_at) = :date LIMIT 1)", {:date => date.to_date}]}}
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisations => {:confirmed => true}}
   named_scope :group_by_organisation, :group => "time_slots.organisation_id"
   named_scope :for_organisation_group, lambda {|organisation_group| {:joins => :organisation, :conditions => ["organisations.organisation_group_id=?", organisation_group.id], :group => "time_slots.id"}}
-  named_scope :available_on_date, lambda {|date| {:conditions => ["#{date.strftime("%a").downcase} = 1 AND (time_slots.date IS NULL OR DATE(time_slots.date) = :date) AND NOT EXISTS (SELECT id FROM time_slot_bookings WHERE time_slot_bookings.time_slot_id = time_slots.id AND DATE(time_slot_bookings.starts_at) = :date LIMIT 1)", {:date => date.to_date}]}}
+  named_scope :one_off, :conditions => "date IS NOT NULL"
 
   def day_integers
     out = []
@@ -108,16 +109,16 @@ class TimeSlot < ActiveRecord::Base
   end
   
   def presence_of_days
-    errors.add_to_base("Please select at least one day of the week") if TimeSlot::DAYS.all? {|d| !send(d)}
+    errors.add_to_base("Please select at least one day of the week") if TimeSlot::DAYS.all? {|d| !send(d)} && date.blank?
   end
   
-  def set_day_from_date
-    return true if date.blank?
-    wday = (date.wday - 1) % 7
-    TimeSlot::DAYS.each_with_index do |d,idx|
-      send("#{d}=", idx == wday)
-    end
-  end
+  # def set_day_from_date
+  #   return true if date.blank?
+  #   wday = (date.wday - 1) % 7
+  #   TimeSlot::DAYS.each_with_index do |d,idx|
+  #     send("#{d}=", idx == wday)
+  #   end
+  # end
   
 end
 

@@ -77,6 +77,13 @@ class Organisation < ActiveRecord::Base
     date_strings.reject(&:blank?)
   end
   
+  def one_off_dates_for_activity(activity)
+    date_strings = time_slots.one_off.date_greater_than(num_weeks_notice.weeks.from_now).find_all_by_activity_id(activity.id).collect do |time_slot|
+      time_slot.date.strftime("%a %b %d %Y")
+    end
+    date_strings.reject(&:blank?)
+  end
+  
   def ordered_activities
     (activities.volunteering.available_to_organisation(self).ascend_by_name + Activity.volunteering.available_to_organisation(self).ascend_by_name).uniq
   end

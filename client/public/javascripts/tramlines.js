@@ -41,6 +41,7 @@ var TimeSlot = {
       day.parent().addClass('selected');
     } else {
       day.parent().removeClass('selected');
+      day.siblings('input').val('0')
     }
   },
   setAllSelected: function(){
@@ -57,7 +58,7 @@ var TimeSlot = {
       form.find('.time_slot_date').show();
     }
     form.show();
-    $(link).parent().hide()
+    $(link).parent().hide();
   },
   toggleEdit: function(form_id){
     var form = $('#'+form_id);
