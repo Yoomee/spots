@@ -26,7 +26,7 @@ HomeController.class_eval do
   
   def index
     @blog_post = BlogPost.latest.first
-    @activities = Activity.all
+    @activities = Activity.non_group_specific
   end
   
 end

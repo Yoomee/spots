@@ -48,8 +48,9 @@
         =#form.input :require_crb, :label => "Do you require CRB checks?"
         =#form.input :terms, :label => "What are your terms and conditions?", :input_html => {:rows => 5}
       -form.buttons do
-        %li
-          %p Next you get to pick your activities!
+        -unless Activity.available_to_organisation(@organisation).empty?
+          %li
+            %p Next you get to pick your activities!
         =form.commit_button "Next"
               
 

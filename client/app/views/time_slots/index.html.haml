@@ -8,36 +8,45 @@
     });
 -hidden_title "Activities at #{@organisation}"
 -no_content_row
-.row
-  .eightcol
-    %h1="Activities at #{@organisation}"
-    %p Choose an activity from below and click "Add a weekly time slot" or "Add a one-off time slot".
-  .fourcol.last
-    -if params[:signup] #just signed up
-      =link_to("Skip this for now &rarr;", @organisation, :id => "skip_time_slots_link")
-    -else
-      =link_to("Ok, I'm done", @organisation, :class => "bttn_l", :id => "skip_time_slots_link")
--@organisation.ordered_activities.each do |activity|
-  .row.activity_row
-    .twocol
-      =image_for(activity, "200x")
-    .tencol.last
-      %h4=activity
-      =read_more_truncate(activity.description) 
-      %ul.lst{:id => "activity_#{activity.id}_time_slots"}
-        -activity.time_slots.organisation_id_is(@organisation.id).each do |time_slot|
-          =render("time_slots/time_slot", :time_slot => time_slot)
-      .time_slot_links
-        =link_to_function("Add a weekly time slot", "TimeSlot.showForm(this,0)",:class => "new_time_slot_link")
-        =link_to_function("Add a one-off time slot", "TimeSlot.showForm(this,1)",:class => "new_time_slot_link")
-      .new_time_slot_form{:style => "display:none"}
-        =render("time_slots/form", :time_slot => activity.time_slots.build(:organisation => @organisation), :disabled => false)
-#signup_next_link_row.row
-  .twelvecol
-    -if params[:signup] #just signed up
-      =link_to("Next", @organisation, :class => "bttn_l")
-    -else
-      =link_to("Ok, I'm done", @organisation, :class => "bttn_l")
+-if @organisation.ordered_activities.empty?
+  .row
+    .eightcol
+      %h1="Activities at #{@organisation}"
+      %p Sorry, there aren't any activities available for you currently.
+    .fourcol.last
+      =link_to("Next &rarr;", @organisation, :id => "skip_time_slots_link")
+
+-else  
+  .row
+    .eightcol
+      %h1="Activities at #{@organisation}"
+      %p Choose an activity from below and click "Add a weekly time slot" or "Add a one-off time slot".
+    .fourcol.last
+      -if params[:signup] #just signed up
+        =link_to("Skip this for now &rarr;", @organisation, :id => "skip_time_slots_link")
+      -else
+        =link_to("Ok, I'm done", @organisation, :class => "bttn_l", :id => "skip_time_slots_link")
+  -@organisation.ordered_activities.each do |activity|
+    .row.activity_row
+      .twocol
+        =image_for(activity, "200x")
+      .tencol.last
+        %h4=activity
+        =read_more_truncate(activity.description) 
+        %ul.lst{:id => "activity_#{activity.id}_time_slots"}
+          -activity.time_slots.organisation_id_is(@organisation.id).each do |time_slot|
+            =render("time_slots/time_slot", :time_slot => time_slot)
+        .time_slot_links
+          =link_to_function("Add a weekly time slot", "TimeSlot.showForm(this,0)",:class => "new_time_slot_link")
+          =link_to_function("Add a one-off time slot", "TimeSlot.showForm(this,1)",:class => "new_time_slot_link")
+        .new_time_slot_form{:style => "display:none"}
+          =render("time_slots/form", :time_slot => activity.time_slots.build(:organisation => @organisation), :disabled => false)
+  #signup_next_link_row.row
+    .twelvecol
+      -if params[:signup] #just signed up
+        =link_to("Next", @organisation, :class => "bttn_l")
+      -else
+        =link_to("Ok, I'm done", @organisation, :class => "bttn_l")
     
 
 .row

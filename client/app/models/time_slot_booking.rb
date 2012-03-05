@@ -112,7 +112,7 @@ class TimeSlotBooking < ActiveRecord::Base
   
   def starts_at_is_on_an_allowed_day
     return true if starts_at.nil? || time_slot.nil?
-    errors.add(:starts_at, "is on the wrong day") unless time_slot.send(starts_at.strftime("%a").downcase)
+    errors.add(:starts_at, "is on the wrong day") unless time_slot.send(starts_at.strftime("%a?").downcase)
   end
   
   private

@@ -42,7 +42,20 @@ class Activity < ActiveRecord::Base
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisation => {:confirmed => true}}
   named_scope :volunteering, :conditions => {:activity_type => "volunteering"}
   named_scope :for_organisation_group, lambda {|organisation_group| {:joins => :organisations, :conditions => ["organisations.organisation_group_id=?", organisation_group.id], :group => "activities.id"}}
-  named_scope :available_to_organisation, lambda {|organisation|{:conditions => ["activities.organisation_group_id IS NULL OR activities.organisation_group_id = ?", organisation.organisation_group_id]}}
+  named_scope :available_to_organisation_with_group, lambda {|organisation|{:conditions => ["activities.organisation_group_id = ?", organisation.organisation_group_id]}}
+  named_scope :non_group_specific, {:conditions => "activities.organisation_group_id IS NULL"}
+
+  class << self
+    
+    def available_to_organisation(organisation)
+      if organisation.organisation_group
+        available_to_organisation_with_group(organisation)
+      else
+        non_group_specific
+      end
+    end
+    
+  end
 
   def anytime?
     activity_type == 'anytime'
