@@ -6934,3 +6934,17 @@ form#new_member li {
 #time_slot_question_inputs .multiple_nested_add_link {
   font-size: 15px;
 }
+#unconfirmed_time_slot_bookings .booking_details {
+  float: left;
+  clear: both;
+  width: 300px;
+}
+#unconfirmed_time_slot_bookings .booking_details .details_name {
+  float: left;
+  font-weight: bold;
+  margin-right: 5px;
+}
+#unconfirmed_time_slot_bookings .booking_details .details_info {
+  float: left;
+  font-style: italic;
+}
