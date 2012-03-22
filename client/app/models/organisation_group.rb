@@ -5,6 +5,10 @@ class OrganisationGroup < ActiveRecord::Base
   
   has_many :organisations, :dependent => :nullify
   has_many :group_specific_activities, :class_name => "Activity"
+  has_many :all_time_slot_questions, :dependent => :destroy
+  has_many :time_slot_questions, :conditions => {:deleted_at => nil}
+
+  accepts_nested_attributes_for :time_slot_questions
 
   class << self
     def find_by_ref(ref)

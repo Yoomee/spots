@@ -63,7 +63,8 @@ class TimeSlotBookingsController < ApplicationController
         if @time_slot_booking.save
           page.redirect_to thank_you_time_slot_booking_path(@time_slot_booking)
         else
-          page[:fancybox_time_slot_booking_form].html render("time_slot_bookings/new_form", :time_slot_booking => @time_slot_booking)
+          @time_slot = @time_slot_booking.time_slot
+          page[:fancybox_time_slot_booking_form].replace render("time_slot_bookings/new_form", :time_slot_booking => @time_slot_booking)
         end
       end
     else
@@ -92,6 +93,7 @@ class TimeSlotBookingsController < ApplicationController
   def new
     @time_slot = TimeSlot.find(params[:time_slot_id])
     @time_slot_booking = @time_slot.bookings.build(:starts_at => Date.parse(params[:date]))
+    @time_slot_booking.build_time_slot_answers
     render :partial => "new_form", :locals => {:time_slot_booking => @time_slot_booking}
   end
   

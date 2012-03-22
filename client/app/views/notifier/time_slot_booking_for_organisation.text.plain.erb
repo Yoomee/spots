@@ -1,9 +1,14 @@
 <%="Hi #{@recipient.forename},"%>
 
 <%="#{@time_slot_booking.member} has volunteered to #{@time_slot_booking.activity} on #{@time_slot_booking.starts_at_neat_string}."%>
+<%if @time_slot_booking.notes.present? || @time_slot_booking.time_slot_answers.text_not_blank.present?%>
+  They left these details:
+<%end%>
 <%if @time_slot_booking.notes.present?%>
-More details: <%=@time_slot_booking.notes%>
-
+<%=@time_slot_booking.notes%>
+<%end%>
+<%@time_slot_booking.time_slot_answers.text_not_blank.each do |answer|%>
+<%="#{answer.question_text_with_colon} #{answer.text}"%>
 <%end%>
 To view the spot and choose to confirm it, use the link below:
 

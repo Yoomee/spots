@@ -1,0 +1,7 @@
+-form.semantic_fields_for(:time_slot_questions, time_slot_question) do |fields|
+  -fields.inputs(:style => "display:#{time_slot_question.delete_this? ? 'none' : 'block'}") do
+    =fields.input :text, :label => "Question", :as => :string
+    =fields.input :field_type, :as => :select, :label => "Answer field", :collection => [["Text field", "string"], ["Text area", "text"]], :include_blank => false, :wrapper_html => {:class => "inline-fields"}
+    =fields.input :delete_this, :as => :hidden, :wrapper_html => {:class => "multiple_nested_destroy"}
+    %li
+      =link_to_function("x Delete this question", "OrganisationGroupTimeSlotQuestionForm.remove($(this))", :class => "remove_link")

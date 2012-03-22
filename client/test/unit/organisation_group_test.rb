@@ -32,6 +32,7 @@ class OrganisationGroupTest < ActiveSupport::TestCase
   
   should have_many(:organisations)
   should have_many(:group_specific_activities)
+  should have_many(:time_slot_questions)
   
   should validate_presence_of(:name)
   

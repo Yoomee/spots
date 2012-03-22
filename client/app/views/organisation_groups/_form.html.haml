@@ -3,5 +3,10 @@
     =form.input :name
     =form.input :image, :as => :image
     =form.input :description, :input_html => {:rows => 8}
+  -form.inputs do
+    %li
+      %h3 Additional questions for volunteers
+      %p.inline-help These questions will appear on the booking form for volunteers
+    =multiple_nested_inputs_for(:time_slot_questions, :form => form, :label => false, :add_link_text => "+ Add a question")
   -form.buttons do
     =form.commit_button "Save"
