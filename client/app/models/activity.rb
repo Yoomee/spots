@@ -36,6 +36,8 @@ class Activity < ActiveRecord::Base
 
   default_scope :order => "weight, created_at DESC"
   
+  has_permalink
+  
   search_attributes %w{name description}
 
   named_scope :anytime, :conditions => {:activity_type => "anytime"}

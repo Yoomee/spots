@@ -10,6 +10,8 @@ class OrganisationGroup < ActiveRecord::Base
 
   accepts_nested_attributes_for :time_slot_questions
 
+  has_permalink
+
   class << self
     def find_by_ref(ref)
       return nil if ref.blank?
