@@ -118,7 +118,7 @@ class OrganisationsController < ApplicationController
   
   def signup
     if logged_in?
-      render_404
+      report_error("You must be logged out in order to sign-up as a new organisation")
     else
       @organisation = Organisation.new(:organisation_group => OrganisationGroup.find_by_ref(params[:ref]))
       @organisation.build_member
