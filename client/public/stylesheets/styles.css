@@ -1732,7 +1732,7 @@ p.latest_text {
   float:left;
   margin-bottom:20px;
 }
-.activity_grid .activity {
+.activity_grid .activity, .feature_activity .activity {
   padding:10px;
   margin:0 10px 10px 0;
   background:#ddd;
@@ -1748,7 +1748,7 @@ p.latest_text {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-.activity_grid .activity:hover {
+.activity_grid .activity:hover, .feature_activity .activity:hover {
 	background: #f15f5f;
 	text-decoration: none;
 	text-shadow: none;
@@ -1757,17 +1757,17 @@ p.latest_text {
 	-webkit-box-shadow:1px 0px 2px rgba(0,0,0,0.3);
 	-moz-box-shadow:1px 0px 2px rgba(0,0,0,0.3);
 }
-.activity_grid .activity:hover div.label {
+.activity_grid .activity:hover div.label, .feature_activity .activity:hover div.label {
 	color: #fff;
 	
 }
-.activity_grid .activity img {
+.activity_grid .activity img, .feature_activity .activity img {
   float:left;
   margin-bottom:10px;
   width:124px;
   height:124px;
 }
-.activity_grid .activity .label{
+.activity_grid .activity .label, .feature_activity .activity .label{
   float:left;
   clear:both;
   color:#000;
@@ -6947,4 +6947,68 @@ form#new_member li {
 #unconfirmed_time_slot_bookings .booking_details .details_info {
   float: left;
   font-style: italic;
+}
+
+/*========== Main options ==========*/
+.main_options a {
+  color:black;
+  float:left;
+  font-size: 30px;
+  height:129px;
+  width: 189px;
+  -moz-border-radius:50px;
+	-webkit-border-radius:50px;
+	border-radius:50px;
+	-o-border-radius:50px;
+	padding: 80px 50px;
+	text-align:center;
+	vertical-align:middle;
+	
+}
+.main_options a.button1 {
+  background-color: #FA6258;
+}
+.main_options a.button2 {
+  background-color: #8BFBD5;
+}
+.main_options a.button3 {
+  background-color: #ffef12;
+}
+.main_options {
+  margin-bottom: 40px;
+}
+
+.feature_activity {
+}
+.feature_activity_border {
+  width:100%;
+  border: 2px solid gray;
+  -moz-border-radius:50px;
+	-webkit-border-radius:50px;
+	border-radius:50px;
+	-o-border-radius:50px;
+}
+.feature_activity_inner {
+  margin:30px
+}
+.feature_activity_actions a {
+  display:block;
+  -moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	-o-border-radius:20px;
+	height: 40px;
+	padding: 20px;
+	margin-bottom: 20px;
+	color: black;
+	font-size:30px;
+}
+.feature_activity_actions a.first {
+  background-color:#FA6258;
+}
+.feature_activity_actions a.second {
+  background-color: #8BFBD5;
+}
+.feature_activity_actions a.third {
+  background-color:#ffef12;
 }
