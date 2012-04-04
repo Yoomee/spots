@@ -55,21 +55,22 @@
           =photo_for(@blog_post, '626x200')
       -else
         =image_tag("feature-panel.jpg", "data-slide-num" => 2)
-.row.headline
-  .twelvecol
-    Explore our activities...
-.row
-  .eightcol.feature_activity
-    .feature_activity_border
-      .feature_activity_inner
-        -link_to(@activity, :class => 'activity') do
-          =image_for(@activity, "124x124#")
-          .label=@activity
-        =@activity.description
-  .fourcol.last.feature_activity_actions
-    =link_to "Do it...", '#', :class => 'first'
-    =link_to "Share it...", {:controller => 'share', :action => 'new', :model_name => 'activity', :id => @activity.id}, :class => 'second'
-    =link_to "See more...", @activity, :class => 'third'
+-if @activity
+  .row.headline
+    .twelvecol
+      Explore our activities...
+  .row
+    .eightcol.feature_activity
+      .feature_activity_border
+        .feature_activity_inner
+          -link_to(@activity, :class => 'activity') do
+            =image_for(@activity, "124x124#")
+            .label=@activity
+          =@activity.description
+    .fourcol.last.feature_activity_actions
+      =link_to "Do it...", '#', :class => 'first'
+      =link_to "Share it...", {:controller => 'share', :action => 'new', :model_name => 'activity', :id => @activity.id}, :class => 'second'
+      =link_to "See more...", @activity, :class => 'third'
     
   
 -if false
