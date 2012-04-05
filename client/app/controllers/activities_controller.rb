@@ -47,6 +47,11 @@ class ActivitiesController < ApplicationController
   def edit
   end
   
+  def get_involved
+    @activities = Activity.all
+    @activity_types = OrganisationGroup.with_activities - [OrganisationGroup.find(1)] + ['East London']
+  end
+  
   def index
     @activities = Activity.all
   end

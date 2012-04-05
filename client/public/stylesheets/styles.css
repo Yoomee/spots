@@ -1706,8 +1706,8 @@ p.latest_text {
 	
 }
 #activity_filter {
-  float: right;
-  margin-bottom: 20px;
+  /*float: right;*/
+  margin-bottom: 50px;
 }
 #activity_filter a, #activity_filter span {
   float: left;
@@ -1728,11 +1728,11 @@ p.latest_text {
 #activity_filter span {
   color: black;
 }
-.activity_grid {
+.activity_grid, .activity_type_grid {
   float:left;
   margin-bottom:20px;
 }
-.activity_grid .activity, .feature_activity .activity {
+.activity_grid .activity, .feature_activity .activity, .activity_type_grid .activity_type {
   padding:10px;
   margin:0 10px 10px 0;
   background:#ddd;
@@ -1748,7 +1748,7 @@ p.latest_text {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-.activity_grid .activity:hover, .feature_activity .activity:hover {
+.activity_grid .activity:hover, .feature_activity .activity:hover, .activity_type_grid .activity_type:hover {
 	background: #f15f5f;
 	text-decoration: none;
 	text-shadow: none;
@@ -1757,17 +1757,17 @@ p.latest_text {
 	-webkit-box-shadow:1px 0px 2px rgba(0,0,0,0.3);
 	-moz-box-shadow:1px 0px 2px rgba(0,0,0,0.3);
 }
-.activity_grid .activity:hover div.label, .feature_activity .activity:hover div.label {
+.activity_grid .activity:hover div.label, .feature_activity .activity:hover div.label, .activity_type_grid .activity_type:hover div.label {
 	color: #fff;
 	
 }
-.activity_grid .activity img, .feature_activity .activity img {
+.activity_grid .activity img, .feature_activity .activity img, .activity_type_grid .activity_type img {
   float:left;
   margin-bottom:10px;
   width:124px;
   height:124px;
 }
-.activity_grid .activity .label, .feature_activity .activity .label{
+.activity_grid .activity .label, .feature_activity .activity .label, .activity_type_grid .activity_type .label{
   float:left;
   clear:both;
   color:#000;

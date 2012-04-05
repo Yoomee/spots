@@ -11,13 +11,21 @@ class OrganisationGroup < ActiveRecord::Base
   accepts_nested_attributes_for :time_slot_questions
 
   has_permalink
+  
+  named_scope :with_activities, :joins => :activities
 
   class << self
+
     def find_by_ref(ref)
       return nil if ref.blank?
       ref += "=" * (( 4 - (ref.length % 4)) % 4)
       find_by_id(Base64.decode64(ref).to_i - 1000)
     end
+
+    def with_activities
+      all.select {|organisation_group| organisation_group.activities.present?}
+    end
+    
   end
 
   def activities

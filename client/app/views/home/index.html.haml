@@ -23,7 +23,7 @@
     =flash[:registered].presence || "We create fun, bite-size activities for people to do and for great organisations to benefit from."
 .row.main_options
   .fourcol
-    =link_to "Get involved", '#', :class => 'button1'
+    =link_to "Get involved", get_involved_path, :class => 'button1'
   .fourcol
     =link_to_slug "See our projects", :our_work, :class => 'button2'
   .fourcol.last
@@ -71,7 +71,7 @@
     .fourcol.last.feature_activity_actions
       =link_to "Do it...", @activity, :class => 'first'
       =link_to "Share it...", {:controller => 'share', :action => 'new', :model_name => 'activity', :id => @activity.id}, :class => 'second'
-      =link_to "See more...", @activity, :class => 'third'
+      =link_to "See more...", get_involved_path, :class => 'third'
     
   
 -if false
