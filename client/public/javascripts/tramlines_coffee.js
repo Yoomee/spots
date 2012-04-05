@@ -1,5 +1,5 @@
-/* DO NOT MODIFY. This file was compiled Mon, 28 Nov 2011 13:08:39 GMT from
- * /Users/simonwilkins/Rails/spots/app/coffeescripts/client/tramlines_coffee.coffee
+/* DO NOT MODIFY. This file was compiled Thu, 05 Apr 2012 16:38:26 GMT from
+ * /Users/si/projects/spots/app/coffeescripts/client/tramlines_coffee.coffee
  */
 
 var ActivityFilter;
@@ -7,7 +7,7 @@ var ActivityFilter;
 ActivityFilter = {
   filter: function(type) {
     var _this = this;
-    $('#activity_filter a').removeClass('active');
+    $('.activity_type_grid a').removeClass('active');
     $('#activity_filter_' + type).addClass('active');
     return $('.activity_grid').animate({
       opacity: 0

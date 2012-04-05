@@ -2,7 +2,7 @@ ActivityFilter =
   
   filter: (type) ->
     
-    $('#activity_filter a').removeClass 'active'
+    $('.activity_type_grid a').removeClass 'active'
     $('#activity_filter_' + type).addClass 'active'
     
     $('.activity_grid').animate

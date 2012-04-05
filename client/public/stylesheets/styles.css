@@ -1748,7 +1748,7 @@ p.latest_text {
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
-.activity_grid .activity:hover, .feature_activity .activity:hover, .activity_type_grid .activity_type:hover {
+.activity_grid .activity:hover, .feature_activity .activity:hover, .activity_type_grid .activity_type:hover, .activity_type_grid .active {
 	background: #f15f5f;
 	text-decoration: none;
 	text-shadow: none;
