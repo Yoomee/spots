@@ -66,9 +66,10 @@
           -link_to(@activity, :class => 'activity') do
             =image_for(@activity, "124x124#")
             .label=@activity
-          =@activity.description
+          =@activity.description.word_truncate(400)
+          %br.clear
     .fourcol.last.feature_activity_actions
-      =link_to "Do it...", '#', :class => 'first'
+      =link_to "Do it...", @activity, :class => 'first'
       =link_to "Share it...", {:controller => 'share', :action => 'new', :model_name => 'activity', :id => @activity.id}, :class => 'second'
       =link_to "See more...", @activity, :class => 'third'
     

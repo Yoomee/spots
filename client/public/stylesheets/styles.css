@@ -6954,13 +6954,13 @@ form#new_member li {
   color:black;
   float:left;
   font-size: 30px;
-  height:129px;
+  height:100px;
   width: 189px;
   -moz-border-radius:50px;
 	-webkit-border-radius:50px;
 	border-radius:50px;
 	-o-border-radius:50px;
-	padding: 80px 50px;
+	padding: 20px 50px;
 	text-align:center;
 	vertical-align:middle;
 	
@@ -6979,6 +6979,7 @@ form#new_member li {
 }
 
 .feature_activity {
+  margin-bottom:20px;
 }
 .feature_activity_border {
   width:100%;
@@ -6989,7 +6990,8 @@ form#new_member li {
 	-o-border-radius:50px;
 }
 .feature_activity_inner {
-  margin:30px
+  margin:30px;
+  font-size: 16px;
 }
 .feature_activity_actions a {
   display:block;
