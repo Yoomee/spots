@@ -47,4 +47,15 @@ Member.class_eval do
     time_slot_bookings.starts_at_lt(Time.now).descend_by_starts_at
   end
   
+  def user_type
+    case
+    when is_admin?
+      "admin"
+    when organisations.present?
+      "organisation owner"
+    else
+      "volunteer"
+    end      
+  end
+  
 end

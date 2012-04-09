@@ -3,14 +3,18 @@
 
 %p
   ="<strong>#{@time_slot_booking.member}</strong> has volunteered to <strong>#{@time_slot_booking.activity}</strong> on #{@time_slot_booking.starts_at_neat_string}."
+-if @time_slot_booking.notes.present? || @time_slot_booking.time_slot_answers.text_not_blank.present?
+  %p They left these details:
 -if @time_slot_booking.notes.present?
   %p
-    More details:
     =@time_slot_booking.notes
+-@time_slot_booking.time_slot_answers.text_not_blank.each do |answer|
+  %p
+    ="#{answer.question_text_with_colon} #{answer.text}"
 %p
   =link_to("Click here", site_url + organisation_time_slot_bookings_path(@time_slot_booking.organisation))
   ="to view the spot and choose to confirm it."
-
+  
 %p
   Thanks,
 %p

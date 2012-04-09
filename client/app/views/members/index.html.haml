@@ -1,0 +1,14 @@
+-title "Members"
+%table
+  %tr
+    %th Name
+    %th Email
+    %th User type
+  -@members.each do |member|
+    %tr
+      %td=link_to_self(member)
+      %td=mail_to(member.email)
+      %td=member.user_type.humanize
+-options_panel do
+  =back_link
+  =link_if_allowed 'New member', new_member_proc

@@ -3,7 +3,7 @@
     %th Who
     %th What
     %th When
-    %th Notes
+    %th Details
     -if time_slot_bookings.any?(&:in_past?)
       %th Attended?
     %th Options
@@ -12,7 +12,14 @@
       %td=link_to_self(booking.member)
       %td=link_to(booking.activity, organisation_activity_path(booking.organisation, booking.activity))
       %td=booking.starts_at.strftime("%A %d %B %H:%M")
-      %td=booking.notes
+      %td
+        -if booking.notes.present?
+          .booking_details
+            .details_info=booking.notes
+        -booking.time_slot_answers.text_not_blank.each do |answer|
+          .booking_details
+            .details_name=answer.question_text
+            .details_info=answer.text
       -if time_slot_bookings.any?(&:in_past?)
         %td
           ="Yes" if booking.attended?

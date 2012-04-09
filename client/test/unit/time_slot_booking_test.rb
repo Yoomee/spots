@@ -34,6 +34,7 @@ class TimeSlotBookingTest < ActiveSupport::TestCase
   
   should belong_to(:member)
   should belong_to(:time_slot)
+  should have_many(:time_slot_answers)
   
   should validate_presence_of(:member)
   should validate_presence_of(:time_slot)

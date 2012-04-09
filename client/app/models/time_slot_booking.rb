@@ -29,6 +29,9 @@ class TimeSlotBooking < ActiveRecord::Base
   
   belongs_to :member
   belongs_to :time_slot
+  has_many :time_slot_answers, :dependent => :destroy
+
+  accepts_nested_attributes_for :time_slot_answers
 
   before_validation :set_starts_at
   
@@ -53,6 +56,12 @@ class TimeSlotBooking < ActiveRecord::Base
   named_scope :in_past_day, lambda {{:conditions => ["time_slot_bookings.starts_at < ? AND time_slot_bookings.starts_at >= ?", Time.zone.now, 24.hours.ago]}}
   named_scope :with_activity, :joins => "INNER JOIN time_slots ON time_slots.id=time_slot_bookings.time_slot_id INNER JOIN activities ON activities.id=time_slots.activity_id"
   
+  def build_time_slot_answers
+    time_slot_questions.each do |question|
+      time_slot_answers.build(:time_slot_question => question)
+    end
+  end
+  
   def in_future?
     starts_at > Time.now
   end
@@ -72,6 +81,10 @@ class TimeSlotBooking < ActiveRecord::Base
   
   def thank_you_mail
     ThankYouMail.new(:time_slot_booking => self)
+  end
+  
+  def time_slot_questions
+    time_slot.try(:organisation).try(:organisation_group).try(:time_slot_questions) || []
   end
   
   def to_s

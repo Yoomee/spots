@@ -2,7 +2,8 @@
   -form.inputs do
     =form.input :activity_type, :label => "Type", :as => :select, :collection => Activity::TYPES, :label_method => "humanize", :value_method => "to_s", :include_blank => false, :wrapper_html => {:class => "inline-fields"}  
     =form.input :name
-    =form.input :organisation_group, :collection => [["No", 'nil']] + OrganisationGroup.descend_by_name.map{|og| [og, og.id]}, :label => "Restrict to an Organisation Group", :include_blank => false
+    =form.input :organisation_group, :collection => [["No", nil]] + OrganisationGroup.descend_by_name.map{|og| [og, og.id]}, :label => "Restrict to an Organisation Group", :include_blank => false
     =form.input :description
+    =form.input :permalink_name, :label => "Permalink"
     =form.input :image, :as => :image
   =form.buttons

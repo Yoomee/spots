@@ -6914,3 +6914,37 @@ form#new_member li {
   line-height: 20px;
   margin-top: 20px;
 }
+
+/*========== Time slot questions ==========*/
+#time_slot_question_inputs {
+  width: 455px;
+}
+#time_slot_question_inputs li, #time_slot_question_inputs li input {
+  margin: 0;
+  width: 445px;
+}
+#time_slot_question_inputs fieldset {
+  width: 100%;
+  margin: 20px 0;
+}
+#time_slot_question_inputs .remove_link {
+  float: right;
+  font-size: 12px;
+}
+#time_slot_question_inputs .multiple_nested_add_link {
+  font-size: 15px;
+}
+#unconfirmed_time_slot_bookings .booking_details {
+  float: left;
+  clear: both;
+  width: 300px;
+}
+#unconfirmed_time_slot_bookings .booking_details .details_name {
+  float: left;
+  font-weight: bold;
+  margin-right: 5px;
+}
+#unconfirmed_time_slot_bookings .booking_details .details_info {
+  float: left;
+  font-style: italic;
+}

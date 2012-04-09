@@ -91,6 +91,9 @@ class Organisation < ActiveRecord::Base
   def next_available_date_for_activity(activity)
     days = %w{sun mon tue wed thu fri sat}
     date = num_weeks_notice.weeks.from_now.to_date
+    if time_slots_for_activity(activity).all?(&:one_off?)
+      return time_slots_for_activity(activity).after(date).map(&:date).sort.first
+    end
     soonest_date = nil
     until soonest_date.present?
       soonest_date = date if time_slots_for_activity(activity).available_on_date(date).present?
