@@ -1,6 +1,14 @@
-%h1= organisation_group.name
-%ul
-  -organisation_group.activities.each do |activity|
-    -link_to(organisation_group_activity_path(organisation_group,activity), :class => "activity") do
-      =image_for_widget(activity, "147x147#")
-      .label=activity
+#sot_widget_container
+  .sot-box
+    %h1
+      Get involved!
+    %h2
+      Select an activity to find out more
+    %ul
+      -organisation_group.activities.each do |activity|
+        %li
+          -link_to(organisation_group_activity_path(organisation_group,activity), :class => "activity") do
+            =image_for_widget(activity, "147x147#")
+            .label=activity
+    .sot-footer
+      Powered by <a href="http://spotsoftime.org.uk/">Spots of Time</a>

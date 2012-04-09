@@ -35,8 +35,8 @@ module ClientHelper
     "ActivityMap.fetchOrganisation('#{@activity.id}','#{organisation.id}');"
   end
 
-  def image_for_widget(a,b,c={})
-    image_tag 'http://localhost:3000' + image_for(a,b,c.merge(:url_only => true))
+  def image_for_widget(object, img_size, options={})
+    image_tag ImageHelper::download_image_url_prefix + image_for(object, img_size, options.merge(:url_only => true))
   end
   
   
