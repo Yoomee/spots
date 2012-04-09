@@ -1,0 +1,6 @@
+%h1= organisation_group.name
+%ul
+  -organisation_group.activities.each do |activity|
+    -link_to(organisation_group_activity_path(organisation_group,activity), :class => "activity") do
+      =image_for_widget(activity, "147x147#")
+      .label=activity

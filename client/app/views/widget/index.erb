@@ -1,0 +1,10 @@
+function loadStylesheet(url) {
+    var link = document.createElement('link');
+    link.rel  = 'stylesheet';
+    link.type = 'text/css';
+    link.href = url;
+    (document.getElementsByTagName('head')[0] ||
+        document.getElementsByTagName('body')[0]).appendChild(link);
+}
+loadStylesheet('http://localhost:3000/stylesheets/client/styles.css')
+document.write('<%= escape_javascript render(:partial => 'organisation_group', :locals => {:organisation_group => @organisation_group}) %>')
