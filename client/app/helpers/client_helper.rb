@@ -34,6 +34,10 @@ module ClientHelper
   def organisation_marker_click(organisation)
     "ActivityMap.fetchOrganisation('#{@activity.id}','#{organisation.id}');"
   end
+
+  def image_for_widget(object, img_size, options={})
+    image_tag ImageHelper::download_image_url_prefix + image_for(object, img_size, options.merge(:url_only => true))
+  end
   
   
 end

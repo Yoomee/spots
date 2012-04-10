@@ -27,6 +27,8 @@ class ClientEnvironment
   class << self
     
     def setup(config)
+      config.gem 'barista'
+      config.gem 'mogli'
       config.gem 'searchlogic'
       config.gem 'facebooker2'
       config.gem 'validatable'
