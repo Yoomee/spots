@@ -1,0 +1,26 @@
+-fb_connect ||= false
+-rating_form ||= false
+-rating_stars ||= nil
+%br.clear
+.wall_form
+  -if allowed_to?(wall_wall_posts_proc(wall), :method => :post)
+    -wall_post ||= wall.wall_posts.build
+    -semantic_remote_form_for(wall_post, :html => {:id => "wall_#{wall.id}_form"}, :loading => "$('#wall_post_submit').hide(); $('#wall_post_submit_loader').show();", :complete => "$('#wall_post_submit_loader').hide(); $('#wall_post_submit').show();") do |form|
+      -form.inputs do
+        =render("walls/rating_form", :form => form) if rating_stars
+        =form.input :wall_id, :as => :hidden, :input_html => {:id => "wall_#{wall.id}_wall_post_wall_id_input", :value => wall.id}, :wrapper_html => {:id => "wall_#{wall.id}_wall_post_wall_id_input"}
+        =form.input :text, :as => :text, :required => false, :label => false, :input_html => {:rows => 4, :cols => 65, :id => "wall_#{wall.id}_wall_post_text", :class => "wall_post_text_input labelify", :title => WallPostsController::HELP_MESSAGE}, :wrapper_html => {:id => "wall_#{wall.id}_wall_post_text_input"}
+        =hidden_field_tag :rating_stars, rating_stars, :id => "wall_#{wall.id}_rating_stars"
+        =hidden_field_tag :reverse, reverse, :id => "wall_#{wall.id}_reverse"
+        =form.commit_button :label => button_label, :input_html => {:class => 'wall_post_bttn'}
+        =image_tag "ajax_loader_dark.gif", :id => "wall_post_submit_loader", :style => "display: none; float:left;"
+    %br.clear
+  -elsif !logged_out_message.blank?
+    =logged_out_message
+    %br
+    =link_to "Log in", new_session_path
+    -if site_uses_fb_connect? && fb_connect
+      or
+      =fb_login_button "window.location = '#{url_for(:controller => 'facebook_sessions', :action => 'create')}';", :text => 'Log in with Facebook', :v => 2, :size => "large"
+      =#fb_login_and_redirect("#{url_for(:controller => 'facebook_sessions', :action => 'create')}", :text => 'Log in with Facebook', :v => 2, :size => "large")
+    

@@ -1,0 +1,14 @@
+-reverse ||= false
+-rating_form ||= false
+-rating_stars ||=nil
+.wall_body{:id => "wall_#{wall.id}_body"}
+  %ul.wall_post_list
+    -if wall.has_posts?
+      -wall_posts ||= limit.nil? ? wall.wall_posts.latest : wall.wall_posts.latest.limit(limit)
+      -wall_posts = reverse ? wall_posts.reverse : wall_posts
+      -wall_posts.each do |wall_post|
+        =render('walls/post', :post => wall_post, :rating_stars => rating_stars)
+      %br.clear
+  -if !wall.has_posts? && !no_posts_message.blank?
+    %p.nothing_yet
+      =no_posts_message

@@ -1,0 +1,20 @@
+-fb_connect ||= false
+-no_posts_message ||= false
+-logged_out_message ||= false
+-content_for(:head) do
+  =labelify_javascript
+.wall.bx{:id => "wall_#{wall.id}"}
+  .wall_content
+    .bx_h
+      %h2
+        =wall_title
+      -if rating_stars && wall.attachable.is_rateable? && wall.attachable.been_rated?
+        .average_rating
+          %span Average rating
+          =render_wall_post_stars(wall.attachable_average_rating)
+    -if reverse
+      =render_wall_body(wall, :reverse => true, :no_posts_message => no_posts_message, :rating_stars => rating_stars)
+      =render_wall_form(wall, :reverse => true, :fb_connect => fb_connect, :logged_out_message => logged_out_message, :rating_stars => rating_stars)
+    -else
+      =render_wall_form(wall, :fb_connect => fb_connect, :logged_out_message => logged_out_message, :rating_stars => rating_stars)
+      =render_wall_body(wall, :no_posts_message => no_posts_message, :rating_stars => rating_stars)

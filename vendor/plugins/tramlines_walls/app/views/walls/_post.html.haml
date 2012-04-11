@@ -1,0 +1,17 @@
+-rating_stars ||= false
+%li.wall_post{:id => "wall_post_#{post.id}"}
+  .wall_post_left
+    =image_for(post.member, "50x50#")
+  .wall_post_right
+    =link_to post.member, post.member, :class => "wall_post_member_link"
+    %span.time_ago
+      ="#{time_ago_in_words(post.created_at)} ago"
+    =render_wall_post_stars(post.rating_value) if rating_stars && post.attachable.is_rateable?
+    .wall_post_content
+      %span{ :id => "post_#{post.id}_message" }
+        -if post.excerpts.try(:text)
+          =post.excerpts.text
+        -else
+          =read_more_truncate(post.text)
+    %div.wall_post_options
+      =link_to_remote_if_allowed 'Delete', :url => wall_post_proc(post), :method => :delete, :confirm => 'Are you sure?'

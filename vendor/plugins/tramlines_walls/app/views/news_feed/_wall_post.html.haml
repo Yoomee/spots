@@ -1,0 +1,12 @@
+-link_to(wall_post.member, :class => "profile_photo_60") do
+  =image_for(wall_post.member, "60x60#")
+  =label_for_member(wall_post.member, :with_staff => false) if defined? label_for_member
+.conversation_body
+  %p.conversation_text  
+    %span.name
+      =news_feed_commented_on_text(wall_post, :member_being_viewed => (news_feed_attachable.is_a?(Member) ? news_feed_attachable : nil))
+  %br.clear    
+  %span.posted_when
+    ="#{time_ago_in_words(news_feed_item.created_at)} ago"
+  .news_feed_option_links
+    =news_feed_option_links(news_feed_item, :no_comments => true)

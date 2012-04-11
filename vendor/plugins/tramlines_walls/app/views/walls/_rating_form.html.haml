@@ -1,0 +1,24 @@
+-content_for(:head) do 
+  :javascript
+    var WallRatingForm = {
+      select_star: function(star_num) {
+        $('#wall_post_rating_value').val(star_num);
+        for (i=1;i<=5;i++) {
+          if (i<=star_num) {
+            $('#star_'+i).addClass('active');
+          } else {
+            $('#star_'+i).removeClass('active');
+          }
+        }
+      }
+    };
+:javascript
+  $(document).ready(function() {
+    WallRatingForm.select_star(#{form.object.rating_value});
+  });
+#wall_rating_form
+  =form.input :rating_value, :as => :hidden
+  =form.input :rating_member_id, :as => :hidden, :value => logged_in_member_id
+  =content_tag(:span, "Your rating", :class => "your_rating", :onclick => "WallRatingForm.select_star(0)")
+  -5.times do |i|
+    =link_to_function(i+1, "WallRatingForm.select_star(#{i+1});", :id => "star_#{i+1}", :class => "wall_rating_star")
