@@ -1,0 +1,11 @@
+one:
+  title: MyString
+  text: MyText
+  owner_id: 1
+  image_uid: MyString
+
+two:
+  title: MyString
+  text: MyText
+  owner_id: 1
+  image_uid: MyString

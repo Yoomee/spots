@@ -1,0 +1,14 @@
+-title (@blog ? @blog.name : "All blog posts")
+-if @blog_posts.empty?
+  %p
+    There are currently no blog posts in this blog. 
+    =link_to "Create the first one now.", new_blog_blog_post_path(@blog)
+-else
+  =render :partial => "blogs/blog_post", :collection => @blog_posts, :as => :blog_post
+  =will_paginate @blog_posts
+
+-options_panel do
+  =link_to "View All Blogs", blogs_path
+  =link_if_allowed "New Blog Post", new_blog_blog_post_proc(@blog)
+  =link_if_allowed "Edit", edit_blog_proc(@blog)
+  =link_if_allowed "Delete", @blog, :confirm => 'Are you sure?', :method => :delete

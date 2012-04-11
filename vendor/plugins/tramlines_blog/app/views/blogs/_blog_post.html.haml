@@ -1,0 +1,17 @@
+.blog_post
+  .blog_post_image
+    =link_to photo_for(blog_post, '400x200'), blog_post
+  .blog_post_details
+    %h2.blog_post_title
+      =link_to blog_post.title, blog_post
+    %h3.blog_post_date
+      =blog_post.created_at.strftime '%d.%m.%y'
+    %p
+      =truncate(blog_post.text, 200)
+      %br
+      %strong
+        =link_to "Read more...", blog_post
+      .details
+        Posted by
+        =link_to blog_post.member.full_name, blog_post.member
+  %br.clear

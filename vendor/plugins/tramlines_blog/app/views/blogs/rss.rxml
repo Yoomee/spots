@@ -1,0 +1,18 @@
+xml.instruct! :xml, :version => '1.0'
+xml.rss :version => '2.0' do
+  xml.channel do
+    xml.title @title
+    xml.link "#{@link}/blogs/#{@blog.id}"
+    xml.description @description
+    xml.language @language
+    for blog_post in @blog_posts
+      xml.item do
+        xml.title blog_post.title
+        xml.description blog_post.text
+        xml.pubDate blog_post.created_at.rfc2822
+        xml.link "#{@link}#{url_for(blog_post)}"
+        xml.guid "#{@link}#{url_for(blog_post)}"
+      end
+    end
+  end
+end

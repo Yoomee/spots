@@ -1,0 +1,17 @@
+-title @blog.name
+-if @blog_posts.empty?
+  %p
+    There are currently no blog posts in this blog. 
+    =link_to "Create the first one now.", new_blog_blog_post_path(@blog)
+-else
+  -@blog_posts.each do |blog_post|
+    =render("blog_post", :blog_post => blog_post)
+  =will_paginate(@blog_posts)
+  
+-options_panel do
+  =back_link
+  =link_if_allowed "Manage blog categories", blog_post_categories_proc
+  =link_if_allowed "New Blog Post", new_blog_blog_post_proc(@blog)
+  -# The links below should be put into admin/index
+  =#link_if_allowed "Edit", edit_blog_proc(@blog)
+  =#link_if_allowed "Delete", @blog, :confirm => 'Are you sure?', :method => :delete

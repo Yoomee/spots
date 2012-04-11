@@ -1,0 +1,19 @@
+-content_for :head do
+  =javascript_include_tag :ckeditor
+  =stylesheet_link_tag 'jquery.autocomplete'
+  =javascript_include_tag :ckeditor
+- semantic_form_for @blog_post, :html => {:multipart => true} do |form|
+  -form.inputs do
+    =form.input :title
+    =form.input :permalink_name, :help => "Please set a permalink (ie. a 'pretty' shortcut to the page)"
+    =form.input :text, :as => :ck_text
+    %li=form.photo_browser_button :photo
+    =#form.input :image, :as => :file
+    =form.input :member_id, :as => :hidden
+    -if form.object.blog_id.blank?
+      =form.input :blog_id, :as => :select, :collection => Blog.all, :include_blank => false
+    -else
+      =form.input :blog_id, :as => :hidden
+    =form.input :blog_post_categories, :hint => "Hold down the control-key to select multiple categories", :as => :select, :collection => BlogPostCategory.all, :input_html  => {:size => 5} unless BlogPostCategory.count.zero?
+  - form.buttons do
+    = form.commit_button

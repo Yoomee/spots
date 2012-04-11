@@ -1,0 +1,14 @@
+- title @blog_post_category.name
+
+-if @blog_post_category.blog_posts.empty?
+  %p
+    There are no blogs posts filed under
+    ="#{@blog_post_category.name}."
+-else
+  %p
+    These are the blog posts filed under
+    ="#{@blog_post_category.name}:"
+  =render :partial => "blogs/blog_posts", :collection => @blog_post_category.blog_posts, :as => :blog_post
+    
+-options_panel do
+  =link_to "View All Blogs", blogs_path

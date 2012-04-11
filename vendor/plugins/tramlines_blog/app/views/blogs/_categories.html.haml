@@ -1,0 +1,7 @@
+-if !BlogPostCategory.count.zero?
+  %h2 Blog Categories
+  %ul
+    -BlogPostCategory.all.each do |category|
+      %li
+        =link_to category.name, category
+        =category.blog_posts.count

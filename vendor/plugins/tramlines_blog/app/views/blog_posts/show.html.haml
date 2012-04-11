@@ -1,0 +1,39 @@
+- title @blog_post.title
+
+.blog_post
+  .blog_post_image
+    = photo_for(@blog_post, '600x300') if @blog_post.has_photo?
+  .blog_post_details
+    =add_video_players(@blog_post.text)
+    #blog_share_links
+      %strong
+        Share on...
+      %ul
+        %li.twitter=link_to("Twitter", "http://twitter.com/home?status=#{@blog_post.title} #{blog_post_url(@blog_post)}", :target => "_blank")
+        %li.facebook=link_to("Facebook", "http://www.facebook.com/sharer.php?u=#{blog_post_url(@blog_post)}", :target => "_blank")
+        %li.digg=link_to("Digg", "http://digg.com/submit?url=#{blog_post_url(@blog_post)}", :target => "_blank")
+        %li.delicious=link_to("Delicious", "http://del.icio.us/post?url=#{blog_post_url(@blog_post)}", :target => "_blank")
+        %li.reddit=link_to("reddit", "http://reddit.com/submit?url=#{blog_post_url(@blog_post)}", :target => "_blank")
+        %li.stumbleupon=link_to("StumbleUpon", "http://www.stumbleupon.com/submit?url=#{blog_post_url(@blog_post)}", :target => "_blank")
+  .details
+    Posted by
+    =link_to @blog_post.member.full_name, @blog_post.member
+    in 
+    = link_to @blog_post.blog.name, blog_blog_posts_path(@blog_post.blog)
+    on
+    =@blog_post.created_at.strftime '%d %B %Y'
+    -if !@blog_post.categories.empty?
+      %br
+      Filed under:
+      %ul
+        -@blog_post.categories.each do |category|
+          %li
+            =link_to category.name, category
+
+=render_comments(@blog_post, :fb_connect => true, :no_posts_message => "There are no comments yet! Be the first to comment below.")
+
+-options_panel do
+  =back_link
+  =#link_to @blog_post.blog.name, blog_blog_posts_path(@blog_post.blog)
+  = link_if_allowed "Edit", edit_blog_post_proc(@blog_post)
+  = link_if_allowed "Delete", @blog_post, :confirm => 'Are you sure?', :method => :delete

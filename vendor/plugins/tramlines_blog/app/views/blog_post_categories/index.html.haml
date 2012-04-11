@@ -1,0 +1,16 @@
+- title "Blog Categories"
+
+%table
+  %tr
+    %th Name
+    %th{:colspan => 2}
+  - for blog_post_category in @blog_categories
+    %tr
+      %td= h blog_post_category.name
+      %td= link_to 'Edit', edit_blog_post_category_path(blog_post_category)
+      %td= link_to 'Delete', blog_post_category, :confirm => 'Are you sure?', :method => :delete
+
+-options_panel do
+  = back_link
+  = link_if_allowed "New Blog Category", new_blog_post_category_proc
+  = link_to "View Blogs", blogs_path
