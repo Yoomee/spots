@@ -46,8 +46,7 @@ class ActivitiesController < ApplicationController
   
   def edit
   end
-  
-  
+    
   def index
     @activities = Activity.all
   end
