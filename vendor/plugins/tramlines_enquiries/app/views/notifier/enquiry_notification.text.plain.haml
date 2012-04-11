@@ -1,0 +1,11 @@
+A new enquiry has been made on the #{@site_name} website for the form '#{@enquiry.form_name.humanize}'.
+
+
+Overview:
+
+
+-@enquiry.enquiry_fields.sort_by_field_order.each do |field|
+  ="#{field.name.humanize}: #{field.value}"
+
+
+You can view this enquiry on the #{@site_name} website, here: #{@site_url}#{url_for :controller => 'enquiries', :action => 'show', :id => @enquiry}

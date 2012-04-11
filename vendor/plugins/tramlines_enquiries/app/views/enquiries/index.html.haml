@@ -1,0 +1,23 @@
+- title "Enquiries"
+-if @enquiries.empty?
+  %p
+    There are currently no enquiries.
+-else
+  %table
+    %tr
+      %th
+      %th Member
+      %th Email
+      %th Date
+      %th{:colspan => 2}
+    -@enquiries.each do |enquiry|
+      %tr
+        %td= enquiry.form_name.humanize
+        %td= link_to enquiry.member.full_name, enquiry.member unless enquiry.member.nil?
+        %td= enquiry.enquiry_fields.email_address.value unless enquiry.enquiry_fields.email_address.nil?
+        %td= enquiry.created_at
+        %td= link_to "Show", enquiry
+        %td= link_to 'Delete', enquiry, :confirm => 'Are you sure?', :method => :delete
+        
+-options_panel do
+  =back_link

@@ -1,0 +1,21 @@
+-no_content_row
+-title (@photo_album ? @photo_album.name : "All Photos")
+
+.row
+  #photo_gallery.twelvecol.last
+    -if @photos.empty?
+      %p
+        This album currently has no photos.
+    -else
+      -@photos.each.each do |photo|
+        =render(:partial => 'photo', :locals => {:photo => photo})
+
+.row
+  -options_panel do
+    =back_link
+    =link_if_allowed("System albums", photo_albums_proc)
+    -if @photo_album
+      =link_if_allowed "Edit album", edit_photo_album_proc(@photo_album)
+      =link_if_allowed "Add a photo", new_photo_album_photo_proc(@photo_album)
+    -else
+      =link_if_allowed "New Photo", new_photo_proc

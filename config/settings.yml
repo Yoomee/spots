@@ -1,0 +1,13 @@
+http_basic_authenticate: true
+photo_resize_geometry: 500x500>
+site_email: info@yoomee.com
+site_name: Tramlines Version 6
+site_url: 77.86.30.132:3333
+webthumb_key: ff1e5c1f36807f9e87868f9c01c33dbb
+google_url_shortener_api_key: AIzaSyA8vTm3mnJaimiqTzGuEvKTvUZ-73sYhXs
+use_workling?: false
+development:
+  paypal_business_email: seller_1279274874_biz@yoomee.com
+  site_name: Tramlines Version 6 Development
+  site_url: http://ymlocal.com:3000
+  webthumb_key: e9089a12e1a88fbde8f31e28ec3884cf

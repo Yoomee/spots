@@ -1,0 +1,4 @@
+- title "New Document" + (@document_folder.blank? ? "" : " for #{@document_folder}")
+= render :partial => 'form', :locals => {:document => @document}
+- options_panel do
+  = back_link

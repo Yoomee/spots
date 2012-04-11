@@ -1,0 +1,8 @@
+- semantic_form_for video do |form|
+  -form.inputs do
+    =form.input :url
+    =form.input :name
+    =form.input :description, :input_html  => {:rows => 5}
+    =form.input :member_id, :as => :hidden
+  - form.buttons do 
+    = form.commit_button 'Save'

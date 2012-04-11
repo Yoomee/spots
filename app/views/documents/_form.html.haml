@@ -1,0 +1,11 @@
+- semantic_form_for document, :html => {:multipart => true} do |form|
+  -form.inputs do
+    -if document.new_record? && document.errors.empty? && document.folder
+      =form.input :folder_id, :as => :hidden
+    -else
+      =form.input :folder unless DocumentFolder.count.zero?
+    =form.input :name  
+    =form.input :file, :as => :file
+    =form.input :member_id, :as => :hidden
+  - form.buttons do
+    = form.commit_button 'Save'

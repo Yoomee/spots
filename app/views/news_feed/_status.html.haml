@@ -1,0 +1,13 @@
+.status_news_feed_item
+  =link_to(image_for(status.member, "60x"), status.member)
+  .news_feed_item_content
+    .inner_text
+      =link_to(status.member, status.member)
+      %br
+      %span=status.text
+      %br.clear
+      .time_ago
+        ="#{time_ago_in_words(news_feed_item.created_at)} ago"
+      .news_feed_option_links
+        =news_feed_option_links(news_feed_item)
+  %br.clear

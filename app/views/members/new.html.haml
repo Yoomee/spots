@@ -1,0 +1,13 @@
+-title "Register"
+%p Please enter your email, password and name below.
+-semantic_form_for @member do |form|
+  -form.inputs do
+    =form.input :dont_generate_password, :as => :hidden, :value => true
+    =form.input :email, :input_html => {:size => 25}, :wrapper_html => {:class => "inline-fields"}
+    =form.input :password, :as => :password, :input_html => {:size => 25}, :wrapper_html => {:class => "inline-fields"}
+    =form.input :forename, :label => "First name", :input_html => {:size => 25}, :wrapper_html => {:class => "inline-fields"}
+    =form.input :surname, :label => "Last name", :input_html => {:size => 25}, :wrapper_html => {:class => "inline-fields"}
+  -form.buttons do
+    =form.commit_button
+    
+=options_panel

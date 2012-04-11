@@ -1,0 +1,17 @@
+-truncate_length ||= 50
+-if related_items.blank?
+  No related items yet.
+-else
+  %ul
+    -related_items.each do |related_item|
+      %li
+        .item_image
+          =link_to image_or_photo_for(related_item, image_size), related_item
+        .item_info
+          %h3
+            =link_to related_item, related_item
+          %p
+            =strip_tags description_for(related_item, :length => truncate_length)
+            %br
+            =link_to "More", related_item, :class => "more_link"
+

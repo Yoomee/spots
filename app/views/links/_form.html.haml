@@ -1,0 +1,10 @@
+- semantic_form_for link do |form|
+  -form.inputs do  
+    =form.input :url
+    =form.input :name
+    =form.input :title unless @link.new_record?
+    =form.input :description, :input_html  => {:cols => 100, :rows => 5} unless @link.new_record?
+    =form.input :member_id, :as => :hidden
+    =form.input :url_error, :as => :hidden, :input_html => {:value => 'f'}
+  - form.buttons do 
+    = form.commit_button 'Save'

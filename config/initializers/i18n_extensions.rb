@@ -1,0 +1,1 @@
+I18n.load_path += Dir.glob("client/config/locales/*.yml")

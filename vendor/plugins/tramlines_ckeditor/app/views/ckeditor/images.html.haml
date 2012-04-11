@@ -1,0 +1,132 @@
+:javascript
+  var upload_path = "#{new_attachment_path_with_session_information(:image)}";
+  var target_field = '#{@target_field}';
+
+  if (target_field.length > 0) {
+    FileThumb.implement({
+      oldInit: this.init,
+      
+      init: function() {
+        if (this.oldInit != null) {
+          this.oldInit();
+        }
+        this.element.getElements('div.FCKThumb').addEvents({
+          'click': function(){
+            image = this.getElement('img.image');
+            setNonEditorUrl(image.src, $(image).getProperty('data-image-id'));
+          }
+        });
+      }
+      
+    });
+    
+    function setNonEditorUrl(url, imageId) {
+      window.opener.TramlinesPhotoBrowser.setImage("#" + target_field, url, imageId);
+      window.close();
+    };
+    
+  } else {
+
+    function setUrl(url) {
+      CKEDITOR.tools.callFunction(CKEditorFuncNum, url);
+      window.close();
+    }
+  
+  }
+  
+  function hide_element(element) {
+    element.setStyle('display', 'none');
+  }
+  
+  function show_element(element) {
+    element.setStyle('display', 'block');    
+  }
+  
+  function update_images() 
+  {
+    hide_element($('ckeditor_image_list'));
+    show_element($('ckeditor_ajax_loader'));
+    new Request.HTML({url: '/ckeditor/update_images/' +  $('album_id').getSelected()[0].get('value'), 
+                      method: 'get',
+                      update: 'ckeditor_image_list',
+                      onComplete: function() {
+                        hide_element($('ckeditor_ajax_loader'));
+                        show_element($('ckeditor_image_list'));
+                        var f = new FileThumb('qu');
+                      }
+                      }).send();
+                      
+  }
+  
+  function uploadButton(button)
+  {
+    var element = $('fj');
+    
+    if (element.style.display == '')
+    {
+      element.style.display = 'none';
+    }
+    else
+    {
+      element.style.display = '';
+    }
+  }
+  
+  window.onload = function()
+  {
+    init_swfupload();
+    var f = new FileThumb('qu');
+    var t = new ToolBar('nv');
+    
+    var b1 = new Button('Upload New File', 'Upload', 'add.gif');
+    var b2 = new Button('Refresh', 'Refresh', 'refresh.gif');
+    
+    b1.callback = uploadButton;
+    b2.callback = function(){ window.location.reload(); };
+    
+    t.buttons.push(b1);
+    t.buttons.push(b2);
+    
+    t.init();
+    if ($('album_id').getSelected()[0].get('value') != '#{@album_id}') {
+      update_images();
+    }
+  };
+%table{:width => '100%', :cellspacing => '0', :cellpadding => '0'}
+  %tbody
+    %tr{:style => 'display: none;'}
+      %td.TB_ToolbarSet#nv
+    %tr#fj
+      %td.FCKUploadArea{'white-space' => 'normal;'}
+        .PopupTitle
+          %span
+            Upload New Files
+        #cY
+          %table{:cellspacing => '0', :cellpadding => '0', :style => 'padding:10px;'}
+            %tbody
+              %tr
+                %td
+                  %span#spanButtonPlaceholder
+                  #divFileProgressContainer{:style => 'clear:both;'}
+                    =render :partial=>"swfupload"
+          .PopupButtons
+            %div{:style => 'width:100%;'}
+              %table{:width => '100%', :cellspacing => '0', :cellpadding => '0'}
+                %tbody
+                  %tr
+                    %td{:width => '100%'}
+                    %td{:nowrap => 'nowrap'}
+                      -if false
+                        %button.Button{:onclick => 'uploadButton()'}
+                          %span{'ckf:lang' => 'CancelBtn'}                        
+                            Cancel
+    %tr
+      %td
+        =label_tag :album_id, 'Album'
+        =select_tag :album_id, album_options(@albums), :onchange => "update_images();"
+    %tr                        
+      %td#qu{:style => 'height:100%;'}
+        #ckeditor_ajax_loader{:style => 'display:none;'}
+          =image_tag "ajax_loader_ckeditor.gif"
+        #ckeditor_image_list{:style => 'overflow:auto; height:550px'}
+          =render :partial=>"image", :collection=>@images, :locals => {:use_id => !@target_field.blank?}

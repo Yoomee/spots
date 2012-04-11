@@ -1,0 +1,38 @@
+%h1
+  Share
+  =@model
+#share_by_email.share
+  %h2
+    Email
+  Share this
+  =@model.class.name.to_s.downcase
+  by email.
+  -semantic_form_for @share, :url => "#{url_for(:controller => 'share', :action => 'create', :model_name => params[:model_name], :id => @model.id)}" do |form|
+    =#form.error_messages
+    -form.inputs do
+      -unless @logged_in_member
+        =form.input :name, :label => "Your name"
+        =form.input :email, :label => "Your email address"
+      =form.input :recipient_email, :label => "Recipient email address"
+    %p
+      The details you provide will not be used to send unsolicited e-mail, and will not be sold to a 3rd party. 
+    - form.buttons do 
+      = form.commit_button "Share"
+#share_by_twitter.share
+  %h2
+    Twitter
+  Share this 
+  =@model.class.name.to_s.downcase
+  to your followers on Twitter.
+  #tweet_me
+    =link_to "Tweet me", "http://twitter.com?status=#{@model.to_s} - #{url_for(:controller => @model.class.name.downcase.tableize, :action => "show", :id => @model.id, :host => APP_CONFIG['site_url'])}", :target => "_blank"
+#share_by_facebook.share
+  %h2
+    Facebook
+  Share this 
+  =@model.class.name.to_s.downcase
+  to your friends on Facebook.
+  #facebook_me
+    =link_to "Share on Facebook", "http://facebook.com/sharer.php?u=#{url_for(:controller => @model.class.name.downcase.tableize, :action => "show", :id => @model.id, :host => APP_CONFIG['site_url'])}", :popup => ['popUpWindow','height=350,width=600'] 
+-options_panel do
+  =link_to "View #{@model}", @model

@@ -1,0 +1,10 @@
+%ul
+  -search.results.each do |result|
+    %li{:class => "search_result_#{result.class.to_s.downcase} related_search_result"}
+      =hidden_field_tag "related_item_id_#{result.id}", result.id, :class => 'related_item_id'
+      =hidden_field_tag "related_item_type_#{result.id}", result.class.to_s, :class => 'related_item_type'
+      =label_tag "related_#{result.class.to_s}_#{result.id}", result
+      .related_result_links
+        =link_to "View #{result.class.to_s}", result, :target => "_blank", :class => "view_related_item_link", :title => "View this #{result.class.to_s} (opens in a new window)"
+        .related_item_add_link
+          =" #{link_to_function "Add +", "RelatedItemsForm.add_selected_item('#{escape_javascript(result.to_s)}', '#{result.id}', '#{result.class.to_s}');", :title => "Add as a related item"}"

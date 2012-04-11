@@ -1,0 +1,5 @@
+- title "New Photo"
+= render :partial => 'form', :locals => {:photo => @photo}
+- options_panel do
+  = link_if_allowed @photo.album, photo_album_photos_proc(@photo.album) if @photo.album
+  = link_if_allowed "Create new album", new_attachable_photo_album_proc(@logged_in_member)

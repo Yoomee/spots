@@ -1,0 +1,6 @@
+<%if false%>
+  Session variables:
+  <%@request.session.each do |key, value|%>
+  * <%=key%>: <%= value.inspect %>
+  <%end%>
+<%end%>

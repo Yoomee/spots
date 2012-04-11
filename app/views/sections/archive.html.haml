@@ -1,0 +1,6 @@
+#archive
+  =render :partial => 'archive_select', :locals => {:month => @month, :year => @year, :section => @section}
+  %ul
+    =render :partial => 'archive_page', :collection => @pages
+-options_panel do
+  =link_to "Back to section", @section

@@ -1,0 +1,35 @@
+Embedit
+-------
+
+Embedit is an embedding tool written in Ruby.
+
+We are currently re-writing dothegreenthing.com and allow users to add media from pretty much anywhere. Handling all the different embed codes/api's validations and everything else that comes with this functionality can be/is a pain.
+
+Embedit is extremely simple to use. You have the url? Just plonk it in here =>
+
+media = Embedit::Media.new('here')
+
+Thats it!
+
+At the time of writing, you now have the ability to call:
+	media.title => Shows the title of whatever was uploaded
+	media.format => The format of the file
+	media.url => The url to the media
+	media.html => The embed code, whether this is a generic flash player, a company player (Vimeo, Youtube), image tag and more to come
+	
+  You also specify media sizes => media.html(:width => 200, :height => 700)
+  
+  You can also validate an url (useful for a active record (or whatever you use) validation)
+  media.valid? => Returns true or false
+	
+At the moment Embedit supports: 
+  - oEmbed family (http://www.oembed.com/) 
+  - YouTube (http://youtube.com)
+  - OVI (http://share.ovi.com/)
+  - Local files, I've had some problems with Rails (files not found), but using http://pandastream.com it works perfectly fine
+  
+Sites To Support:
+  - Facebook
+  - Image shack
+  - Screen shot of a website (user puts in url, if nothing matches take screen shot)
+  - Email me any other suggestions with links to the site at reddavis [[+@+]] gmail *.* com

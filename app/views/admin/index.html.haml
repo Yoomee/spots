@@ -1,0 +1,85 @@
+-title 'Dashboard'
+-no_content_row
+#admin_dashboard.row
+  #admin_content.dash_col.fourcol
+    %h2
+      Content
+    #dash_sections_and_pages.dash_item
+      .dash_icon
+      %h3
+        Sections &amp; pages
+      %ul
+        %li
+          %a{ :href => "/sections" }
+            List sections
+        %li
+          %a{ :href => "/sections/new" }
+            Add a section          
+        %li
+          %a{ :href => "/pages/new" }
+            Add a page
+    #dash_images.dash_item
+      .dash_icon
+      %h3
+        Images
+      %ul
+        %li
+          %a{ :href => "/photo_albums" }
+            List photo albums
+        %li
+          %a{ :href => "/photo_albums/new" }
+            Add a photo album
+        %li
+          %a{ :href => "/photos/new" }
+            Add an image
+    #dash_documents.dash_item
+      .dash_icon
+      %h3
+        Documents
+      %ul
+        %li
+          =link_to("List documents", document_folders_path)
+        %li
+          =link_to("Add a folder", new_document_folder_path)
+        %li
+          =link_to("Add a document", new_document_path)
+          
+  #dash_technical_stuff.dash_col.fourcol
+    %h2
+      Technical stuff
+    #dash_enquiries.dash_item
+      .dash_icon
+      %h3
+        Enquiries
+      %ul
+        %li
+          %a{ :href => "/enquiries" }
+            List enquiries                                
+        
+  #dash_membership.dash_col.fourcol.last
+    %h2
+      Membership
+    #dash_members.dash_item
+      .dash_icon
+      %h3
+        Members
+      %ul
+        %li
+          %a{ :href => "/members" }
+            List members
+        %li
+          %a{ :href => "/reports/new?name=members" }
+            Members report
+        %li
+          =link_to 'New member', new_member_path
+
+-if false
+  %ul.tabs_container
+    -@admin_tabs.each do |tab|
+      =admin_tab_heading(tab, @selected_tab)
+  %br.clear
+  #admin_tab_content
+    %ul
+      -@selected_tab.links.each do |link|
+        %li{:id => link.name.parameterize('_')}
+          =link_to link.name, link.url

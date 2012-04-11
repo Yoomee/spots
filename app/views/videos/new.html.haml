@@ -1,0 +1,7 @@
+- title "New video"
+%p.intro
+  Please enter the details of an oEmbed-compatible hosted video (these include YouTube, Viddler, Qik, Vimeo and more)
+= render :partial => 'form', :locals => {:video => @video}
+- options_panel do
+  -if logged_in_member
+    = link_if_allowed "Your videos", member_videos_proc(logged_in_member)

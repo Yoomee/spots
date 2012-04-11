@@ -1,0 +1,30 @@
+-title (@mailing ? "Recipients for #{@mailing.name}" : "All Email Recipients")
+-if @mailing && @mailing.not_sent?
+  %p
+    This email will be sent to all members.
+    =link_if_allowed("Send now", send_emails_mailing_proc(@mailing), :confirm => "Are you sure?")
+-else
+  %table
+    %tr
+      %th
+        Recipient
+      %th
+        Subject
+      %th
+        Status
+      %th
+        Actions
+    -@mails.each do |mail|
+      %tr
+        %td
+          =link_to(mail.recipient_full_name, mail.recipient)
+        %td
+          =link_to mail.subject, mail
+        %td
+          =mail.status.humanize
+        %td
+          =link_if_allowed("#{(mail.sent? || mail.read?) ? "Resend" : "Send"}", send_email_mail_proc(mail))
+
+-options_panel do
+  =back_link
+  =link_if_allowed "All emails", mailings_proc

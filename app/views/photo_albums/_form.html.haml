@@ -1,0 +1,15 @@
+-semantic_form_for(photo_album, :html => {:multipart => true}) do |form|
+  -form.inputs do
+    =form.input :attachable_type, :as => :hidden
+    =form.input :attachable_id, :as => :hidden
+    =form.input :name
+    =form.input :system_album if @logged_in_member && admin_logged_in?
+    =form.input :image_files, :as => :file, :label => "Select #{photo_album.photos.empty? ? '' : 'more '}photos", :input_html => {:multiple => true}
+    %li#photo_forms
+      -form.semantic_fields_for(:photos) do |photo_form|
+        -photo_form.inputs do
+          =photo_form.input :image, :as => :image, :image_size => "190x105#", :label => false, :input_html => {:size => 10}, :wrapper_html => {:class => "photo_album_photo_image"}
+          =photo_form.input :name, :label => false, :input_html => {:class => "labelify", :title => "Name"}, :wrapper_html => {:class => "photo_album_photo_name"}
+          =photo_form.input :description, :label => false, :input_html => {:rows => 4, :class => "labelify", :title => "Description"}, :wrapper_html => {:class => "photo_album_photo_description"}
+  - form.buttons do 
+    = form.commit_button 'Save'

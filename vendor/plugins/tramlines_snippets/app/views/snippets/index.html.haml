@@ -1,0 +1,17 @@
+-title "Snippets"
+
+-if @snippets.empty?
+  There are no snippets at the moment.
+-else
+  %ul
+    -@snippets.each do |snip|
+      %li
+        =snip.name.humanize
+        (
+        -separate_links do
+          =link_if_allowed("Edit", edit_snippet_proc(snip))
+          =link_if_allowed("Delete", snip, :method => :delete, :confirm => "Are you sure?")
+        )
+          
+-options_panel do
+  =back_link

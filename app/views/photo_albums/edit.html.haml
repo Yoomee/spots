@@ -1,0 +1,5 @@
+-title "Edit Photo Album"
+=render :partial => 'form', :locals => {:photo_album => @photo_album}
+-options_panel do
+  =back_link
+  =link_if_allowed("Delete", @photo_album, :confirm => "Are you sure? This will also delete #{pluralize(@photo_album.photos.size, 'photo')} from the album", :method => :delete)

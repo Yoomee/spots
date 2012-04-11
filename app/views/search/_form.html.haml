@@ -1,0 +1,10 @@
+-form_for search do |form|
+  =form.text_field :term, :input_html => {:id => 'adv_search_field'}
+  %br.clear
+  %ul.lst.possible_search_models
+    -Search::possible_models.each do |model|
+      %li
+        =check_box_tag "search[models][]", model, model.in?(search.models)
+        =form.label "models_#{model}", model.constantize.to_s_for_search
+  =hidden_field_tag "search[models][]", nil
+  =form.submit "Search", :input_html => {:id => 'adv_search_icon'}

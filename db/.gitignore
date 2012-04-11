@@ -1,0 +1,7 @@
+sphinx/*
+test.sqlite3
+schema.rb
+mongo_sphinx/*
+.DS_Store
+*.sql
+*.sql.tgz

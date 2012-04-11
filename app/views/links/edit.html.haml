@@ -1,0 +1,6 @@
+- title "Edit Link"
+=image_for(@link, "250x>")
+= render :partial => 'form', :locals => {:link => @link}
+- options_panel do
+  = link_if_allowed "Cancel", @link
+  = link_if_allowed "Delete", @link, :confirm => 'Are you sure?', :method => :delete

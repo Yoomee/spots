@@ -1,0 +1,2 @@
+=select_tag 'month_and_year', month_and_year_option_tags(section.month_and_years, month, year)
+=observe_field 'month_and_year', :function => "window.location='/sections/archive/#{section.id}/' + value"

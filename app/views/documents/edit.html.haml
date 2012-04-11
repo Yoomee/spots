@@ -1,0 +1,5 @@
+- title "Edit Document"
+= render :partial => 'form', :locals => {:document => @document}
+- options_panel do
+  = back_link
+  = link_if_allowed "New document", new_document_proc

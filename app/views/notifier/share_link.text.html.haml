@@ -1,0 +1,12 @@
+%p
+  ="#{@email_details[:name]} thought you would like this #{@model.class.name.downcase}:"
+
+%strong
+  =link_to @model.to_s, url_for(:controller => @model.class.name.downcase.tableize, :action => "show", :id => @model.id, :host => site_url_without_protocol)
+=#description_for @model
+
+%p
+  =link_to "Click here to view the #{@model.class.name.downcase}", url_for(:controller => @model.class.name.downcase.tableize, :action => "show", :id => @model.id, :host => site_url_without_protocol)
+  
+%p
+  Thanks

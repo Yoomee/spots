@@ -1,0 +1,8 @@
+%li{:class => "fields item_relationship related_search_selected"}
+  =content_tag(:span, f.object.related_item, :class => "related_title")
+  -f.inputs :style => "display:none" do
+    =f.input :id, :as => :hidden
+    =f.input :_destroy, :as => :hidden
+    =f.input :related_item_id, :as => :hidden
+    =f.input :related_item_type, :as => :hidden
+  =link_to_function "Remove", "FormHelper.remove_fields(this); RelatedItemsForm.toggle_add_links();", :class => "related_item_remove_link", :title => "Remove from related items"

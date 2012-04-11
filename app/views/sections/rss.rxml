@@ -1,0 +1,18 @@
+xml.instruct! :xml, :version => '1.0'
+xml.rss :version => '2.0' do
+  xml.channel do
+    xml.title @title
+    xml.link "#{@link}/sections/#{@section.id}"
+    xml.description @description
+    xml.language @language
+    for page in @section.pages.sort.reverse
+      xml.item do
+        xml.title page.title
+        xml.description page.text
+        xml.pubDate page.created_at.rfc2822
+        xml.link "#{@link}/pages/#{page.id}"
+        xml.guid "#{@link}/pages/#{page.id}"
+      end
+    end
+  end
+end

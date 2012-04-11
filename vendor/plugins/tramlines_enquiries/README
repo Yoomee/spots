@@ -1,0 +1,12 @@
+TramlinesEnquire
+================
+
+To create a new enquiry form, simply create a new partial named after the form you wish to use,
+for example a 'Contact' form, create '_contact_form.html.haml'.
+
+Add the form fields to this view and customize as desired. 
+
+Modify or create the 'tramlines_enquire.yml' file in the config folder. Add the details of the name, email address and response. E.g;
+  name: contact
+  email_to: email@address.com
+  response: Thank you for your enquiry. We will be in touch shortly.

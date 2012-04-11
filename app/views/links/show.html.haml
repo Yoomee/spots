@@ -1,0 +1,27 @@
+-if @link.save_site_info? || (!@link.has_image? && !@link.url_error)
+  -content_for :head do
+    =javascript_tag("$(document).ready(function() {#{save_site_info_javascript(@link)}});")
+- title link_to("#{@link.name}", @link.url, :target => "_blank")
+.link_info_loader{:id => "link_info_loader_#{@link.id}", :style => "display:none"}
+  =image_tag("ajax_loader_squares_gray.gif")
+  %span Retrieving site info
+-if allowed_to_edit?(@link)
+  %p#link_error_message.intro{:style => @link.url_error? ? "display:none" : ""}
+    There was a problem retrieving information from the url you provided for this link. You may want to double-check it's correct.
+#left_column
+  .link_image{:id => "link_image_#{@link.id}"}
+    =link_to(image_for(@link, "300x"), @link.url, :target => "_blank")
+#right_column
+  %h4{:id => "link_title_#{@link.id}"}
+    =link_to @link.title, @link.url, :target => "_blank"
+  %p{:id => "link_description_#{@link.id}"}
+    =@link.description unless @link.description_blank? && @link.title.blank?
+%br.clear
+- options_panel do
+  = link_if_allowed "#{forename_or_your(@link.member).titleize} links", member_links_proc(@link.member)
+  - if @link.member==@logged_in_member
+    = link_if_allowed "New link", new_link_proc
+  - else
+    = link_if_allowed "Add your own link", new_link_proc
+  = link_if_allowed "Edit", edit_link_proc(@link)
+  = link_if_allowed "Delete", @link, :confirm => 'Are you sure?', :method => :delete

@@ -1,0 +1,18 @@
+:javascript
+  $(document).ready(function() {
+    $('#expires').click(PageForm.updateExpiryStatus);
+    $('#page_draft').click(PageForm.updateDraftStatus);
+    PageForm.init_datepicker('#pages_publishing_tab');
+  });
+-semantic_fields_for page do |fields|
+  -fields.inputs do
+    =fields.input :permalink_name, :label => "Permalink <span>(a pretty url for the page)</span>"
+    =fields.input :slug_name if yoomee_staff_logged_in?
+    =fields.input :weight, :label => 'Order', :help => "Please set an 'order' for the page (pages with higher order numbers will appear further down the list)"
+    =fields.input :draft, :help => "Draft pages are only visible to admins", :label => "This is a draft", :as => :boolean
+    %ol#publishing_dates{:style => "display:#{page.draft? ? 'none' : 'block'}"}
+      =fields.input :formatted_publish_on, :label => 'Publish on', :as => :string, :input_html => {:class => 'datetime'}
+      %li
+        =check_box_tag :expires, true, page.expires?
+        =label_tag :expires, 'Expires on...'
+      =fields.input :formatted_expires_on, :label => 'Expire date', :as => :string, :input_html => {:class => 'datetime'}, :wrapper_html => {:id => "expires_date", :style => "display:#{page.expires? ? 'block' : 'none'}"}

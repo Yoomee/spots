@@ -1,0 +1,5 @@
+-if photos.blank?
+  This album is currently empty.
+-else
+  -photos.each do |photo|
+    =render(:partial => 'photo', :locals => {:photo => photo})

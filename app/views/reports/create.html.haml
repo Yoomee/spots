@@ -1,0 +1,9 @@
+-title @report.title
+%table
+  %tr
+    -@report.headings.each do |heading|
+      %th=heading
+  -@report.rows.each do |row|
+    %tr
+      -row.values.each do |value|
+        %td=value

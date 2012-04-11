@@ -1,0 +1,19 @@
+%div{:class => "#{news_feed_item.attachable_type.downcase}_news_feed_item"}
+  =link_to(image_for(news_feed_item.attachable, "60x"), news_feed_item.attachable)
+  .news_feed_item_content
+    .inner_text
+      -if news_feed_item.updated?
+        -if news_feed_item.member
+          ="#{link_to(news_feed_item.member, news_feed_item.member)} updated #{attachable_description(news_feed_item)}."
+        -else
+          ="#{attachable_description(news_feed_item).capitalize} was updated."
+      -else
+        -if news_feed_item.member
+          ="#{link_to(news_feed_item.member, news_feed_item.member)} created #{attachable_description(news_feed_item)}."
+        -else
+          ="#{attachable_description(news_feed_item).capitalize} was created."
+      .time_ago
+        ="#{time_ago_in_words news_feed_item.created_at} ago"
+      .news_feed_option_links  
+        =news_feed_option_links(news_feed_item)
+  %br.clear

@@ -1,0 +1,15 @@
+-title "#{@photo.name}", :hidden => true
+=image_for(@photo, APP_CONFIG[:photo_resize_geometry])
+%h2
+  =@photo.name
+%p
+  =h @photo.description
+%br.clear
+-options_panel do
+  =back_link
+  -if @photo.album
+    =link_if_allowed "View album", photo_album_photos_proc(@photo.album) if waypoint != {"photo_album_id"=>"#{@photo.photo_album_id}", "action"=>"index", "controller"=>"/photos"}
+  -else
+    =link_if_allowed "View All", photos_proc
+  =link_if_allowed "Edit", edit_photo_proc(@photo)
+  =link_if_allowed "Delete", @photo, :confirm => 'Are you sure?', :method => :delete

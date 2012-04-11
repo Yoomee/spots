@@ -1,0 +1,5 @@
+%ul
+  -search.results.each do |result|
+    %li{:class => "search_result_#{result.class.to_s.downcase} search_result"}
+      =hidden_field_tag("url[result.id]", url_for(result), :class => 'url')
+      =label_tag "related_#{result.class.to_s}_#{result.id}", result

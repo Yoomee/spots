@@ -1,0 +1,4 @@
+-unless (children).empty?
+  %ul.sitemap
+    -(children).each do |child|
+      =render :partial => 'sections/child', :object => child

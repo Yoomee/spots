@@ -1,0 +1,12 @@
+-title "System Albums"
+-if @system_albums.blank?
+  %p There are no system albums.
+-else
+  .photo_albums
+    -@system_albums.each do |photo_album|
+      .photo_album
+        =link_to(image_for(photo_album, "160x160#"), photo_album_photos_path(photo_album))
+        =link_to(photo_album.name, photo_album_photos_path(photo_album))
+-options_panel do
+  =back_link
+  =link_to "New album", new_photo_album_path

@@ -1,0 +1,21 @@
+!!! Strict
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %title
+      = site_name
+      \:
+      = site_slogan
+      \//
+      = page_title
+      = page_subtitle
+    %meta{ :name => "Generator", :content => "Yoomee (Ruby on Rails)" }
+    %meta{ :name => "robots", :content => "index, follow" }
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %meta{ :name => "info", :content => "#{page_title}#{page_subtitle}" }
+    %link{ :href => "/images/favicon.ico", :rel => "shortcut icon" }
+    =stylesheet_link_tag 'reports'
+  %body
+    %h1
+      =page_title
+    =@content_for_layout
+    =back_link

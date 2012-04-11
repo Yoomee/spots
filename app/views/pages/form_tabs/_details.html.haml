@@ -1,0 +1,12 @@
+%p
+  = "Please enter the details of the #{page.type_name} below."
+-semantic_fields_for page do |fields|
+  -fields.inputs do
+    %li.select.required#page_section_input
+      =fields.label :section_id, "Section#{content_tag :abbr, '*', :title => 'required'}"
+      =fields.select :section_id, section_option_tags(page)
+    =fields.input :title
+    =fields.input :small_title, :label => "Small title <span>(optional title to use in menus)</span>"
+    =#fields.input :intro, :input_html => {:rows => 5, :cols => 97} # summary snippet id used instead
+    =fields.input :text, :as => :ck_text
+    %li=fields.photo_browser_button :photo

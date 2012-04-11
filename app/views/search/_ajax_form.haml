@@ -1,0 +1,25 @@
+-loading_callback ||= ""
+-other_params ||= {}
+-complete_callback ||= ""
+-update ||= 'suggest'
+-loader_image ||= 'ajax_loader.gif'
+:javascript
+  var SearchForm = {
+    loading: function() {
+      $('##{update}').hide(0, function() {
+        $('#spinner').show();
+      });
+    },
+    complete: function() {
+      $('#spinner').hide(0, function() {
+        $('##{update}').show();      
+      });
+    }
+  };
+=text_field_tag "search[term]", '', :autocomplete => 'off', :onkeypress => "return event.keyCode!=13"
+=observe_field 'search_term', :url => {:controller => "search", :action => "create", :autocomplete => true, :results_view_path => results_view_path}.merge(other_params), :frequency => 0.5, :loading => "SearchForm.loading();#{loading_callback}", :complete => "SearchForm.complete();#{complete_callback}", :with => "'search[term]=' + $('#search_term').val() + '&search[models_string]=#{models_string ||= ''}'", :update => update #, :condition => "$('#search_term').attr('value').length >= 3"
+%br.clear
+
+#spinner{:style => "display:none;"}
+  =image_tag loader_image
+#suggest

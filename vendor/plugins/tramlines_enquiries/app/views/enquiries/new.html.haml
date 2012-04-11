@@ -1,0 +1,5 @@
+-params[:id] ||= params[:enquiry][:form_name]
+- title @enquiry.form_title
+=render_form(@enquiry)
+-options_panel do
+  =back_link

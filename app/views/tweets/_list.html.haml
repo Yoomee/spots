@@ -1,0 +1,14 @@
+-if tweets.empty?
+  .no_tweets
+    Failed to load tweets for
+    =link_to("@#{screen_name}", "http://twitter.com/#{screen_name}", :target => "_blank")
+-else
+  -tweets.each do |tweet|
+    .tweet{:class => cycle('odd','even')}
+      -if show_screen_name
+        =link_to(tweet.screen_name, "http://twitter.com/#{tweet.screen_name}", :target => "_blank", :class => "twitter_handle")
+      .tweet_text
+        =highlight_twitter_all(tweet.text)
+      -if show_dates
+        .tweet_date
+          ="#{time_ago_in_words(tweet.date)} ago"

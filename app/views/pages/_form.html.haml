@@ -1,0 +1,52 @@
+-content_for(:head) do
+  =javascript_include_tag 'jquery.autocomplete'
+  =stylesheet_link_tag 'jquery.autocomplete'
+  =javascript_include_tag :ckeditor
+  =javascript_include_tag 'timepicker.js'
+  :javascript
+    var PageForm = {
+      init_datepicker: function() {
+        $('.datetime').datepicker({
+          duration: '',
+          dateFormat: 'dd/mm/yy',
+          showTime: true,
+          constrainInput: false,
+          stepMinutes: 1,
+          stepHours: 1,
+          altTimeField: '',
+          time24h: true
+        });
+        $('.date').datepicker({
+          duration: '',
+          dateFormat: 'dd/mm/yy',
+          showTime: false,
+          constrainInput: false,
+          altTimeField: '',
+          time24h: true
+        });
+      },
+      updateDraftStatus: function (e) {
+        if (e.target.checked) {
+          $('#publishing_dates').hide();
+        } else {
+          $('#publishing_dates').show();
+        }
+      },
+      updateExpiryStatus: function (e) {
+        if (e.target.checked) {
+          var curYear = parseInt(/\d{4}/.exec($('#page_formatted_expires_on').val()), 10);
+          if (curYear >= 2035) {
+            $('#page_formatted_expires_on').val("#{Date.today.strftime('%d/%m/%Y %H:%M')}");
+          }
+          $('#expires_date').show();
+        } else {
+          $('#page_formatted_expires_on').val("#{Time.local(2035).strftime('%d/%m/%Y %H:%M')}");
+          $('#expires_date').hide();
+        }
+      }
+    };
+-semantic_form_for page, :html => {:multipart => true} do |form|
+  =tramlines_tabs(:tabs => page.form_tabs, :tab_directory => 'form_tabs', :locals => {:page => page}, :loaded_tabs => page.loaded_tabs)
+  %br.clear
+  -form.buttons do
+    = form.commit_button :label => 'Save'

@@ -1,0 +1,9 @@
+.photo
+  =link_if_allowed(image_for(photo, '180x140#'), photo)
+  -if !photo.untitled?
+    %p.photo_name
+      =photo.name
+  -if !photo.description.blank?
+    %p
+      =truncate(photo.description, :length => 75)
+      =link_to("Read more", photo) if photo.description.length > 97

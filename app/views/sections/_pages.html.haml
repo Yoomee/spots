@@ -1,0 +1,4 @@
+-unless pages.empty?
+  %ul
+    -pages.each do |page|
+      =render :partial => 'page', :object => page

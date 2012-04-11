@@ -1,0 +1,12 @@
+-if item.leaf?
+  %li
+    =link_to item.name, item.link
+-else
+  -content_tag "h#{level + 1}", :class => 'admin_item_heading' do
+    =item.name
+  -if !item.leaf_children.empty?
+    %ul
+      -item.leaf_children.each do |leaf_child|
+        =render :partial => 'item', :locals => {:item => leaf_child}
+  -item.branch_children.each do |branch_child|
+    =render :partial => 'item', :locals => {:item => branch_child, :level => level + 1}

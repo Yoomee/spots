@@ -1,0 +1,11 @@
+#share_shout
+  %h2 Share this page
+  %ul.lst.share_url
+    %li.label=label_tag 'share_url', 'Link'
+    %li.input=text_field_tag 'share_url', @short_url, :onclick => "this.select()", :readonly => true
+    %li.flash=clippy('share_url')
+  %ul.social_links.lst
+    -#
+      %li.email_link=link_to("Email your friends", {:controller => :share, :action => :new, :model_name => params[:model_name], :id => params[:id]})
+    %li.facebook_link=facebook_sharer_link("Post to Facebook", @short_url)
+    %li.twitter_link=twitter_share_link("Tweet about this", @short_url, "I'm looking at this page on #{site_name}")

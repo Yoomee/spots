@@ -1,0 +1,17 @@
+-title 'Home'
+.big_message
+  .big_message_left
+    %h1
+      We are an online community that inspires people to lead a greener life.
+    %p
+      With the help of brilliant videos and inspiring stories from creative people and community members around the world. Join people from 205 countries doing their green things and making a difference. 
+      = link_to 'More about us here', {:controller => 'page', :action => 'show', :id => '2'}, :class => 'read_more'
+  
+  #big_message_right.cycle_frame
+    .cycle
+      %div
+        =image_tag 'photo.jpg'
+      %div
+        =image_tag 'photo_2.jpg'
+    .cycle_nav
+      =link_to 'Next', '#', :class => 'cycle_next'

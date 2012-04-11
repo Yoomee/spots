@@ -1,0 +1,6 @@
+- title "Edit Video"
+=image_for(@video, "250x>") if @video.valid?
+= render :partial => 'form', :locals => {:video => @video}
+- options_panel do
+  = link_if_allowed "Cancel", @video
+  = link_if_allowed "Delete", @video, :confirm => 'Are you sure?', :method => :delete

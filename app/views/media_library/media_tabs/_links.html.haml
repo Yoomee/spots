@@ -1,0 +1,9 @@
+.media_list
+  -@links = member.links.paginate(:per_page => 2, :page => params[:page])
+  -@links.each do |link|
+    =render :partial => "links/link", :locals => {:link => link}
+%br.clear
+=will_paginate @links, :params => {:controller => "members/#{member.id}/", :action => "media_library", :tab => "links"}
+%br.clear
+-options_panel do
+  =link_if_allowed "Add a link", new_link_proc

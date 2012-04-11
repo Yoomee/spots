@@ -1,0 +1,10 @@
+-content_for(:head) do
+  =javascript_include_tag :ckeditor
+-semantic_form_for @mail do |form|
+  -form.inputs do
+    =form.input :recipient_id, :as => :hidden
+    -form.inputs do
+      =form.input :from
+      =form.input :subject
+      =form.input :html_body, :as => :ck_text, :label => "Body"
+  =form.buttons

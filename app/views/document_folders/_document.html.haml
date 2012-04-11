@@ -1,0 +1,7 @@
+-if allowed_to?(document_proc(document))
+  %li.document_item
+    =link_to_self document
+    -bracket(:class => 'admin_links') do
+      -separate_links do
+        =link_if_allowed 'Edit', edit_document_proc(document)
+        =link_if_allowed 'Delete', document, :method => :delete, :confirm => "Are you sure you want to delete this document?"

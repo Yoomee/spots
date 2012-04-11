@@ -1,0 +1,4 @@
+.doc{:class => "doc_#{document.file_ext}"}
+  .doc_icon=image_for(document, '40x')
+  %h4=link_to document, document, :target => "_blank"
+  =link_to 'Download', document, :target => "_blank", :class=>'download_text'

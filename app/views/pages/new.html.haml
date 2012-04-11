@@ -1,0 +1,10 @@
+- title "New #{@page.type_name}"
+-if Section.count.zero?
+  %p
+    There are no sections set up yet. Please click
+    =link_to 'here', new_section_path
+    to create one now.
+-else
+  = render :partial => 'form', :locals => {:page => @page}
+-options_panel do
+  =back_link

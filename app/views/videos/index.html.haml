@@ -1,0 +1,18 @@
+- title (@member ? "#{@member}'s Videos" : "All Videos")
+- if @videos.empty?
+  %p
+    -if @member
+      ="#{forename_or_you(@member, 'has').capitalize} not added any videos yet."
+    -else
+      There are no videos yet
+-else
+  .media_list
+    -@videos.each do |video|
+      =render :partial => "video", :locals => {:video => video} 
+    %br.clear
+- options_panel do
+  = link_if_allowed @member, @member if @member
+  - if @member==@logged_in_member
+    = link_if_allowed "New video", new_video_proc
+  - else
+    = link_if_allowed "Add your own video", new_video_proc

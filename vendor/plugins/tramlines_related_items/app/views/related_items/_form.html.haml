@@ -1,0 +1,17 @@
+=add_remove_child_javascript
+#ajax_search_form.float_left
+  %p.help
+    Enter a search term:
+  =render :partial => "search/ajax_form", :locals => {:results_view_path => "related_items", :complete_callback => "RelatedItemsForm.toggle_add_links();"}
+%ul#selected_items.float_left
+  %p.help
+    Current related items:
+  -if object.real_item_relationships.blank?
+    %p.help
+      You haven't selected any related items yet!
+      %br
+      Use the search box on the left side to search for an item to add. Click the "Add +" to add the item to the related items list.
+  -semantic_fields_for object do |fields|
+    =render :partial => 'related_items/javascript', :locals => {:f => fields}
+    -fields.semantic_fields_for :real_item_relationships do |related_form|
+      =render :partial => 'related_items/item_relationship', :locals => {:f => related_form}

@@ -1,0 +1,17 @@
+-if status || session[:mailing_worker_uid]
+  - finished = !status.nil? && (status[:sent] == status[:total])
+  #mailing_progress
+    -if finished
+      %span="Finished: sent #{status[:total]} emails"
+      =progress_bar(100, :width => 200, :color => '#28A1D9')
+    -else
+      -if status
+        %span="Email progress: sent #{status[:sent]} of #{status[:total]}"
+        =progress_bar(status[:sent], :target => status[:total], :width => 200, :color => '#28A1D9')
+      -else
+        %span="Sending emails..."
+        =progress_bar(0, :width => 200, :color => '#28A1D9')
+      :javascript
+        $(document).ready(function() {
+          setTimeout("#{remote_function(:url => update_progress_mailings_path(:status => status), :method => :get)};",1000);          
+        });

@@ -1,0 +1,11 @@
+.twelvecol
+  -if section.view == 'news_view'
+    -pages_and_sections = section.all_children(:published_only => !admin_logged_in?)
+    -pages_and_sections.extend(SectionsController::SortByWeightAndPublished)
+    -pages_and_sections.sort_by_weight_and_published
+  -else
+    -pages_and_sections = section.all_children(:published_only => !admin_logged_in?)
+  %div{:id => "subnav_#{depth}", :class => "#{last ? 'last' : ''}"}
+    %ul.lst{:class => "subnav subnav_#{depth}"}
+      -pages_and_sections.each do |page_or_section|
+        =li_with_active(viewing_page_or_section_tree?(page_or_section), link_to_self(page_or_section))

@@ -1,0 +1,10 @@
+%p
+  = "Please enter the details of the section below."
+-semantic_fields_for section do |fields|
+  -fields.inputs do
+    %li.select.optional#section_parent_input
+      =fields.label :parent_id, 'Parent'
+      =fields.select :parent_id, possible_parent_section_option_tags(section)
+    =fields.input :name
+    =fields.input :view, :as => :radio, :collection => Section::VIEW_OPTIONS, :help => 'Please select how the section should be displayed'
+    %li=fields.photo_browser_button :photo    

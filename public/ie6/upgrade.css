@@ -1,0 +1,53 @@
+body{
+	background:#fff;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 13px;
+	
+}
+body * {
+	margin: 0;
+	padding: 0;
+}
+#browser_message {
+	margin: 50px auto;
+	width: 750px;	
+}
+h1 {
+	margin: 0 0 10px;
+}
+h3 {
+	font-weight: normal;
+	margin: 0 0 20px;
+}
+ul {
+	list-style: none;
+	float: left;
+}
+li {
+	float: left;
+	margin: 10px 10px 0 0;
+
+
+}
+li a {
+	float: left;
+	color: #666;
+	background: #f3f5f2 url(browser_chrome.gif) no-repeat 15px 0;
+	width: 120px;
+	border: 1px solid #D0D2D0;
+	padding: 100px 5px 10px;
+	text-align: center;
+
+}
+li#ie a {
+	background-image: url(browser_ie.gif);
+}
+li#firefox a {
+	background-image: url(browser_firefox.gif);
+}
+li#safari a {
+	background-image: url(browser_safari.gif);
+}
+li#opera a {
+	background-image: url(browser_opera.gif);
+}

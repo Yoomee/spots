@@ -1,0 +1,57 @@
+-title "Emails"
+-sending = !session[:mailing_worker_uid].blank?
+
+%h2 Draft
+-if @unsent_mailings.empty?
+  %p There are no draft emails.
+-else
+  %table
+    %tr
+      %th Date
+      %th Reference
+      %th From
+      %th Subject
+      %th Status
+      %th{:colspan => 4} Actions
+    - @unsent_mailings.each do |mailing|
+      %tr
+        %td= mailing.created_at.to_s(:short_date)
+        %td= mailing.name
+        %td= h mailing.from
+        %td= h mailing.subject
+        -if sending
+          %td{:colspan => 4}
+            %em Please wait while the current mailing is sent...
+        -else
+          %td="#{mailing.status.humanize}"
+          %td
+            -if mailing.not_sent?
+              =link_if_allowed 'Send', send_emails_mailing_proc(mailing), :confirm => "Are you sure?"
+            -else
+              =link_if_allowed 'View recipients', mailing_mails_proc(mailing)
+          %td= link_to('View', mailing)
+          %td= link_if_allowed 'Edit', edit_mailing_proc(mailing)
+          %td= link_if_allowed 'Delete', mailing, :confirm => 'Are you sure?', :method => :delete
+
+-if !@sent_mailings.empty?
+  %h2 Sent
+  %table
+    %tr
+      %th Date
+      %th Reference
+      %th From
+      %th Subject
+      %th Status
+      %th{:colspan => 2} Actions
+    - @sent_mailings.each do |mailing|
+      %tr
+        %td= mailing.created_at.to_s(:short_date)
+        %td= mailing.name
+        %td= h mailing.from
+        %td= h mailing.subject
+        %td="#{mailing.status.humanize}"
+        %td= link_to('View', mailing)
+        %td=link_if_allowed 'View recipients', mailing_mails_proc(mailing)
+
+-options_panel do
+  =link_if_allowed "New email", new_mailing_proc

@@ -1,0 +1,9 @@
+.media_list
+  -@videos = member.videos.paginate(:per_page => 2, :page => params[:page])
+  -@videos.each do |video|
+    =render :partial => "videos/video", :locals => {:video => video}
+%br.clear
+=will_paginate @videos, :params => {:controller => "members/#{member.id}/", :action => "media_library", :tab => "videos"}
+%br.clear
+-options_panel do
+  =link_if_allowed "Add a video", new_video_proc

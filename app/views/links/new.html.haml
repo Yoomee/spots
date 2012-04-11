@@ -1,0 +1,5 @@
+- title "New link"
+= render :partial => 'form', :locals => {:link => @link}
+- options_panel do
+  -if logged_in_member
+    = link_if_allowed "Your videos", member_links_proc(logged_in_member)

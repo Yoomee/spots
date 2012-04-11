@@ -1,0 +1,34 @@
+#header
+  %h1#site_logo
+    = link_to 'vanilla', :home
+  #user_links
+    - if logged_in?
+      %p
+        Logged in as
+        %strong
+          = link_to @logged_in_member.full_name, member_path(@logged_in_member)
+        - #=link_if_allowed 'Sitemap', {:controller => 'section', :action => 'sitemap'}
+        - #=link_if_allowed 'Admin', {:controller => 'admin'}, :prefix => ' | '
+        |
+        = link_to 'Logout', session_path, :method => :delete
+    - else
+      %p
+        = link_to 'login', new_session_path
+      %form{ :action => "/search/results", :method => "post" }
+        #search_box
+          %input#search_field{ :name => "term", :type => "text", :value => "search...", :onfocus => "var element = document.getElementById('search_field');element.value='';" }
+          %input#search_icon{ :name => "commit", :title => "search", :type => "image", :src => "/images/search_icon.gif", :value => "search" }
+  %ul#nav
+    %li
+      = link_to 'link1', '#'
+    %li
+      = link_to 'link2', '#'
+    %li
+      = link_to 'link3', '#'
+    %li
+      = link_to 'link4', '#'
+    %li
+      = link_to 'link5', '#'
+    %li
+      = link_to 'forums', {:controller => 'forum'}
+  %br.clear

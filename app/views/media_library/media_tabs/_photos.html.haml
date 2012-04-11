@@ -1,0 +1,31 @@
+:javascript
+  var AlbumPhotos = {
+    complete: function() {
+      $('#photo_container_loader').hide();
+      $('#photo_container').show(); 
+    },
+	  
+    loading: function() {
+      $('#photo_container').hide();
+      $('#photo_container_loader').show(); 
+    }
+  };  
+
+-unless member.photo_albums.empty?
+  #album_list
+    -member.photo_albums.each do |album|
+      .album
+        .album_image
+          =link_to_remote image_tag("folder.png"), :url => ajax_photo_album_photos_path(album), :update => 'photo_container', :method => 'get', :loading => "AlbumPhotos.loading();", :complete => "AlbumPhotos.complete();"
+        .album_name
+          =link_to_remote album.name, :url => ajax_photo_album_photos_path(album), :update => 'photo_container', :method => 'get', :loading => "AlbumPhotos.loading();", :complete => "AlbumPhotos.complete();"
+          %br
+          =pluralize(album.photos.count, "photo")
+    %br.clear  
+  %br.clear
+  #photo_container_loader{:style => 'display:none'}
+    =image_tag "ajax_loader.gif"
+  #photo_container{:style => 'display:none'}
+%br.clear
+-options_panel do
+  =link_if_allowed "Add a photo", new_photo_proc

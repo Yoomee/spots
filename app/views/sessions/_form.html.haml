@@ -1,0 +1,25 @@
+= render_login_redirect_message
+#login_wrapper
+  #login_intro
+    %h2
+      Member Log in
+    %p
+      Not a member? Register
+      =link_to 'here', new_member_url
+  -form_tag session_url do
+    #login_form
+      %p.login_email
+        %label{ :for => "login_email" }
+          Email/Username:
+        =text_field_tag 'login_email_or_username', @login_email_or_username
+        =star
+      %p.password
+        %label{ :for => "login_password" }
+          Password:
+        =password_field_tag 'login_password'
+        =star
+      =link_to_box "Forgot password?", new_forgotten_password_path, :class => "forgotten_password_link"
+      =submit_tag 'Log in', :id => 'login_bttn'
+  -if site_uses_fb_connect? && respond_to?(:fb_login_button)
+    #fb_connect_login
+      =fb_login_button "window.location = '#{url_for(:controller => 'facebook_sessions', :action => 'create')}';", :text => 'Log in with Facebook', :v => 2, :size => "large"

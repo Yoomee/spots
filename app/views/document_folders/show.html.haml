@@ -1,0 +1,13 @@
+-title @document_folder.name
+-if @document_folder.documents.empty?
+  %p No documents.
+-else
+  %ul
+    -@document_folder.documents.each do |document|
+      %li=link_to_self(document)
+      
+-options_panel do
+  =back_link
+  =link_if_allowed("Edit Folder", edit_document_folder_proc(@document_folder))
+  =link_if_allowed("Add Document", new_document_folder_document_proc(@document_folder))
+    

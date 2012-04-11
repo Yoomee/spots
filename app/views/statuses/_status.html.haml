@@ -1,0 +1,5 @@
+%div{:id => "member_#{member.id}_status"}
+  -unless member.status.nil?
+    .member_status
+      =member.status.text
+      %span="#{time_ago_in_words(member.status.created_at)} ago"

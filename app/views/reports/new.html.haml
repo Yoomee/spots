@@ -1,0 +1,11 @@
+-title @report.title
+-semantic_form_for(:report, :url => reports_path, :method => :post) do |form|
+  -@report.preset_param_names.each do |param_name|
+    =form.hidden_field param_name
+  =hidden_field_tag :name, @report.name
+  -form.inputs do
+    =form.input :view, :label => 'Format', :as => :radio, :collection => [['Web page', 'html'], ['Excel (2003 and newer)', 'xls'], ['CSV/Excel (2003 and older)', 'csv']]
+  -form.buttons do
+    =form.submit 'Report'
+-options_panel do
+  =back_link

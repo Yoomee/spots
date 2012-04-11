@@ -1,0 +1,7 @@
+.member_status_form{:id => "member_#{status.member.id}_status_form"}
+  -semantic_remote_form_for status do |form|
+    -form.inputs do
+      =form.input :member_id, :as => :hidden
+      =form.input :text
+    -form.buttons do
+      =form.commit_button :label => "Share"

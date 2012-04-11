@@ -1,0 +1,9 @@
+=title "Set #{forename_or_your(@member)} profile photo"
+- semantic_form_for @member, :url => member_member_photo_path(@member), :html => {:multipart => true, :class => "edit_member_photo"} do |form|
+  -form.inputs do
+    =form.input :image, :as => :file
+    %li.member_photo_image=image_for(Member.find(@member.id), "350x>")
+  - form.buttons do
+    = form.commit_button "Set Photo"
+-options_panel do
+  =back_link

@@ -1,0 +1,40 @@
+-content_for(:head) do
+  :javascript
+    SectionOrder = {
+      save_order: function() {
+        $('#orderable_page_sections li').each(function(index) {
+          $('#sortable_type_' + index).val($(this).attr('data-sortable-type'));
+          $('#sortable_id_' + index).val($(this).attr('data-sortable-id'));
+        });
+      }
+    };
+  
+    $(document).ready(function() {
+      $('#orderable_page_sections').sortable({
+        axis: "y",
+        handle: ".drag_icon",
+        stop: function(event, ui) {
+          SectionOrder.save_order();
+        }
+      });
+    });
+
+-title @section.nil? ? "Root sections" : @section.name
+
+%p.help
+  Click and drag using the icons on the left. Once you are happy with the order, click "Save order" at the bottom.
+
+%ul#orderable_page_sections.lst.flcb
+  -@pages_sections.each do |page_section|
+    %li{'data-sortable-type' => page_section.class.to_s, 'data-sortable-id' => page_section.id}
+      =image_tag("drag_icon.png", :class => "drag_icon")
+      %span=page_section
+      
+-form_tag('/sections/update_weights', :class => "flcb") do
+  -@pages_sections.each_with_index do |sortable, i|
+    =hidden_field_tag("pages_sections[#{i}][sortable_type]", sortable.class.to_s, :id => "sortable_type_#{i}")
+    =hidden_field_tag("pages_sections[#{i}][sortable_id]", sortable.id, :id => "sortable_id_#{i}")
+  =submit_tag("Save order")
+
+-options_panel do
+  =back_link

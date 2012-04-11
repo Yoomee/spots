@@ -1,0 +1,19 @@
+#forgotten_password_box
+  %h3 Forgotten Password
+  #forgotten_password_wrapper
+    -if error
+      %p.forgotten_password_error
+        -if email.blank?
+          Please enter your email address.
+        -else
+          There isn't an account with the email address
+          %strong=email
+          ="."
+          %br Please check you have entered it correctly.
+    -else
+      %p Please enter your email address and password reset instructions will be emailed to you.
+    -form_remote_tag(:url => forgotten_password_path) do
+      =label_tag :email, "Your email"
+      %br
+      =text_field_tag :email, email, :class => error ? "forgotten_password_error" : ""
+      =submit_tag "Send"

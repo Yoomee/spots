@@ -1,0 +1,5 @@
+%div{:id => container_id}
+  -news_feed_items.each do |news_feed_item|
+    =render_news_feed_item(news_feed_item, :news_feed_attachable => attachable)
+-if WillPaginate::ViewHelpers.total_pages_for_collection(news_feed_items) > 1
+  =older_news_feed_link(:attachable => attachable, :per_page => per_page, :ajax_loader => ajax_loader, :name => older_link_name)

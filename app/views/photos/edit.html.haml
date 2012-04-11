@@ -1,0 +1,7 @@
+- title "Edit Photo"
+=image_for(@photo, "250x>")
+= render :partial => 'form', :locals => {:photo => @photo}
+- options_panel do
+  = back_link
+  = link_if_allowed @photo.album, photo_album_photos_proc(@photo.album) if @photo.album
+  = link_if_allowed "Add another photo", new_photo_album_photo_proc(@photo.album)

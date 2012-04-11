@@ -1,0 +1,12 @@
+.media_box.bx
+  .bx_h
+    =title || "Media"
+  .bx_in
+  -if media.blank?
+    =no_media_message(:owner => owner, :type => type)
+  -else
+    -if just_photo
+      -media.each do |media_item|
+        =link_to image_for(media_item, "100x"), media_item
+    -else
+      =render :partial => 'media/media_item', :collection => media

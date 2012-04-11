@@ -1,0 +1,23 @@
+%h1#page_title
+  Super
+
+%h4 Log in as member:
+-form_tag morph_session_path do
+  =select_tag "login_member_id", options_from_collection_for_select(Member.find(:all, :order => "forename"), 'id', 'full_name')
+  %br.clear
+  =submit_tag "Login"
+
+%br.clear  
+%br.clear  
+%h4 Member IP addresses
+%p=page_entries_info @ip_members
+-unless @ip_members.blank?
+  %table
+    %tr
+      %th Member
+      %th IP address
+    -@ip_members.each do |member|
+      %tr
+        %td=link_to_self(member)
+        %td=member.ip_address
+=will_paginate(@ip_members)

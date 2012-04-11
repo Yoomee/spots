@@ -1,0 +1,13 @@
+-content_for(:head) do
+  =javascript_include_tag :ckeditor
+  =javascript_include_tag 'jquery.autocomplete'
+  =stylesheet_link_tag 'jquery.autocomplete'
+-title "Edit #{@snippet.human_name}"
+-semantic_form_for(@snippet) do |form|
+  -form.inputs do
+    =form.input :text, :as => :ck_text
+  -form.buttons do
+    =form.submit 'Save'
+    
+-options_panel do
+  =back_link

@@ -1,0 +1,12 @@
+- semantic_form_for member, :html => {:multipart => true} do |form|
+  -form.inputs do
+    =form.input :fb_user_id, :as => :hidden if site_uses_fb_connect?
+    =form.input :image, :as => :file
+    =form.input :forename
+    =form.input :surname
+    =form.input :email
+    =form.input :password, :as => :password
+    =form.input :password_confirmation, :as => :password
+    =form.input :bio, :input_html => {:rows => 3}
+  - form.buttons do
+    = form.commit_button

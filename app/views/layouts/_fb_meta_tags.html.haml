@@ -1,0 +1,20 @@
+-object = (@member || @page || @section)
+-if object.nil? || (object.respond_to?(:new_record?) && !object.new_record?)
+  -url = (object.try(:permalink_name).presence || request.path).sub(/^\//, "")
+  -url = "/#{url}" if url.present?
+  %meta{:property => "og:url", :content => "#{site_url}#{url}"}
+  %meta{:property => "og:title", :content => "#{site_name} - #{page_title.presence || site_slogan}"}
+  %meta{:property => "og:site_name", :content => site_name}
+  %meta{:property => "og:type", :content => "website"}
+  %meta{:property => "og:locale", :content => "en_GB"}
+  -page_summary = @page.try(:summary, 350, :strip_tags => true).presence || current_section.try(:summary, 350, :strip_tags => true)
+  %meta{:property => "og:description", :content => page_summary || site_slogan}
+
+  -if @member.try(:has_image?)
+    -photo_url = @member.image.url
+  -elsif @page.try(:has_photo?)
+    -photo_url = @page.photo.url
+  -elsif current_section.try(:has_photo?)
+    -photo_url = current_section.photo.url
+  -if photo_url
+    %meta{:property => "og:image", :content => "#{site_url}#{photo_url}.png"}

@@ -1,0 +1,33 @@
+TramlinesRelatedItems
+=====================
+
+Use the following method in the model
+  has_related_items :photos, :videos, :links
+
+If no models are given as parameters, the default models are [:pages, :documents, :members, :photos, :links, :videos]
+
+Use the following method to display a list of related items, passing the object and options
+  render_related_items(@page, :limit => 5)
+
+Example
+=======
+
+page.related_items << [Photo.first, Video.first]
+page.related_links << Link.first
+page.related_items -> [Photo.first, Video.first, Link.first]
+
+
+Future work
+===========
+
+Look into acts_as_double_polymorphic_join for getting the related_parent.
+
+# RELATED_MODELS = [:pages, :documents, :members, :photos, :links, :videos]
+# 
+# acts_as_double_polymorphic_join(
+#   :items => RELATED_MODELS,
+#   :related_items => RELATED_MODELS,
+#   :rename_individual_collections => true
+# )
+
+Copyright (c) 2010 [name of plugin creator], released under the MIT license

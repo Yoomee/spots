@@ -1,0 +1,41 @@
+-max_width, max_height = get_img_size_options(APP_CONFIG[:photo_resize_geometry]).collect(&:to_i)
+-image_width = @object.image.width > max_width ? max_width : @object.image.width
+-image_height = @object.image.height > max_height ? max_height : @object.image.height
+-content_for(:head) do
+  =javascript_include_tag 'jcrop/jquery.Jcrop.min.js'
+  =stylesheet_link_tag 'jcrop/jquery.Jcrop.css'
+  :javascript
+    var Crop = {
+      api: null,
+      getCentre: function() {
+        var box = Crop.api.tellSelect();
+        x_pxls = (box.x + box.x2)/2;
+        y_pxls = (box.y + box.y2)/2;
+        x = x_pxls/#{image_width};
+        y = y_pxls/#{image_height};
+        return x.toFixed(4) + ',' + y.toFixed(4);
+      }
+    };
+    $(window).load(function() {
+      var y1 = #{image_height*@object.image_centre_y.to_f + image_height*0.2};
+      var y2 = #{image_height*@object.image_centre_y.to_f - image_height*0.2};
+      Crop.api = $.Jcrop('#croppable_image', {
+        setSelect: [0, y1, #{image_width}, y2],
+        allowResize:false, 
+        allowSelect:false
+      });
+      $('#crop_form').submit(function() {
+        $('#image_centre').val(Crop.getCentre());
+      });
+    });
+    
+-title 'Edit cropped image'
+%p.intro Move the light box to your preferred location. When this image gets cropped on the site, it will centre it around that area.
+.flcb
+  =image_for(@object, nil, :id => "croppable_image")
+  -form_for @object, :url => crops_path(:model_name => @object.class.to_s.underscore, :id => @object.id), :html => {:id => "crop_form", :class => 'formtastic'} do |form|
+    %ol
+      %li=form.hidden_field :image_centre, :id => "image_centre"
+      %li=form.submit "Save"
+=options_panel
+  

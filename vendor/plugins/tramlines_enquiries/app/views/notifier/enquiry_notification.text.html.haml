@@ -1,0 +1,12 @@
+%p
+  A new enquiry has been made on the #{@site_name} website for the form '#{@enquiry.form_title}'.
+%h3 Overview
+%ul
+  -@enquiry.enquiry_fields.sort_by_field_order.each do |field|
+    %li
+      ="#{field.name.humanize}: #{field.value}"
+    
+%p
+  You can view this enquiry on the #{@site_name} website here, #{@site_url}#{url_for :controller => "enquiries", :action => "show", :id => @enquiry}
+  :plain
+    .

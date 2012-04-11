@@ -1,0 +1,22 @@
+-@page_title = @section.name
+=photo_for(@section, "140x") if @section.has_photo?
+-unless @section.description.nil?
+  %p.section_description
+    =@section.description
+#latestStoriesList
+  -@pages_sections.each do |page_section|
+    .item
+      .text
+        %h3=link_to page_section, page_section
+        %p=strip_tags description_for(page_section, :length => 230)
+      =link_to(photo_for(page_section, "140x140#"), page_section, :class => 'item_img')
+      =link_to 'More', page_section, :class => 'bttn'
+%br.clear
+=will_paginate @pages_sections
+-options_panel do
+  =back_link
+  =link_if_allowed 'Edit', edit_section_proc(@section)
+  =link_if_allowed 'Delete', @section, :method => :delete, :confirm => "Are you sure you want to delete this section? (its subsections and pages will also be deleted)"
+  =link_if_allowed "New subsection", new_section_section_proc(@section)
+  =link_if_allowed 'New page', new_section_page_proc(@section)
+  =link_if_allowed 'Set order', order_section_proc(@section)

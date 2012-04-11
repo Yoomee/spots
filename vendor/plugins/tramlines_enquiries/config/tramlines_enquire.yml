@@ -1,0 +1,8 @@
+#TODO - Link this all together so an email can be sent to different people etc...
+contact:
+  email_to: email@address.com
+  response: Thank you for your enquiry. We will be in touch shortly.
+
+request_to_join:
+  email_to: email1@address.com
+  response: Thanks for requestion to join. We will get back to you soon!
