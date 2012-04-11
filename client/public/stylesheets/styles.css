@@ -1706,7 +1706,7 @@ p.latest_text {
 	
 }
 #activity_filter {
-  /*float: right;*/
+  float: right;
   margin-bottom: 50px;
 }
 #activity_filter a, #activity_filter span {
@@ -6704,13 +6704,18 @@ form.organisation ol li label span, .organisation_label_wrapper p {
 .row.find {
   margin-bottom: 30px;
 }
+.row.headline.find {
+  color:black;
+  font-size: 24px;
+}
 .row.find .info {
+  color:black;
   font-size: 16px;
   line-height: 20px;
   margin: 10px 0;
 }
 .row.find .activity {
-  float: right;
+  /*float: right;*/
 }
 
 #feature_panel_row {

@@ -7,31 +7,38 @@
       });
   -title @page.title
   -hide_page_title
-  #page_content.sevencol
-    #page_left_col
+  -if slug_view_exists?(@page.slug)
+    #page_content.twelvecol
       %h1#page_title=@page.title
       -unless @page.published?
         %p#page_status=@page.status_string
       =render('pages/content', :page => @page)
-      .page_share
-        %h2 Share this
-        #twitter_link.share_button
-          =link_to "Tweet", "http://twitter.com/share", :class=>"twitter-share-button", :data_count=>"horizontal", :data_via=>"yoomeehq"
-          =javascript_include_tag 'http://platform.twitter.com/widgets.js'
-        #facebook_link.share_button  
-          =facebook_like_link
-    =render_slug(@page.slug)
+      =render_slug(@page.slug)
+  -else
+    #page_content.sevencol
+      #page_left_col
+        %h1#page_title=@page.title
+        -unless @page.published?
+          %p#page_status=@page.status_string
+        =render('pages/content', :page => @page)
+        .page_share
+          %h2 Share this
+          #twitter_link.share_button
+            =link_to "Tweet", "http://twitter.com/share", :class=>"twitter-share-button", :data_count=>"horizontal", :data_via=>"yoomeehq"
+            =javascript_include_tag 'http://platform.twitter.com/widgets.js'
+          #facebook_link.share_button  
+            =facebook_like_link
 
-  #page_right_col
-    -if @page.root_section == Section.slug('organisations')
-      #organisation_signup_button
-        =link_to("Signup as an organisation &rarr;", signup_organisation_path, :class => "organisation_signup_link")
-    =render "pages/right_col", :page => @page
-  -if @page.has_related_items?
-    #related_content.row
-      .twelvecol
-        %h2.title Related content
-      =render_related_items(@page, :limit => 6, :truncate_length => 150)
+    #page_right_col
+      -if @page.root_section == Section.slug('organisations')
+        #organisation_signup_button
+          =link_to("Signup as an organisation &rarr;", signup_organisation_path, :class => "organisation_signup_link")
+      =render "pages/right_col", :page => @page
+    -if @page.has_related_items?
+      #related_content.row
+        .twelvecol
+          %h2.title Related content
+        =render_related_items(@page, :limit => 6, :truncate_length => 150)
       
 .row        
   -options_panel do
