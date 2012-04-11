@@ -1,0 +1,9 @@
+-title "Login/registration problems"
+
+%p
+  It looks like there was a problem while you were logging in or registering:
+%p
+  %strong=params[:message].to_s.humanize
+  
+%p You can try again below.
+=render("sessions/auth_links")

@@ -1,0 +1,16 @@
+TramlinesFacebook
+====================
+
+- Needs facebooker2 gem
+- client/app/controllers/application_controller.rb
+  include Facebooker2::Rails::Controller
+- client/config/initializers/facebooker2.rb:
+  Facebooker2.load_facebooker_yaml
+
+Example
+=======
+
+Example goes here.
+
+
+Copyright (c) 2011 [name of plugin creator], released under the MIT license

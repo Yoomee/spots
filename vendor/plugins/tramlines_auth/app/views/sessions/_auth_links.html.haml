@@ -1,0 +1,58 @@
+-member = (defined? member) ? member : nil
+-content_for(:head) do
+  =javascript_include_tag 'jquery.oauthpopup.js'
+  :javascript
+    var FBLogin = {
+      process: function() {
+        FB.getLoginStatus(function(response) {
+          if (response.session) {
+            #{redirect_to_fb_create}
+          } else {
+            #{show_denied_fb_perms_message}
+          }
+        });
+      }
+    };
+    
+    $(document).ready(function(){
+      if(#{(member && !member.try(:twitter_connected?)) ? '0' : '1'}){
+        $('.auth_link#twitter').click(function(){
+          $.oauthpopup({
+            path: '/auth/twitter',
+            center: true,
+            callback: function(){
+              window.location = '/me';
+            }
+          });
+        });
+      }
+      if(#{(member && !member.try(:linked_in_connected?)) ? '0' : '1'}){
+        $('.auth_link#linkedin').click(function(){
+          $.oauthpopup({
+            path: '/auth/linked_in',
+            center: true,
+            callback: function(){
+              window.location = '/me';
+            }
+          });
+        });
+      }
+    });
+
+
+.auth_links
+  .auth_link#facebook
+    -if member && !member.fb_connected?
+      =image_tag("fb_sign_in_grey.png")
+    -else
+      =fb_login_and_redirect(create_fb_session_path,:text => "Sign in with Facebook", :scope => "email")
+  .auth_link#twitter
+    -if member && !member.try(:twitter_connected?)
+      =image_tag("twitter_sign_in_grey.png")
+    -else    
+      =link_to(image_tag("twitter_sign_in.png"), "#")
+  .auth_link#linkedin
+    -if member && !member.linked_in_connected?
+      =image_tag("linked_in_sign_in_grey.png")
+    -else
+      =link_to(image_tag("linked_in_sign_in.png"), "#")

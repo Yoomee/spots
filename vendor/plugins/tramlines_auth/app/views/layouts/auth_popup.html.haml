@@ -1,0 +1,42 @@
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title
+      = site_name
+      \:
+      = site_slogan
+      \//
+      = page_title
+      = page_subtitle
+    %meta{ :name => "Generator", :content => "Yoomee (Ruby on Rails)" }
+    %meta{ :name => "robots", :content => "index, follow" }
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "Content-Type" }
+    %meta{ :name => "info", :content => "#{page_title}#{page_subtitle}" }
+    %link{ :href => "/images/favicon.ico", :rel => "shortcut icon" }
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+    = google_javascripts :jquery, :jqueryui
+    = javascript_include_tag 'jrails', 'jquery.cycle', 'tramlines', 'client/tramlines', 'jquery.labelify', 'jquery.fancy_box/jquery.fancybox-1.3.1.pack', 'jquery.fancy_box/jquery.mousewheel-3.0.2.pack.js', 'client/load_fancybox', "jquery.autogrowtextarea.js", :cache => true
+    =javascript_include_tag 'jquery.fancy_box/jquery.easing-1.3.pack.js'
+    = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
+    = stylesheet_link_tag 'http://fast.fonts.com/cssapi/f1269106-f262-440b-b3ce-93423b2eaf06.css'
+    = stylesheet_link_tag 'jquery.fancybox', 'jquery-ui', 'client/1140.css', 'client/styles', :cache => false
+    =# formtastic_stylesheet_link_tag
+    = labelify_javascript
+    =yield :head
+    :javascript
+      $(document).ready(function() {
+        FB.init({
+          appId  : '#{Facebooker2.app_id}',
+          status : true, // check login status
+          cookie : true, // enable cookies to allow the server to access the session
+          xfbml  : true  // parse XFBML
+        });
+      });
+    :javascript
+      $(document).ready(function() {
+        window.resizeTo(580, 330);
+      })
+  - body_tag do
+    #auth_popup
+      =content_for_layout
+    %div{:id => "fb-root"}        
+  
