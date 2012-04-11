@@ -2,6 +2,7 @@
 spots.sql
 /log
 /public/dragonfly/*
+/public/uploads/*
 /tmp
 .rvmrc
 Gemfile
