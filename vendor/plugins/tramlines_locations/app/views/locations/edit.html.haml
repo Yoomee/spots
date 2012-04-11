@@ -1,0 +1,21 @@
+-content_for :head do
+  :javascript
+    function updateLatLng(locationId, latLng) {
+      $('#location_lat').val(latLng.lat());
+      $('#location_lng').val(latLng.lng());
+    }
+
+-title 'Edit location'
+.alert-message.block-message.info
+  %strong Drag
+  and
+  %strong zoom
+  the map to fine-tune the location of
+  %strong="#{render_address(@location, :html => false)}"
+=google_map(@location, :width => "100%", :height => 500, :zoom => 10, :draggable => true, :interactive => false, :map_options => "zoomControl: true, zoomControlOptions: {style:'LARGE'}", :other => "google.maps.event.addListener(map, 'center_changed', function(){mapCenter=map.getCenter();markerLocation#{@location.id}.setPosition(mapCenter);updateLatLng('#{@location.id}', mapCenter);});")
+-semantic_form_for @location do |form|
+  -form.inputs do
+    =form.input :lat, :as => :hidden
+    =form.input :lng, :as => :hidden
+  -form.buttons do
+    =form.commit_button "Save"
