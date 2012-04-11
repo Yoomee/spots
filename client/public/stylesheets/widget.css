@@ -28,6 +28,12 @@
 }
 #sot_widget_container ul {
   margin-bottom: 10px;
+  overflow: hidden;
+}
+#sot_widget_container ul li {
+	display: inline-block;
+	float: left;
+	margin: 0 10px 10px 0;
 }
 #sot_widget_container ul li a {
   width: 120px;
