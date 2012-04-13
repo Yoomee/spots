@@ -6959,25 +6959,22 @@ form#new_member li {
   color:black;
   float:left;
   font-size: 30px;
-  height:100px;
-  width: 189px;
-  -moz-border-radius:50px;
-	-webkit-border-radius:50px;
-	border-radius:50px;
-	-o-border-radius:50px;
-	padding: 20px 50px;
-	text-align:center;
-	vertical-align:middle;
-	
+  width: 289px;
+	text-indent:-1000em;
 }
 .main_options a.button1 {
-  background-color: #FA6258;
+  background-image: url(/images/GetInvolved.jpg);
+  height:244px;
 }
 .main_options a.button2 {
-  background-color: #8BFBD5;
+  background-image: url(/images/SeeOurProjects.jpg);
+  height:237px;
+  margin-top:3px;
 }
 .main_options a.button3 {
-  background-color: #ffef12;
+  background-image: url(/images/PartnerWithUs.jpg);
+  height:214px;
+  margin-top:15px;
 }
 .main_options {
   margin-bottom: 40px;
@@ -7000,22 +6997,20 @@ form#new_member li {
 }
 .feature_activity_actions a {
   display:block;
-  -moz-border-radius:20px;
-	-webkit-border-radius:20px;
-	border-radius:20px;
-	-o-border-radius:20px;
-	height: 40px;
-	padding: 20px;
 	margin-bottom: 20px;
 	color: black;
 	font-size:30px;
+	text-indent: -1000em;
 }
 .feature_activity_actions a.first {
-  background-color:#FA6258;
+  background-image: url(/images/DoItV2.jpg);
+  height:98px;
 }
 .feature_activity_actions a.second {
-  background-color: #8BFBD5;
+  background-image: url(/images/ShareItV2.jpg);
+  height:101px;
 }
 .feature_activity_actions a.third {
-  background-color:#ffef12;
+  background-image: url(/images/SeeMoreV2.jpg);
+  height:101px;
 }
