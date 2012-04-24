@@ -7,7 +7,7 @@
     %ul
       -organisation_group.activities.each do |activity|
         %li
-          -link_to(organisation_group_activity_path(organisation_group,activity), :class => "activity") do
+          -link_to(organisation_group_activity_url(organisation_group,activity), :class => "activity") do
             =image_for_widget(activity, "147x147#")
             .label=activity
     .sot-footer
