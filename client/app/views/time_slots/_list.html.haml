@@ -17,5 +17,6 @@
           =link_to_box("Book", new_time_slot_time_slot_booking_path(time_slot, :date => date.strftime("%Y-%m-%d")), :class => "time_slot_book_link bttn")
         -unless same_note
           .time_slot_note=read_more_truncate(time_slot.note, :length => 100)
+  -if @one_off_date
 -else
   %p Unfortunately there are no available time-slots currently. Please check back soon.

@@ -5,7 +5,7 @@
   =image_for(organisation, "80x80#", :class => "organisation_panel_image")
   .organisation_details
     %h2
-      =organisation.name
+      =link_to_self organisation
       -if !lat.blank? && !lat.blank?
         %span.miles_away
           -num_miles = organisation.location.distance_to(Location.new(:lat => lat, :lng => lng)).to_i

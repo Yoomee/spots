@@ -7014,3 +7014,6 @@ form#new_member li {
   background-image: url(/images/SeeMoreV2.jpg);
   height:101px;
 }
+.organisation_details h2 a {
+  color:black;
+}
