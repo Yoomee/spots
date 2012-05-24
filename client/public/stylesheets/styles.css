@@ -6569,6 +6569,12 @@ table.time_slots td.link {width:20%;}
 #fancybox_time_slot_booking_form {
   padding: 20px;
 }
+#fancybox_time_slot_booking_form form {
+  width: 600px;
+}
+#fancybox_time_slot_booking_form form fieldset li {
+  width: 100%;
+}
 
 /*========== Organisations section ==========*/
 #organisation_documents .doc, #activity_documents {

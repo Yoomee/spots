@@ -4,11 +4,9 @@
 
 #yoomee
 development:
-  app_id: 366926473327119
-  secret: 1a3b7de8cab340c8cf336bd42e85d257
-  # app_id: 137557166307145
-  # api_key: 137557166307145
-  # secret: 4f39d3e37e194f4113f49a68e2f6af91
+  app_id: 137557166307145
+  api_key: 137557166307145
+  secret: 4f39d3e37e194f4113f49a68e2f6af91
   pretty_errors: true
 
 # si
@@ -35,6 +33,11 @@ development:
 #  api_key: 1fb799b69683d81cfaac0a90830c9694 
 #  secret_key: 64360c7592ab02f9bc08b91346426725 
 #  pretty_errors: false
+
+# staging:
+#   app_id: 366926473327119
+#   secret: 1a3b7de8cab340c8cf336bd42e85d257
+#   pretty_errors: true
 
 test:
   app_id: 273996288856

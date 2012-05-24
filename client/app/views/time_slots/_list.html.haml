@@ -1,6 +1,6 @@
 :javascript
   $(document).ready(function() {
-    FancyboxLoader.loadAll();  
+    FancyboxLoader.loadAll();
   });
 -if date
   -time_slots = organisation.time_slots_for_activity(activity).available_on_date(date).ascend_by_starts_at
@@ -12,9 +12,9 @@
       .time_slot
         %span.timespan=time_slot.timespan
         -if logged_out?
-          =link_to_login_fancybox("Book", :url => organisation_activity_path(organisation, activity, :date => date.strftime("%Y-%m-%d")), :class => "time_slot_book_link bttn")
+          =link_to_login_fancybox("Book", :url => organisation_activity_path(organisation, activity, :date => date.strftime("%Y-%m-%d"), :time_slot_id => time_slot.id), :class => "time_slot_book_link bttn")
         -else
-          =link_to_box("Book", new_time_slot_time_slot_booking_path(time_slot, :date => date.strftime("%Y-%m-%d")), :class => "time_slot_book_link bttn")
+          =link_to_box("Book", new_time_slot_time_slot_booking_path(time_slot, :date => date.strftime("%Y-%m-%d")), :class => "time_slot_book_link bttn book_time_slot_#{time_slot.id}")
         -unless same_note
           .time_slot_note=read_more_truncate(time_slot.note, :length => 100)
   -if @one_off_date

@@ -35,7 +35,7 @@ class TimeSlotBooking < ActiveRecord::Base
 
   before_validation :set_starts_at
   
-  validates_presence_of :member, :time_slot, :starts_at
+  validates_presence_of :member, :time_slot, :starts_at, :starts_at_time_string
   validate :starts_at_is_in_the_future, :not_already_booked_for_this_day, :starts_at_is_within_time_limits, :starts_at_is_within_notice_period, :starts_at_is_on_an_allowed_day
   
   after_create :send_emails_for_create

@@ -8,6 +8,7 @@
         $('html, body').animate({
           scrollTop: $("#organisation_panel").offset().top
         }, 2000);
+        #{"$('.book_time_slot_#{params[:time_slot_id]}').click();" if params[:time_slot_id].present?}
       });
     
 .row

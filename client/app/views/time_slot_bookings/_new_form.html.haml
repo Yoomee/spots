@@ -1,3 +1,4 @@
+-time_slot = @time_slot || time_slot_booking.time_slot
 #fancybox_time_slot_booking_form
   :javascript
     $(document).ready(function() {
@@ -7,15 +8,15 @@
       });  
     });
   %h2.time_slot_booking_title
-    =@time_slot.activity
+    =time_slot.activity
     %span
       with
-      =@time_slot.organisation
-  -semantic_remote_form_for(@time_slot_booking) do |form|
+      =time_slot.organisation
+  -semantic_remote_form_for(time_slot_booking) do |form|
     -form.inputs do
       =form.input :time_slot_id, :as => :hidden
       =form.input :starts_at, :as => :hidden
-      =form.input :starts_at_time_string, :as => :select, :collection => @time_slot.possible_time_strings, :include_blank => false, :label => "Time:", :wrapper_html => {:class => "inline-fields"}
+      =form.input :starts_at_time_string, :as => :select, :collection => [["Choose time", nil]] + time_slot.possible_time_strings, :include_blank => false, :label => time_slot_booking.starts_at.strftime("%A %o %b"), :wrapper_html => {:class => "inline-fields"}
       =form.input :notes, :as => :text, :input_html => {:rows => 2}, :label => 'Add a note to the organisation to tell them more about what you plan to do. <br/>e.g. type of performance, craft activity, pamper treat, quiz or game.'
       -form.semantic_fields_for(:time_slot_answers) do |answers_form|
         =answers_form.input :time_slot_question_id, :as => :hidden
