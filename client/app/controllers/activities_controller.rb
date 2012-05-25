@@ -95,7 +95,7 @@ class ActivitiesController < ApplicationController
     @organisation = Organisation.find(params[:organisation_id])
     @activity = Activity.find(params[:id])
     if request.xhr?
-      @date = Date.parse(params[:date])
+      @date = Date.strptime(params[:date], "%d-%m-%y")
       render :update do |page|
         page[:time_slot_list].html(render("time_slots/list", :organisation => @organisation, :activity => @activity, :date => @date))
       end
