@@ -4,8 +4,8 @@
   var OneOffDates = #{organisation.one_off_dates_for_activity(activity).to_json};
   $(document).ready(function() {
     $('#time_slot_datepicker').datepicker({
-      dateFormat: 'yy-mm-dd',
-      defaultDate: "#{selected_date.try(:strftime, "%Y-%m-%d") || ''}",
+      dateFormat: 'dd-mm-y',
+      defaultDate: "#{selected_date.try(:strftime, "%d-%m-%y") || ''}",
       minDate: (+#{organisation.num_weeks_notice * 7}),
       onSelect: function(dateText, inst) {
         $.get("/organisations/#{organisation.id}/activities/#{activity.id}/time_slots?date=" + dateText);

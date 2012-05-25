@@ -49,7 +49,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :members, :only => [], :member => {:agree_to_big_print => :put, :edit_bio => :get, :update_bio => :put}
   map.welcome '/welcome', :controller => 'members', :action => 'welcome'
   map.big_print "/big_print", :controller => "members", :action => "big_print"
-  #map.get_involved "/get_involved", :controller => 'activities', :action => 'get_involved'
   map.connect '/widget', :controller => 'widget', :action => 'index'
   
 end

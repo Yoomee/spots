@@ -1707,7 +1707,7 @@ p.latest_text {
 }
 #activity_filter {
   float: right;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 #activity_filter a, #activity_filter span {
   float: left;
@@ -1777,16 +1777,33 @@ p.latest_text {
   line-height: 16px;
   height: 34px;
   overflow: hidden;
-
-
-
 }
-
 .small_activity_grid .activity .label, .small_activity_grid .activity img  {
   width: 100px;
 }
 .small_activity_grid .activity img  {
   height: 100px;
+}
+.activity_date_filter {
+  margin: 10px 0;
+  line-height: 30px;
+  font-size: 16px;
+  float: left;
+  clear: both;
+}
+.activity_date_filter label,
+.activity_date_filter img,
+.activity_date_filter #activity_date_filter_label {
+  float: left;
+  margin-right: 5px;
+}
+.activity_date_filter img {
+  cursor: pointer;
+}
+.activity_date_filter #activity_date_filter_label {
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
 }
 
 /* ====================  Inside pages  ===================== */

@@ -1,0 +1,4 @@
+-url = params[:date].present? ? activity_path(activity, :date => params[:date]) : activity_path(activity)
+-link_to(url, :class => "activity type_#{(activity.organisation_group.to_s || 'east_london').variableize}") do
+  =image_for(activity, "124x124#")
+  .label=activity

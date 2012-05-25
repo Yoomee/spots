@@ -92,7 +92,7 @@ class TimeSlotBookingsController < ApplicationController
   
   def new
     @time_slot = TimeSlot.find(params[:time_slot_id])
-    @time_slot_booking = @time_slot.bookings.build(:starts_at => Date.parse(params[:date]))
+    @time_slot_booking = @time_slot.bookings.build(:starts_at => Date.strptime(params[:date], "%d-%m-%y"))
     @time_slot_booking.build_time_slot_answers
     render :partial => "new_form", :locals => {:time_slot_booking => @time_slot_booking}
   end

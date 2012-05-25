@@ -48,7 +48,15 @@ class ActivitiesController < ApplicationController
   end
     
   def index
-    @activities = Activity.all
+    if request.xhr?
+      date = params[:date].present? ? Date.strptime(params[:date], "%d-%m-%y") : nil
+      @activities = Activity.for_organisation_group_with_bookings_availaible_on_date(params[:organisation_group_id], date)
+      render :update do |page|
+        page['.activity_grid'].replace_html(render(:partial => 'activities/get_involved_activity', :collection => @activities, :as => :activity))
+      end
+    else
+      @activities = Activity.all
+    end
   end
   
   def new
@@ -75,7 +83,7 @@ class ActivitiesController < ApplicationController
     else
       @panel_organisation = @activity.organisations.visible.random.first
     end
-    @selected_date = Date.parse(params[:date]) if params[:date].present?
+    @selected_date = Date.strptime(params[:date], "%d-%m-%y") if params[:date].present?
     if request.xhr?
       render :partial => "activities/organisation_panel", :locals => {:activity => @activity, :organisation => @organisation}
     else

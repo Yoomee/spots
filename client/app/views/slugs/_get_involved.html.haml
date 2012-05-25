@@ -1,26 +1,29 @@
 -content_for :head do
-  :coffeescript
-
-    $ ->
-
-      ActivityFilter.filter('#{activity_typeize(get_involved_activity_types.first)}')
+  :javascript
+    $(document).ready(function() {
+      ActivityFilter.initDatepicker({
+        defaultDate: '#{params[:date]}',
+        numWeeksNotice: #{Organisation.minimum(:num_weeks_notice)}
+      });
+    });
 
 .row.headline.find
   .twelvecol
     Find an activity
-  .sixcol.info
-    Find something you'd like to do in our selection below and click through to book.
+  .twelvecol.info
+    %p Find something you'd like to do in our selection below and click through to book.
+  .sixcol
+    .activity_date_filter
+      =hidden_field_tag(:activity_date_filter, params[:date])
+      =link_to_function((params[:date].present? ? params[:date].gsub('-', '/') : "Filter by date"), "$(this).prev('.ui-datepicker-trigger').click()", :id => "activity_date_filter_label")
   .sixcol.last.activity
     -if !Activity.anytime.empty?
       #activity_filter
         %span Filter activities by:
-        =#link_to_function("All", "ActivityFilter.filter('all')", :id => "activity_filter_all", :class => "active")
-        -get_involved_activity_types.each do |activity_type|
-          =link_to_function(activity_type, "ActivityFilter.filter('#{activity_typeize(activity_type)}')", :id => "activity_filter_#{activity_typeize(activity_type)}", :class => (activity_type == get_involved_activity_types.first ? 'activity_type active' : 'activity_type'))
+        -OrganisationGroup.for_get_involved.each do |organisation_group|
+          =activity_filter_link(organisation_group)
+        =activity_filter_link('East London')
   .twelvecol
-    
     .activity_grid
-      -get_involved_activities.each do |activity|
-        -link_to(activity, :class => "activity type_#{activity_typeize(activity.organisation_group || 'East London')}") do
-          =image_for(activity, "124x124#")
-          .label=activity
+      -@activities.each do |activity|
+        =render("activities/get_involved_activity", :activity => activity)

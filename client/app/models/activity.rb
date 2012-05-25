@@ -43,9 +43,20 @@ class Activity < ActiveRecord::Base
   named_scope :anytime, :conditions => {:activity_type => "anytime"}
   named_scope :confirmed, :joins => :organisation, :conditions => {:organisation => {:confirmed => true}}
   named_scope :volunteering, :conditions => {:activity_type => "volunteering"}
-  named_scope :for_organisation_group, lambda {|organisation_group| {:joins => :organisations, :conditions => ["organisations.organisation_group_id=?", organisation_group.id], :group => "activities.id"}}
   named_scope :available_to_organisation_with_group, lambda {|organisation|{:conditions => ["activities.organisation_group_id = ?", organisation.organisation_group_id]}}
   named_scope :non_group_specific, {:conditions => "activities.organisation_group_id IS NULL"}
+  named_scope :for_organisation_group, lambda {|organisation_group| {
+      :joins => (organisation_group ? :organisations : nil), 
+      :conditions => (organisation_group ? ["organisations.organisation_group_id=?", (organisation_group.is_a?(OrganisationGroup) ? organisation_group.id : organisation_group)] : nil), 
+      :group => "activities.id"}
+  }
+  named_scope :bookings_available_on_date, lambda {|date| {:joins => :time_slots, :conditions => ["(DATE(time_slots.date) = :date OR #{date.strftime("%a").downcase} = 1) AND NOT EXISTS (SELECT id FROM time_slot_bookings WHERE time_slot_bookings.time_slot_id = time_slots.id AND DATE(time_slot_bookings.starts_at) = :date LIMIT 1)", {:date => date.to_date}], :group => 'activities.id'}}
+  
+  named_scope :for_organisation_group_with_bookings_availaible_on_date, lambda {|organisation_group_id, date| {
+      :joins => :organisations,
+      :conditions => ["#{organisation_group_id.to_s.is_number? ? 'organisations.organisation_group_id = :group_id' : 'organisations.organisation_group_id IS NULL'}#{date ? " AND (DATE(time_slots.date) = :date OR #{date.strftime("%a").downcase} = 1) AND NOT EXISTS (SELECT id FROM time_slot_bookings WHERE time_slot_bookings.time_slot_id = time_slots.id AND DATE(time_slot_bookings.starts_at) = :date LIMIT 1)" : ""}", {:date => date.try(:to_date), :group_id => organisation_group_id}],
+      :group => "activities.id"}
+  }
 
   class << self
     
