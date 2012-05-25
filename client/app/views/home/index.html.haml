@@ -62,7 +62,7 @@
           -link_to(@activity, :class => 'activity') do
             =image_for(@activity, "124x124#")
             .label=@activity
-          =@activity.description.word_truncate(650)
+          =@activity.description_for_member(logged_in_member).word_truncate(650)
           %br.clear
     .fourcol.last.feature_activity_actions
       =link_to "Do it...", @activity, :class => 'first'

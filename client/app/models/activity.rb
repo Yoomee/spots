@@ -73,6 +73,14 @@ class Activity < ActiveRecord::Base
   def anytime?
     activity_type == 'anytime'
   end
+  
+  def description_for_member(member)
+    if member && organisation_description.present? && !member.organisations.empty?
+      organisation_description
+    else
+      description
+    end
+  end
 
 end
 Activity::TYPES = %w{volunteering anytime}

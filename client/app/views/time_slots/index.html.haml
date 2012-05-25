@@ -32,7 +32,7 @@
         =image_for(activity, "200x")
       .tencol.last
         %h4=activity
-        =read_more_truncate(activity.description) 
+        =read_more_truncate(activity.description_for_member(logged_in_member)) 
         %ul.lst{:id => "activity_#{activity.id}_time_slots"}
           -activity.time_slots.organisation_id_is(@organisation.id).each do |time_slot|
             =render("time_slots/time_slot", :time_slot => time_slot)
